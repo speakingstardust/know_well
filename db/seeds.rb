@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+25.times do |n|
+	name = 5 + rand(10)
+	charge = 12
+	Jig.create!(name: name, cleaning_charge: charge, repair_charge: charge)
+end

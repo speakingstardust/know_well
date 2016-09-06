@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1>Jig Listings</h1>
+</div>
+
+  <%= link_to "Create Jig", new_jig_path, class: "btn btn-primary pull-right" %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Cleaning charge</th>
+      <th>Repair charge</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jigs.each do |jig| %>
+      <tr>
+        <th scope="row"><%= jig.name %></th>
+        <td><%= jig.cleaning_charge %></td>
+        <td><%= jig.repair_charge %></td>
+        <td><%= link_to 'Show', jig %></td>
+        <td><%= link_to 'Edit', edit_jig_path(jig) %></td>
+        <td><%= link_to 'Destroy', jig, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+  

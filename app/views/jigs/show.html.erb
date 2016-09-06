@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @jig.name %>
+</p>
+
+<p>
+  <strong>Cleaning charge:</strong>
+  <%= @jig.cleaning_charge %>
+</p>
+
+<p>
+  <strong>Repair charge:</strong>
+  <%= @jig.repair_charge %>
+</p>
+
+<%= link_to 'Edit', edit_jig_path(@jig) %> |
+<%= link_to 'Back', jigs_path %>
