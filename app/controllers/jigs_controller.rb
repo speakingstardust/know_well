@@ -69,6 +69,6 @@ class JigsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jig_params
-      params.require(:jig).permit(:name, :cleaning_charge, :repair_charge)
+      params.require(:jig).permit(:name, :cleaning_charge, :repair_charge, :image)
     end
 end
