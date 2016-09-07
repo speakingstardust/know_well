@@ -1,6 +1,6 @@
 class JigsController < ApplicationController
   before_action :set_jig, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /jigs
   # GET /jigs.json
   def index
