@@ -15,6 +15,14 @@
 			<li class="nav-item <%= active_class(root_path) %>">
 				<%= link_to "Home", root_path, class: "nav-link" %>
 			</li>
+			<% if user_signed_in? %>
+			<li class="nav-item <%= active_class(jig_reporting_path) %>"> 
+				<%= link_to "Jig Reporting", jig_reporting_path, class: "nav-link" %>
+			</li>
+			<li class="nav-item <%= active_class(customers_path) %>"> 
+				<%= link_to "Customer Database", customers_path, class: "nav-link" %>
+			</li>
+			<% end %>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<% if user_signed_in? %>

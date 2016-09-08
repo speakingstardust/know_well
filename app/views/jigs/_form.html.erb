@@ -16,6 +16,10 @@
     <%= f.text_field :name, class: "form-control" %>
   </div>
   <div class="field">
+    <%= f.label :customer_id, "Customer" %><br>
+    <%= f.collection_select :customer_id, @customers, :id, :name, { include_blank: 'Select Customer' }, class: "form-control" %>
+  </div>
+  <div class="field">
     <%= f.label :cleaning_charge %><br>
     <%= f.number_field :cleaning_charge, class: "form-control" %>
   </div>

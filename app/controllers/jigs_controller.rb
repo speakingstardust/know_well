@@ -14,11 +14,14 @@ class JigsController < ApplicationController
 
   # GET /jigs/new
   def new
+    @customers = Customer.all
+
     @jig = Jig.new
   end
 
   # GET /jigs/1/edit
   def edit
+    @customers = Customer.all
   end
 
   # POST /jigs
@@ -69,6 +72,6 @@ class JigsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jig_params
-      params.require(:jig).permit(:name, :cleaning_charge, :repair_charge, :image)
+      params.require(:jig).permit(:name, :cleaning_charge, :repair_charge, :image, :customer_id)
     end
 end

@@ -1,4 +1,5 @@
 class Jig < ActiveRecord::Base
+	belongs_to :customer
 
 	mount_uploader :image, ImageUploader
 

@@ -9,6 +9,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Customer</th>
       <th>Cleaning charge</th>
       <th>Repair charge</th>
       <th>Image</th>
@@ -20,6 +21,7 @@
     <% @jigs.each do |jig| %>
       <tr>
         <th scope="row"><%= jig.name %></th>
+        <td><%= jig.customer.name %></td>
         <td><%= jig.cleaning_charge %></td>
         <td><%= jig.repair_charge %></td>
         <td><%= image_tag jig.image_url(:tiny) %></td>
