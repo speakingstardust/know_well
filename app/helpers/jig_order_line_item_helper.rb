@@ -1,0 +1,2 @@
+module JigOrderLineItemHelper
+end

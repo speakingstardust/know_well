@@ -1,0 +1,34 @@
+<%= form_for @jig_order do |f| %>
+	<% if @jig_order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@jig_order.errors.count, "error") %> prohibited this jig order from being saved:</h2>
+
+      <ul>
+      <% @jig_order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %>
+    <%= select_date Date.today, order: [:month, :day, :year] ,class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :customer_id, "Customer" %>
+    <%= f.collection_select :customer_id, @customers, :id, :name, { include_blank: 'Select Customer' }, class: 'form-control' %>
+  </div>
+
+  <div class="fields">
+    <%= f.fields_for :jig_order_line_items do |builder| %>
+      <%= render 'jig_order_line_item_fields', :f => builder %>
+    <% end %> 
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

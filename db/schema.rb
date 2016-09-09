@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907175030) do
+ActiveRecord::Schema.define(version: 20160908231413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,28 @@ ActiveRecord::Schema.define(version: 20160907175030) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  create_table "jig_order_line_items", force: :cascade do |t|
+    t.integer  "repaired"
+    t.integer  "cleaned"
+    t.integer  "jig_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "jig_order_id"
+  end
+
+  add_index "jig_order_line_items", ["jig_id"], name: "index_jig_order_line_items_on_jig_id", using: :btree
+  add_index "jig_order_line_items", ["jig_order_id"], name: "index_jig_order_line_items_on_jig_order_id", using: :btree
+
+  create_table "jig_orders", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "customer_id"
+    t.text     "notes"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "jig_orders", ["customer_id"], name: "index_jig_orders_on_customer_id", using: :btree
 
   create_table "jigs", force: :cascade do |t|
     t.string   "name"

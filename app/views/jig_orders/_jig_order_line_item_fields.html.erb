@@ -1,0 +1,6 @@
+<p>
+  <%= f.label :jig_id, "Jig Name" %>
+  <%= f.collection_select :jig_id, Jig.all, :id, :name, { include_blank: 'Select Jig' }, class: 'form-control' %>
+  <%= f.check_box :_destroy, class: 'form-control' %>
+  <%= f.label :_destroy, "Remove Jig" %>
+</p>

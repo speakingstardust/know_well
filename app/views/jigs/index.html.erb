@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <div class="page-header">
-  <h1>Jig Listings</h1>
+  <h1>Jig Listing</h1>
 </div>
 
   <%= link_to "Create Jig", new_jig_path, class: "btn btn-primary pull-right" %>
@@ -10,15 +10,15 @@
     <tr>
       <th>Name</th>
       <th>Customer</th>
-      <th>Cleaning charge</th>
-      <th>Repair charge</th>
+      <th>Cleaning Charge</th>
+      <th>Repair Charge</th>
       <th>Image</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @jigs.each do |jig| %>
+    <% @jig_orders.each do |jig| %>
       <tr>
         <th scope="row"><%= jig.name %></th>
         <td><%= jig.customer.name %></td>
@@ -32,7 +32,5 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
 
   
