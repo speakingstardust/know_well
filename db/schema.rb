@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160908231413) do
+ActiveRecord::Schema.define(version: 20160912203449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,23 +44,27 @@ ActiveRecord::Schema.define(version: 20160908231413) do
     t.date     "date"
     t.integer  "customer_id"
     t.text     "notes"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "jig_order_line_item_id"
   end
 
   add_index "jig_orders", ["customer_id"], name: "index_jig_orders_on_customer_id", using: :btree
+  add_index "jig_orders", ["jig_order_line_item_id"], name: "index_jig_orders_on_jig_order_line_item_id", using: :btree
 
   create_table "jigs", force: :cascade do |t|
     t.string   "name"
     t.integer  "cleaning_charge"
     t.integer  "repair_charge"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "image"
     t.integer  "customer_id"
+    t.integer  "jig_order_line_item_id"
   end
 
   add_index "jigs", ["customer_id"], name: "index_jigs_on_customer_id", using: :btree
+  add_index "jigs", ["jig_order_line_item_id"], name: "index_jigs_on_jig_order_line_item_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

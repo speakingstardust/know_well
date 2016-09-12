@@ -1,5 +1,6 @@
 class JigOrdersController < ApplicationController
- 
+  before_action :set_jig_order, only: [:show, :edit, :update, :destroy]
+
   def index
     @jig_orders = JigOrder.all
   end
@@ -10,22 +11,37 @@ class JigOrdersController < ApplicationController
   def new
     @customers = Customer.all
     @jig_order = JigOrder.new
-    3.times { @jig_order.jig_order_line_items.build }
   end
 
   def edit
+    @customers = Customer.all
   end
 
   def create 
-    date = Date.civil(params[:date][:month].to_i, params[:date][:day].to_i, params[:date][:year].to_i)
+    @customers = Customer.all
+    date = params[:date]
+    date_object = Date.parse params["date"].values.join("-")
     @jig_order = JigOrder.new(jig_order_params)
-    @jig_order.date = date
+    @jig_order.date = date_object
     if @jig_order.save
       redirect_to @jig_order, notice: 'Jig Order was successfully created.'
     else
       render :new
 
     end
+  end
+
+  def update
+    if @jig_order.update(jig_order_params)
+      redirect_to @jig_order, notice: 'Jig Order successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @jig_order.destroy
+    redirect_to jig_orders_url, notice: 'Jig Order successfully destroyed.'
   end
 
   private 
@@ -35,7 +51,7 @@ class JigOrdersController < ApplicationController
   end
 
   def jig_order_params
-  	params.require(:jig_order).permit(:date, :customer_id, :notes)
+  	params.require(:jig_order).permit(:date, :customer_id, :notes, jig_order_line_items_attributes: [:id, :jig_id, :cleaned, :repaired])
   end
 
 end

@@ -1,6 +1,25 @@
-<p>
-  <%= f.label :jig_id, "Jig Name" %>
-  <%= f.collection_select :jig_id, Jig.all, :id, :name, { include_blank: 'Select Jig' }, class: 'form-control' %>
-  <%= f.check_box :_destroy, class: 'form-control' %>
-  <%= f.label :_destroy, "Remove Jig" %>
-</p>
+<div class="fields jig-inline">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-10">
+		<div class="form-group">
+			<div class="col-sm-3">
+			  <%= f.label :jig_id, "Jig Name", class: "control-label" %>
+			  <%= f.collection_select :jig_id, Jig.all, :id, :name, { include_blank: 'Select Jig' }, class: "form-control" %>
+		  </div>
+		  <div class="col-sm-3">
+		  	<%= f.label :repaired, "# Repaired", class: "control-label" %>
+		  	<%= f.number_field :repaired, step: 1, class: "form-control" %>
+	  	</div>
+	  	<div class="col-sm-3">
+		  	<%= f.label :cleaned, "# Cleaned", class: "control-label" %>
+		  	<%= f.number_field :cleaned, step: 1, class: "form-control" %>
+	  	</div>
+	  	<div class="col-sm-3">
+			  <%= f.hidden_field :_destroy %>
+			  <%= link_to_remove_fields "remove", f %>
+		  </div>
+		</div>
+		<hr>
+  </div>
+</div>
