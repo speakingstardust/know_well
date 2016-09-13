@@ -2,6 +2,7 @@ class JigOrderLineItemsController < ApplicationController
 	before_action :authenticate_user!
 	
   def index
+  	@jig_order_line_items = JigOrderLineItem.all
   end
 
   private 
