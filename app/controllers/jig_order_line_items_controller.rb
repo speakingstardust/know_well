@@ -6,10 +6,14 @@ class JigOrderLineItemsController < ApplicationController
   end
 
   def print
-  	@jig_order_line_items = JigOrderLineItem.all
+  	@report = JigOrderLineItem.all
   	respond_to do |format|
-  		format.xlsx { render xlsx: 'print', filename: "print.xlsx" }
-  	end
+      format.pdf do 
+        pdf = JigSummaryPdf.new(@report, view_context)
+      end
+    end
+
+
   end
 
   private 

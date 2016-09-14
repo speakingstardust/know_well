@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :jigs
   resources :jig_orders
   resources :jig_order_line_items
+  resources :reports
   devise_for :users
 
   get 'jig_reporting' => "pages#jig_reporting"
