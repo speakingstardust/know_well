@@ -36,6 +36,10 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts_as_xlsx (1.0.6)
+      activerecord (>= 2.3.9)
+      axlsx (>= 1.0.13)
+      i18n (>= 0.4.1)
     arel (6.0.3)
     autoprefixer-rails (6.4.1)
       execjs
@@ -46,6 +50,9 @@ GEM
     axlsx_rails (0.5.0)
       actionpack (>= 3.1)
       axlsx (>= 2.0.1)
+    axlsx_styler (0.1.5)
+      activesupport (>= 3.1)
+      axlsx (~> 2.0)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -194,9 +201,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_xlsx
   autoprefixer-rails
   axlsx (= 2.1.0.pre)
   axlsx_rails
+  axlsx_styler
   bootstrap-sass (~> 3.3, >= 3.3.6)
   byebug
   carrierwave

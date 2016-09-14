@@ -1,0 +1,35 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Jigs") do |sheet|
+	sheet.add_row ["", "", "", "", "Jig Summary Report"]
+	sheet.add_row ["Jig Name", "Jig Image", "# Cleaned", "Cleaning Charge", "Cleaning Subtotal", "# Repaired", "Repair Charge", "Repair Subtotal", "Jig Subtotal" ]
+	@jig_order_line_items.each do |line_item|
+		cleaning_subtotal = 
+			if line_item.jig.cleaning_charge.nil?
+				"#{line_item.jig.name} Cleaning Charge Hasn't Been Set."
+			elsif line_item.cleaned.nil?
+				0
+			else
+				line_item.cleaned * line_item.jig.cleaning_charge
+			end
+		repair_subtotal = 
+			if line_item.jig.repair_charge.nil?
+				"#{line_item.jig.name} Repair Charge Hasn't Been Set."
+			elsif line_item.repaired.nil?
+				0
+			else
+				line_item.repaired * line_item.jig.repair_charge
+			end
+		jig_subtotal = 
+			if cleaning_subtotal.nil? 
+				repair_subtotal
+			elsif repair_subtotal.nil?
+				cleaning_subtotal
+			else
+				cleaning_subtotal + repair_subtotal
+			end
+		sheet.add_row [line_item.jig.name, line_item.jig.image, line_item.cleaned, line_item.jig.cleaning_charge, cleaning_subtotal, line_item.repaired, line_item.jig.repair_charge, repair_subtotal, jig_subtotal]
+	end
+	sheet.add_style "A1:I2", b: true, alignment: { horizontal: :center }
+	sheet.column_widths nil, nil, nil, nil, nil, nil, nil, nil, nil
+end
