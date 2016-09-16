@@ -30,7 +30,7 @@ gem 'devise'
 # gem 'unicorn'
 gem 'puma'
 
-gem 'ransack'
+# gem 'ransack'
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'autoprefixer-rails'
@@ -40,7 +40,6 @@ gem 'mini_magick'
 
 gem 'faker'
 
-gem 'hirb'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
