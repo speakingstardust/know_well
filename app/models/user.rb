@@ -7,6 +7,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :timeoutable
 
-  scope :admin, -> { where(admin: true) }
 
 end
