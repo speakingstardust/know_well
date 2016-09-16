@@ -30,14 +30,7 @@ gem 'devise'
 # gem 'unicorn'
 gem 'puma'
 
-gem 'thinreports'
-gem 'thinreports-rails'
-
-gem 'rubyzip', '~> 1.1.0'
-gem 'axlsx', '2.1.0.pre'
-gem 'axlsx_rails'
-gem 'acts_as_xlsx'
-gem 'axlsx_styler'
+gem 'ransack'
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'autoprefixer-rails'
@@ -46,6 +39,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 gem 'faker'
+
+gem 'hirb'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

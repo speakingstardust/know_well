@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   resources :reports
   devise_for :users
 
+
   get 'jig_reporting' => "pages#jig_reporting"
-  get 'print_jig_report' => "jig_order_line_items#print"
+  get 'jig_summary_report/new' => "jig_orders#new_report"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

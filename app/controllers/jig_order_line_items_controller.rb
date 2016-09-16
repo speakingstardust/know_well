@@ -5,16 +5,7 @@ class JigOrderLineItemsController < ApplicationController
   	@jig_order_line_items = JigOrderLineItem.all
   end
 
-  def print
-  	@report = JigOrderLineItem.all
-  	respond_to do |format|
-      format.pdf do 
-        pdf = JigSummaryPdf.new(@report, view_context)
-      end
-    end
 
-
-  end
 
   private 
 

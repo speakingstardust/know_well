@@ -1,6 +1,7 @@
 class JigOrdersController < ApplicationController
   before_action :set_jig_order, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+
   
   def index
     @jig_orders = JigOrder.all
@@ -43,6 +44,10 @@ class JigOrdersController < ApplicationController
   def destroy
     @jig_order.destroy
     redirect_to jig_orders_url, notice: 'Jig Order successfully destroyed.'
+  end
+
+  def new_report
+    @jig_orders = JigOrder.all
   end
 
   private 
