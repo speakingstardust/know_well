@@ -14,6 +14,7 @@
 	state = Faker::Address.state
 	zip = Faker::Address.zip
 	Customer.create!(name: name, phone: phone, fax: fax, street_address: st_address, city: city, state: state, zip: zip)
+end
 
 25.times do |n|
 	name = Faker::Lorem.word
@@ -30,6 +31,17 @@ end
 end
 
 5.times do |n| 
-	
+	customer_id = Customer.order("RANDOM()").first.id
+	date = Faker::Date.forward(n)
+
+	order = JigOrder.create!(customer_id: customer_id, date: date)
+
+	3.times do |j|
+		jig_id = Jig.order("RANDOM()").first.id
+		cleaned = Faker::Number.number(3)
+		repaired = Faker::Number.number(2)
+
+		JigOrderLineItem.create!(jig_id: jig_id, repaired: repaired, cleaned: cleaned, jig_order_id: order.id)
+	end
 end
 
