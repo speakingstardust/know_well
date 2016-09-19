@@ -5,22 +5,23 @@
 </div>
 
 
-<%= search_form_for @search do |f| %>
+<%= search_form_for(@search, format: :pdf) do |f| %>
+
+	<%= f.label :customer_id_eq, "Customer", class: 'control-label' %>
+	<%= f.collection_select :customer_id_eq, @customers, :id, :name, class: 'form-control' %>
+
+	<%= f.label :date_gteq, "Order Date", class: 'control-label' %>
 	
-	<div class="control-group">
-		<%= f.label :date_gteq, "Order Date Between", class: 'control-label' %>
-		<div class="controls">
-			<%= f.search_field :date_gteq, "data-provide" => "datepicker" %>
-		</div>
-		<%= f.label :date_lteq, "and" %>
-		<div class="controls">
-			<%= f.search_field :date_lteq, "data-provide" => "datepicker" %>
-		</div>
+	<div class="input-group input-daterange">
+		<%= f.text_field :date_gteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
+		<span class="input-group-addon">to</span>
+		<%= f.text_field :date_lteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
 	</div>
 
-	<%= f.submit "Search", class: "btn btn-large btn-primary" %>
-
+		<%= f.submit "Search", class: "btn btn-primary" %>	
+		<%= link_to "Clear Search", request.path, class: "cancel-button" %>
 <% end %>
 
-
-<%= render 'table' %>
+<div class="row">
+	<%= render 'table' %>
+</div>

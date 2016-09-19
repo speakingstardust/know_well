@@ -33,6 +33,7 @@ gem 'puma'
 gem 'ransack'
 gem 'kaminari'
 
+gem 'prawn_rails'
 gem 'prawn'
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
