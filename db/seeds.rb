@@ -30,7 +30,7 @@ end
 	Jig.create!(name: name, customer_id: customer, cleaning_charge: charge, repair_charge: charge)
 end
 
-5.times do |n| 
+50.times do |n| 
 	customer_id = Customer.order("RANDOM()").first.id
 	date = Faker::Date.forward(n)
 

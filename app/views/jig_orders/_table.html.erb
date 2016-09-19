@@ -1,3 +1,4 @@
+<%= paginate @jig_orders %>
 <table class="table">
   <thead>
     <tr>
@@ -11,7 +12,7 @@
   <tbody>
     <% @jig_orders.each do |jig_order| %>
       <tr>
-        <td><%= jig_order.date %></td>
+        <td><%= l jig_order.date %></td>
         <td><%= jig_order.customer.name %></td>
         <td><%= jig_order.notes %></td>
         <td><%= link_to 'Show', jig_order %></td>

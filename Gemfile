@@ -31,6 +31,7 @@ gem 'devise'
 gem 'puma'
 
 gem 'ransack'
+gem 'kaminari'
 
 gem 'prawn'
 

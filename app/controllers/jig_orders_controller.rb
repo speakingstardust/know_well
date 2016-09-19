@@ -4,8 +4,9 @@ class JigOrdersController < ApplicationController
 
   
   def index
+    @customers = Customer.all
     @search = JigOrder.ransack(params[:q])
-    @jig_orders = @search.result
+    @jig_orders = @search.result.order(:date).page(params[:page])
 
   end
 

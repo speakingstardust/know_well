@@ -7,15 +7,19 @@
 
 <%= search_form_for @search do |f| %>
 
+	<%= f.label :customer_id_eq, "Customer", class: 'control-label' %>
+	<%= f.collection_select :customer_id_eq, @customers, :id, :name, class: 'form-control' %>
+
 	<%= f.label :date_gteq, "Order Date", class: 'control-label' %>
 	
 	<div class="input-group input-daterange">
 		<%= f.text_field :date_gteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
 		<span class="input-group-addon">to</span>
 		<%= f.text_field :date_lteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
-		</div>
+	</div>
 
 		<%= f.submit "Search", class: "btn btn-primary" %>	
+		<%= link_to "Clear Search", request.path, class: "cancel-button" %>
 <% end %>
 
 <div class="row">
