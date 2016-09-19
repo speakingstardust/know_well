@@ -1,14 +1,13 @@
 <% provide(:title, "Jig Order Index") %>
-
-<div class="page-header">
-  <h1 class="text-center">Jig Order Index</h1>
+<div class="row">
+	<div class="page-header">
+	  <h1 class="text-center">Jig Order Index</h1>
+	</div>
 </div>
-
-  <%= link_to "Create New Jig Order", new_jig_order_path, class: "btn btn-primary pull-right" %>
 
 <%= search_form_for @search do |f| %>
 
-	<%= f.label :date_gteq, "Order Date Between", class: 'control-label' %>
+	<%= f.label :date_gteq, "Order Date", class: 'control-label' %>
 	
 	<div class="input-group input-daterange">
 		<%= f.text_field :date_gteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
@@ -16,8 +15,13 @@
 		<%= f.text_field :date_lteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
 		</div>
 
-		<%= f.submit "Search", class: "btn btn-primary" %>
+		<%= f.submit "Search", class: "btn btn-primary" %>	
 <% end %>
 
+<div class="row">
+	<%= render 'table' %>
+</div>
 
-<%= render 'table' %>
+<div class="row">
+  <%= link_to "Create New Jig Order", new_jig_order_path, class: "btn btn-primary pull-right" %>
+</div>
