@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= sort_link @search, :date, "Date" %></th>
+      <th>Customer</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jig_orders.each do |jig_order| %>
+      <tr>
+        <td><%= jig_order.date %></td>
+        <td><%= jig_order.customer.name %></td>
+        <td><%= jig_order.notes %></td>
+        <td><%= link_to 'Show', jig_order %></td>
+        <td><%= link_to 'Edit', edit_jig_order_path(jig_order) %></td>
+        <td><%= link_to 'Destroy', jig_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

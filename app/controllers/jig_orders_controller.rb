@@ -4,7 +4,9 @@ class JigOrdersController < ApplicationController
 
   
   def index
-    @jig_orders = JigOrder.all
+    @search = JigOrder.ransack(params[:q])
+    @jig_orders = @search.result
+
   end
 
   def show
@@ -47,7 +49,8 @@ class JigOrdersController < ApplicationController
   end
 
   def new_report
-    @jig_orders = JigOrder.all
+    @search = JigOrder.search(params[:q])
+    @jig_orders = @search.result
   end
 
   private 

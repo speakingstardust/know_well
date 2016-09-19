@@ -1,1 +1,26 @@
-<h1>This will be the New Jig Summary Report Page.</h1>
+<% provide(:title, "New Jig Summary Report") %>
+
+<div class="page-header">
+  <h1 class="text-center">New Jig Summary Report</h1>
+</div>
+
+
+<%= search_form_for @search do |f| %>
+	
+	<div class="control-group">
+		<%= f.label :date_gteq, "Order Date Between", class: 'control-label' %>
+		<div class="controls">
+			<%= f.search_field :date_gteq, "data-provide" => "datepicker" %>
+		</div>
+		<%= f.label :date_lteq, "and" %>
+		<div class="controls">
+			<%= f.search_field :date_lteq, "data-provide" => "datepicker" %>
+		</div>
+	</div>
+
+	<%= f.submit "Search", class: "btn btn-large btn-primary" %>
+
+<% end %>
+
+
+<%= render 'table' %>

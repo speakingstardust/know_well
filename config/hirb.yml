@@ -7,3 +7,9 @@
         - last_name
         - email
         - admin
+:output:
+  JigOrder:
+  :options:
+    :fields:
+      - date
+      - customer_id

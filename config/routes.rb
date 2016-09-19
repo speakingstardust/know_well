@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
 
   get 'jig_reporting' => "pages#jig_reporting"
-  get 'jig_summary_report/new' => "jig_orders#new_report"
+  get 'jig_orders/report/new' => "jig_orders#new_report"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
