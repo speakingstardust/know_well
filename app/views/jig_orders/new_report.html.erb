@@ -5,7 +5,7 @@
 </div>
 
 
-<%= search_form_for(@search, format: :pdf) do |f| %>
+<%= search_form_for @search do |f| %>
 
 	<%= f.label :customer_id_eq, "Customer", class: 'control-label' %>
 	<%= f.collection_select :customer_id_eq, @customers, :id, :name, class: 'form-control' %>

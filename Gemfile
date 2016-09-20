@@ -33,7 +33,7 @@ gem 'puma'
 gem 'ransack'
 gem 'kaminari'
 
-gem 'prawn_rails'
+gem "prawnto_2", :require => "prawnto"
 gem 'prawn'
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'

@@ -52,14 +52,6 @@ class JigOrdersController < ApplicationController
     @customers = Customer.all
     @search = JigOrder.ransack(params[:q])
     @jig_orders = @search.result.order(:date).page(params[:page])
-
-    respond_to do |format|
-      format.html { render :new_report }
-      format.pdf do
-        pdf = JigSummaryPdf.new(@jig_orders, view_context)
-        send_data pdf.render, filename: "jig_summary_#{params[:q][:date_gteq]}_to_#{params[:q][:date_lteq]}.pdf", type: "application/pdf", disposition: "inline"
-      end
-    end
   end
 
   private 
