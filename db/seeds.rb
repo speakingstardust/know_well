@@ -5,6 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
 3.times do |n|
 	name = Faker::Company.name
 	phone = Faker::PhoneNumber.phone_number
@@ -36,12 +38,16 @@ end
 
 	order = JigOrder.create!(customer_id: customer_id, date: date)
 
+	line_item = nil
+
 	3.times do |j|
 		jig_id = Jig.order("RANDOM()").first.id
 		cleaned = Faker::Number.number(3)
 		repaired = Faker::Number.number(2)
 
-		JigOrderLineItem.create!(jig_id: jig_id, repaired: repaired, cleaned: cleaned, jig_order_id: order.id)
+		line_item = JigOrderLineItem.create!(jig_id: jig_id, repaired: repaired, cleaned: cleaned, jig_order_id: order.id)
 	end
+
+	order.jig_order_line_item_id = line_item.id
 end
 

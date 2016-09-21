@@ -15,6 +15,7 @@ class JigOrdersController < ApplicationController
   def new
     @customers = Customer.all
     @jig_order = JigOrder.new
+    @jig_order.jig_order_line_items.build 
   end
 
   def edit
@@ -23,10 +24,10 @@ class JigOrdersController < ApplicationController
 
   def create 
     @customers = Customer.all
-    date = params[:date]
-    date_object = Date.parse params["date"].values.join("-")
+    # date = params[:date]
+    # date_object = Date.parse params["date"].values.join("-")
     @jig_order = JigOrder.new(jig_order_params)
-    @jig_order.date = date_object
+    # @jig_order.date = date_object
     if @jig_order.save
       redirect_to @jig_order, notice: 'Jig Order was successfully created.'
     else
