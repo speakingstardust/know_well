@@ -5,4 +5,5 @@ class JigOrderLineItem < ActiveRecord::Base
 	
 	validates :jig_id, presence: true
 
+	
 end

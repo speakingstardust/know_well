@@ -27,5 +27,6 @@
 </div>
 
 <div class="row">
+	<%= link_to "Generate Jig Summary Report", jig_orders_path(params.merge(:format => 'pdf')), class: "btn btn-primary pull-left" %>
   <%= link_to "Create New Jig Order", new_jig_order_path, class: "btn btn-primary pull-right" %>
 </div>

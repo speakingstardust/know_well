@@ -35,6 +35,7 @@ gem 'kaminari'
 
 gem "prawnto_2", :require => "prawnto"
 gem 'prawn'
+gem 'prawn-table'
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'autoprefixer-rails'

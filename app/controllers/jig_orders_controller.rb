@@ -48,12 +48,6 @@ class JigOrdersController < ApplicationController
     redirect_to jig_orders_url, notice: 'Jig Order successfully destroyed.'
   end
 
-  def new_report
-    @customers = Customer.all
-    @search = JigOrder.ransack(params[:q])
-    @jig_orders = @search.result.order(:date).page(params[:page])
-  end
-
   private 
 
   def set_jig_order
