@@ -10,4 +10,3 @@ jQuery ->
 			$('.jig_select').html(options)
 		else 
 			$('.jig_select').empty()
-	
