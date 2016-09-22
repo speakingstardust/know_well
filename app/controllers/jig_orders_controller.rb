@@ -15,7 +15,7 @@ class JigOrdersController < ApplicationController
   def new
     @customers = Customer.all
     @jig_order = JigOrder.new
-    3.times { @jig_order.jig_order_line_items.build }
+    @jig_order.jig_order_line_items.build
   end
 
   def edit

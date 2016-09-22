@@ -30,6 +30,9 @@ gem 'devise'
 # gem 'unicorn'
 gem 'puma'
 
+gem 'simple_form'
+gem 'cocoon'
+
 gem 'ransack'
 gem 'kaminari'
 

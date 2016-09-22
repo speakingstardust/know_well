@@ -1,37 +1,8 @@
-<%= form_for(@jig) do |f| %>
-  <% if @jig.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@jig.errors.count, "error") %> prohibited this jig from being saved:</h2>
-
-      <ul>
-      <% @jig.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-  <div class="field">
-    <%= f.label :customer_id, "Customer" %><br>
-    <%= f.collection_select :customer_id, @customers, :id, :name, { include_blank: 'Select Customer' }, class: "form-control" %>
-  </div>
-  <div class="field">
-    <%= f.label :cleaning_charge %><br>
-    <%= f.number_field :cleaning_charge, class: "form-control" %>
-  </div>
-  <div class="field">
-    <%= f.label :repair_charge %><br>
-    <%= f.number_field :repair_charge, class: "form-control" %>
-  </div>
-  <div class="field">
-    <%= f.label :image %>,<br>
-    <%= f.file_field :image, class: "form-control" %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for @jig, html: { class: "form-horizontal" } do |f| %>
+  <%= f.input :name %>
+  <%= f.association :customer %>
+  <%= f.input :cleaning_charge %>
+  <%= f.input :repair_charge %>
+  <%= f.input :image %>
+  <%= f.button :submit %>
 <% end %>
