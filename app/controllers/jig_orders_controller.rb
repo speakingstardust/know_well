@@ -56,7 +56,7 @@ class JigOrdersController < ApplicationController
   end
 
   def jig_order_params
-  	params.require(:jig_order).permit(:date, :customer_id, :notes, jig_order_line_items_attributes: [:id, :jig_id, :cleaned, :repaired])
+  	params.require(:jig_order).permit(:date, :customer_id, :notes, jig_order_line_items_attributes: [:id, :jig_id, :cleaned, :repaired, :_destroy])
   end
 
 end
