@@ -1,8 +1,8 @@
 <div class="nested-fields">
-	<div class="row">
-		<%= f.grouped_collection_select :jig_id, Customer.order(:name), :jigs, :name, :id, :name, { include_blank: 'Select Jig' }, class: "form-control jig_select col-xs-3" %>
-		<%= f.input :repaired, class: 'col-xs-3' %>
-		<%= f.input :cleaned, class: 'col-xs-3' %>
+	<div class="form-inline center" id="#JigOrderLineItem">
+		<%= f.grouped_collection_select :jig_id, Customer.order(:name), :jigs, :name, :id, :name, { include_blank: 'Select Jig' }, class: "form-control jig_select" %>
+		<%= f.input :repaired, placeholder: "# Repaired", label: false %>
+		<%= f.input :cleaned, placeholder: "# Cleaned", label: false %>
 		<%= link_to_remove_association "remove jig", f %>
 	</div>
 </div>

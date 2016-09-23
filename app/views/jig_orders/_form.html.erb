@@ -1,15 +1,18 @@
-<%= simple_form_for @jig_order, html: { class: 'form-horizontal' } do |f| %>
-  <%= f.text_field :date, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", "value" => Date.today, class: "form-control" %>
-  <%= f.association :customer %>
-  <%= f.input :notes %>
-  <h4 class="text-center">Jigs</h4>
-  <div id="jigs">
-    <%= f.simple_fields_for :jig_order_line_items, html: { render_options: { wrapper: 'horizontal_form' }, class: 'form-inline' } do |line_item| %>
-      <%= render 'jig_order_line_item_fields', f: line_item %>
-    <div class="links">
-      <%= link_to_add_association 'add jig', f, :jig_order_line_items %>
+<div class="container">
+  <%= simple_form_for @jig_order, html: { class: 'form-horizontal' } do |f| %>
+    <%= f.label :date, "Select Date" %>
+    <%= f.text_field :date, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", "value" => Date.today, class: "form-control" %>
+    <%= f.association :customer %>
+    <%= f.input :notes %>
+    <h4 class="text-center">Jigs</h4>
+    <div id="jig_order_line_items">
+      <%= f.simple_fields_for :jig_order_line_items, html: { render_options: { wrapper: 'horizontal_form' }, class: 'form-inline' } do |line_item| %>
+        <%= render 'jig_order_line_item_fields', f: line_item %>
+      <div class="links">
+        <%= link_to_add_association 'add jig', f, :jig_order_line_items %>
+      </div>
+      <% end %>
     </div>
-    <% end %>
-  </div>
-  <%= f.button :submit, class: "btn btn-primary" %>
-<% end %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+</div>

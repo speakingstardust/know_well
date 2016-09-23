@@ -8,23 +8,6 @@ class JigOrder < ActiveRecord::Base
 	validates :date, presence: true
 	validates :customer_id, presence: true
 
-
-	def total_cleaned
-		total_cleaned = 0 
-		self.jig_order_line_items.each do |line_item|
-			total_cleaned = total_cleaned + line_item.cleaned
-		end
-		total_cleaned
-	end
-
-	def total_repaired
-		total_repaired = 0 
-		self.jig_order_line_items.each do |line_item|
-			total_repaired = total_repaired + line_item.repaired
-		end
-		total_repaired
-	end
-
 	
 
 end
