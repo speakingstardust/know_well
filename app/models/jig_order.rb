@@ -8,6 +8,6 @@ class JigOrder < ActiveRecord::Base
 	validates :date, presence: true
 	validates :customer_id, presence: true
 
-	
+	attr_accessor :delivery_charge
 
 end

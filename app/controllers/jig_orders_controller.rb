@@ -7,6 +7,10 @@ class JigOrdersController < ApplicationController
     @customers = Customer.all
     @search = JigOrder.ransack(params[:q])
     @jig_orders = @search.result.order(:date).page(params[:page])
+    respond_to do |format|
+      format.html { render 'index' }
+      format.pdf {  @delivery_charge = params[:delivery_charge].nil? ? 0 : params[:delivery_charge] }
+    end
   end
 
   def show

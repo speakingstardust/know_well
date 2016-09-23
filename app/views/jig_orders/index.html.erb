@@ -27,6 +27,13 @@
 </div>
 
 <div class="row">
-	<%= link_to "Generate Jig Summary Report", jig_orders_path(params.merge(:format => 'pdf')), class: "btn btn-primary pull-left" %>
-  <%= link_to "Create New Jig Order", new_jig_order_path, class: "btn btn-primary pull-right" %>
+	<div class="col-xs-6">
+		<div class="input-group delivery-charge pull-left">
+			<%= label_tag :delivery_charge, "Delivery Charge" %>
+			<input id="delivery_charge" name="report[delivery_charge]" type="number" value="0">
+			<span class="input-group-btn">
+				<%= link_to "Generate Jig Summary Report", jig_orders_path(params.merge(:format => 'pdf')), class: "btn btn-primary" %>
+			</span>
+		</div>
+	</div>
 </div>
