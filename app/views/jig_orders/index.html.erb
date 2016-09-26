@@ -29,10 +29,9 @@
 <div class="row">
 	<div class="col-xs-6">
 		<div class="input-group delivery-charge pull-left">
-			<%= form_tag("/jig_summary_report", format: 'pdf') do %>
+			<%= form_tag(jig_summary_report_path(params), format: "pdf") do %>
 				<%= label_tag :delivery_charge, "Delivery Charge" %>
 				<%= number_field_tag "jig_order[delivery_charge]" %>
-				<%= hidden_field_tag :q, params %>
 				<%= submit_tag "Generate Jig Summary Report" %>
 			<% end %>
 		</div>
