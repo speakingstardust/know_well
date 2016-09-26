@@ -9,7 +9,7 @@ class JigOrdersController < ApplicationController
     @jig_orders = @search.result.order(:date).page(params[:page])
     respond_to do |format|
       format.html { render 'index' }
-      format.pdf {  @delivery_charge = params[:delivery_charge].nil? ? 0 : params[:delivery_charge] }
+      format.pdf {  @delivery_charge = params[:jig_order][:delivery_charge].nil? ? 0 : params[:jig_order][:delivery_charge] }
     end
   end
 

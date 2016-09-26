@@ -65,8 +65,6 @@ end
 	end
 end
 
-puts jigs
-
 jig_table = []
 
 jigs.each do |key, value|
@@ -93,12 +91,12 @@ jigs.each do |key, value|
 	jig_table << [
 	value[:name], 
 	value[:cleaned],
-	"%.2f" % value[:cleaning_charge],
-	cleaning_subtotal,
+	"$#{"%.2f" % value[:cleaning_charge]}",
+	"$#{"%.2f" % cleaning_subtotal}",
 	value[:repaired],
-	value[:repair_charge],
-	repair_subtotal,
-	jig_subtotal
+	"$#{"%.2f" % value[:repair_charge]}",
+	"$#{"%.2f" % repair_subtotal}",
+	"$#{"%.2f" % jig_subtotal}"
 	]
 end
 
@@ -108,9 +106,9 @@ end
 
 move_down 30 
 
-delivery_charge = @delivery_charge
+delivery_charge = @delivery_charge.to_f
 
-total_charge = total_repair_charge + total_cleaning_charge
+total_charge = total_repair_charge + total_cleaning_charge + delivery_charge
 
 pdf.text "Total Cleaned: #{"%.0f" % total_cleaned}"
 pdf.text "Total Repaired: #{"%.0f" % total_repaired}"

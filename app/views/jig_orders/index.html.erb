@@ -29,11 +29,12 @@
 <div class="row">
 	<div class="col-xs-6">
 		<div class="input-group delivery-charge pull-left">
-			<%= label_tag :delivery_charge, "Delivery Charge" %>
-			<input id="delivery_charge" name="report[delivery_charge]" type="number" value="0">
-			<span class="input-group-btn">
-				<%= link_to "Generate Jig Summary Report", jig_orders_path(params.merge(:format => 'pdf')), class: "btn btn-primary" %>
-			</span>
+			<%= form_tag("/jig_summary_report", format: 'pdf') do %>
+				<%= label_tag :delivery_charge, "Delivery Charge" %>
+				<%= number_field_tag "jig_order[delivery_charge]" %>
+				<%= hidden_field_tag :q, params %>
+				<%= submit_tag "Generate Jig Summary Report" %>
+			<% end %>
 		</div>
 	</div>
 </div>
