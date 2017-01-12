@@ -1,8 +1,9 @@
-<%= simple_form_for @jig, html: { class: "form-horizontal" } do |f| %>
+<%= simple_form_for @jig, html: { class: "form-horizontal" }, multipart: true do |f| %>
   <%= f.input :name %>
   <%= f.association :customer %>
   <%= f.input :cleaning_charge %>
   <%= f.input :repair_charge %>
-  <%= f.input :image %>
+  <%= f.label :jig_photo %>
+  <%= f.file_field :jig_photo %>
   <%= f.button :submit %>
 <% end %>

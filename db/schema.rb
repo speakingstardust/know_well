@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914233527) do
+ActiveRecord::Schema.define(version: 20170112152319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,9 +60,12 @@ ActiveRecord::Schema.define(version: 20160914233527) do
     t.float    "repair_charge"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "image"
     t.integer  "customer_id"
     t.integer  "jig_order_line_item_id"
+    t.string   "jig_photo_file_name"
+    t.string   "jig_photo_content_type"
+    t.integer  "jig_photo_file_size"
+    t.datetime "jig_photo_updated_at"
   end
 
   add_index "jigs", ["customer_id"], name: "index_jigs_on_customer_id", using: :btree
