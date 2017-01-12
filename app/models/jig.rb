@@ -3,8 +3,6 @@ class Jig < ActiveRecord::Base
 	has_many :jig_order_line_items
 	has_many :jig_orders, through: :jig_order_line_items
 
-	mount_uploader :image, ImageUploader
-
 	validates :name, presence: true
 	validates :cleaning_charge, presence: true
 

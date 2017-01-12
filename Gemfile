@@ -44,9 +44,6 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'autoprefixer-rails'
 gem 'bootstrap-datepicker-rails'
 
-gem 'carrierwave'
-gem 'mini_magick'
-
 gem 'faker'
 gem 'hirb'
 
