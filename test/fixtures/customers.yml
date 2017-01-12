@@ -1,19 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  phone: MyString
-  fax: MyString
-  street_address: MyString
-  city: MyString
-  state: MyString
-  zip: MyString
+  name: Toyota
+  phone: (859)555-1111
+  fax: (859)555-55555
+  street_address: 123 Somewhere St
+  city: Somewhere
+  state: SomeState
+  zip: 55555
 
-two:
-  name: MyString
-  phone: MyString
-  fax: MyString
-  street_address: MyString
-  city: MyString
-  state: MyString
-  zip: MyString
