@@ -44,9 +44,13 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'autoprefixer-rails'
 gem 'bootstrap-datepicker-rails'
 
+gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
+
 gem 'faker'
 gem 'hirb'
 
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
