@@ -21,7 +21,7 @@
 </p>
 <p>
 	<strong>Jig Photo:</strong>
-
+  <%= image_tag @jig.jig_photo.url(:medium) %>
 </p>
 
 <%= link_to 'Edit', edit_jig_path(@jig) %> |
