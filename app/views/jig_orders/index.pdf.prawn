@@ -5,7 +5,7 @@ pdf.text "Jig Summary Report", align: :center
 font_size 12
 move_down 30
 
-header = ['Jig Name', '# Cleaned', 'Cleaning Charge', 'Cleaning Subtotal', '# Repaired', 'Repair Charge', 'Repair Subtotal', 'Jig Subtotal']
+header = ['Jig Name', 'Jig Photo', '# Cleaned', 'Cleaning Charge', 'Cleaning Subtotal', '# Repaired', 'Repair Charge', 'Repair Subtotal', 'Jig Subtotal']
 
 jigs = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc) }
 
@@ -19,10 +19,10 @@ total_repair_charge = 0.0
 	jo.jig_order_line_items.each do |li|
 		if jigs.key?(li.jig.id)
 			ov = jigs[li.jig.id][:cleaned]
-			if li.cleaned.nil? 
+			if li.cleaned.nil?
 				nv = ov
 			else
-				nv = li.cleaned + ov 
+				nv = li.cleaned + ov
 			end
 			jigs[li.jig.id][:cleaned] = nv
 		else
@@ -39,9 +39,9 @@ end
 			ov = jigs[li.jig.id][:repaired].to_s.to_i
 			if li.repaired.nil?
 				nv = ov
-			else 
+			else
 				nv = li.repaired + ov
-			end 
+			end
 			jigs[li.jig.id][:repaired] = nv
 		end
 	end
@@ -62,6 +62,12 @@ end
 @jig_orders.each do |jo|
 	jo.jig_order_line_items.each do |li|
 		jigs[li.jig.id][:repair_charge] = li.jig.repair_charge
+	end
+end
+
+@jig_orders.each do |jo|
+	jo.jig_order_line_items.each do |li|
+		jigs[li.jig.id][:jig_photo] = Rails.root + li.jig.jig_photo.url(:thumb)
 	end
 end
 
@@ -88,8 +94,11 @@ jigs.each do |key, value|
 
 	jig_subtotal = cleaning_subtotal + repair_subtotal
 
+	jig_photo = image "#{value[:jig_photo]}"
+
 	jig_table << [
-	value[:name], 
+	value[:name],
+	jig_photo,
 	value[:cleaned],
 	"$#{"%.2f" % value[:cleaning_charge]}",
 	"$#{"%.2f" % cleaning_subtotal}",
@@ -104,7 +113,7 @@ pdf.table [header] + jig_table, header: true, width: pdf.bounds.width do
 	row(0).style :font_style => :bold
 end
 
-move_down 30 
+move_down 30
 
 delivery_charge = @delivery_charge.to_f
 
@@ -117,4 +126,4 @@ pdf.text "Total Repair Charge: $#{"%.2f" % total_repair_charge}"
 pdf.text "Delivery Charge: $#{"%.2f" % delivery_charge}"
 pdf.text "Total Charges: $#{"%.2f" % total_charge}"
 
- 
+
