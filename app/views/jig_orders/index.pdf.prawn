@@ -94,8 +94,6 @@ jigs.each do |key, value|
 
 	jig_subtotal = cleaning_subtotal + repair_subtotal
 
-	jig_photo = image "#{value[:jig_photo]}"
-
 	jig_table << [
 	value[:name],
 	jig_photo,
