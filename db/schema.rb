@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113171555) do
+ActiveRecord::Schema.define(version: 20170114183531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 20170113171555) do
 
   add_index "jigs", ["customer_id"], name: "index_jigs_on_customer_id", using: :btree
   add_index "jigs", ["jig_order_line_item_id"], name: "index_jigs_on_jig_order_line_item_id", using: :btree
+
+  create_table "report_line_items", force: :cascade do |t|
+    t.integer  "subtotal_cleaned"
+    t.integer  "subtotal_repaired"
+    t.integer  "total"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
   create_table "reports", force: :cascade do |t|
     t.date     "date_from"
