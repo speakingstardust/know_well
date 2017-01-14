@@ -1,4 +1,4 @@
-class CreateReport
+class CreatesReport
   attr_accessor :report_id, :jig_orders
 
   def initialize(report_id: "", jig_orders: [])

@@ -4,7 +4,6 @@ class Jig < ActiveRecord::Base
 	has_many :jig_orders, through: :jig_order_line_items
 
 	validates :name, presence: true
-	validates :cleaning_charge, presence: true
 
   has_attached_file :jig_photo,
     styles: {

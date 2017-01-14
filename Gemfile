@@ -60,6 +60,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.1'
   gem 'rails-controller-testing'
+  gem 'factory_girl_rails'
 end
 
 group :test do
