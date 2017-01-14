@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112152319) do
+ActiveRecord::Schema.define(version: 20170113171555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,12 +47,10 @@ ActiveRecord::Schema.define(version: 20170112152319) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "jig_order_line_item_id"
-    t.integer  "report_id"
   end
 
   add_index "jig_orders", ["customer_id"], name: "index_jig_orders_on_customer_id", using: :btree
   add_index "jig_orders", ["jig_order_line_item_id"], name: "index_jig_orders_on_jig_order_line_item_id", using: :btree
-  add_index "jig_orders", ["report_id"], name: "index_jig_orders_on_report_id", using: :btree
 
   create_table "jigs", force: :cascade do |t|
     t.string   "name"
@@ -72,15 +70,18 @@ ActiveRecord::Schema.define(version: 20170112152319) do
   add_index "jigs", ["jig_order_line_item_id"], name: "index_jigs_on_jig_order_line_item_id", using: :btree
 
   create_table "reports", force: :cascade do |t|
-    t.date     "start_date"
-    t.date     "end_date"
+    t.date     "date_from"
+    t.date     "date_to"
+    t.integer  "total_cleaned"
+    t.integer  "total_repaired"
+    t.float    "cleaning_charge_total"
+    t.float    "repair_charge_total"
+    t.float    "charges_subtotal"
     t.float    "delivery_charge"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "customer_id"
+    t.float    "grand_total"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
-
-  add_index "reports", ["customer_id"], name: "index_reports_on_customer_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -111,6 +112,4 @@ ActiveRecord::Schema.define(version: 20170112152319) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
-  add_foreign_key "jig_orders", "reports"
-  add_foreign_key "reports", "customers"
 end
