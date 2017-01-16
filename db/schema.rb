@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170114183531) do
+ActiveRecord::Schema.define(version: 20170116170544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,7 +75,12 @@ ActiveRecord::Schema.define(version: 20170114183531) do
     t.integer  "total"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "report_id"
+    t.integer  "jig_order_id"
   end
+
+  add_index "report_line_items", ["jig_order_id"], name: "index_report_line_items_on_jig_order_id", using: :btree
+  add_index "report_line_items", ["report_id"], name: "index_report_line_items_on_report_id", using: :btree
 
   create_table "reports", force: :cascade do |t|
     t.date     "date_from"

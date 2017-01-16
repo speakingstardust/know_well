@@ -1,12 +1,18 @@
 class CreatesReport
-  attr_accessor :report_id, :jig_orders
+  attr_accessor :customer, :date_from, :date_to
 
-  def initialize(report_id: "", jig_orders: [])
-    @report_id = report_id
-    @jig_orders = jig_orders
+  def initialize(customer: {}, date_from: "", date_to: "")
+    @customer = customer
+    @date_from = date_from
+    @date_to = date_to
   end
 
   def build
+    self.report = Report.new(customer: customer, date_from: date_from, date_to: date_to)
+
+  end
+
+  def find_jig_orders(date_from, date_to)
 
   end
 

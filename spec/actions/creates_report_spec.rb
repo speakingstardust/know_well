@@ -16,6 +16,16 @@ RSpec.describe CreatesReport do
       customer.jig_orders.create(order_attr)
     end
 
-    expect(customer.jig_orders.count).to eq(5)
+    date_from = Date.today - 7
+    date_to = Date.today
+
+    creator = CreatesReport.new(customer: customer, date_from: date_from, date_to: date_to)
+
+    creator.build
+
+    expect(creator.report.customer).to eq(customer)
+    expect(creator.report.customer.jig_orders.count).to eq(5)
+    expect(creator.report.date_from).to eq(date_from)
+    expect(creator.report.date_to).to eq(date_to)
   end
 end
