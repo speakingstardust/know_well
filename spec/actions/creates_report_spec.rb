@@ -1,8 +1,12 @@
 require "rails_helper"
+require "pry"
 
 RSpec.describe CreatesReport do
+  let(:date_from) { Date.today - 7 }
+  let(:date_to) { Date.today }
+  let(:creator) { CreatesReport.new(customer: @customer, date_from: date_from, date_to: date_to) }
 
-  def create_customer
+  before(:example) do
     @customer = create(:customer) do |customer|
       order_attr = attributes_for :jig_order
       order_attr[:date] = Date.today - 7
@@ -19,13 +23,6 @@ RSpec.describe CreatesReport do
   end
 
   it "creates a new report given a customer and a set of dates" do
-    create_customer
-
-    date_from = Date.today - 7
-    date_to = Date.today
-
-    creator = CreatesReport.new(customer: @customer, date_from: date_from, date_to: date_to)
-
     creator.build
 
     expect(creator.report.customer).to eq(@customer)
@@ -35,14 +32,14 @@ RSpec.describe CreatesReport do
   end
 
   it "can find all associated jig orders for a customer" do
-    create_customer
+    output = creator.find_jig_orders(date_from, date_to, @customer)
 
-    date_from = Date.today - 7
-    date_to = Date.today
+    expect(output.count).to eq(5)
+  end
 
-    creator = CreatesReport.new(customer: @customer, date_from: date_from, date_to: date_to)
+  it "correctly sets the jig orders for the report" do
+    creator.build
 
-    output = creator.find_jig_orders(date_from, date_to)
-
+    expect(creator.report.jig_orders.size).to eq(5)
   end
 end
