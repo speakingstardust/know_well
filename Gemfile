@@ -52,6 +52,7 @@ gem 'hirb'
 
 gem 'figaro'
 
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -61,6 +62,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1'
   gem 'rails-controller-testing'
   gem 'factory_girl_rails'
+  gem 'pry'
 end
 
 group :test do
