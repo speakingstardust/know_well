@@ -53,7 +53,7 @@ RSpec.describe Report, type: :model do
       report.jig_orders << orders
 
       # When
-      report.create_line_items
+      report.create_line_items(report.jig_orders)
 
       # Then
       expect(report.report_line_items.count).to eq(1)
