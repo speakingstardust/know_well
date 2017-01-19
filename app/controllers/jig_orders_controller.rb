@@ -2,7 +2,7 @@ class JigOrdersController < ApplicationController
   before_action :set_jig_order, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  
+
   def index
     @customers = Customer.all
     @search = JigOrder.ransack(params[:q])
@@ -26,7 +26,7 @@ class JigOrdersController < ApplicationController
     @customers = Customer.all
   end
 
-  def create 
+  def create
     @customers = Customer.all
     # date = params[:date]
     # date_object = Date.parse params["date"].values.join("-")
@@ -36,7 +36,6 @@ class JigOrdersController < ApplicationController
       redirect_to @jig_order, notice: 'Jig Order was successfully created.'
     else
       render :new
-
     end
   end
 
@@ -53,7 +52,7 @@ class JigOrdersController < ApplicationController
     redirect_to jig_orders_url, notice: 'Jig Order successfully destroyed.'
   end
 
-  private 
+  private
 
   def set_jig_order
   	@jig_order = JigOrder.find(params[:id])

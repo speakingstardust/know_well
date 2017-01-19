@@ -28,7 +28,6 @@ RSpec.describe Report, type: :model do
       report.date_to = date_to
 
       report.find_jig_orders
-
       # jig_orders = report.jig_orders
       # binding.pry
 
