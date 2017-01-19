@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119155237) do
+ActiveRecord::Schema.define(version: 20170119162936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,14 +40,6 @@ ActiveRecord::Schema.define(version: 20170119155237) do
   add_index "jig_order_line_items", ["jig_id"], name: "index_jig_order_line_items_on_jig_id", using: :btree
   add_index "jig_order_line_items", ["jig_order_id"], name: "index_jig_order_line_items_on_jig_order_id", using: :btree
 
-  create_table "jig_order_line_items_report_line_items", id: false, force: :cascade do |t|
-    t.integer "jig_order_line_item_id", null: false
-    t.integer "report_line_item_id",    null: false
-  end
-
-  add_index "jig_order_line_items_report_line_items", ["jig_order_line_item_id", "report_line_item_id"], name: "joli_rli_index", using: :btree
-  add_index "jig_order_line_items_report_line_items", ["report_line_item_id", "jig_order_line_item_id"], name: "rli_joli_index", using: :btree
-
   create_table "jig_orders", force: :cascade do |t|
     t.date     "date"
     t.integer  "customer_id"
@@ -59,6 +51,14 @@ ActiveRecord::Schema.define(version: 20170119155237) do
 
   add_index "jig_orders", ["customer_id"], name: "index_jig_orders_on_customer_id", using: :btree
   add_index "jig_orders", ["jig_order_line_item_id"], name: "index_jig_orders_on_jig_order_line_item_id", using: :btree
+
+  create_table "jig_orders_reports", id: false, force: :cascade do |t|
+    t.integer "jig_order_id", null: false
+    t.integer "report_id",    null: false
+  end
+
+  add_index "jig_orders_reports", ["jig_order_id", "report_id"], name: "index_jig_orders_reports_on_jig_order_id_and_report_id", using: :btree
+  add_index "jig_orders_reports", ["report_id", "jig_order_id"], name: "index_jig_orders_reports_on_report_id_and_jig_order_id", using: :btree
 
   create_table "jigs", force: :cascade do |t|
     t.string   "name"
@@ -84,10 +84,8 @@ ActiveRecord::Schema.define(version: 20170119155237) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "report_id"
-    t.integer  "jig_order_id"
   end
 
-  add_index "report_line_items", ["jig_order_id"], name: "index_report_line_items_on_jig_order_id", using: :btree
   add_index "report_line_items", ["report_id"], name: "index_report_line_items_on_report_id", using: :btree
 
   create_table "reports", force: :cascade do |t|
