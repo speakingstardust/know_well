@@ -1,45 +1,39 @@
 require "rails_helper"
 require "pry"
 
-RSpec.describe CreatesReport, :pending do
+RSpec.describe CreatesReport do
   let(:date_from) { Date.today - 7 }
   let(:date_to) { Date.today }
+  let(:customer) { Customer.create(name: "Test Customer") }
   let(:creator) { CreatesReport.new(customer: @customer, date_from: date_from, date_to: date_to) }
+  let(:jig) { Jig.create!(name: "Test Jig", cleaning_charge: 9.50, repair_charge: 6.50) }
+  let(:jig_order) { JigOrder.create!(date: (Date.today), customer: customer)}
+  let(:jig_order_line_item) { JigOrderLineItem.create!(jig: jig, repaired: 5, cleaned: 60)}
 
-  # before(:example) do
-  #   @customer = create(:customer) do |customer|
-  #     order_attr = attributes_for :jig_order
-  #     order_attr[:date] = Date.today - 7
-  #     customer.jig_orders.create(order_attr)
-  #     order_attr[:date] = Date.today - 6
-  #     customer.jig_orders.create(order_attr)
-  #     order_attr[:date] = Date.today - 5
-  #     customer.jig_orders.create(order_attr)
-  #     order_attr[:date] = Date.today - 4
-  #     customer.jig_orders.create(order_attr)
-  #     order_attr[:date] = Date.today - 3
-  #     customer.jig_orders.create(order_attr)
-  #   end
-  # end
+  before(:example) do
+    @customer = customer
+    jig_order.jig_order_line_items << jig_order_line_item
+    @customer.jigs << jig
+  end
 
-  it "creates a new report given a customer and a set of dates" do
+  it "creates a report given a customer and a date range" do
     creator.build
 
-    expect(creator.report.customer).to eq(@customer)
-    expect(creator.report.customer.jig_orders.count).to eq(5)
-    expect(creator.report.date_from).to eq(date_from)
-    expect(creator.report.date_to).to eq(date_to)
+    expect(creator.report.customer.name).to eq("Test Customer")
   end
 
-  it "can find all associated jig orders for a customer" do
-    output = creator.find_jig_orders(date_from, date_to, @customer)
-
-    expect(output.count).to eq(5)
-  end
-
-  it "correctly sets the jig orders for the report" do
+  it "builds the report and report line items" do
     creator.build
 
-    expect(creator.report.jig_orders.size).to eq(5)
+    expect(creator.report.customer.name).to eq("Test Customer")
+    expect(creator.report.report_line_items.count).to eq(1)
+    expect(creator.report.jig_orders.count).to eq(1)
   end
+
+  it "saves the report to the database" do
+    creator.create
+
+    expect(creator.report).to exist_in_database
+  end
+
 end

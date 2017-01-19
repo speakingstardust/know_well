@@ -21,4 +21,11 @@ FactoryGirl.define do
   factory :jig_order_line_item do
     jig
   end
+
+  factory :user do
+    email { Faker::Internet.email }
+    password "password"
+    password_confirmation "password"
+    confirmed_at { Date.today }
+  end
 end
