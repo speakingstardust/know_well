@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170116224125) do
+ActiveRecord::Schema.define(version: 20170119155237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20170116224125) do
 
   add_index "jig_order_line_items", ["jig_id"], name: "index_jig_order_line_items_on_jig_id", using: :btree
   add_index "jig_order_line_items", ["jig_order_id"], name: "index_jig_order_line_items_on_jig_order_id", using: :btree
+
+  create_table "jig_order_line_items_report_line_items", id: false, force: :cascade do |t|
+    t.integer "jig_order_line_item_id", null: false
+    t.integer "report_line_item_id",    null: false
+  end
+
+  add_index "jig_order_line_items_report_line_items", ["jig_order_line_item_id", "report_line_item_id"], name: "joli_rli_index", using: :btree
+  add_index "jig_order_line_items_report_line_items", ["report_line_item_id", "jig_order_line_item_id"], name: "rli_joli_index", using: :btree
 
   create_table "jig_orders", force: :cascade do |t|
     t.date     "date"
