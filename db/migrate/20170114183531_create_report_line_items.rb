@@ -4,7 +4,9 @@ class CreateReportLineItems < ActiveRecord::Migration
 
       t.integer :subtotal_cleaned
       t.integer :subtotal_repaired
-      t.integer :total
+
+      t.float :cleaning_charge_subtotal
+      t.float :repair_charge_subtotal
 
       t.timestamps null: false
     end

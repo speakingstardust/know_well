@@ -80,9 +80,10 @@ ActiveRecord::Schema.define(version: 20170119180642) do
   create_table "report_line_items", force: :cascade do |t|
     t.integer  "subtotal_cleaned"
     t.integer  "subtotal_repaired"
-    t.integer  "total"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.float    "cleaning_charge_subtotal"
+    t.float    "repair_charge_subtotal"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "report_id"
     t.integer  "jig_id"
   end

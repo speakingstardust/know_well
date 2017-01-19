@@ -14,11 +14,23 @@ class Report < ActiveRecord::Base
     jigs = self.find_jigs
     jigs.each do |jig|
       jig_order_line_items = self.find_jig_order_line_items(jig, jig_orders)
-      binding.pry
-      line_item = ReportLineItem.new(report: self)
+      line_item = ReportLineItem.new(report: self, jig: jig)
       jig_order_line_items.each do |joli|
-        line.subtotal_cleaned += joli.cleaned
+        if joli.cleaned.nil?
+          joli.cleaned = 0
+          line_item.subtotal_cleaned += joli.cleaned * line_item.jig.cleaning_charge
+        else
+          line_item.subtotal_cleaned += joli.cleaned * line_item.jig.cleaning_charge
+        end
+        if joli.repaired.nil?
+          joli.repaired = 0
+          line_item.subtotal_repaired += joli.repaired * line_item.jig.repair_charge
+        else
+          line_item.subtotal_repaired += joli.repaired * line_item.jig.repair_charge
+        end
       end
+      line_item.total = line_item.subtotal_cleaned + line_item.subtotal_repaired
+      binding.pry
     end
   end
 
