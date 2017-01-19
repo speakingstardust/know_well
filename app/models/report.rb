@@ -18,19 +18,18 @@ class Report < ActiveRecord::Base
       jig_order_line_items.each do |joli|
         if joli.cleaned.nil?
           joli.cleaned = 0
-          line_item.subtotal_cleaned += joli.cleaned * line_item.jig.cleaning_charge
+          line_item.subtotal_cleaned += joli.cleaned
         else
-          line_item.subtotal_cleaned += joli.cleaned * line_item.jig.cleaning_charge
+          line_item.subtotal_cleaned += joli.cleaned
         end
         if joli.repaired.nil?
           joli.repaired = 0
-          line_item.subtotal_repaired += joli.repaired * line_item.jig.repair_charge
+          line_item.subtotal_repaired += joli.repaired
         else
-          line_item.subtotal_repaired += joli.repaired * line_item.jig.repair_charge
+          line_item.subtotal_repaired += joli.repaired
         end
       end
-      line_item.total = line_item.subtotal_cleaned + line_item.subtotal_repaired
-      binding.pry
+      line_item.save
     end
   end
 
