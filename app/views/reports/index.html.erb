@@ -1,2 +1,27 @@
-<h1>Reports#index</h1>
-<p>Find me in app/views/reports/index.html.erb</p>
+<% provide(:title, "Report Index") %>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center">Jig Summary Reports Index</h1>
+  </div>
+</div>
+
+<%= search_form_for @search do |f| %>
+
+  <%= f.label :customer_id_eq, "Customer", class: 'control-label' %>
+  <%= f.collection_select :customer_id_eq, @customers, :id, :name, include_blank: true,  class: 'form-control' %>
+
+  <%= f.label :created_at_gteq, "Date Created", class: 'control-label' %>
+
+  <div class="input-group input-daterange">
+    <%= f.text_field :created_at_gteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
+    <span class="input-group-addon">to</span>
+    <%= f.text_field :created_at_lteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
+  </div>
+
+    <%= f.submit "Search", class: "btn btn-primary" %>
+    <%= link_to "Clear Search", request.path, class: "cancel-button" %>
+<% end %>
+
+<div class="row">
+  <%= render 'table' %>
+</div>

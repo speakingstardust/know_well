@@ -15,7 +15,6 @@ FactoryGirl.define do
 
   factory :jig_order do
     date { Date.today }
-    jig_order_line_item
   end
 
   factory :jig_order_line_item do
@@ -27,4 +26,13 @@ FactoryGirl.define do
     password "password"
     password_confirmation "password"
   end
+
+  factory :report do
+    customer
+  end
+
+  factory :report_line_item do
+    jig
+  end
+
 end

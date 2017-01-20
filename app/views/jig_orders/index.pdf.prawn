@@ -65,11 +65,6 @@ end
 	end
 end
 
-@jig_orders.each do |jo|
-	jo.jig_order_line_items.each do |li|
-		jigs[li.jig.id][:jig_photo] = Rails.root + li.jig.jig_photo.url(:thumb)
-	end
-end
 
 jig_table = []
 
@@ -96,7 +91,6 @@ jigs.each do |key, value|
 
 	jig_table << [
 	value[:name],
-	jig_photo,
 	value[:cleaned],
 	"$#{"%.2f" % value[:cleaning_charge]}",
 	"$#{"%.2f" % cleaning_subtotal}",
