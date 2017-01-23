@@ -23,6 +23,11 @@ class ReportsController < ApplicationController
   def print
   end
 
+  def destroy
+    @report.destroy
+    redirect_to reports_url, notice: "Report was successfully destroyed."
+  end
+
 
   private
 

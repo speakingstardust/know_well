@@ -1,9 +1,9 @@
 <% provide(:title, "Jig Summary Report") %>
 <div class="page-header">
-  <h1 class="text-center">Jig Summary Report for <%= @report.customer.name %></h1>
+  <h3 class="text-center">Jig Summary Report for <%= @report.customer.name %></h3>
 </div>
 
-<p>
+<p class="text-center">
   <strong>Report Date Range:</strong>
   <%= l(@report.date_from) + " to " +   l(@report.date_to) %>
 </p>
@@ -40,4 +40,40 @@
   </tbody>
 </table>
 
-<%= link_to "Back to Report Index", reports_path, class: "btn btn-primary btn-large" %>
+<div class="cleaned_charges col-xs-3">
+  <p>
+    <strong>Total Jigs Cleaned:</strong>
+    <%= @report.total_cleaned %>
+  </p>
+  <p>
+    <strong>Cleaning Subtotal:</strong>
+    <%= number_to_currency(@report.cleaning_charge_total) %>
+  </p>
+</div>
+<div class="repair_charges col-xs-3">
+  <p>
+    <strong>Quarter Hours for Repair:</strong>
+    <%= @report.total_repaired %>
+  </p>
+  <p>
+    <strong>Repair Subtotal:</strong>
+    <%= number_to_currency(@report.repair_charge_total) %>
+  </p>
+</div>
+<div class="totals col-xs-3">
+  <p>
+    <strong>Charges Subtotal:</strong>
+    <%= number_to_currency(@report.charges_subtotal) %>
+  </p>
+  <p>
+    <strong>Delivery Charges:</strong>
+    <%= number_to_currency(@report.delivery_charge) %>
+  </p>
+</div>
+<div class="grand_total col-xs-3">
+  <p>
+    <strong>Total Charges:</strong>
+    <%= number_to_currency(@report.grand_total) %>
+  </p>
+</div>
+

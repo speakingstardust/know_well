@@ -41,10 +41,38 @@
     <% end %>
   </tbody>
 </table>
-
-<p>
-  <strong>Total Number of Jig Cleaned:</strong>
-  <%= l(@report.date_from) + " to " +   l(@report.date_to) %>
-</p>
-
+<div class="cleaned_charges col-xs-3">
+  <p>
+    <strong>Total Jigs Cleaned:</strong>
+    <%= @report.total_cleaned %>
+  </p>
+  <p>
+    <strong>Cleaning Subtotal:</strong>
+    <%= number_to_currency(@report.cleaning_charge_total) %>
+  </p>
+</div>
+<div class="repair_charges col-xs-3">
+  <p>
+    <strong>Quarter Hours for Repair:</strong>
+    <%= @report.total_repaired %>
+  </p>
+  <p>
+    <strong>Repair Subtotal:</strong>
+    <%= number_to_currency(@report.repair_charge_total) %>
+  </p>
+</div>
+<div class="totals col-xs-3">
+  <p>
+    <strong>Charges Subtotal:</strong>
+    <%= number_to_currency(@report.charges_subtotal) %>
+  </p>
+  <p>
+    <strong>Delivery Charges:</strong>
+    <%= number_to_currency(@report.delivery_charge) %>
+  </p>
+  <p>
+    <strong>Total Charges:</strong>
+    <%= number_to_currency(@report.grand_total) %>
+  </p>
+</div>
 <%= link_to "Back to Report Index", reports_path, class: "btn btn-primary btn-large" %>
