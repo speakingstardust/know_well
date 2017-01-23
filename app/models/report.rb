@@ -49,4 +49,38 @@ class Report < ActiveRecord::Base
     end
     jig_order_line_items.flatten
   end
+
+  def total_up
+    total_cleaned = 0
+    total_repaired = 0
+    cleaning_charge_total = 0
+    repair_charge_total = 0
+    charges_subtotal = 0
+    grand_total = 0
+
+    self.report_line_items.each do |rli|
+      unless rli.subtotal_cleaned.nil?
+        total_cleaned += rli.subtotal_cleaned
+      end
+      unless rli.subtotal_repaired.nil?
+        total_repaired += rli.subtotal_repaired
+      end
+      unless rli.cleaning_charge_subtotal.nil?
+        cleaning_charge_total += rli.cleaning_charge_subtotal
+      end
+      unless rli.repair_charge_subtotal.nil?
+        repair_charge_total += rli.repair_charge_subtotal
+      end
+    end
+
+    charges_subtotal = cleaning_charge_total + repair_charge_total
+    grand_total = charges_subtotal + self.delivery_charge
+
+    self.total_cleaned = total_cleaned
+    self.total_repaired = total_repaired
+    self.cleaning_charge_total = cleaning_charge_total
+    self.repair_charge_total = repair_charge_total
+    self.charges_subtotal = charges_subtotal
+    self.grand_total = grand_total
+  end
 end

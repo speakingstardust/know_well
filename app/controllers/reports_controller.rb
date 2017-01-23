@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :set_report, only: [:show, :edit, :update, :destroy]
+  before_action :set_report, only: [:show, :edit, :update, :destroy, :print]
 
   def index
     @customers = Customer.all
@@ -18,6 +18,9 @@ class ReportsController < ApplicationController
   end
 
   def edit
+  end
+
+  def print
   end
 
 

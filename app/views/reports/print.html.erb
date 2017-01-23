@@ -3,8 +3,6 @@
   <h1 class="text-center">Jig Summary Report for <%= @report.customer.name %></h1>
 </div>
 
-<%= link_to "Print Report", print_report_path(@report), class: "btn btn-primary btn-large col-xs-offset-9 col-md-offset-11", target: "_blank" %>
-
 <p>
   <strong>Report Date Range:</strong>
   <%= l(@report.date_from) + " to " +   l(@report.date_to) %>
@@ -41,10 +39,5 @@
     <% end %>
   </tbody>
 </table>
-
-<p>
-  <strong>Total Number of Jig Cleaned:</strong>
-  <%= l(@report.date_from) + " to " +   l(@report.date_to) %>
-</p>
 
 <%= link_to "Back to Report Index", reports_path, class: "btn btn-primary btn-large" %>

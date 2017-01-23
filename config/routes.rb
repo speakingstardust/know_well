@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
 
   get 'jig_reporting' => "pages#jig_reporting"
+  get '/reports/print/:id', to: 'reports#print', as: 'print_report'
   post 'jig_summary_report' => "jig_orders#index", defaults: { format: 'pdf' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
