@@ -5,7 +5,7 @@ pdf.text "Jig Summary Report", align: :center
 font_size 12
 move_down 30
 
-header = ['Jig Name', 'Jig Photo', '# Cleaned', 'Cleaning Charge', 'Cleaning Subtotal', '# Repaired', 'Repair Charge', 'Repair Subtotal', 'Jig Subtotal']
+header = ['Jig Name', '# Cleaned', 'Cleaning Charge', 'Cleaning Subtotal', '# Repaired', 'Repair Charge', 'Repair Subtotal', 'Jig Subtotal']
 
 jigs = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc) }
 
