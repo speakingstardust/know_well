@@ -1,2 +1,6 @@
-<h1>Reports#edit</h1>
-<p>Find me in app/views/reports/edit.html.erb</p>
+<% provide(:title, "Edit Jig Summary Report") %>
+<h1>Edit Jig Summary Report</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', reports_path, class: "btn btn-primary btn-lg" %>

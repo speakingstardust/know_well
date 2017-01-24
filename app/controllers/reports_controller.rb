@@ -19,14 +19,7 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @customer = Customer.find(params[:report][:customer])
-    @date_from = Date.new(params[:report]["date_from(1i)"].to_i,
-                         params[:report]["date_from(2i)"].to_i,
-                         params[:report]["date_from(3i)"].to_i)
-    @date_to =   Date.new(params[:report]["date_to(1i)"].to_i,
-                         params[:report]["date_to(2i)"].to_i,
-                         params[:report]["date_to(3i)"].to_i)
-    binding.pry
+    parse_params
     @action = CreatesReport.new(
       @customer,
       @date_from,
@@ -44,9 +37,6 @@ class ReportsController < ApplicationController
   def show
   end
 
-  def edit
-  end
-
   def print
   end
 
@@ -60,6 +50,20 @@ class ReportsController < ApplicationController
 
     def set_report
       @report = Report.find(params[:id])
+    end
+
+    def report_params
+      params.require(:report).permit(:customer, :date_from, :date_to, :delivery_charge)
+    end
+
+    def parse_params
+      @customer = Customer.find(params[:report][:customer])
+      @date_from = Date.new(params[:report]["date_from(1i)"].to_i,
+                           params[:report]["date_from(2i)"].to_i,
+                           params[:report]["date_from(3i)"].to_i)
+      @date_to =   Date.new(params[:report]["date_to(1i)"].to_i,
+                           params[:report]["date_to(2i)"].to_i,
+                           params[:report]["date_to(3i)"].to_i)
     end
 
 end
