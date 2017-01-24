@@ -1,0 +1,7 @@
+<%= simple_form_for @report do |f| %>
+  <%= f.input :customer, collection: @customers %>
+  <%= f.input :date_from, as: :date  %>
+  <%= f.input :date_to, as: :date %>
+  <%= f.input :delivery_charge, as: :float %>
+  <%= f.submit %>
+<% end %>

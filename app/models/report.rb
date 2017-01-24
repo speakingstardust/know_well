@@ -5,6 +5,10 @@ class Report < ActiveRecord::Base
   has_and_belongs_to_many :jig_orders
   belongs_to :customer
 
+  validates :customer, presence: true
+  validates :date_from, presence: true
+  validates :date_to, presence: true
+
   def find_jig_orders
     jig_orders = JigOrder.where(date: self.date_from..self.date_to, customer: self.customer)
     self.jig_orders << jig_orders
@@ -72,7 +76,6 @@ class Report < ActiveRecord::Base
         repair_charge_total += rli.repair_charge_subtotal
       end
     end
-
     charges_subtotal = cleaning_charge_total + repair_charge_total
     grand_total = charges_subtotal + self.delivery_charge
 

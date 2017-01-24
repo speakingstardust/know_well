@@ -3,7 +3,7 @@ require 'pry'
 class CreatesReport
   attr_accessor :customer, :date_from, :date_to, :report, :delivery_charge
 
-  def initialize(customer: {}, date_from: "", date_to: "", delivery_charge: "")
+  def initialize(customer, date_from, date_to, delivery_charge)
     @customer = customer
     @date_from = date_from
     @date_to = date_to
