@@ -11,14 +11,14 @@
 	<%= f.collection_select :customer_id_eq, @customers, :id, :name, include_blank: true,  class: 'form-control' %>
 
 	<%= f.label :date_gteq, "Order Date", class: 'control-label' %>
-	
+
 	<div class="input-group input-daterange">
 		<%= f.text_field :date_gteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
 		<span class="input-group-addon">to</span>
 		<%= f.text_field :date_lteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
 	</div>
 
-		<%= f.submit "Search", class: "btn btn-primary" %>	
+		<%= f.submit "Search", class: "btn btn-primary" %>
 		<%= link_to "Clear Search", request.path, class: "cancel-button" %>
 <% end %>
 
@@ -26,14 +26,3 @@
 	<%= render 'table' %>
 </div>
 
-<div class="row">
-	<div class="col-xs-6">
-		<div class="input-group delivery-charge pull-left">
-			<%= form_tag(jig_summary_report_path(params), format: "pdf") do %>
-				<%= label_tag :delivery_charge, "Delivery Charge" %>
-				<%= number_field_tag "jig_order[delivery_charge]" %>
-				<%= submit_tag "Generate Jig Summary Report" %>
-			<% end %>
-		</div>
-	</div>
-</div>
