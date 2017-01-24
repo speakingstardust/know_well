@@ -1,3 +1,4 @@
+require 'pry'
 class ReportLineItem < ActiveRecord::Base
   belongs_to :report
   belongs_to :jig
@@ -14,7 +15,11 @@ class ReportLineItem < ActiveRecord::Base
 
   def calculate_subtotals
     self.cleaning_charge_subtotal = self.jig.cleaning_charge * self.subtotal_cleaned
-    self.repair_charge_subtotal = self.jig.repair_charge * self.subtotal_repaired
+    if self.jig.repair_charge.nil?
+      self.repair_charge_subtotal = 0
+    else
+      self.repair_charge_subtotal = self.jig.repair_charge * self.subtotal_repaired
+    end
   end
 
 end
