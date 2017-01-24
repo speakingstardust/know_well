@@ -1,4 +1,4 @@
-<% provide(:title, "Jig Summary Report") %>
+<% provide(:title, "Jig Summary Report for #{@report.customer.name}") %>
 <div class="page-header">
   <h3 class="text-center">Jig Summary Report for <%= @report.customer.name %></h3>
 </div>
@@ -14,10 +14,10 @@
   <thead>
     <th>Jig Name</th>
     <th>Jig Photo</th>
-    <th># Repaired </th>
+    <th>Jigs Repaired </th>
     <th>Repair Charge</th>
     <th>Repair Subtotal</th>
-    <th># Cleaned</th>
+    <th>Jigs Cleaned</th>
     <th>Cleaning Charge</th>
     <th>Cleaning Subtotal</th>
     <th>Jig Subtotal</th>
