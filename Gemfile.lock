@@ -220,6 +220,7 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    ruby_http_client (3.0.0)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -230,6 +231,8 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sendgrid-ruby (4.0.6)
+      ruby_http_client (~> 3.0.0)
     simple_form (3.4.0)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -297,6 +300,7 @@ DEPENDENCIES
   rspec-rails (~> 3.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  sendgrid-ruby
   simple_form
   spring
   turbolinks

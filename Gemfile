@@ -54,6 +54,8 @@ gem 'figaro'
 
 gem 'pry-rails'
 
+gem 'sendgrid-ruby'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
