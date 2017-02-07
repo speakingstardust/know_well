@@ -1,7 +1,7 @@
 <div class="container">
   <%= simple_form_for @jig_order, html: { class: 'form-horizontal' } do |f| %>
     <%= f.label :date, "Select Date" %>
-    <%= f.text_field :date, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", "value" => Date.today, class: "form-control" %>
+    <%= f.text_field :date, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd",class: "form-control" %>
     <%= f.association :customer, class: "customer_select" %>
     <%= f.input :notes %>
     <h4 class="text-center">Jigs</h4>
