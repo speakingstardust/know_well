@@ -9,7 +9,7 @@
       <%= f.simple_fields_for :jig_order_line_items, html: { render_options: { wrapper: 'horizontal_form' }, class: 'form-inline' } do |line_item| %>
         <%= render 'jig_order_line_item_fields', f: line_item %>
       <div class="links">
-        <%= link_to_add_association 'add jig', f, :jig_order_line_items %>
+        <%= link_to_add_association 'add jig', f, :jig_order_line_items, class: "btn btn-success btn-block" %>
       </div>
       <% end %>
     </div>
