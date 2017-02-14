@@ -203,6 +203,7 @@ GEM
     rdoc (4.3.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rolify (5.1.0)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -297,6 +298,7 @@ DEPENDENCIES
   rails (= 4.2.6)
   rails-controller-testing
   ransack
+  rolify
   rspec-rails (~> 3.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

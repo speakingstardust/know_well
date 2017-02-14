@@ -61,7 +61,7 @@ gem 'sendgrid-ruby'
 
 # Roles and Authorization
 gem 'rolify'
-gem 'pundit'
+
 
 
 # Use Capistrano for deployment
