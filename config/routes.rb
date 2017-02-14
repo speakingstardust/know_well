@@ -7,15 +7,13 @@ Rails.application.routes.draw do
   resources :reports
   resources :report_line_items
 
-  root to: "users#index"
-
 
   resources :customers
   resources :jigs
   resources :jig_orders
   resources :jig_order_line_items
   resources :reports
-  devise_for :users , controllers: { registrations: 'users/registrations' }
+  devise_for :users , controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
 
 
   get 'jig_reporting' => "pages#jig_reporting"
