@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :customers
-  resources :jigs
-  resources :jig_orders
-  resources :jig_order_line_items
-  resources :reports
-  resources :report_line_items
-
-
   resources :customers
   resources :jigs
   resources :jig_orders
@@ -23,7 +14,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
- root 'pages#home'
+  root 'pages#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
