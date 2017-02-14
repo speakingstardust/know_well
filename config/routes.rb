@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users
+resources :customers
+resources :jigs
+resources :jig_orders
+resources :jig_order_line_items
+resources :reports
+resources :report_line_items
+
+    root to: "users#index"
+  end
+
   resources :customers
   resources :jigs
   resources :jig_orders

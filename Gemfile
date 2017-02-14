@@ -56,6 +56,9 @@ gem 'pry-rails'
 
 gem 'sendgrid-ruby'
 
+# Administration Interface
+# gem "administrate", "~> 0.3.0"
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
