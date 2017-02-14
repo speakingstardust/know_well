@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   resources :jig_orders
   resources :jig_order_line_items
   resources :reports
-  devise_for :users , controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
-
+  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
+  devise_scope :user do
+    get 'users/index', to: 'users/registrations#index', as: 'user_index'
+    get 'users/show/:id', to: 'users/registrations#show', as: 'user_show'
+  end
 
   get 'jig_reporting' => "pages#jig_reporting"
   get '/reports/print/:id', to: 'reports#print', as: 'print_report'
