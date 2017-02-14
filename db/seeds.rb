@@ -6,6 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+user = User.create()
+[:admin, :shop_manager, :shop_tech].each do |role|
+  user.add_role role
+end
+user.destroy
 
 # 3.times do |n|
 # 	name = Faker::Company.name
@@ -50,4 +55,5 @@
 
 # 	order.jig_order_line_item_id = line_item.id
 # end
+
 
