@@ -59,6 +59,10 @@ gem 'sendgrid-ruby'
 # Administration Interface
 # gem "administrate", "~> 0.3.0"
 
+# Roles and Authorization
+gem 'rolify'
+gem 'pundit'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
