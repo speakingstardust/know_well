@@ -6,6 +6,10 @@
 <%= link_to "Print Report", print_report_path(@report), class: "btn btn-primary btn-large col-xs-offset-9 col-md-offset-11", target: "_blank" %>
 
 <p>
+  <strong>Report ID:</strong>
+  <%= @report.id %>
+</p>
+<p>
   <strong>Report Date Range:</strong>
   <%= l(@report.date_from) + " to " +   l(@report.date_to) %>
 </p>

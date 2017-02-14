@@ -4,6 +4,11 @@
 </div>
 
 <p class="text-center">
+  <strong>Report ID:</strong>
+  <%= @report.id %>
+</p>
+
+<p class="text-center">
   <strong>Report Date Range:</strong>
   <%= l(@report.date_from) + " to " +   l(@report.date_to) %>
 </p>
