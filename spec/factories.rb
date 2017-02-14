@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :role do
+    
+  end
   factory :customer do
     add_attribute(:name) { "Test Customer" }
 
