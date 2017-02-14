@@ -164,6 +164,8 @@ GEM
       pry (>= 0.9.10)
     public_suffix (2.0.5)
     puma (3.7.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (1.6.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -295,6 +297,7 @@ DEPENDENCIES
   prawnto_2
   pry-rails
   puma
+  pundit
   rails (= 4.2.6)
   rails-controller-testing
   ransack
