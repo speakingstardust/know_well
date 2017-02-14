@@ -29,6 +29,8 @@ FactoryGirl.define do
 
   factory :report do
     customer
+    date_from { Date.today - 7 }
+    date_to { Date.today }
   end
 
   factory :report_line_item do
