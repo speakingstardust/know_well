@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :jig_orders
   resources :jig_order_line_items
   resources :reports
-  devise_for :users
+  devise_for :users , controllers: { registrations: 'users/registrations' }
 
 
   get 'jig_reporting' => "pages#jig_reporting"
