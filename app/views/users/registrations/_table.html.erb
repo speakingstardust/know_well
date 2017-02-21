@@ -18,7 +18,7 @@
             <%= "#{role.name.titleize} |" %>
           <% end %>
         </td>
-        <td><%= link_to 'Show', root_path %></td>
+        <td><%= link_to 'Show', user_show_path(user.id) %></td>
         <td><%= link_to 'Edit', edit_user_registration_path(user) %></td>
         <td><%= link_to 'Destroy', user_registration_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

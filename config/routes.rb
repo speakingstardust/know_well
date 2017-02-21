@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/index', to: 'users/registrations#index', as: 'user_index'
     get 'users/show/:id', to: 'users/registrations#show', as: 'user_show'
+    get 'users/edit/:id', to: 'users/registrations#edit', as: 'user_edit'
+    get 'users/new', to: 'users/registrations#new', as: 'new_user'
   end
 
   get 'jig_reporting' => "pages#jig_reporting"
