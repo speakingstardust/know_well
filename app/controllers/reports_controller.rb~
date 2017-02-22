@@ -1,7 +1,7 @@
 require 'pry'
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy, :print]
-  before_action :authenticate_any!
+  before_action :authenticate_user!
 
   layout "print", only: [:print]
 

@@ -1,6 +1,6 @@
 class JigOrdersController < ApplicationController
   before_action :set_jig_order, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_any!
+  before_action :authenticate_user!
 
 
   def index

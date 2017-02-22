@@ -1,6 +1,6 @@
 <% provide(:title, "Home") %>
 
-<% if user_signed_in? or admin_signed_in? %>
+<% if user_signed_in? %>
 	<%= render "logged_in" %>
 <% else %>
 	<%= render "public" %>
