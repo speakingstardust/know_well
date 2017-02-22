@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   resources :customers
   resources :jigs
   resources :jig_orders
