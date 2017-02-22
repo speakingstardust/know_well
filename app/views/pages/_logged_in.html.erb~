@@ -23,7 +23,7 @@
 		<div class="thumbnail">
 			<%= image_tag "users.jpg", alt: "Users icon", class: 'img-responsive' %>
 			<div class="caption center">
-				<%= link_to "Users List", user_index_path, class: "btn btn-block btn-primary" %>
+				<%= link_to "Users List", users_path, class: "btn btn-block btn-primary" %>
 			</div>
 		</div>
 	</div>
