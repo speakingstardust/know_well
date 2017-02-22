@@ -6,12 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user = User.create()
-[:shop_manager, :shop_tech].each do |role|
-  user.add_role role
-end
-user.destroy
-
 # 3.times do |n|
 # 	name = Faker::Company.name
 # 	phone = Faker::PhoneNumber.phone_number
