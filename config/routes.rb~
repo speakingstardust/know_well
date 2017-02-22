@@ -5,10 +5,14 @@ Rails.application.routes.draw do
   resources :jig_orders
   resources :jig_order_line_items
   resources :reports
-  devise_for :users
-  scope "/admin" do 
-    resources :users
+  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
+  devise_scope :user do
+    get 'users/index', to: 'users/registrations#index', as: 'user_index'
+    get 'users/show/:id', to: 'users/registrations#show', as: 'user_show'
+    get 'users/edit/:id', to: 'users/registrations#edit', as: 'user_edit'
+    get 'users/new', to: 'users/registrations#new', as: 'new_user'
   end
+
   get 'jig_reporting' => "pages#jig_reporting"
   get '/reports/print/:id', to: 'reports#print', as: 'print_report'
   post 'jig_summary_report' => "jig_orders#index", defaults: { format: 'pdf' }
