@@ -22,11 +22,7 @@ class ReportPolicy < ApplicationPolicy
     user.is_admin? or user.has_role? :bookkeeper
   end
 
-  def edit?
-    user.is_admin? or user.has_role? :bookkeeper
-  end
-
-  def update?
+  def print?
     user.is_admin? or user.has_role? :bookkeeper
   end
 
