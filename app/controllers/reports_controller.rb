@@ -9,6 +9,7 @@ class ReportsController < ApplicationController
     @customers = Customer.all
     @search = Report.ransack(params[:q])
     @reports = @search.result.order(:created_at).page(params[:page])
+    authorize @reports
     respond_to do |format|
       format.html { render 'index' }
       format.pdf {  @delivery_charge = params[:jig_order][:delivery_charge].nil? ? 0 : params[:jig_order][:delivery_charge] }
@@ -17,6 +18,7 @@ class ReportsController < ApplicationController
 
   def new
     @report = Report.new
+    authorize @report
     @customers = Customer.all
   end
 
@@ -27,6 +29,7 @@ class ReportsController < ApplicationController
       @date_from,
       @date_to,
       params[:report][:delivery_charge] || 0)
+      authorize @action.report
     success = @action.create
     if success
       redirect_to report_path(@action.report)
@@ -37,12 +40,15 @@ class ReportsController < ApplicationController
   end
 
   def show
+    authorize @report
   end
 
   def print
+    authorize @report
   end
 
   def destroy
+    authorize @report
     @report.destroy
     redirect_to reports_url, notice: "Report was successfully destroyed."
   end

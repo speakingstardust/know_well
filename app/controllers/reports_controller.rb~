@@ -1,7 +1,7 @@
 require 'pry'
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy, :print]
-  before_action :authenticate_user!
+  before_action :authenticate_any!
 
   layout "print", only: [:print]
 
@@ -9,6 +9,7 @@ class ReportsController < ApplicationController
     @customers = Customer.all
     @search = Report.ransack(params[:q])
     @reports = @search.result.order(:created_at).page(params[:page])
+    authorize @reports
     respond_to do |format|
       format.html { render 'index' }
       format.pdf {  @delivery_charge = params[:jig_order][:delivery_charge].nil? ? 0 : params[:jig_order][:delivery_charge] }
@@ -17,6 +18,7 @@ class ReportsController < ApplicationController
 
   def new
     @report = Report.new
+    authorize @report
     @customers = Customer.all
   end
 
