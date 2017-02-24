@@ -10,6 +10,7 @@ class JigsController < ApplicationController
   # GET /jigs/1
   # GET /jigs/1.json
   def show
+    authorize @jig
   end
 
   # GET /jigs/new
@@ -17,6 +18,7 @@ class JigsController < ApplicationController
     @customers = Customer.all
 
     @jig = Jig.new
+    authorize @jig
   end
 
   # GET /jigs/1/edit

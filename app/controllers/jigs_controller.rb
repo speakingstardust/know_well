@@ -10,6 +10,7 @@ class JigsController < ApplicationController
   # GET /jigs/1
   # GET /jigs/1.json
   def show
+    authorize @jig
   end
 
   # GET /jigs/new
@@ -17,11 +18,13 @@ class JigsController < ApplicationController
     @customers = Customer.all
 
     @jig = Jig.new
+    authorize @jig
   end
 
   # GET /jigs/1/edit
   def edit
     @customers = Customer.all
+    authorize @jig
   end
 
   # POST /jigs
@@ -29,6 +32,7 @@ class JigsController < ApplicationController
   def create
     @jig = Jig.new(jig_params)
 
+    authorize @jig
     respond_to do |format|
       if @jig.save
         format.html { redirect_to @jig, notice: 'Jig was successfully created.' }
@@ -43,6 +47,7 @@ class JigsController < ApplicationController
   # PATCH/PUT /jigs/1
   # PATCH/PUT /jigs/1.json
   def update
+    authorize @jig
     respond_to do |format|
       if @jig.update(jig_params)
         format.html { redirect_to @jig, notice: 'Jig was successfully updated.' }
@@ -57,6 +62,7 @@ class JigsController < ApplicationController
   # DELETE /jigs/1
   # DELETE /jigs/1.json
   def destroy
+    authorize @jig
     @jig.destroy
     respond_to do |format|
       format.html { redirect_to jigs_url, notice: 'Jig was successfully destroyed.' }
