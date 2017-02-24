@@ -15,12 +15,8 @@
   </div>
 
   <div class="field">
-    <%= f.association :roles, as: :check_boxes, collection: Role.all.to_a, label_method: :name %>
+    <%= f.association :roles, as: :check_boxes, collection: Role.all.to_a, label_method: self.name.titleize %>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
 
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />

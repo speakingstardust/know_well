@@ -16,7 +16,7 @@
   </div>
 
   <div class="field">
-    <%= f.association :roles, as: :check_boxes, collection: Role.all.to_a, label_method: :name %>
+    <%= f.association :roles, as: :check_boxes, collection: Role.all.to_a, label_method: lambda { |role| role.name.titleize } %>
   </div>
 
   <div class="field">
