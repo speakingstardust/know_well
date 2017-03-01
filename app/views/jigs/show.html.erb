@@ -12,12 +12,12 @@
 <% if admin_signed_in? or current_user.has_role? :bookkeeper %>
   <p>
     <strong>Cleaning charge:</strong>
-    <%= @jig.cleaning_charge %>
+    <%= number_to_currency @jig.cleaning_charge %>
   </p>
 
   <p>
     <strong>Repair charge:</strong>
-    <%= @jig.repair_charge %>
+    <%= number_to_currency @jig.repair_charge %>
   </p>
 <% end %>
 <p>

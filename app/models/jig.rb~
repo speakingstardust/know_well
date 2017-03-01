@@ -3,7 +3,6 @@ class Jig < ActiveRecord::Base
   has_many :jig_order_line_items
   has_many :jig_orders, through: :jig_order_line_items
   has_many :report_line_items
-  before_save :set_prices
 
   validates :name, presence: true
 

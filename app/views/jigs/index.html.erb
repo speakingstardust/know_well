@@ -26,8 +26,8 @@
         <th scope="row"><%= jig.name %></th>
         <td><%= jig.customer.name %></td>
         <% if admin_signed_in? or current_user.has_role? :bookkeeper %>
-          <td><%= jig.cleaning_charge %></td>
-          <td><%= jig.repair_charge %></td>
+          <td><%= number_to_currency jig.cleaning_charge %></td>
+          <td><%= number_to_currency jig.repair_charge %></td>
         <% end %>
         <td><%= image_tag jig.jig_photo.url(:thumb) %></td>
         <td><%= link_to 'Show', jig %></td>
