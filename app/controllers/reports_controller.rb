@@ -29,8 +29,8 @@ class ReportsController < ApplicationController
       @date_from,
       @date_to,
       params[:report][:delivery_charge] || 0)
-      authorize @action.report
     success = @action.create
+    authorize @action.report
     if success
       redirect_to report_path(@action.report)
     else

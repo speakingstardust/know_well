@@ -29,6 +29,7 @@ class ReportsController < ApplicationController
       @date_from,
       @date_to,
       params[:report][:delivery_charge] || 0)
+      authorize @action.report
     success = @action.create
     if success
       redirect_to report_path(@action.report)
@@ -39,12 +40,15 @@ class ReportsController < ApplicationController
   end
 
   def show
+    authorize @report
   end
 
   def print
+    authorize @report
   end
 
   def destroy
+    authorize @report
     @report.destroy
     redirect_to reports_url, notice: "Report was successfully destroyed."
   end
