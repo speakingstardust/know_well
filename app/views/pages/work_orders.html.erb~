@@ -3,6 +3,13 @@
 	<h1 class="text-center">Work Orders Management</h1>
 </div>
 
-<h2 class="text-center">Shortcuts</h2>
+<h2 class="text-center">Create New Work Order</h2>
 <hr>
-<hr>
+<h4>Select Customer, then type of Work Order.</h4>
+<%= collection_select :customer, :customer_id, @customers, :id, :name, class: "form-control" %> 
+<div class="col-md-4">
+  <%= link_to "Jig Work Order", root_path, class: "btn btn-primary btn-lg" %>
+</div>
+<div class="row">
+  <hr>
+</div>

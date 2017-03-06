@@ -6,5 +6,6 @@ class PagesController < ApplicationController
   end
 
   def work_orders
+    @customers = Customer.all
   end
 end
