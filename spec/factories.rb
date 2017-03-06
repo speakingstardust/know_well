@@ -1,4 +1,14 @@
 FactoryGirl.define do
+  factory :jig_work_order do
+    customer nil
+    purchase_order "MyString"
+    notes "MyText"
+    pickup "2017-03-06 10:16:03"
+    returned "2017-03-06"
+    verified false
+    verified_by "MyString"
+    verified_at "2017-03-06 10:16:03"
+  end
   factory :admin do
     
   end

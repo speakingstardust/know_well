@@ -1,0 +1,2 @@
+class JigWorkOrdersController < ApplicationController
+end
