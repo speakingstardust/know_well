@@ -1,0 +1,5 @@
+<div class="container">
+  <%= simple_form_for @jig_work_order, html: { class: "form-horzontal" } |f| %>
+
+  <% end %>
+</div>

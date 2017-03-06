@@ -1,6 +1,11 @@
+require "pry"
 Given(/^a user that is either an Admin or has the bookkeeper role\.$/) do
-  @user = User.create(first_name: "Test", last_name: "Testing", email: "test@example.com")
+  @user = User.create(first_name: "Test", last_name: "Testing", email: "test@testing.com", password: "password", password_confirmation: "password")
   @user.add_role :bookkeeper
+  visit '/users/sign_in'
+  fill_in "user_email", with: @user.email
+  fill_in "user_password", with: @user.password
+  click_button "Sign in"
 end
 
 Given(/^a customer\.$/) do
@@ -8,45 +13,42 @@ Given(/^a customer\.$/) do
 end
 
 Given(/^jigs that belong to the customer\.$/) do
-  @first_jig = Jig.create(name: "Jig One", customer: @customer)
-  @second_jig = Jig.create(name: "Jig Two", customer: @customer) 
+  @jig = Jig.create(name: "Test Jig", customer: @customer)
 end
 
-When(/^I visit the new work order page\.$/) do
-  visit '/work_orders/new'
+When(/^I visit the work order management page\.$/) do
+  visit '/work_orders_management'
 end
 
-When(/^I complete the initial work order form, choosing the type of work order and a customer\.$/) do
-  select 'Jig', from: 'Type'
-  select 'Test Customer', from: 'Customer'
+When(/^I select the customer from the dropdown\.$/) do
+  select 'Test Customer', from: 'customer_customer_id'
 end
 
-Then(/^I am on the jig work order details page\.$/) do
-  expect(page).to have_current_path(new_jig_work_orders_path)
+When(/^I click Jig Work Order\.$/) do
+  click_link('Jig Work Order')
+end
+
+Then(/^I am on the new jig work order details page\.$/) do
+  expect(page).to have_current_path(new_jig_work_order_path)
 end
 
 Then(/^I am able to set a pickup date and time\.$/) do
-  select "#{Date.today.day}", from: 'Date'
-  select "#{Date.today.month}", from: 'Month'
-  select "#{Date.today.year}", from: 'Year'
-  select "#{Time.now}", from: 'Time'
+    pending # Write code here that turns the phrase above into concrete actions
 end
 
 Then(/^I am able to add the expected number of jigs to the work order\.$/) do
-  select 'Jig One', from: 'Jig'
-  fill_in 'Expected', with: '10'
-  click_button 'Add Jig'
+    pending # Write code here that turns the phrase above into concrete actions
 end
 
 Then(/^I submit the new work order\.$/) do
-  click_button 'Submit'
+    pending # Write code here that turns the phrase above into concrete actions
 end
 
 Then(/^I am on the work order index page\.$/) do
-  expect(page).to have_current_path(work_orders_path)
+    pending # Write code here that turns the phrase above into concrete actions
 end
 
 Then(/^the new work order is present on the work order index page\.$/) do
-  expect(page).to have_content("Test Company")
-  expect(page).to have_content(Date.today)
+    pending # Write code here that turns the phrase above into concrete actions
 end
+

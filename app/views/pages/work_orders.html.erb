@@ -6,8 +6,8 @@
 <h2 class="text-center">Create New Work Order</h2>
 <hr>
 <h4>Select Customer, then type of Work Order.</h4>
-<%= collection_select :customer, :customer_id, @customers, :id, :name, class: "form-control" %> 
-<div class="col-md-4">
-  <%= link_to "Jig Work Order", root_path, class: "btn btn-primary btn-lg" %>
-</div>
+<%= form_tag url: { controller: "pages", action: "new_work_order" }, method: "post" do %>
+  <%= collection_select :customer, :customer_id, @customers, :id, :name, class: "form-control" %> 
+  <%= submit_tag "Jig Work Order", id: 'jig_work_order', class: "btn btn-primary btn-lg" %>
+<% end %>
 

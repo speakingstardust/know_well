@@ -1,0 +1,8 @@
+<% provide(:title, "New Jig Work Order") %>
+<div class="page-header">
+	<h1 class="text-center">New Jig Work Order</h1>
+</div>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', jig_orders_path %>

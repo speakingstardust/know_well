@@ -1,3 +1,4 @@
+require 'pry'
 class JigWorkOrdersController < ApplicationController
   before_action :authenticate_any!
   before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy]
@@ -10,7 +11,9 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def new 
-
+    @customer = Customer.find(params[:customer][:customer_id])
+    @jig_work_order = JigWorkOrder.new(customer: @customer)
+    binding.pry
   end
 
   def create
