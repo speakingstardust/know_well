@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222154053) do
+ActiveRecord::Schema.define(version: 20170306151603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,21 @@ ActiveRecord::Schema.define(version: 20170222154053) do
 
   add_index "jig_orders_reports", ["jig_order_id", "report_id"], name: "index_jig_orders_reports_on_jig_order_id_and_report_id", using: :btree
   add_index "jig_orders_reports", ["report_id", "jig_order_id"], name: "index_jig_orders_reports_on_report_id_and_jig_order_id", using: :btree
+
+  create_table "jig_work_orders", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.string   "purchase_order"
+    t.text     "notes"
+    t.datetime "pickup"
+    t.date     "returned"
+    t.boolean  "verified"
+    t.string   "verified_by"
+    t.datetime "verified_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "jig_work_orders", ["customer_id"], name: "index_jig_work_orders_on_customer_id", using: :btree
 
   create_table "jigs", force: :cascade do |t|
     t.string   "name"
@@ -170,4 +185,5 @@ ActiveRecord::Schema.define(version: 20170222154053) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "jig_work_orders", "customers"
 end
