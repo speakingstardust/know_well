@@ -1,4 +1,11 @@
 FactoryGirl.define do
+  factory :jig_work_order_line_item do
+    jig nil
+    jig_work_order nil
+    expected 1
+    repaired 1
+    actual 1
+  end
   factory :jig_work_order do
     customer nil
     purchase_order "MyString"
