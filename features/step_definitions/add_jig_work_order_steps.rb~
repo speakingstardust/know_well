@@ -4,12 +4,12 @@ Given(/^a user that is either an Admin or has the bookkeeper role\.$/) do
 end
 
 Given(/^a customer\.$/) do
-  @customer = Customer.create!(name: "Test Customer")
+  @customer = Customer.create(name: "Test Customer")
 end
 
 Given(/^jigs that belong to the customer\.$/) do
-  @first_jig = Jig.create!(name: "Jig One", customer: @customer)
-  @second_jig = Jig.create!(name: "Jig Two", customer: @customer) 
+  @first_jig = Jig.create(name: "Jig One", customer: @customer)
+  @second_jig = Jig.create(name: "Jig Two", customer: @customer) 
 end
 
 When(/^I visit the new work order page\.$/) do
