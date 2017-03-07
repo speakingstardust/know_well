@@ -1,4 +1,4 @@
 class JigWorkOrderLineItem < ActiveRecord::Base
-  belongs_to :jig
+  has_one :jig
   belongs_to :jig_work_order
 end

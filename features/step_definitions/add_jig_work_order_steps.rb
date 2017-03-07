@@ -25,11 +25,11 @@ When(/^I select the customer from the dropdown\.$/) do
 end
 
 When(/^I click Jig Work Order\.$/) do
-  click_link('Jig Work Order')
+  click_button('Jig Work Order')
 end
 
 Then(/^I am on the new jig work order details page\.$/) do
-  expect(page).to have_current_path(new_jig_work_order_path)
+  expect(page).to have_current_path(new_jig_work_order_path(customer: { customer_id: @customer.id }))
 end
 
 Then(/^I am able to set a pickup date and time\.$/) do

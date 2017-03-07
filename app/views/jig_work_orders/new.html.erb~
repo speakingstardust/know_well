@@ -5,4 +5,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', jig_orders_path %>
+<%= link_to 'Back', jig_work_orders_path %>

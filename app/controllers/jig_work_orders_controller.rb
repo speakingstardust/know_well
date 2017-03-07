@@ -12,8 +12,9 @@ class JigWorkOrdersController < ApplicationController
 
   def new 
     @customer = Customer.find(params[:customer][:customer_id])
+    @jigs = Jig.where(customer: @customer) 
     @jig_work_order = JigWorkOrder.new(customer: @customer)
-    binding.pry
+    @jig_work_order.jig_work_order_line_items.build
   end
 
   def create

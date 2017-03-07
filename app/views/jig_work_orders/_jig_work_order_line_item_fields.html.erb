@@ -1,0 +1,9 @@
+<div class="nested-fields">
+  <div class="form-inline center" id="#JigWorkOrderLineItem">
+    <%= f.collection_select :jig_id, @jigs, :id, :name, { include_blank: 'Select Jig' }, class: "form-control"  %>
+    <%= f.input :expected, placeholder: "# Expected", label: false %>
+    <%= f.input :repaired, placeholder: "# Repaired", label: false %>
+    <%= f.input :actual, placeholder: "# Cleaned", label: false %>
+    <%= link_to_remove_association "Remove Jig", f %>
+  </div>
+</div>
