@@ -7,11 +7,13 @@ class JigWorkOrder < ActiveRecord::Base
 
   before_save :set_purchase_order
 
-  validates :pickup, presence: true
+  validates :pickup_date, presence: true
   
 
   def set_purchase_order
-    time = Time.now.to_s.split('-').join.split(':').join.split(' ').join    
-    self.purchase_order ||= time
+    time = Time.now.strftime("%m%d%y-%H%M")
+    if self.purchase_order == ''
+      self.purchase_order = time
+    end
   end
 end

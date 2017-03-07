@@ -1,6 +1,6 @@
 <% provide(:title, "Jig Work Order Info") %>
 <div class="page-header">
-  <h1 class="text-center"> #{@jig_work_order.customer.name} Jig Work Order Details </h1>
+<h1 class="text-center"><%= "#{@jig_work_order.customer.name}" %> Jig Work Order Details </h1>
 </div>
 
 <%= link_to "Edit Jig Work Order", edit_jig_work_order_path(@jig_work_order), class: "btn btn-primary btn-lg pull-right" %>
@@ -11,8 +11,18 @@
 </p>
 
 <p> 
-  <strong>Approximate Pickup Date and Time: </strong>
-  <%= l @jig_work_order.pickup %>
+  <strong>Purchase Order #: </strong>
+  <%= @jig_work_order.purchase_order %>
+</p>
+
+<p> 
+  <strong>Approximate Pickup Date: </strong>
+  <%= l @jig_work_order.pickup_date %> 
+</p>
+
+<p> 
+  <strong>Approximate Pickup Time: </strong>
+  <%= @jig_work_order.pickup_time %>
 </p>
 
 <p> 

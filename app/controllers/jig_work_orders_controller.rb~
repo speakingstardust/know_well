@@ -18,7 +18,13 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def create
-    @jig_work_order = 
+    @jig_work_order = JigWorkOrder.new(jig_work_order_params)
+
+    if @jig_work_order.save
+      redirect_to @jig_work_order, notice: 'Jig Work Order was successfully created.'
+    else
+      render :new
+    end
   end
 
   def edit

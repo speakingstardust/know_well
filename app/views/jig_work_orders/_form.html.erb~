@@ -1,6 +1,6 @@
 <div class="container">
   <%= simple_form_for @jig_work_order, html: { class: "form-horzontal" } do |f| %>
-    <%= f.association :customer, hint: "WARNING: Do not change Customer here! If the customer is not correct, please go back to the Work Order Management page and create a new Jig Work Order, with the correct customer, from there."  %>
+    <%= f.association :customer, hint: "WARNING: Do not change Customer here! If the customer is not correct, please go back to the Work Order Management page and create a new Jig Work Order from there."  %>
     <%= f.input :purchase_order, hint: 'If not available, leave blank and one will be generated.' %>  
     <%= f.input :pickup, label: "Pickup Date & Time" %>
     <%= f.input :notes %>
