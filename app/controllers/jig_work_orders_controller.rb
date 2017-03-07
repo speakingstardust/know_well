@@ -18,7 +18,13 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def create
+    @jig_work_order = JigWorkOrder.new(jig_work_order_params)
 
+    if @jig_work_order.save
+      redirect_to @jig_work_order, notice: 'Jig Work Order was successfully created.'
+    else
+      render :new
+    end
   end
 
   def edit
@@ -37,5 +43,9 @@ class JigWorkOrdersController < ApplicationController
   
   def set_jig_work_order
     @jig_work_order = JigWorkOrder.find(params[:id])
+  end
+
+  def jig_work_order_params
+    params.require(:jig_work_order).permit(:pickup, :customer_id, :notes, :purchase_order, :returned, :verified_by, :verified, :verified_at, jig_work_order_line_items_attributes: [:id, :jig_id, :expected, :repaired, :actual, :_destroy])
   end
 end

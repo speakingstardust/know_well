@@ -1,0 +1,45 @@
+<% provide(:title, "Jig Work Order Info") %>
+<div class="page-header">
+  <h1 class="text-center"> #{@jig_work_order.customer.name} Jig Work Order Details </h1>
+</div>
+
+<%= link_to "Edit Jig Work Order", edit_jig_work_order_path(@jig_work_order), class: "btn btn-primary btn-lg pull-right" %>
+
+<p> 
+  <strong>Purchase Order #: </strong>
+  <%= @jig_work_order.purchase_order %>
+</p>
+
+<p> 
+  <strong>Approximate Pickup Date and Time: </strong>
+  <%= l @jig_work_order.pickup %>
+</p>
+
+<p> 
+  <strong>Notes:</strong>
+  <%= @jig_work_order.notes %>
+</p>
+
+<hr />
+
+<table class="table">
+  <thead>
+    <th>Jig Name</th>
+    <th># Expected</th>
+    <th># Repaired</th>
+    <th># Cleaned</th>
+  </thead>
+
+  <tbody>
+    <% @jig_work_order.jig_work_order_line_items.each do |line_item| %>
+      <tr>
+        <th scope="row"><%= line_item.jig.name %></th>
+        <td><%= line_item.expected %></td>
+        <td><%= line_item.repaired %></td>
+        <td><%= line_item.actual %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Back to Jig Work Order Index", jig_work_orders_path, class: "btn btn-primary btn-lg" %>

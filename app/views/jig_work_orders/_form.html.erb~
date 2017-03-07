@@ -1,11 +1,12 @@
 <div class="container">
   <%= simple_form_for @jig_work_order, html: { class: "form-horzontal" } do |f| %>
+    <%= f.association :customer, hint: "WARNING: Do not change Customer here! If the customer is not correct, please go back to the Work Order Management page and create a new Jig Work Order, with the correct customer, from there."  %>
     <%= f.input :purchase_order, hint: 'If not available, leave blank and one will be generated.' %>  
-    <%= f.input :pickup %>
+    <%= f.input :pickup, label: "Pickup Date & Time" %>
     <%= f.input :notes %>
     <h4 class="text-center">Jigs</h4>
     <div id="jig_work_order_line_items">
-      <%= simple_fields_for :jig_work_order_line_items, html: { render_options: { wrapper: 'horizontal-form' }, class: 'form-inline' } do |line_item| %>
+      <%= f.simple_fields_for :jig_work_order_line_items, html: { render_options: { wrapper: 'horizontal-form' }, class: 'form-inline' } do |line_item| %>
         <%= render 'jig_work_order_line_item_fields', f: line_item %>
         <div class="links">
           <%= link_to_add_association 'add_jig', f, :jig_work_order_line_items, class: "btn btn-success btn-block" %>

@@ -14,10 +14,11 @@ class JigWorkOrdersController < ApplicationController
     @customer = Customer.find(params[:customer][:customer_id])
     @jigs = Jig.where(customer: @customer) 
     @jig_work_order = JigWorkOrder.new(customer: @customer)
+    @jig_work_order.jig_work_order_line_items.build
   end
 
   def create
-
+    @jig_work_order = 
   end
 
   def edit
@@ -36,5 +37,9 @@ class JigWorkOrdersController < ApplicationController
   
   def set_jig_work_order
     @jig_work_order = JigWorkOrder.find(params[:id])
+  end
+
+  def jig_work_order_params
+    params.require(:jig_work_order).permit(:pickup, :customer_id, :notes, :purchase_order, :returned, :verified_by, :verified, :verified_at, jig_work_order_line_items_attributes: [:id, :jig_id, :expected, :repaired, :actual, :_destroy])
   end
 end
