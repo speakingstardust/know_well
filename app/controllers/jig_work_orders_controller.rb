@@ -34,7 +34,11 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def update
-
+    if @jig_work_order.update(jig_order_params)
+      redirect_to @jig_work_order, notice: 'Jig Order Successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy

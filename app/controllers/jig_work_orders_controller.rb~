@@ -30,11 +30,15 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def edit
-    @jig = Jig.where(customer: @jig_work_order.customer)
+    @jigs = Jig.where(customer: @jig_work_order.customer)
   end
 
   def update
+    if @jig_work_order.update(jig_order_params)
+      redirect_to @jig_work_order, notice: 'Jig Order Successfully updated.'
+    else
 
+    end
   end
 
   def destroy
