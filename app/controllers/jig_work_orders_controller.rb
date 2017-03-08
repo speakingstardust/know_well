@@ -23,6 +23,7 @@ class JigWorkOrdersController < ApplicationController
     @jig_work_order = JigWorkOrder.new(jig_work_order_params)
 
     if @jig_work_order.save
+      @jig_work_order.open!
       redirect_to @jig_work_order, notice: 'Jig Work Order was successfully created.'
     else
       render :new

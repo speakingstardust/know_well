@@ -12,11 +12,16 @@ class JigWorkOrder < ActiveRecord::Base
   validates :pickup_date, presence: true
   
   aasm do
-    state :opened, :initial => true, after_enter: :notify_supervisor
+    state :created, :initial => true 
+    state :opened
     state :received
     state :shipped 
     state :verified
     state :completed
+
+    event :open, :after => :notify_supervisor do 
+      transitions :from => :created, :to => :opened
+    end
 
     event :receive do 
       transitions :from => :opened, :to => :received
