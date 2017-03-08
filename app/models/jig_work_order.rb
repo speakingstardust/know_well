@@ -36,7 +36,8 @@ class JigWorkOrder < ActiveRecord::Base
   end
 
   def notify_supervisor
-    
+    user = User.with_role(:shop_supervisor).first
+    JigWorkOrderMailer.jig_work_order_created(user, self).deliver_now
   end
 
   def set_purchase_order

@@ -35,6 +35,10 @@ class JigWorkOrder < ActiveRecord::Base
     end
   end
 
+  def notify_supervisor
+     
+  end
+
   def set_purchase_order
     time = Time.now.strftime("%m%d%y-%H%M")
     if self.purchase_order == ''

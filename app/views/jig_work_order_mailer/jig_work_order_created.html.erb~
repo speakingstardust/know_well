@@ -1,0 +1,4 @@
+<h1>New Jig Work Order Created for <%= @jig_work_order.customer.name %></h1>
+<h3>
+  Order Submitted at: <%= l @jig_work_order.created_at %>
+</h3>
