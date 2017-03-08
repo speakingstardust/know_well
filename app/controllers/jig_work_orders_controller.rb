@@ -30,7 +30,7 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def edit
-
+    @jigs = Jig.where(customer: @jig_work_order.customer)
   end
 
   def update

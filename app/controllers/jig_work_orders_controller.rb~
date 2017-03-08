@@ -6,7 +6,7 @@ class JigWorkOrdersController < ApplicationController
   def index
     @customers = Customer.all
     @search = JigWorkOrder.ransack(params[:q])
-    @jig_work_orders = @search.result.order(:date).page(params[:page])
+    @jig_work_orders = @search.result.order(:pickup_date).page(params[:page])
   end
 
   def show
@@ -30,7 +30,7 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def edit
-
+    @jig = Jig.where(customer: @jig_work_order.customer)
   end
 
   def update

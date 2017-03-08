@@ -4,6 +4,7 @@
     <%= f.input :purchase_order, hint: 'If not available, leave blank and one will be generated.' %>  
     <%= f.input :pickup_date %> 
     <%= f.input :pickup_time %>
+    <%= f.input :returned, include_blank: true %>
     <%= f.input :notes %>
     <h4 class="text-center">Jigs</h4>
     <div id="jig_work_order_line_items">
@@ -13,6 +14,19 @@
           <%= link_to_add_association 'add_jig', f, :jig_work_order_line_items, class: "btn btn-success btn-block" %>
         </div>
       <% end %>
+    </div>
+    <hr>
+    <h4 class="text-center">Work Order Verification</h4>
+    <hr>
+    <div class="row">
+      <%= f.input :verified, hint: "Do not check verified until signed Packing Slip has been returned by delivery driver" %>
+      <p>By checking verified above you are agreeing to the following:</p>
+      <ul>
+        <li>All cleaning and repair work has been completed for all Jigs included on this work order.</li>
+        <li>All Repaired and Actual Cleaning totals are correct.</li>
+        <li>A packing slip has already been generated for this work order.</li>
+        <li>A signed copy of the packing slip has been returned to you by the delivery driver with signatures from the driver and a representative of the customer.</li>
+      </ul>
     </div>
     <%= f.button :submit, class: "btn btn-primary" %>
   <% end %>
