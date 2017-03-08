@@ -1,0 +1,2 @@
+class JigWorkOrderMailer < ApplicationMailer
+end
