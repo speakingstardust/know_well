@@ -3,11 +3,16 @@
 	<h1 class="text-center">Work Orders Management</h1>
 </div>
 
-<h2 class="text-center">Create New Work Order</h2>
-<hr>
-<h4>Select Customer, then type of Work Order.</h4>
-<%= form_tag url: { controller: "pages", action: "new_work_order" }, method: "get" do %>
-  <%= collection_select :customer, :customer_id, @customers, :id, :name, class: "form-control" %> 
-  <%= submit_tag "Jig Work Order", id: 'jig_work_order', class: "btn btn-primary btn-lg" %>
+<% if current_user.try(:has_role?, :bookeeper) or current_admin %>
+  <h2 class="text-center">Create New Work Order</h2>
+  <hr>
+  <h4>Select Customer, then type of Work Order.</h4>
+  <%= form_tag url: { controller: "pages", action: "new_work_order" }, method: "post" do %>
+    <%= collection_select :customer, :customer_id, @customers, :id, :name, class: "form-control" %> 
+    <%= submit_tag "Jig Work Order", id: 'jig_work_order', class: "btn btn-primary btn-lg" %>
+  <% end %>
 <% end %>
-
+<hr> 
+<h2 class="text-center">Work Order Quick Links</h2>
+<hr>
+<%= link_to "Work Orders Index", work_orders_path, class: "btn btn-primary btn-block" %>

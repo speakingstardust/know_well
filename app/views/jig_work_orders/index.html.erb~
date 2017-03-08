@@ -1,0 +1,38 @@
+<% provide(:title, "Jig Work Orders Index") %>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center">Jig Work Order Index</h1>
+  </div>
+</div>
+<div class="row">
+  <%= link_to "Work Orders Management", work_orders_management_path, class: "btn btn-primary pull-left" %>
+  <hr>
+</div>
+<div class="row">
+  <%= search_form_for @search do |f| %>
+
+          <%= f.label :customer_id_eq, "Customer", class: 'control-label' %>
+          <%= f.collection_select :customer_id_eq, @customers, :id, :name, include_blank: true,  class: 'form-control' %>
+
+          <%= f.label :pickup_date_gteq, "Work Order Pickup Date", class: 'control-label' %>
+
+          <div class="input-group input-daterange">
+                  <%= f.text_field :pickup_date_gteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
+                  <span class="input-group-addon">to</span>
+                  <%= f.text_field :pickup_date_lteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
+          </div>
+          <%= f.label :returned_gteq, "Work Order Return Date", class: 'control-label' %>
+
+          <div class="input-group input-daterange">
+                  <%= f.text_field :returned_gteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
+                  <span class="input-group-addon">to</span>
+                  <%= f.text_field :returned_lteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
+          </div>
+
+                  <%= f.submit "Search", class: "btn btn-primary" %>
+                  <%= link_to "Clear Search", request.path, class: "cancel-button" %>
+  <% end %>
+</div>
+<div class="row">
+  <%= render 'table' %>
+</div>

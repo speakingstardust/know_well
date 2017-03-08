@@ -4,7 +4,9 @@ class JigWorkOrdersController < ApplicationController
   before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy]
 
   def index
-    @jig_work_orders = JigWorkOrder.all
+    @customers = Customer.all
+    @search = JigWorkOrder.ransack(params[:q])
+    @jig_work_orders = @search.result.order(:pickup_date).page(params[:page])
   end
 
   def show

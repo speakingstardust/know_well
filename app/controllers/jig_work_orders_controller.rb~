@@ -4,7 +4,9 @@ class JigWorkOrdersController < ApplicationController
   before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy]
 
   def index
-    @jig_work_orders = JigWorkOrder.all
+    @customers = Customer.all
+    @search = JigWorkOrder.ransack(params[:q])
+    @jig_work_orders = @search.result.order(:date).page(params[:page])
   end
 
   def show
@@ -46,6 +48,6 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def jig_work_order_params
-    params.require(:jig_work_order).permit(:pickup, :customer_id, :notes, :purchase_order, :returned, :verified_by, :verified, :verified_at, jig_work_order_line_items_attributes: [:id, :jig_id, :expected, :repaired, :actual, :_destroy])
+    params.require(:jig_work_order).permit(:pickup_date, :pickup_time, :customer_id, :notes, :purchase_order, :returned, :verified_by, :verified, :verified_at, jig_work_order_line_items_attributes: [:id, :jig_id, :expected, :repaired, :actual, :_destroy])
   end
 end
