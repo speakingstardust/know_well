@@ -2,12 +2,12 @@
 <table class="table">
   <thead>
     <tr>
+      <th><%= sort_link @search, :jig_work_order_id, "Work Order #" %></th>
       <th><%= sort_link @search, :customer, "Customer" %></th>
       <th>Purchase Order #</th>
       <th><%= sort_link @search, :pickup_date, "Pickup Date" %></th>
       <th><%= sort_link @search, :returned, "Return Date" %></th>
       <th><%= sort_link @search, :aasm_state, "Current Status" %></th>
-      <th>Notes</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,12 +15,12 @@
   <tbody>
     <% @jig_work_orders.each do |jig_work_order| %>
       <tr>
+        <td><%= jig_work_order.id %></td>
         <td><%= jig_work_order.customer.name %></td>
         <td><%= jig_work_order.purchase_order %></td>
         <td><%= l jig_work_order.pickup_date %></td>
         <td><%= l jig_work_order.returned unless jig_work_order.returned.nil? %></td>
         <td><%= jig_work_order.aasm_state.titleize %></td>
-        <td><%= jig_work_order.notes %></td>
         <td><%= link_to 'Show', jig_work_order %></td>
         <td><%= link_to 'Edit', edit_jig_work_order_path(jig_work_order) %></td>
         <td><%= link_to 'Destroy', jig_work_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>

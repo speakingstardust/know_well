@@ -1,6 +1,6 @@
 <% provide(:title, "Edit Jig Work Order") %>
 <div class="page-header">
-  <h1 class="text-center">Edit Jig Work Order for <%= @jig_work_order.customer.name %></h1>
+  <h1 class="text-center">Edit Jig Work Order <%= @jig_work_order.id %> for <%= @jig_work_order.customer.name %></h1>
 </div>
 
 <div class="row">
@@ -10,10 +10,8 @@
         <% unless @jig_work_order.received? %>
           <%= link_to "Receive", jig_work_order_receive_path(@jig_work_order.id), method: :put, class: "btn btn-primary" %>
         <% end %>
-        <% unless @jig_work_order.verified? %>
-          <% if current_user.try(:has_role?, :bookeeper) or current_admin %>
-            <%= link_to "Complete", jig_work_order_complete_path(@jig_work_order.id), method: :put, class: "btn btn-success" %>
-          <% end %>
+        <% if current_user.try(:has_role?, :bookeeper) or current_admin && @jig_work_order.verified? %>
+          <%= link_to "Complete", jig_work_order_complete_path(@jig_work_order.id), method: :put, class: "btn btn-success" %>
         <% end %>
       </div> 
 </div>
