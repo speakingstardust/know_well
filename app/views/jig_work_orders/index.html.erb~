@@ -6,6 +6,8 @@
 </div>
 <div class="row">
   <%= link_to "Work Orders Management", work_orders_management_path, class: "btn btn-primary pull-left" %>
+</div>
+<div class="row">
   <hr>
 </div>
 <div class="row">

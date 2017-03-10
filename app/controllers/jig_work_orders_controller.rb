@@ -43,7 +43,9 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def destroy
-
+    @jig_work_order.destroy
+    redirect_to jig_work_orders_url, notice: 'Jig Work Order Sucessfully destroyed.'
+ 
   end
 
   private
