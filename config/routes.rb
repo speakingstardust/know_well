@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :jig_work_orders
+  resources :jig_work_orders do
+    put :receive
+    put :complete
+  end
   devise_for :admins
   resources :customers
   resources :jigs

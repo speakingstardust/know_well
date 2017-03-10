@@ -2,6 +2,7 @@ require 'pry'
 class JigWorkOrdersController < ApplicationController
   before_action :authenticate_any!
   before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_jig_work_order_for_status, only: [:receive, :completed]
 
   def index
     @customers = Customer.all
@@ -31,6 +32,7 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def edit
+    @jig_work_order = JigWorkOrder.find(params[:id])
     @jigs = Jig.where(customer: @jig_work_order.customer)
   end
 
@@ -45,13 +47,25 @@ class JigWorkOrdersController < ApplicationController
   def destroy
     @jig_work_order.destroy
     redirect_to jig_work_orders_url, notice: 'Jig Work Order Sucessfully destroyed.'
- 
   end
 
+  def receive
+    @jig_work_order.receive! 
+    redirect_to edit_jig_work_order_path(@jig_work_order), notice: 'Jig Work Order Status Changed to Received'
+  end
+
+  def complete
+    @jig_work_order.complete!
+    redirect_to edit_jig_work_order_path(@jig_work_order), notice: 'Jig Work Order Status Changed to Completed'
+  end
   private
   
   def set_jig_work_order
     @jig_work_order = JigWorkOrder.find(params[:id])
+  end
+
+  def set_jig_work_order_for_status
+    @jig_work_order = JigWorkOrder.find(params[:jig_work_order_id])
   end
 
   def jig_work_order_params

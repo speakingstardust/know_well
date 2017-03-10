@@ -15,6 +15,9 @@
 
           <%= f.label :customer_id_eq, "Customer", class: 'control-label' %>
           <%= f.collection_select :customer_id_eq, @customers, :id, :name, include_blank: true,  class: 'form-control' %>
+
+          <%= f.label :aasm_state_cont, "Current Status", class: 'control-label' %>
+          <%= f.select :aasm_state_cont, options_for_select(JigWorkOrder.aasm.states), include_blank: true,  class: 'form-control' %>
           
           <%= f.label :purchase_order_cont, "Purchase Order #", class: 'control-label' %>
           <%= f.text_field :purchase_order_cont, class: 'form-control' %>
