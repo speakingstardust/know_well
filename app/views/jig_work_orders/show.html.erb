@@ -37,6 +37,19 @@
   <% end %>
 </p>
 
+<% if @jig_work_order.verified? or @jig_work_order.completed? %>
+
+<p> 
+  <strong>Verified At:</strong>
+  <%= l @jig_work_order.verified_at %>
+</p>
+
+<p> 
+  <strong>Verified By:</strong>
+  <%= @jig_work_order.verified_by %>
+</p>
+<% end %>
+
 <hr />
 <div class="row">
   <h3 class="text-center">Jig Work Order Status</h3>

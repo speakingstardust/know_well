@@ -32,8 +32,23 @@
 
 <p> 
   <strong>Return Date:</strong>
-  <%= l @jig_work_order.returned %>
+  <% unless @jig_work_order.returned.nil? %>
+    <%= l @jig_work_order.returned %>
+  <% end %>
 </p>
+
+<% if @jig_work_order.verified? %>
+
+<p> 
+  <strong>Verified At:</strong>
+  <%= l @jig_work_order.verified_at %>
+</p>
+
+<p> 
+  <strong>Verified By:</strong>
+  <%= @jig_work_order.verified_by %>
+</p>
+<% end %>
 
 <hr />
 <div class="row">

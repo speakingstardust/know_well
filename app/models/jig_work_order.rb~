@@ -11,7 +11,7 @@ class JigWorkOrder < ActiveRecord::Base
 
   validates :pickup_date, presence: true
   
-  aasm do
+  aasm :whiny_transitions => false do
     state :created, :initial => true 
     state :opened
     state :received
@@ -35,7 +35,7 @@ class JigWorkOrder < ActiveRecord::Base
       end
     end
     
-    event :verify_completed do
+    event :verify_completed, :after => :verification_info do
       transitions :from => :shipped, :to => :verified
     end
     
@@ -57,6 +57,16 @@ class JigWorkOrder < ActiveRecord::Base
       return false
     end
     return true
+  end
+
+  def verification_info(pundit_user)
+    self.verified = true
+    self.verified_at = Time.now
+    if admin_signed_in? 
+      self.verified_by = "#{current_admin.first_name} #{current_admin.last_name}"
+    else
+      self.verified_by = current_user.full_name
+    end
   end
 
   def set_purchase_order

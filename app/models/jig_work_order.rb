@@ -35,7 +35,7 @@ class JigWorkOrder < ActiveRecord::Base
       end
     end
     
-    event :verify_completed do
+    event :verify_completed, :after => :verification_info do
       transitions :from => :shipped, :to => :verified
     end
     
@@ -57,6 +57,12 @@ class JigWorkOrder < ActiveRecord::Base
       return false
     end
     return true
+  end
+
+  def verification_info(pundit_user)
+    self.verified = true
+    self.verified_at = Time.now
+    self.verified_by = "#{pundit_user.first_name} #{pundit_user.last_name}"
   end
 
   def set_purchase_order

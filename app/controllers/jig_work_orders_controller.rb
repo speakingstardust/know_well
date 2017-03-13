@@ -63,8 +63,12 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def verify_completed
-    @jig_work_order.verify_completed! 
-    redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Verified'
+    @jig_work_order.verify_completed(:verified, pundit_user) 
+    if @jig_work_order.save
+      redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Verified'
+    else
+      redirect_to @jig_work_order, notice: 'Jig Work Order Status Could not be Changed to Verified'
+    end
   end
 
   def complete
