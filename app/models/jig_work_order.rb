@@ -11,7 +11,7 @@ class JigWorkOrder < ActiveRecord::Base
 
   validates :pickup_date, presence: true
   
-  aasm do
+  aasm :whiny_transitions => false do
     state :created, :initial => true 
     state :opened
     state :received
@@ -28,7 +28,11 @@ class JigWorkOrder < ActiveRecord::Base
     end
 
     event :ship do
-      transitions :from => :received, :to => :shipped
+      transitions :from => :received, :to => :shipped do
+        guard do
+          ready_for_shipping?
+        end
+      end
     end
     
     event :verify_completed do
@@ -43,6 +47,16 @@ class JigWorkOrder < ActiveRecord::Base
   def notify_supervisor
     user = User.with_role(:shop_supervisor).first
     JigWorkOrderMailer.jig_work_order_created(user, self).deliver_now
+  end
+
+  def ready_for_shipping?
+    if self.jig_work_order_line_items.map { |line_item| line_item.actual.nil? }.include?(true)
+      return false
+    end
+    if self.returned.nil?
+      return false
+    end
+    return true
   end
 
   def set_purchase_order

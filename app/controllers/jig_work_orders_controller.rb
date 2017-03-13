@@ -55,8 +55,11 @@ class JigWorkOrdersController < ApplicationController
   end
   
   def ship
-    @jig_work_order.ship! 
-    redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Shipped'
+    if @jig_work_order.ship! 
+      redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Shipped'
+    else
+      redirect_to @jig_work_order, alert: 'Jig Work Order Status Not Changed, Please check that actual cleaning numbers and returned date have been properly set before attempting again.'
+    end
   end
 
   def verify_completed
