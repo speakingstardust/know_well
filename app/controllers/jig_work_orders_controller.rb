@@ -51,22 +51,22 @@ class JigWorkOrdersController < ApplicationController
 
   def receive
     @jig_work_order.receive! 
-    redirect_to edit_jig_work_order_path(@jig_work_order), notice: 'Jig Work Order Status Changed to Received'
+    redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Received'
   end
   
   def ship
     @jig_work_order.ship! 
-    redirect_to edit_jig_work_order_path(@jig_work_order), notice: 'Jig Work Order Status Changed to Shipped'
+    redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Shipped'
   end
 
   def verify_completed
     @jig_work_order.verify_completed! 
-    redirect_to edit_jig_work_order_path(@jig_work_order), notice: 'Jig Work Order Status Changed to Verified'
+    redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Verified'
   end
 
   def complete
     @jig_work_order.complete!
-    redirect_to edit_jig_work_order_path(@jig_work_order), notice: 'Jig Work Order Status Changed to Completed'
+    redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Completed'
   end
   private
   

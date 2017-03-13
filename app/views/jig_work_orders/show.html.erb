@@ -6,11 +6,6 @@
 <%= link_to "Edit Jig Work Order", edit_jig_work_order_path(@jig_work_order), class: "btn btn-primary btn-lg pull-right" %>
 
 <p> 
-  <strong>Current Status:</strong>
-  <%= @jig_work_order.aasm_state.titleize %>
-</p>
-
-<p> 
   <strong>Work Order #: </strong>
   <%= @jig_work_order.id %>
 </p>
@@ -35,6 +30,57 @@
   <%= @jig_work_order.notes %>
 </p>
 
+<p> 
+  <strong>Return Date:</strong>
+  <% unless @jig_work_order.returned.nil? %>
+    <%= l @jig_work_order.returned %>
+  <% end %>
+</p>
+
+<hr />
+<div class="row">
+  <h3 class="text-center">Jig Work Order Status</h3>
+  <h5>Current Status: <%= @jig_work_order.aasm_state.titleize %></h5>
+      <div class="btn-toolbar">
+        <% if @jig_work_order.opened? %>
+          <%= link_to "Receive", jig_work_order_receive_path(@jig_work_order.id), method: :put, class: "btn btn-info btn-block" %>
+        <% end %>
+        <% if current_user.try(:has_role?, :bookeeper) or current_admin && @jig_work_order.verified? %>
+          <%= link_to "Complete", jig_work_order_complete_path(@jig_work_order.id), method: :put, class: "btn btn-success btn-block" %>
+        <% end %>
+      </div> 
+    <% if @jig_work_order.received? %>
+      <hr>
+      <h4 class="text-center">Work Order Shipping</h4>
+      <hr>
+      <div class="row">
+        <%= link_to "Ship", jig_work_order_ship_path(@jig_work_order.id), method: :put, class: "btn btn-warning btn-block" %>
+        <p>Clicking Ship above will generate a packing slip and mark the work order as shipped. Please make sure of the following:</p> 
+        <ul>
+          <li>Two copies of the packing slip are printed.</li>
+          <li>One copy is left with the customer.</li>
+          <li>One copy is signed by the customer and the delivery driver.</li>
+          <li>Be sure to edit the work order and include a return date prior to marking as shipped. This will help ensure the packing slip has the correct information.</li>
+          <li>Please be sure to double check that all numbers regarding repairs and cleaning are accurate and complete before clicking ship above.</li>
+        </ul>
+      </div>
+    <% end %>
+    <% if @jig_work_order.shipped? %>
+      <hr>
+      <h4 class="text-center">Work Order Verification</h4>
+      <hr>
+      <div class="row">
+        <%= link_to "Verify", jig_work_order_verify_completed_path(@jig_work_order.id), method: :put, class: "btn btn-danger btn-block" %>
+        <p>By clicking verify above you are agreeing to the following:</p>
+        <ul>
+          <li>All cleaning and repair work has been completed for all Jigs included on this work order.</li>
+          <li>All Repaired and Actual Cleaning totals are correct.</li>
+          <li>A packing slip has already been generated for this work order.</li>
+          <li>A signed copy of the packing slip has been returned to you by the delivery driver with signatures from the driver and a representative of the customer</li>
+        </ul>
+      </div>
+    <% end %>
+</div>
 <hr />
 
 <table class="table">

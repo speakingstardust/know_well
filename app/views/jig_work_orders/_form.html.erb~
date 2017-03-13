@@ -35,7 +35,7 @@
       <h4 class="text-center">Work Order Verification</h4>
       <hr>
       <div class="row">
-        <%= link_to "Verify", jig_work_order_verify_completed_path(@jig_work_order.id), method: :put, class: "btn btn-primary" %>
+        <%= link_to "Verify", jig_work_order_verify_completed_path(@jig_work_order.id), method: :put, class: "btn btn-danger btn-block" %>
         <p>By clicking verify above you are agreeing to the following:</p>
         <ul>
           <li>All cleaning and repair work has been completed for all Jigs included on this work order.</li>

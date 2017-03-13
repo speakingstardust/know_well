@@ -37,7 +37,7 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def update
-    if @jig_work_order.update(jig_order_params)
+    if @jig_work_order.update(jig_work_order_params)
       redirect_to @jig_work_order, notice: 'Jig Order Successfully updated.'
     else
       render :edit
@@ -51,7 +51,7 @@ class JigWorkOrdersController < ApplicationController
 
   def receive
     @jig_work_order.receive! 
-    redirect_to edit_jig_work_order_path(@jig_work_order), notice: 'Jig Work Order Status Changed to Received'
+    redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Received'
   end
   
   def ship

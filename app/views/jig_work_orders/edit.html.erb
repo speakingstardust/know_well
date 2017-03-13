@@ -3,21 +3,6 @@
   <h1 class="text-center">Edit Jig Work Order #<%= @jig_work_order.id %> for <%= @jig_work_order.customer.name %></h1>
 </div>
 
-<div class="row">
-  <h3 class="text-center">Jig Work Order Status</h3>
-  <h5>Current Status: <%= @jig_work_order.aasm_state.titleize %></h5>
-      <div class="btn-toolbar">
-        <% if @jig_work_order.opened? %>
-          <%= link_to "Receive", jig_work_order_receive_path(@jig_work_order.id), method: :put, class: "btn btn-info btn-block" %>
-        <% end %>
-        <% if current_user.try(:has_role?, :bookeeper) or current_admin && @jig_work_order.verified? %>
-          <%= link_to "Complete", jig_work_order_complete_path(@jig_work_order.id), method: :put, class: "btn btn-success btn-block" %>
-        <% end %>
-      </div> 
-</div>
-
-<hr>
-
 <%= render 'form' %>
 
 <%= link_to 'Back', jig_work_orders_path %>
