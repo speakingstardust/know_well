@@ -1,9 +1,11 @@
 require 'pry'
 class JigWorkOrdersController < ApplicationController
   before_action :authenticate_any!
-  before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy, :packing_slip]
   before_action :set_jig_work_order_for_status, only: [:receive, :complete, :ship, :verify_completed]
 
+  layout "print", only: [:packing_slip]
+  
   def index
     @customers = Customer.all
     @search = JigWorkOrder.ransack(params[:q])
@@ -62,9 +64,17 @@ class JigWorkOrdersController < ApplicationController
     end
   end
 
+  def packing_slip
+    
+  end
+
   def verify_completed
     @jig_work_order.verify_completed(:verified, pundit_user) 
-    redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Verified'
+    if @jig_work_order.save
+      redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Verified'
+    else
+      redirect_to @jig_work_order, notice: 'Jig Work Order Status Could not be Changed to Verified'
+    end
   end
 
   def complete

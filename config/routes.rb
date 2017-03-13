@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   scope "/admin" do 
     resources :users
   end
+  get 'jig_work_orders/packing_slip/:id', to: 'jig_work_orders#packing_slip', as: 'packing_slip'
   get 'work_orders_management' => "pages#work_orders", as: 'work_orders_management'
   post 'work_orders_management' => "pages#new_work_order"
   get 'jig_reporting' => "pages#jig_reporting"

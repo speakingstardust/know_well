@@ -37,7 +37,7 @@
   <% end %>
 </p>
 
-<% if @jig_work_order.verified? %>
+<% if @jig_work_order.verified? or @jig_work_order.completed? %>
 
 <p> 
   <strong>Verified At:</strong>
@@ -115,5 +115,11 @@
     <% end %>
   </tbody>
 </table>
+
+<% if @jig_work_order.shipped? or @jig_work_order.verified? or @jig_work_order.completed? %>
+  <div class="row">
+    <%= link_to "View Packing Slip", packing_slip_path(@jig_work_order), class: "btn btn-success btn-block", target: "_blank" %> 
+  </div>
+<% end %>
 
 <%= link_to "Back to Jig Work Order Index", jig_work_orders_path, class: "btn btn-primary btn-lg" %>

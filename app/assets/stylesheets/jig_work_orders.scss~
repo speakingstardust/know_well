@@ -3,4 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .jig_work_order_customer > .help-block {
   color: red;
+  font-weight: bold;
+}
+
+.address {
+  font-weight: bold;
+  margin-top: 50px;
 }

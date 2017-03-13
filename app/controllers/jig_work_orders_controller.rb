@@ -1,9 +1,11 @@
 require 'pry'
 class JigWorkOrdersController < ApplicationController
   before_action :authenticate_any!
-  before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy, :packing_slip]
   before_action :set_jig_work_order_for_status, only: [:receive, :complete, :ship, :verify_completed]
 
+  layout "print", only: [:packing_slip]
+  
   def index
     @customers = Customer.all
     @search = JigWorkOrder.ransack(params[:q])
@@ -60,6 +62,10 @@ class JigWorkOrdersController < ApplicationController
     else
       redirect_to @jig_work_order, alert: 'Jig Work Order Status Not Changed, Please check that actual cleaning numbers and returned date have been properly set before attempting again.'
     end
+  end
+
+  def packing_slip
+    @customer = @jig_work_order.customer
   end
 
   def verify_completed
