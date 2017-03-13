@@ -6,6 +6,11 @@
 <%= link_to "Edit Jig Work Order", edit_jig_work_order_path(@jig_work_order), class: "btn btn-primary btn-lg pull-right" %>
 
 <p> 
+  <strong>Current Status:</strong>
+  <%= @jig_work_order.aasm_state.titleize %>
+</p>
+
+<p> 
   <strong>Work Order #: </strong>
   <%= @jig_work_order.id %>
 </p>

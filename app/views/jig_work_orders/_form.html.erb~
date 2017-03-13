@@ -15,19 +15,36 @@
         </div>
       <% end %>
     </div>
-    <hr>
-    <h4 class="text-center">Work Order Verification</h4>
-    <hr>
-    <div class="row">
-      <%= f.input :verified, hint: "Do not check verified until signed Packing Slip has been returned by delivery driver" %>
-      <p>By checking verified above you are agreeing to the following:</p>
-      <ul>
-        <li>All cleaning and repair work has been completed for all Jigs included on this work order.</li>
-        <li>All Repaired and Actual Cleaning totals are correct.</li>
-        <li>A packing slip has already been generated for this work order.</li>
-        <li>A signed copy of the packing slip has been returned to you by the delivery driver with signatures from the driver and a representative of the customer.</li>
-      </ul>
-    </div>
+    <% if @jig_work_order.received? %>
+      <hr>
+      <h4 class="text-center">Work Order Shipping</h4>
+      <hr>
+      <div class="row">
+        <%= link_to "Ship", jig_work_order_ship_path(@jig_work_order.id), method: :put, class: "btn btn-warning btn-block" %>
+        <p>Clicking Ship above will generate a packing slip and mark the work order as shipped. Please make sure of the following:</p> 
+        <ul>
+          <li>Two copies of the packing slip are printed.</li>
+          <li>One copy is left with the customer.</li>
+          <li>One copy is signed by the customer and the delivery driver.</li>
+          <li>Please be sure to double check that all numbers regarding repairs and cleaning are accurate and complete before clicking ship above.</li>
+        </ul>
+      </div>
+    <% end %>
+    <% if @jig_work_order.shipped? %>
+      <hr>
+      <h4 class="text-center">Work Order Verification</h4>
+      <hr>
+      <div class="row">
+        <%= link_to "Verify", jig_work_order_verify_completed_path(@jig_work_order.id), method: :put, class: "btn btn-primary" %>
+        <p>By clicking verify above you are agreeing to the following:</p>
+        <ul>
+          <li>All cleaning and repair work has been completed for all Jigs included on this work order.</li>
+          <li>All Repaired and Actual Cleaning totals are correct.</li>
+          <li>A packing slip has already been generated for this work order.</li>
+          <li>A signed copy of the packing slip has been returned to you by the delivery driver with signatures from the driver and a representative of the customer</li>
+        </ul>
+      </div>
+    <% end %>
     <%= f.button :submit, class: "btn btn-primary" %>
   <% end %>
 </div>

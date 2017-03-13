@@ -31,7 +31,7 @@ class JigWorkOrder < ActiveRecord::Base
       transitions :from => :received, :to => :shipped
     end
     
-    event :verify do
+    event :verify_completed do
       transitions :from => :shipped, :to => :verified
     end
     

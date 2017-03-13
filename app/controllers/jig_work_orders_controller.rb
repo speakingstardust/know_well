@@ -2,7 +2,7 @@ require 'pry'
 class JigWorkOrdersController < ApplicationController
   before_action :authenticate_any!
   before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy]
-  before_action :set_jig_work_order_for_status, only: [:receive, :completed]
+  before_action :set_jig_work_order_for_status, only: [:receive, :complete, :ship, :verify_completed]
 
   def index
     @customers = Customer.all
@@ -37,7 +37,7 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def update
-    if @jig_work_order.update(jig_order_params)
+    if @jig_work_order.update(jig_work_order_params)
       redirect_to @jig_work_order, notice: 'Jig Order Successfully updated.'
     else
       render :edit
@@ -52,6 +52,16 @@ class JigWorkOrdersController < ApplicationController
   def receive
     @jig_work_order.receive! 
     redirect_to edit_jig_work_order_path(@jig_work_order), notice: 'Jig Work Order Status Changed to Received'
+  end
+  
+  def ship
+    @jig_work_order.ship! 
+    redirect_to edit_jig_work_order_path(@jig_work_order), notice: 'Jig Work Order Status Changed to Shipped'
+  end
+
+  def verify_completed
+    @jig_work_order.verify_completed! 
+    redirect_to edit_jig_work_order_path(@jig_work_order), notice: 'Jig Work Order Status Changed to Verified'
   end
 
   def complete
