@@ -62,11 +62,7 @@ class JigWorkOrder < ActiveRecord::Base
   def verification_info(pundit_user)
     self.verified = true
     self.verified_at = Time.now
-    if admin_signed_in? 
-      self.verified_by = "#{current_admin.first_name} #{current_admin.last_name}"
-    else
-      self.verified_by = current_user.full_name
-    end
+    self.verified_by = "#{pundit_user.first_name} #{pundit_user.last_name}"
   end
 
   def set_purchase_order
