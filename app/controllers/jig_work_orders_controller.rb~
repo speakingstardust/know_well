@@ -10,9 +10,14 @@ class JigWorkOrdersController < ApplicationController
     @customers = Customer.all
     @search = JigWorkOrder.ransack(params[:q])
     @jig_work_orders = @search.result.order(:pickup_date).page(params[:page])
+    authorize @jig_work_orders
   end
 
   def show
+    authorize @jig_work_order
+  end
+
+  def print
   end
 
   def new 

@@ -10,24 +10,29 @@ class JigWorkOrdersController < ApplicationController
     @customers = Customer.all
     @search = JigWorkOrder.ransack(params[:q])
     @jig_work_orders = @search.result.order(:pickup_date).page(params[:page])
+    authorize @jig_work_orders
   end
 
   def show
+    authorize @jig_work_order
   end
 
   def print
+    authorize @jig_work_order
   end
 
   def new 
     @customer = Customer.find(params[:customer][:customer_id])
     @jigs = Jig.where(customer: @customer) 
     @jig_work_order = JigWorkOrder.new(customer: @customer)
+    authorize @jig_work_order
     @jig_work_order.jig_work_order_line_items.build
   end
 
   def create
     @jig_work_order = JigWorkOrder.new(jig_work_order_params)
 
+    authorize @jig_work_order
     if @jig_work_order.save
       @jig_work_order.open!
       redirect_to @jig_work_order, notice: 'Jig Work Order was successfully created.'
@@ -38,10 +43,12 @@ class JigWorkOrdersController < ApplicationController
 
   def edit
     @jig_work_order = JigWorkOrder.find(params[:id])
+    authorize @jig_work_order
     @jigs = Jig.where(customer: @jig_work_order.customer)
   end
 
   def update
+    authorize @jig_work_order
     if @jig_work_order.update(jig_work_order_params)
       redirect_to @jig_work_order, notice: 'Jig Order Successfully updated.'
     else
@@ -50,16 +57,19 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def destroy
+    authorize @jig_work_order
     @jig_work_order.destroy
     redirect_to jig_work_orders_url, notice: 'Jig Work Order Sucessfully destroyed.'
   end
 
   def receive
+    authorize @jig_work_order
     @jig_work_order.receive! 
     redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Received'
   end
   
   def ship
+    authorize @jig_work_order
     if @jig_work_order.ship! 
       redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Shipped'
     else
@@ -68,10 +78,12 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def packing_slip
+    authorize @jig_work_order
     @customer = @jig_work_order.customer
   end
 
   def verify_completed
+    authorize @jig_work_order
     @jig_work_order.verify_completed(:verified, pundit_user) 
     if @jig_work_order.save
       redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Verified'
@@ -81,6 +93,7 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def complete
+    authorize @jig_work_order
     @jig_work_order.complete!
     redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Completed'
   end
