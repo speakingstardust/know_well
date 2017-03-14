@@ -15,4 +15,4 @@
 <hr> 
 <h2 class="text-center">Work Order Quick Links</h2>
 <hr>
-<%= link_to "Work Orders Index", work_orders_path, class: "btn btn-primary btn-block" %>
+<%= link_to "Jig Work Orders Index", jig_work_orders_path, class: "btn btn-primary btn-block" %>

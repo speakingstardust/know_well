@@ -3,7 +3,7 @@
 	<h1 class="text-center">Work Orders Management</h1>
 </div>
 
-<% if current_user.try(:has_role?, :bookeeper) or current_admin %>
+<% if current_user.try(:has_role?, :bookkeeper) or current_admin %>
   <h2 class="text-center">Create New Work Order</h2>
   <hr>
   <h4>Select Customer, then type of Work Order.</h4>

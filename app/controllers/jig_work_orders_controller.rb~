@@ -1,10 +1,10 @@
 require 'pry'
 class JigWorkOrdersController < ApplicationController
   before_action :authenticate_any!
-  before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy, :packing_slip]
+  before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy, :packing_slip, :print]
   before_action :set_jig_work_order_for_status, only: [:receive, :complete, :ship, :verify_completed]
 
-  layout "print", only: [:packing_slip]
+  layout "print", only: [:packing_slip, :print]
   
   def index
     @customers = Customer.all
@@ -65,7 +65,7 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def packing_slip
-    
+    @customer = @jig_work_order.customer
   end
 
   def verify_completed

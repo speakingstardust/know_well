@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
   get 'jig_work_orders/packing_slip/:id', to: 'jig_work_orders#packing_slip', as: 'packing_slip'
   get 'work_orders_management' => "pages#work_orders", as: 'work_orders_management'
+  get 'jig_work_orders/print/:id', to: 'jig_work_orders#print', as: 'print_jig_work_order'
   post 'work_orders_management' => "pages#new_work_order"
   get 'jig_reporting' => "pages#jig_reporting"
   get '/reports/print/:id', to: 'reports#print', as: 'print_report'

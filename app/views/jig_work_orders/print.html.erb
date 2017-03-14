@@ -1,0 +1,64 @@
+<% provide(:title, "Jig Work Order ##{@jig_work_order.id} for #{@jig_work_order.customer.name}") %>
+
+<div class="page-header">
+  <h1 class="text-center"><%= "#{@jig_work_order.customer.name}" %> Jig Work Order Details </h1>
+</div>
+
+<p> 
+  <strong>Work Order #: </strong>
+  <%= @jig_work_order.id %>
+</p>
+
+<p> 
+  <strong>Purchase Order #: </strong>
+  <%= @jig_work_order.purchase_order %>
+</p>
+
+<p> 
+  <strong>Approximate Pickup Date: </strong>
+  <%= l @jig_work_order.pickup_date %> 
+</p>
+
+<p> 
+  <strong>Approximate Pickup Time: </strong>
+  <%= @jig_work_order.pickup_time %>
+</p>
+
+<p> 
+  <strong>Notes:</strong>
+  <%= @jig_work_order.notes %>
+</p>
+
+<p> 
+  <strong>Return Date:</strong>
+  <% unless @jig_work_order.returned.nil? %>
+    <%= l @jig_work_order.returned %>
+  <% end %>
+</p>
+
+<hr />
+<div class="row">
+  <h3 class="text-center">Jig Work Order Status</h3>
+  <h5>Current Status: <%= @jig_work_order.aasm_state.titleize %></h5>
+</div>
+<hr />
+
+<table class="table">
+  <thead>
+    <th>Jig Name</th>
+    <th># Expected</th>
+    <th># Repaired</th>
+    <th># Cleaned</th>
+  </thead>
+
+  <tbody>
+    <% @jig_work_order.jig_work_order_line_items.each do |line_item| %>
+      <tr>
+        <th scope="row"><%= line_item.jig.name %></th>
+        <td><%= line_item.expected %></td>
+        <td><%= line_item.repaired %></td>
+        <td><%= line_item.actual %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
