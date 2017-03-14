@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313155650) do
+ActiveRecord::Schema.define(version: 20170314143049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,11 @@ ActiveRecord::Schema.define(version: 20170313155650) do
   end
 
   add_index "jig_work_orders", ["customer_id"], name: "index_jig_work_orders_on_customer_id", using: :btree
+
+  create_table "jig_work_orders_reports", id: false, force: :cascade do |t|
+    t.integer "jig_work_order_id", null: false
+    t.integer "report_id",         null: false
+  end
 
   create_table "jigs", force: :cascade do |t|
     t.string   "name"

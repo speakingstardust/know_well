@@ -60,7 +60,6 @@ class JigWorkOrder < ActiveRecord::Base
   end
 
   def verification_info(pundit_user)
-    self.verified = true
     self.verified_at = Time.now
     self.verified_by = "#{pundit_user.first_name} #{pundit_user.last_name}"
   end

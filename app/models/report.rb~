@@ -11,7 +11,7 @@ class Report < ActiveRecord::Base
   validates :date_to, presence: true
 
   def find_jig_work_orders
-    jig_work_orders = JigWorkOrder.where(pickup_date: self.date_from..self.date_to, customer: self.customer)
+    jig_work_orders = JigWorkOrder.where(date: self.date_from..self.date_to, customer: self.customer)
     self.jig_work_orders << jig_work_orders
   end
 
