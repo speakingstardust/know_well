@@ -56,10 +56,13 @@ gem 'pry-rails'
 
 gem 'sendgrid-ruby'
 
+
 # Roles and Authorization
 gem 'rolify'
 gem 'pundit'
 
+# State Machine Gem 
+gem 'aasm'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

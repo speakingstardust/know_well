@@ -12,11 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require jquery-readyselector
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require cocoon
+//= require turbolinks
 //= require_tree .
 
 function remove_fields(link) {
