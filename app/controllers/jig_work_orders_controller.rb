@@ -80,6 +80,8 @@ class JigWorkOrdersController < ApplicationController
   def packing_slip
     authorize @jig_work_order
     @customer = @jig_work_order.customer
+    @customer_signature = @jig_work_order.signatures.build(kind: "Customer")
+    @driver_signature = @jig_work_order.signatures.build(kind:"Driver")
   end
 
   def verify_completed
@@ -108,6 +110,6 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def jig_work_order_params
-    params.require(:jig_work_order).permit(:pickup_date, :pickup_time, :customer_id, :notes, :purchase_order, :returned, :verified_by, :verified, :verified_at, jig_work_order_line_items_attributes: [:id, :jig_id, :expected, :repaired, :actual, :_destroy])
+    params.require(:jig_work_order).permit(:pickup_date, :pickup_time, :customer_id, :notes, :purchase_order, :returned, :verified_by, :verified, :verified_at, jig_work_order_line_items_attributes: [:id, :jig_id, :expected, :repaired, :actual, :_destroy], signatures_attributes: [:id, :name, :signature, :type] )
   end
 end
