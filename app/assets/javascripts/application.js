@@ -17,6 +17,7 @@
 //= require bootstrap-datepicker
 //= require cocoon
 //= require turbolinks
+//= require signature_pad
 //= require_tree .
 
 function remove_fields(link) {

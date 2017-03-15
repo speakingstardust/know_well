@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314143049) do
+ActiveRecord::Schema.define(version: 20170315184620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,6 +169,18 @@ ActiveRecord::Schema.define(version: 20170314143049) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
+  create_table "signatures", force: :cascade do |t|
+    t.string   "name"
+    t.text     "signature"
+    t.datetime "signed_on"
+    t.integer  "jig_work_order_id"
+    t.string   "type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "signatures", ["jig_work_order_id"], name: "index_signatures_on_jig_work_order_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -207,4 +219,5 @@ ActiveRecord::Schema.define(version: 20170314143049) do
   add_foreign_key "jig_work_order_line_items", "jig_work_orders"
   add_foreign_key "jig_work_order_line_items", "jigs"
   add_foreign_key "jig_work_orders", "customers"
+  add_foreign_key "signatures", "jig_work_orders"
 end

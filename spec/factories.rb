@@ -1,4 +1,11 @@
 FactoryGirl.define do
+  factory :signature do
+    name "MyString"
+    signature "MyText"
+    signed_on "2017-03-15 14:46:21"
+    jig_work_order nil
+    type ""
+  end
   factory :jig_work_order_line_item do
     jig nil
     jig_work_order nil
