@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     put :ship
   end
   devise_for :admins
+  resources :signatures
   resources :customers
   resources :jigs
   resources :jig_orders
