@@ -4,11 +4,10 @@ Rails.application.routes.draw do
     put :complete
     put :verify_completed
     put :ship
+    get 'signature', to: 'jig_work_orders#new_signature', as: 'signature'
   end
   devise_for :admins
-  resources :signatures do
-    get "signatures/new/:id", to: 'signatures#new', as: 'new_signatures_path'
-  end
+  resources :signatures
   resources :customers
   resources :jigs
   resources :jig_orders

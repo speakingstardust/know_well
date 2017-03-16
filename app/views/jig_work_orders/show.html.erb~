@@ -6,7 +6,7 @@
 <div class="btn-toolbar pull-right">
   <%= link_to "Edit Jig Work Order", edit_jig_work_order_path(@jig_work_order), class: "btn btn-primary pull-right" %>
   <%= link_to "Print Jig Work Order", print_jig_work_order_path(@jig_work_order), class: "btn btn-primary pull-right", target: "_blank" %>
-  <%= link_to "Capture Signature", new_signature_path(@jig_work_order), class: "btn btn-primary pull-right" %>
+  <%= link_to "Capture Signature", jig_work_order_signature_path(id: @jig_work_order.id), class: "btn btn-primary pull-right" %>
 </div>
 <p> 
   <strong>Work Order #: </strong>

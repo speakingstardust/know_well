@@ -80,10 +80,13 @@ class JigWorkOrdersController < ApplicationController
   def packing_slip
     authorize @jig_work_order
     @customer = @jig_work_order.customer
-    @customer_signature = @jig_work_order.signatures.build(kind: "Customer")
-    @driver_signature = @jig_work_order.signatures.build(kind:"Driver")
   end
 
+  def new_signature
+    @jig_work_order = JigWorkOrder.find(params[:jig_work_order_id])
+    redirect_to controller: :signatures, action: :new, jig_work_order: { jig_work_order_id: @jig_work_order.id }
+  end
+  
   def verify_completed
     authorize @jig_work_order
     @jig_work_order.verify_completed(:verified, pundit_user) 

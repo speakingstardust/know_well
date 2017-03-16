@@ -1,7 +1,8 @@
 <div class="row">
-  <h3 class="text-center">Digital Signature</h3>
+  <h3>Digital Signature</h3>
   <div class="col-md-6">
-    <%= simple_form_for @signature, html: { class: "form-horzontal" } do |f| %>
+    <%= simple_form_for @signature, html: { class: "form-horzontal", multipart: true } do |f| %>
+      <%= f.input :jig_work_order_id, disabled: true %>
       <%= f.select :kind, options_for_select(["Customer", "Driver"]), hint: "Please choose the type of signature" %>
       <%= f.input :name, hint: "Please type name of person signing." %>
       <%= f.input_field :signature, as: :hidden, class: 'signature_pad_input' %>

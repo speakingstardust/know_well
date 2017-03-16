@@ -1,3 +1,5 @@
+require 'base64'
+require 'pry'
 class Signature < ActiveRecord::Base
   HEIGHT = 160
   WIDTH = 480
@@ -15,13 +17,12 @@ class Signature < ActiveRecord::Base
 
   private
     def generate_image
-      instructions = JSON.parse(signature).map { |h| "line #{h['mx'].to_i},#{h['my'].to_i} #{h['lx'].to_i},#{h['ly'].to_i}" } * ' '
-      image = StringIO.new
-      Open3.popen3("convert -size #{WIDTH}x#{HEIGHT} xc:transparent -stroke blue -draw @- PNG:-") do |input, output, error|
-        input.puts instructions
-        input.close
-        image.puts(output.read)
-      end
-      self.image = image
+      data_uri = self.signature
+      encoded_image = data_uri.split(",")[1]
+      decoded_image = Base64.decode64(encoded_image)
+      file_path = Rails.root.join("tmp/#{self.id}.png").to_s
+      File.open(file_path, "wb") { |f| f.write(decoded_image) }
+      file = File.open(file_path)
+      self.image = file
     end
 end

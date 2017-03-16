@@ -41,6 +41,10 @@
     <strong>Purchase Order #: </strong>
     <%= @jig_work_order.purchase_order %>
   </p>
+  <p>
+    <strong>Work Order #:</strong>
+    <%= @jig_work_order.id %>
+  </p>
 </div>
 <hr>
 <div class="row">
@@ -72,45 +76,53 @@
 <br>
 <br>
 <br>
-<div class="row">
-  <h3 class="text-center">Digital Signatures</h3>
-  <div class="col-md-6">
-    <h4 class="text-center">Customer:</h4>
-    <%= simple_form_for @customer_signature do |f| %>
-      <%= f.input_field :signature, as: :hidden, class: 'signature_pad_input' %>
-      <div class="signature_pad text-center">
-        <div class="signature_pad_body">
-          <canvas></canvas>
+<% if @jig_work_order.signatures.any? %>
+  <div class="row">
+    <h3 class="text-center">Signatures</h3>
+    <% @jig_work_order.signatures.each do |signature| %>
+      <% if signature.kind == "Customer" %>
+        <div class="col-md-6">
+          <p>
+            <strong>Customer:</strong>
+            <p>Please sign to acknowledge completed delivery of items listed on this packing slip.</p>
+            <br>
+            <%= image_tag signature.image.url(:full) %>
+          </p>
         </div>
-        <div class="signature_pad_footer">
-          <div class="text-muted">Sign above</div>
-          <button type="button" class="btn btn-default signature_pad_clear">Clear</button>
-          <%= f.button :submit, 'Save', class: 'btn btn-success signature_pad_save' %>
+      <% elsif signature.kind == "Driver" %>
+        <div class="col-md-6">
+          <p>
+            <strong>Delivery Driver</strong>
+            <p>Please sign to acknowledge completed delivery of items listed on this packing slip.</p>
+            <br>
+            <%= image_tag signature.image.url(:full) %>
+          </p>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
-</div>
-<div class="row">
-  <h3 class="text-center">Signatures</h3>
-  <div class="col-md-6">  
-    <p>
-      <strong>Customer:</strong>
-      <p>Please sign to acknowledge receipt of the items listed on this packing slip.</p>
-      <br>
+<% elsif @jig_work_order.signatures.blank? %>
+  <div class="row">
+    <h3 class="text-center">Signatures</h3>
+    <div class="col-md-6">  
       <p>
-      <strong>Sign Here:</strong> ________________________________________________
+        <strong>Customer:</strong>
+        <p>Please sign to acknowledge receipt of the items listed on this packing slip.</p>
+        <br>
+        <p>
+        <strong>Sign Here:</strong> ________________________________________________
+        </p>
       </p>
-    </p>
-  </div>
-  <div class="col-md-6">
-    <p>
-      <strong>Delivery Driver:</strong>
-      <p>Please sign to acknowledge completed delivery of items listed on this packing slip.</p>
-      <br>
+    </div>
+    <div class="col-md-6">
       <p>
-      <strong>Sign Here:</strong> _________________________________________________
+        <strong>Delivery Driver:</strong>
+        <p>Please sign to acknowledge completed delivery of items listed on this packing slip.</p>
+        <br>
+        <p>
+        <strong>Sign Here:</strong> _________________________________________________
+        </p>
       </p>
-    </p>
+    </div>
   </div>
-</div>
+<% end %>
