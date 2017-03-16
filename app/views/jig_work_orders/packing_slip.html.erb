@@ -73,25 +73,6 @@
 <br>
 <br>
 <div class="row">
-  <h3 class="text-center">Digital Signatures</h3>
-  <div class="col-md-6">
-    <h4 class="text-center">Customer:</h4>
-    <%= simple_form_for @customer_signature do |f| %>
-      <%= f.input_field :signature, as: :hidden, class: 'signature_pad_input' %>
-      <div class="signature_pad text-center">
-        <div class="signature_pad_body">
-          <canvas></canvas>
-        </div>
-        <div class="signature_pad_footer">
-          <div class="text-muted">Sign above</div>
-          <button type="button" class="btn btn-default signature_pad_clear">Clear</button>
-          <%= f.button :submit, 'Save', class: 'btn btn-success signature_pad_save' %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
-<div class="row">
   <h3 class="text-center">Signatures</h3>
   <div class="col-md-6">  
     <p>

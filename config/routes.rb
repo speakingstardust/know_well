@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     put :ship
   end
   devise_for :admins
-  resources :signatures
+  resources :signatures do
+    get "signatures/new/:id", to: 'signatures#new', as: 'new_signatures_path'
+  end
   resources :customers
   resources :jigs
   resources :jig_orders

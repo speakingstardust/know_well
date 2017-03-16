@@ -1,18 +1,6 @@
 class SignaturesController < ApplicationController
   before_action :set_signature, only: [:destroy]
 
-  def new
-    @signature = Signature.new
-  end
-
-  def create 
-
-  end
-
-  def destroy
-
-  end
-
   private
     def set_signature
       @signature = Signature.find(params[:id])
