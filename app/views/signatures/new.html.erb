@@ -1,21 +1,24 @@
-<div class="row">
-  <h3>Digital Signature</h3>
-  <div class="col-md-6">
-    <%= simple_form_for @signature, html: { class: "form-horzontal", multipart: true } do |f| %>
-      <%= f.input :jig_work_order_id %>
-      <%= f.select :kind, options_for_select(["Customer", "Driver"]), hint: "Please choose the type of signature" %>
-      <%= f.input :name, hint: "Please type name of person signing." %>
-      <%= f.input_field :signature, as: :hidden, class: 'signature_pad_input' %>
-      <div class="signature_pad text-center">
-        <div class="signature_pad_body">
-          <canvas></canvas>
+<div class="container">
+  <div class="row">
+    <h3>Digital Signature</h3>
+    <div class="col-md-6">
+      <%= simple_form_for @signature, html: { class: "form-horizontal" } do |f| %>
+        <%= f.input :jig_work_order_id %>
+        <%= f.label :kind, "Signature Type" %>
+        <%= f.select :kind, options_for_select(["Customer", "Driver"]) %>
+        <%= f.input :name, hint: "Please type name of person signing." %>
+        <%= f.input_field :signature, as: :hidden, class: 'signature_pad_input' %>
+        <div class="signature_pad text-center">
+          <div class="signature_pad_body">
+            <canvas></canvas>
+          </div>
+          <div class="signature_pad_footer">
+            <div class="text-muted">Sign above</div>
+            <button type="button" class="btn btn-default signature_pad_clear">Clear</button>
+            <%= f.button :submit, 'Save', class: 'btn btn-success signature_pad_save' %>
+          </div>
         </div>
-        <div class="signature_pad_footer">
-          <div class="text-muted">Sign above</div>
-          <button type="button" class="btn btn-default signature_pad_clear">Clear</button>
-          <%= f.button :submit, 'Save', class: 'btn btn-success signature_pad_save' %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

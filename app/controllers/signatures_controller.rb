@@ -17,7 +17,9 @@ class SignaturesController < ApplicationController
   end
 
   def destroy
-
+    @jig_work_order = @signature.jig_work_order
+    @signature.destroy
+    redirect_to @jig_work_order
   end
 
   private

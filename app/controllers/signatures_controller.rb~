@@ -8,7 +8,7 @@ class SignaturesController < ApplicationController
 
   def create 
     @signature = Signature.new(signature_params)
-    @jig_work_order = JigWorkOrder.find(params[:signature][:jig_work_order_id] 
+    @jig_work_order = JigWorkOrder.find(params[:signature][:jig_work_order_id]) 
     if @signature.save
       redirect_to @jig_work_order, notice: "#{@signature.kind} Signature saved"
     else 
@@ -17,7 +17,10 @@ class SignaturesController < ApplicationController
   end
 
   def destroy
-
+    @jig_work_order = @signature.jig_work_order
+    @signature.destroy
+    redirect_to @jig_work_order
+    
   end
 
   private

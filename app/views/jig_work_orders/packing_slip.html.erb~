@@ -87,6 +87,9 @@
             <p>Please sign to acknowledge completed delivery of items listed on this packing slip.</p>
             <br>
             <%= image_tag signature.image.url(:full) %>
+            <hr>
+            <%= signature.name %>
+            <%= link_to 'Delete Signature', signature, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-primary" %> 
           </p>
         </div>
       <% elsif signature.kind == "Driver" %>
@@ -96,12 +99,15 @@
             <p>Please sign to acknowledge completed delivery of items listed on this packing slip.</p>
             <br>
             <%= image_tag signature.image.url(:full) %>
+            <%= link_to 'Delete Signature', signature, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-primary"%> 
+            <hr>
+            <%= signature.name %>
           </p>
         </div>
       <% end %>
     <% end %>
   </div>
-<% elsif @jig_work_order.signatures.blank? %>
+<% else @jig_work_order.signatures.blank? %>
   <div class="row">
     <h3 class="text-center">Signatures</h3>
     <div class="col-md-6">  
