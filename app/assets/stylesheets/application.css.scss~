@@ -135,8 +135,6 @@ input {
 }
 
 .signature_pad {
-  width: 700px;
-  height: 400px;
   margin: 0 auto;
 }
 
@@ -146,3 +144,8 @@ input {
   border: dotted #444;
   background: #CCC;
 } 
+
+/* Flash alerts */
+.alert-error {
+  color: red;
+}

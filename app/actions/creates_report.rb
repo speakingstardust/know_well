@@ -22,4 +22,21 @@ class CreatesReport
     build
     report.save
   end
+
+  def none_free? 
+    result = []
+    self.report.report_line_items.each do |rli|
+      if rli.cleaning_charge_subtotal == 0.0 && rli.subtotal_cleaned > 0
+        result << false
+      end
+      if rli.repair_charge_subtotal == 0.0 && rli.subtotal_repaired > 0
+        result << false
+      end
+    end  
+    if result.include? false
+      return false
+    else 
+      return true
+    end
+  end
 end

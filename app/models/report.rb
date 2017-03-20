@@ -78,6 +78,9 @@ class Report < ActiveRecord::Base
       end
     end
     charges_subtotal = cleaning_charge_total + repair_charge_total
+    if self.delivery_charge.nil?
+      self.delivery_charge = 0
+    end
     grand_total = charges_subtotal + self.delivery_charge
 
     self.total_cleaned = total_cleaned

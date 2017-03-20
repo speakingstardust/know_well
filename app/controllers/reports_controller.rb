@@ -31,11 +31,12 @@ class ReportsController < ApplicationController
       params[:report][:delivery_charge] || 0)
     success = @action.create
     authorize @action.report
-    if success
+    if success && @action.none_free? 
       redirect_to report_path(@action.report)
     else
-      @report = @action.report
-      render :new
+      @action.report.destroy
+      redirect_to new_report_url
+      flash[:error] = "Report not generated, please check that all jigs have correct cleaning and repair prices before trying again."
     end
   end
 
@@ -73,5 +74,4 @@ class ReportsController < ApplicationController
                            params[:report]["date_to(2i)"].to_i,
                            params[:report]["date_to(3i)"].to_i)
     end
-
 end

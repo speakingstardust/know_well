@@ -9,9 +9,10 @@ class Report < ActiveRecord::Base
   validates :customer, presence: true
   validates :date_from, presence: true
   validates :date_to, presence: true
+  validates :delivery_charge, presence: true
 
   def find_jig_work_orders
-    jig_work_orders = JigWorkOrder.where(date: self.date_from..self.date_to, customer: self.customer)
+    jig_work_orders = JigWorkOrder.where(pickup_date: self.date_from..self.date_to, customer: self.customer)
     self.jig_work_orders << jig_work_orders
   end
 
@@ -78,6 +79,9 @@ class Report < ActiveRecord::Base
       end
     end
     charges_subtotal = cleaning_charge_total + repair_charge_total
+    if self.delivery_charge.nil?
+      self.delivery_charge = 0
+    end
     grand_total = charges_subtotal + self.delivery_charge
 
     self.total_cleaned = total_cleaned
