@@ -1,7 +1,7 @@
 require 'pry'
 class JigWorkOrdersController < ApplicationController
   before_action :authenticate_any!
-  before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy, :packing_slip, :print]
+  before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy, :print]
   before_action :set_jig_work_order_for_status, only: [:receive, :complete, :ship, :verify_completed]
 
   layout "print", only: [:packing_slip, :print]
@@ -78,6 +78,11 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def packing_slip
+    if params[:jig_work_order]
+      @jig_work_order = JigWorkOrder.find(params[:jig_work_order])
+    else
+      @jig_work_order = JigWorkOrder.find(params[:id])
+    end
     authorize @jig_work_order
     @customer = @jig_work_order.customer
   end

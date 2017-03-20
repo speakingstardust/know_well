@@ -80,8 +80,6 @@ class JigWorkOrdersController < ApplicationController
   def packing_slip
     authorize @jig_work_order
     @customer = @jig_work_order.customer
-    @customer_signature = @jig_work_order.signatures.build(kind: "Customer")
-    @driver_signature = @jig_work_order.signatures.build(kind:"Driver")
   end
 
   def new_signature

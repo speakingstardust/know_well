@@ -19,7 +19,7 @@ class SignaturesController < ApplicationController
   def destroy
     @jig_work_order = @signature.jig_work_order
     @signature.destroy
-    redirect_to @jig_work_order
+    redirect_to controller: :jig_work_orders, action: :packing_slip, jig_work_order: @jig_work_order  
   end
 
   private
