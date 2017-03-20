@@ -57,6 +57,7 @@
 <div class="row">
   <h3 class="text-center">Jig Work Order Status</h3>
   <h5>Current Status: <%= @jig_work_order.aasm_state.titleize %></h5>
+    <% if pundit_user.try(:has_role?, :bookkeeper) or pundit_user.try(:has_role?, :shop_supervisor) or current_admin %>
       <div class="btn-toolbar">
         <% if @jig_work_order.opened? %>
           <%= link_to "Receive", jig_work_order_receive_path(@jig_work_order.id), method: :put, class: "btn btn-info btn-block" %>
@@ -96,6 +97,7 @@
         </ul>
       </div>
     <% end %>
+  <% end %>
 </div>
 <hr />
 

@@ -7,19 +7,19 @@ class JigWorkOrderPolicy < ApplicationPolicy
   end
 
   def index?
-    user.is_admin? or user.has_role? :bookkeeper or user.has_role? :shop_supervisor
+    user.is_admin? or user.has_role? :bookkeeper or user.has_role? :shop_supervisor or user.has_role? :driver
   end
 
   def show?
-    user.is_admin? or user.has_role? :bookkeeper or user.has_role? :shop_supervisor
+    user.is_admin? or user.has_role? :bookkeeper or user.has_role? :shop_supervisor or user.has_role? :driver
   end
 
   def print?
-    user.is_admin? or user.has_role? :bookkeeper or user.has_role? :shop_supervisor
+    user.is_admin? or user.has_role? :bookkeeper or user.has_role? :shop_supervisor or user.has_role? :driver
   end
 
   def packing_slip?
-    user.is_admin? or user.has_role? :bookkeeper or user.has_role? :shop_supervisor
+    user.is_admin? or user.has_role? :bookkeeper or user.has_role? :shop_supervisor or user.has_role? :driver
   end
 
   def new?
