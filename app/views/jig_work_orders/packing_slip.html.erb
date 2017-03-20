@@ -26,7 +26,7 @@
     <strong>Customer Name:</strong>
     <%= @customer.name %>
   </p>
-  <% if @customer.street_address %>
+  <% unless @customer.street_address.empty? %>
     <p>
       <strong>Customer Address:</strong>
         <p>
@@ -81,7 +81,7 @@
     <h3 class="text-center">Signatures</h3>
     <% @jig_work_order.signatures.each do |signature| %>
       <% if signature.kind == "Customer" %>
-        <div class="col-md-6">
+        <div class="col-md-6 signature">
           <p>
             <strong>Customer:</strong>
             <p>Please sign to acknowledge completed delivery of items listed on this packing slip.</p>
@@ -93,7 +93,7 @@
           </p>
         </div>
       <% elsif signature.kind == "Driver" %>
-        <div class="col-md-6">
+        <div class="col-md-6 signature">
           <p>
             <strong>Delivery Driver</strong>
             <p>Please sign to acknowledge completed delivery of items listed on this packing slip.</p>

@@ -11,6 +11,14 @@
   margin-top: 20px;
 }
 
-.print  p {
+.print table {
   font-size: 18pt;
+}
+
+.print  p {
+  font-size: 16pt;
+}
+
+.print .signature hr {
+  border-top: 2px dashed #8c8b8b;
 }
