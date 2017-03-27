@@ -70,7 +70,7 @@ class JigWorkOrder < ActiveRecord::Base
     self.verified_by = "#{pundit_user.first_name} #{pundit_user.last_name}"
     admins = Admin.all
     admins.each do |admin|
-      JigWorkOrderMailer.jig_work_order_verified(admim, self).deliver_now
+      JigWorkOrderMailer.jig_work_order_verified(admin, self).deliver_now
     end
     bookkeepers = User.with_role(:bookkeeper)
     bookkeepers.each do |bookkeeper|

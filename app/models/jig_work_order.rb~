@@ -68,6 +68,14 @@ class JigWorkOrder < ActiveRecord::Base
   def verification_info_and_notification(pundit_user)
     self.verified_at = Time.now
     self.verified_by = "#{pundit_user.first_name} #{pundit_user.last_name}"
+    admins = Admin.all
+    admins.each do |admin|
+      JigWorkOrderMailer.jig_work_order_verified(admim, self).deliver_now
+    end
+    bookkeepers = User.with_role(:bookkeeper)
+    bookkeepers.each do |bookkeeper|
+      JigWorkOrderMailer.jig_work_order_verified(bookkeeper, self).deliver_now
+    end
   end
 
   def set_purchase_order
