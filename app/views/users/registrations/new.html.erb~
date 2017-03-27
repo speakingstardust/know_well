@@ -36,7 +36,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Create User" %>
+    <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
