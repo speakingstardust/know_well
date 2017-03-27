@@ -9,6 +9,7 @@ class JigWorkOrdersController < ApplicationController
   def index
     @customers = Customer.all
     @search = JigWorkOrder.ransack(params[:q])
+    @search.aasm_state_not_eq = 'archived' unless params[:q]
     @jig_work_orders = @search.result.order(:pickup_date).page(params[:page])
     authorize @jig_work_orders
   end
@@ -115,6 +116,7 @@ class JigWorkOrdersController < ApplicationController
   def archive
     authorize @jig_work_order
     @jig_work_order.archive!
+    redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Archived'
   end
   
   private
