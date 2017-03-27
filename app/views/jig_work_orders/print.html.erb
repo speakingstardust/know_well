@@ -36,6 +36,13 @@
   <% end %>
 </p>
 
+<p> 
+  <strong>Approximate Return Time: </strong>
+  <% unless @jig_work_order.return_time.nil? %>
+    <%= @jig_work_order.return_time %>
+  <% end %>
+</p>
+
 <hr />
 <div class="row">
   <h3 class="text-center">Jig Work Order Status</h3>

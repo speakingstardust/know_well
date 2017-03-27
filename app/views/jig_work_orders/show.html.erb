@@ -40,6 +40,13 @@
   <% end %>
 </p>
 
+<p> 
+  <strong>Approximate Return Time: </strong>
+  <% unless @jig_work_order.return_time.nil? %>
+    <%= @jig_work_order.return_time %>
+  <% end %>
+</p>
+
 <% if @jig_work_order.verified? or @jig_work_order.completed? %>
 
 <p> 
