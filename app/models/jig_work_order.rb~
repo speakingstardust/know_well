@@ -7,7 +7,7 @@ class JigWorkOrder < ActiveRecord::Base
   has_and_belongs_to_many :reports
   has_many :signatures
 
-  accepts_nested_attributes_for :signatures, :allow_destroy => true
+  accepts_nested_attributes_for :signatures, :reject_if => lambda { |a| a[:signature].blank? },:allow_destroy => true
 
   accepts_nested_attributes_for :jig_work_order_line_items, :reject_if => lambda { |a| a[:jig_id].blank? }, :allow_destroy => true
 
@@ -39,7 +39,7 @@ class JigWorkOrder < ActiveRecord::Base
       end
     end
     
-    event :verify_completed, :after => :verification_info do
+    event :verify_completed, :after => :verification_info_and_notification do
       transitions :from => :shipped, :to => :verified
     end
     
@@ -49,8 +49,10 @@ class JigWorkOrder < ActiveRecord::Base
   end
 
   def notify_supervisor
-    user = User.with_role(:shop_supervisor).first
-    JigWorkOrderMailer.jig_work_order_created(user, self).deliver_now
+    user = User.with_role(:shop_supervisor)
+    user.each do |user|
+      JigWorkOrderMailer.jig_work_order_created(user, self).deliver_now
+    end
   end
 
   def ready_for_shipping?
@@ -63,7 +65,7 @@ class JigWorkOrder < ActiveRecord::Base
     return true
   end
 
-  def verification_info(pundit_user)
+  def verification_info_and_notification(pundit_user)
     self.verified_at = Time.now
     self.verified_by = "#{pundit_user.first_name} #{pundit_user.last_name}"
   end

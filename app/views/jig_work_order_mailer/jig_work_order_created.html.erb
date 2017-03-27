@@ -2,6 +2,9 @@
 <h3>
   Order Submitted at: <%= l @jig_work_order.created_at %>
 </h3>
+<h3>
+  Jig Work Order #: <%= @jig_work_order.id %>
+</h3>
 <p>
   You are receiving this email as a notification that a new Jig Work Order has been submitted. Please log in to <%= link_to "Know Well", root_url %> in order to view and manage this work order.
 </p>
