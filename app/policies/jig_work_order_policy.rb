@@ -57,4 +57,8 @@ class JigWorkOrderPolicy < ApplicationPolicy
   def complete?
     user.is_admin? or user.has_role? :bookkeeper 
   end
+
+  def archive?
+    user.is_admin? 
+  end
 end

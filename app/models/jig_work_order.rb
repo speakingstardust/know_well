@@ -22,6 +22,7 @@ class JigWorkOrder < ActiveRecord::Base
     state :shipped 
     state :verified
     state :completed
+    state :archived
 
     event :open, :after => :notify_supervisor do 
       transitions :from => :created, :to => :opened
@@ -45,6 +46,10 @@ class JigWorkOrder < ActiveRecord::Base
     
     event :complete, :after => :completed_info do
       transitions :from => :verified, :to => :completed
+    end
+
+    event :archive do 
+      transitions :from => :completed, :to => :archived
     end
   end
 

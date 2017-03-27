@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     put :complete
     put :verify_completed
     put :ship
+    put :archive
     get 'signature', to: 'jig_work_orders#new_signature', as: 'signature'
   end
   devise_for :admins

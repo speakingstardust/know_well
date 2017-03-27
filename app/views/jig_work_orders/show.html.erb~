@@ -67,7 +67,7 @@
 
     <p> 
       <strong>Completed By:</strong>
-      <%= @jig_work_order.verified_by %>
+      <%= @jig_work_order.completed_by %>
     </p>
   <% end %>
 <% end %>
@@ -83,6 +83,9 @@
         <% end %>
         <% if pundit_user.try(:has_role?, :bookkeeper) && @jig_work_order.verified? or current_admin && @jig_work_order.verified? %>
           <%= link_to "Complete", jig_work_order_complete_path(@jig_work_order.id), method: :put, class: "btn btn-success btn-block" %>
+        <% end %>
+        <% if pundit_user.try(:has_role?, :bookkeeper) && @jig_work_order.completed? or current_admin && @jig_work_order.completed? %>
+          <%= link_to "Archive", jig_work_order_archive_path(@jig_work_order.id), method: :put, class: "btn btn-success btn-block" %>
         <% end %>
       </div> 
     <% if @jig_work_order.received? %>

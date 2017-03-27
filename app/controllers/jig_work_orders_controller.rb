@@ -2,7 +2,7 @@ require 'pry'
 class JigWorkOrdersController < ApplicationController
   before_action :authenticate_any!
   before_action :set_jig_work_order, only: [:show, :edit, :update, :destroy, :print]
-  before_action :set_jig_work_order_for_status, only: [:receive, :complete, :ship, :verify_completed]
+  before_action :set_jig_work_order_for_status, only: [:receive, :complete, :ship, :verify_completed, :archive]
 
   layout "print", only: [:packing_slip, :print]
   
@@ -111,6 +111,13 @@ class JigWorkOrdersController < ApplicationController
       redirect_to @jig_work_order, notice: 'Jig Work Order Status Could not be Changed to Completed'
     end
   end
+
+  def archive
+    authorize @jig_work_order
+    @jig_work_order.archive!
+    redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Archived'
+  end
+  
   private
   
   def set_jig_work_order

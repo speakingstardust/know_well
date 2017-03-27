@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'signature', to: 'jig_work_orders#new_signature', as: 'signature'
   end
   devise_for :admins
-  resources :signatures
+  resources :signatures, only: [:new, :destroy, :create]
   resources :customers
   resources :jigs
   resources :jig_orders
