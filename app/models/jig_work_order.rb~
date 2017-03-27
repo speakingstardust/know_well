@@ -14,6 +14,8 @@ class JigWorkOrder < ActiveRecord::Base
   before_save :set_purchase_order
 
   validates :pickup_date, presence: true
+
+  scope :completed_before, ->(time) { where("completed_at < ?", time) 
   
   aasm :whiny_transitions => false do
     state :created, :initial => true 
@@ -46,6 +48,10 @@ class JigWorkOrder < ActiveRecord::Base
     
     event :complete, :after => :completed_info do
       transitions :from => :verified, :to => :completed
+    end
+
+    event :archive do 
+      transitions :from => :completed, :to => :archived
     end
   end
 
@@ -89,5 +95,9 @@ class JigWorkOrder < ActiveRecord::Base
     if self.purchase_order == ''
       self.purchase_order = time
     end
+  end
+
+  def archive_old_orders
+    old_work_orders = JigWorkOrder.completed_before(Date.today - 60)
   end
 end
