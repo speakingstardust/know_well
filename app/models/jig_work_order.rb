@@ -43,7 +43,7 @@ class JigWorkOrder < ActiveRecord::Base
       transitions :from => :shipped, :to => :verified
     end
     
-    event :complete do
+    event :complete, :after => :completed_info do
       transitions :from => :verified, :to => :completed
     end
   end
@@ -76,6 +76,11 @@ class JigWorkOrder < ActiveRecord::Base
     bookkeepers.each do |bookkeeper|
       JigWorkOrderMailer.jig_work_order_verified(bookkeeper, self).deliver_now
     end
+  end
+
+  def completed_info(pundit_user)
+    self.completed_at = Time.now
+    self.completed_by = "#{pundit_user.first_name} #{pundit_user.last_name}"
   end
 
   def set_purchase_order

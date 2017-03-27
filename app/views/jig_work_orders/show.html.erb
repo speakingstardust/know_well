@@ -58,6 +58,18 @@
   <strong>Verified By:</strong>
   <%= @jig_work_order.verified_by %>
 </p>
+
+  <% unless @jig_work_order.completed_at.nil? %>
+    <p> 
+      <strong>Completed At:</strong>
+      <%= l @jig_work_order.completed_at %>
+    </p>
+
+    <p> 
+      <strong>Completed By:</strong>
+      <%= @jig_work_order.completed_by %>
+    </p>
+  <% end %>
 <% end %>
 
 <hr />

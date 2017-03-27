@@ -104,8 +104,12 @@ class JigWorkOrdersController < ApplicationController
 
   def complete
     authorize @jig_work_order
-    @jig_work_order.complete!
-    redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Completed'
+    @jig_work_order.complete(:completed, pundit_user)
+    if @jig_work_order.save
+      redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Completed'
+    else
+      redirect_to @jig_work_order, notice: 'Jig Work Order Status Could not be Changed to Completed'
+    end
   end
   private
   
