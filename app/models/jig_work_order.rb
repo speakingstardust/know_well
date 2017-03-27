@@ -15,7 +15,7 @@ class JigWorkOrder < ActiveRecord::Base
 
   validates :pickup_date, presence: true
 
-  scope :completed_before, ->(time) { where("completed_at < ?", time) 
+  scope :completed_before, ->(time) { where("completed_at < ?", time) } 
   
   aasm :whiny_transitions => false do
     state :created, :initial => true 
@@ -97,10 +97,11 @@ class JigWorkOrder < ActiveRecord::Base
     end
   end
 
-  def archive_old_orders
+  def self.archive_old_orders
     old_work_orders = JigWorkOrder.completed_before(Date.today - 60)
     old_work_orders.each do |work_order|
       work_order.archive!
     end
   end
+
 end
