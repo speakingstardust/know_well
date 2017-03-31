@@ -1,11 +1,13 @@
 <div class="container">
   <div class="row">
     <h3>Digital Signature</h3>
-    <div class="col-md-6">
+    <div class="col-md-12">
       <%= simple_form_for @signature, html: { class: "form-horizontal" } do |f| %>
         <%= f.input :jig_work_order_id %>
-        <%= f.label :kind, "Signature Type" %>
-        <%= f.select :kind, options_for_select(["Customer", "Driver"]) %>
+        <div class="form-group">
+          <%= f.label :kind, "Signature Type" %>
+          <%= f.select :kind, options_for_select(["Customer", "Driver"]), {}, { class: "form-control" } %>
+        </div>
         <%= f.input :name, hint: "Please type name of person signing." %>
         <%= f.input_field :signature, as: :hidden, class: 'signature_pad_input' %>
         <div class="signature_pad text-center">

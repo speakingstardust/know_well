@@ -148,4 +148,5 @@ input {
 /* Flash alerts */
 .alert-error {
   color: red;
+  font-size: 2em;
 }
