@@ -4,7 +4,9 @@ class JigsController < ApplicationController
   # GET /jigs
   # GET /jigs.json
   def index
-    @jigs = Jig.all
+    @customers = Customer.all
+    @search = Jig.ransack(params[:q])
+    @jigs = @search.result.page(params[:page])
   end
 
   # GET /jigs/1

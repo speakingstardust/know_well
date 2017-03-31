@@ -60,6 +60,8 @@ gem 'sendgrid-ruby'
 gem 'rolify'
 gem 'pundit'
 
+# State Machine Gem 
+gem 'aasm'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

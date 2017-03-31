@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222154053) do
+ActiveRecord::Schema.define(version: 20170327152825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,43 @@ ActiveRecord::Schema.define(version: 20170222154053) do
   add_index "jig_orders_reports", ["jig_order_id", "report_id"], name: "index_jig_orders_reports_on_jig_order_id_and_report_id", using: :btree
   add_index "jig_orders_reports", ["report_id", "jig_order_id"], name: "index_jig_orders_reports_on_report_id_and_jig_order_id", using: :btree
 
+  create_table "jig_work_order_line_items", force: :cascade do |t|
+    t.integer  "jig_id"
+    t.integer  "jig_work_order_id"
+    t.integer  "expected"
+    t.integer  "repaired"
+    t.integer  "actual"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "jig_work_order_line_items", ["jig_id"], name: "index_jig_work_order_line_items_on_jig_id", using: :btree
+  add_index "jig_work_order_line_items", ["jig_work_order_id"], name: "index_jig_work_order_line_items_on_jig_work_order_id", using: :btree
+
+  create_table "jig_work_orders", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.string   "purchase_order"
+    t.text     "notes"
+    t.date     "returned"
+    t.string   "verified_by"
+    t.datetime "verified_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.date     "pickup_date"
+    t.string   "pickup_time"
+    t.string   "aasm_state"
+    t.string   "return_time"
+    t.datetime "completed_at"
+    t.string   "completed_by"
+  end
+
+  add_index "jig_work_orders", ["customer_id"], name: "index_jig_work_orders_on_customer_id", using: :btree
+
+  create_table "jig_work_orders_reports", id: false, force: :cascade do |t|
+    t.integer "jig_work_order_id", null: false
+    t.integer "report_id",         null: false
+  end
+
   create_table "jigs", force: :cascade do |t|
     t.string   "name"
     t.float    "cleaning_charge"
@@ -135,6 +172,22 @@ ActiveRecord::Schema.define(version: 20170222154053) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
+  create_table "signatures", force: :cascade do |t|
+    t.string   "name"
+    t.text     "signature"
+    t.datetime "signed_on"
+    t.integer  "jig_work_order_id"
+    t.string   "kind"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "signatures", ["jig_work_order_id"], name: "index_signatures_on_jig_work_order_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -170,4 +223,8 @@ ActiveRecord::Schema.define(version: 20170222154053) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "jig_work_order_line_items", "jig_work_orders"
+  add_foreign_key "jig_work_order_line_items", "jigs"
+  add_foreign_key "jig_work_orders", "customers"
+  add_foreign_key "signatures", "jig_work_orders"
 end

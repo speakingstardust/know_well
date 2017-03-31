@@ -1,0 +1,24 @@
+// Place all the styles related to the JigWorkOrders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.jig_work_order_customer > .help-block {
+  color: red;
+  font-weight: bold;
+}
+
+.address {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.print table {
+  font-size: 18pt;
+}
+
+.print  p {
+  font-size: 16pt;
+}
+
+.print .signature hr {
+  border-top: 2px dashed #8c8b8b;
+}

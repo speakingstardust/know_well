@@ -1,0 +1,2 @@
+class JigMailer < ApplicationMailer
+end

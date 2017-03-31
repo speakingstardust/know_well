@@ -1,9 +1,12 @@
 class Jig < ActiveRecord::Base
   belongs_to :customer
+  has_many :jig_work_order_line_items
+  has_many :jig_work_orders, through: :jig_work_order_line_items
   has_many :jig_order_line_items
   has_many :jig_orders, through: :jig_order_line_items
   has_many :report_line_items
   before_save :set_prices
+  after_create :notify_admins
 
   validates :name, presence: true
 
@@ -19,5 +22,12 @@ class Jig < ActiveRecord::Base
   def set_prices
     self.cleaning_charge ||= 0.0
     self.repair_charge ||= 0.0
+  end
+
+  def notify_admins
+    admins = Admin.all
+    admins.each do |admin|
+      JigMailer.new_jig_created(admin, self).deliver_now
+    end
   end
 end

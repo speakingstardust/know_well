@@ -17,19 +17,19 @@
 			</li>
 			<% if user_signed_in? or admin_signed_in? %>
 			<li class="dropdown <%= active_class(jig_reporting_path) %>">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Jig Reporting System
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Work Order System
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu" role="menu">
                                         <% if admin_signed_in? or current_user.has_role? :shop_supervisor %>
                                           <li><%= link_to 'Create New Jig', new_jig_path, class: "nav-link" %></li>
                                         <% end %>
-					<li><%= link_to 'Create New Jig Order', new_jig_order_path, class: "nav-link" %></li>
                                         <% if admin_signed_in? or current_user.has_role? :bookkeeper %>
                                           <li><%= link_to 'Create New Jig Summary Report', new_report_path, class: "nav-link" %></li>
                                         <% end %>
 					<div class="dropdown-divider"></div>
-					<li><%= link_to 'Jig Order List', jig_orders_path, class: "nav-link" %></li>
+					<li><%= link_to 'Work Order Management', work_orders_management_path, class: "nav-link" %></li>
+					<li><%= link_to 'Jig Work Order List', jig_work_orders_path, class: "nav-link" %></li>
 					<li><%= link_to 'Jig List', jigs_path, class: "nav-link" %></li>
                                         <% if admin_signed_in? or current_user.has_role? :bookkeeper %>
                                           <li><%= link_to 'Jig Summary Report List', reports_path, class: "nav-link" %></li>
