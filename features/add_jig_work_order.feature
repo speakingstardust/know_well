@@ -4,9 +4,10 @@ Feature: Creating a jig work order.
     And a customer.
     And jigs that belong to the customer.
   Scenario: I can create a jig work order for a customer with jigs.
-    When I visit the new work order page.
-    And I complete the initial work order form, choosing the type of work order and a customer. 
-    Then I am on the jig work order details page. 
+    When I visit the work order management page.
+    And I select the customer from the dropdown.
+    And I click Jig Work Order.
+    Then I am on the new jig work order details page. 
     And I am able to set a pickup date and time.
     And I am able to add the expected number of jigs to the work order.
     And I submit the new work order. 

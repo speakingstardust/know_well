@@ -1,18 +1,26 @@
 Rails.application.routes.draw do
+  resources :jig_work_orders do
+    put :receive
+    put :complete
+    put :verify_completed
+    put :ship
+    get 'signature', to: 'jig_work_orders#new_signature', as: 'signature'
+  end
   devise_for :admins
+  resources :signatures, only: [:new, :destroy, :create]
   resources :customers
   resources :jigs
   resources :jig_orders
   resources :jig_order_line_items
   resources :reports
-  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
-  devise_scope :user do
-    get 'users/index', to: 'users/registrations#index', as: 'user_index'
-    get 'users/show/:id', to: 'users/registrations#show', as: 'user_show'
-    get 'users/edit/:id', to: 'users/registrations#edit', as: 'user_edit'
-    get 'users/new', to: 'users/registrations#new', as: 'new_user'
+  devise_for :users
+  scope "/admin" do 
+    resources :users
   end
-
+  get 'jig_work_orders/packing_slip/:id', to: 'jig_work_orders#packing_slip', as: 'packing_slip'
+  get 'work_orders_management' => "pages#work_orders", as: 'work_orders_management'
+  get 'jig_work_orders/print/:id', to: 'jig_work_orders#print', as: 'print_jig_work_order'
+  post 'work_orders_management' => "pages#new_work_order"
   get 'jig_reporting' => "pages#jig_reporting"
   get '/reports/print/:id', to: 'reports#print', as: 'print_report'
   post 'jig_summary_report' => "jig_orders#index", defaults: { format: 'pdf' }

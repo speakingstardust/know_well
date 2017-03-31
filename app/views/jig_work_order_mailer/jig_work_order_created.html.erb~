@@ -1,0 +1,16 @@
+<h1>New Jig Work Order Created for <%= @jig_work_order.customer.name %></h1>
+<h3>
+  Order Submitted at: <%= l @jig_work_order.created_at %>
+</h3>
+<p>
+  You are receiving this email as a notification that a new Jig Work Order has been submitted. Please log in to <%= link_to "Know Well", root_url %> in order to view and manage this work order.
+</p>
+<p>
+  If you have received this email in error please contact <%= mail_to "josh@autochemind.com", "Josh Pettyjohn", subject: "Jig Work Order Notification Issue" %>
+</p>
+<h4>
+  All the Best, 
+  <hr>
+  Know Well and AutoChem Industrial
+</h4>
+

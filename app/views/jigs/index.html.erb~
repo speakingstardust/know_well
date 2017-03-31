@@ -2,10 +2,22 @@
 <p id="notice"><%= notice %></p>
 <div class="page-header">
   <h1>Jig Listing</h1>
+  <%= link_to "Create Jig", new_jig_path, class: "btn btn-primary pull-right" %>
 </div>
 
-  <%= link_to "Create Jig", new_jig_path, class: "btn btn-primary pull-right" %>
+<div class="row">
+    <%= search_form_for @search do |f| %>
 
+            <%= f.label :customer_id_eq, "Customer", class: 'control-label' %>
+            <%= f.collection_select :customer_id_eq, @customers, :id, :name, include_blank: true,  class: 'form-control' %>
+
+            <%= f.label :name_cont, "Jig Name", class: 'control-label' %>
+            <%= f.text_field :name_cont, class: 'form-control' %>
+
+            <%= f.submit "Search", class: "btn btn-primary" %>
+            <%= link_to "Clear Search", request.path, class: "cancel-button btn btn-info btn-block" %>
+    <% end %>
+</div>
 <table class="table">
   <thead>
     <tr>

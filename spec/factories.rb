@@ -1,4 +1,28 @@
 FactoryGirl.define do
+  factory :signature do
+    name "MyString"
+    signature "MyText"
+    signed_on "2017-03-15 14:46:21"
+    jig_work_order nil
+    type ""
+  end
+  factory :jig_work_order_line_item do
+    jig nil
+    jig_work_order nil
+    expected 1
+    repaired 1
+    actual 1
+  end
+  factory :jig_work_order do
+    customer nil
+    purchase_order "MyString"
+    notes "MyText"
+    pickup "2017-03-06 10:16:03"
+    returned "2017-03-06"
+    verified false
+    verified_by "MyString"
+    verified_at "2017-03-06 10:16:03"
+  end
   factory :admin do
     
   end
