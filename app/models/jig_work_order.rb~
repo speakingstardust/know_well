@@ -103,5 +103,4 @@ class JigWorkOrder < ActiveRecord::Base
       work_order.archive!
     end
   end
-
 end

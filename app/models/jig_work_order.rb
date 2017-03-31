@@ -5,7 +5,7 @@ class JigWorkOrder < ActiveRecord::Base
   has_many :jig_work_order_line_items, :dependent => :destroy
   has_many :jigs, through: :jig_work_order_line_items
   has_and_belongs_to_many :reports
-  has_many :signatures
+  has_many :signatures, :dependent => :destroy
 
   accepts_nested_attributes_for :signatures, :reject_if => lambda { |a| a[:signature].blank? },:allow_destroy => true
 
