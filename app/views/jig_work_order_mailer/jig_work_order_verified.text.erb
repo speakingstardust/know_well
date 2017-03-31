@@ -1,0 +1,14 @@
+Jig Work Order Verified for <%= @jig_work_order.customer.name %> Verified
+=========================================================================
+  Order Verified at: <%= l @jig_work_order.verified_at %>
+
+  You are receiving this email as a notification that a Jig Work Order has been verified. 
+
+  Please log in to <%= link_to "Know Well", root_url %> in order to view and manage this work order. 
+
+  
+  If you have received this email in error please contact <%= mail_to "josh@autochemind.com", "Josh Pettyjohn", subject: "Jig Work Order Notification Issue" %>
+
+  All the Best, 
+
+  Know Well and AutoChem Industrial

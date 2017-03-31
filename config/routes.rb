@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
+  resources :jig_work_orders do
+    put :receive
+    put :complete
+    put :verify_completed
+    put :ship
+    put :archive
+    get 'signature', to: 'jig_work_orders#new_signature', as: 'signature'
+  end
   devise_for :admins
+  resources :signatures, only: [:new, :destroy, :create]
   resources :customers
   resources :jigs
   resources :jig_orders
@@ -9,6 +18,10 @@ Rails.application.routes.draw do
   scope "/admin" do 
     resources :users
   end
+  get 'jig_work_orders/packing_slip/:id', to: 'jig_work_orders#packing_slip', as: 'packing_slip'
+  get 'work_orders_management' => "pages#work_orders", as: 'work_orders_management'
+  get 'jig_work_orders/print/:id', to: 'jig_work_orders#print', as: 'print_jig_work_order'
+  post 'work_orders_management' => "pages#new_work_order"
   get 'jig_reporting' => "pages#jig_reporting"
   get '/reports/print/:id', to: 'reports#print', as: 'print_report'
   post 'jig_summary_report' => "jig_orders#index", defaults: { format: 'pdf' }

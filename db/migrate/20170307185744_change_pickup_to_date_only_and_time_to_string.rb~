@@ -1,0 +1,9 @@
+class ChangePickupToDateOnlyAndTimeToString < ActiveRecord::Migration
+  def change
+    change_table :jig_work_orders do |t|
+      t.remove :pickup
+      t.date :pickup_date
+      t.string :pickup_time
+    end
+  end
+end

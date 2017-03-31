@@ -1,0 +1,134 @@
+<% provide(:title, "Packing Slip for Work Order ##{@jig_work_order.id}") %>
+<div class="row">
+  <div class="col-md-4">
+    <%= image_tag 'autochem_industrial.png', alt: "Autochem Industrial Logo" %>
+  </div>
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4 pull-right address">
+    <p>941 Stanford Road</p>
+    <p>Lancaster, KY 40444</p>
+    <p>Office | (859)792-2117</p>
+    <p>Fax | (859)792-2103</p>
+  </div>
+</div>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center">Packing Slip</h1>
+  </div>
+</div>
+<div class="row">
+  <p>
+    <strong>Date Shipped:</strong>
+    <%= l @jig_work_order.returned %>
+  </p>
+  <p>
+    <strong>Customer Name:</strong>
+    <%= @customer.name %>
+  </p>
+  <% unless @customer.street_address.empty? %>
+    <p>
+      <strong>Customer Address:</strong>
+        <p>
+          <%= @customer.street_address %>
+        </p>
+        <p>
+        <%= @customer.city %>, <%= @customer.state %> <%= @customer.zip %>
+        </p>
+    </p>
+  <% end %>
+  <p>
+    <strong>Purchase Order #: </strong>
+    <%= @jig_work_order.purchase_order %>
+  </p>
+  <p>
+    <strong>Work Order #:</strong>
+    <%= @jig_work_order.id %>
+  </p>
+</div>
+<hr>
+<div class="row">
+  <h3 class="text-center">Items and Quantity Returned</h3>
+  <hr>
+  <table class="table">
+    <thead>
+      <th>Jig Name</th>
+      <th>Jig Photo</th>
+      <th># Expected</th>
+      <th># Repaired</th>
+      <th># Cleaned</th>
+    </thead>
+
+    <tbody>
+      <% @jig_work_order.jig_work_order_line_items.each do |line_item| %>
+        <tr>
+          <th scope="row"><%= line_item.jig.name %></th>
+          <td><%= image_tag line_item.jig.jig_photo.url(:thumb) %></td>
+          <td><%= line_item.expected %></td>
+          <td><%= line_item.repaired %></td>
+          <td><%= line_item.actual %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<hr>
+<br>
+<br>
+<br>
+<% if @jig_work_order.signatures.any? %>
+  <div class="row">
+    <h3 class="text-center">Signatures</h3>
+    <% @jig_work_order.signatures.each do |signature| %>
+      <% if signature.kind == "Customer" %>
+        <div class="col-md-6 signature">
+          <p>
+            <strong>Customer:</strong>
+            <p>Please sign to acknowledge completed delivery of items listed on this packing slip.</p>
+            <br>
+            <%= image_tag signature.image.url(:full) %>
+            <%= link_to 'Delete Signature', signature, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-primary" %> 
+            <hr>
+            <%= signature.name %>
+          </p>
+        </div>
+      <% elsif signature.kind == "Driver" %>
+        <div class="col-md-6 signature">
+          <p>
+            <strong>Delivery Driver</strong>
+            <p>Please sign to acknowledge completed delivery of items listed on this packing slip.</p>
+            <br>
+            <%= image_tag signature.image.url(:full) %>
+            <%= link_to 'Delete Signature', signature, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-primary"%> 
+            <hr>
+            <%= signature.name %>
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% else @jig_work_order.signatures.blank? %>
+  <div class="row">
+    <h3 class="text-center">Signatures</h3>
+    <div class="col-md-6">  
+      <p>
+        <strong>Customer:</strong>
+        <p>Please sign to acknowledge receipt of the items listed on this packing slip.</p>
+        <br>
+        <p>
+        <strong>Sign Here:</strong> ________________________________________________
+        </p>
+      </p>
+    </div>
+    <div class="col-md-6">
+      <p>
+        <strong>Delivery Driver:</strong>
+        <p>Please sign to acknowledge completed delivery of items listed on this packing slip.</p>
+        <br>
+        <p>
+        <strong>Sign Here:</strong> _________________________________________________
+        </p>
+      </p>
+    </div>
+  </div>
+<% end %>
