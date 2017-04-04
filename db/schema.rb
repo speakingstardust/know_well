@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327152825) do
+ActiveRecord::Schema.define(version: 20170404155522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,18 @@ ActiveRecord::Schema.define(version: 20170327152825) do
   add_index "jigs", ["customer_id"], name: "index_jigs_on_customer_id", using: :btree
   add_index "jigs", ["jig_order_line_item_id"], name: "index_jigs_on_jig_order_line_item_id", using: :btree
 
+  create_table "projects", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "status"
+    t.integer  "department"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
   create_table "report_line_items", force: :cascade do |t|
     t.integer  "subtotal_cleaned"
     t.integer  "subtotal_repaired"
@@ -226,5 +238,6 @@ ActiveRecord::Schema.define(version: 20170327152825) do
   add_foreign_key "jig_work_order_line_items", "jig_work_orders"
   add_foreign_key "jig_work_order_line_items", "jigs"
   add_foreign_key "jig_work_orders", "customers"
+  add_foreign_key "projects", "users"
   add_foreign_key "signatures", "jig_work_orders"
 end

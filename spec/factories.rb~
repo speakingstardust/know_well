@@ -6,6 +6,10 @@ FactoryGirl.define do
     status 1
     department 1
   end
+  factory :project do
+    user nil
+    name "MyString"
+  end
   factory :signature do
     name "MyString"
     signature "MyText"
