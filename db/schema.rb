@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404155522) do
+ActiveRecord::Schema.define(version: 20170404170124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -200,6 +200,23 @@ ActiveRecord::Schema.define(version: 20170404155522) do
 
   add_index "signatures", ["jig_work_order_id"], name: "index_signatures_on_jig_work_order_id", using: :btree
 
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "project_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "duration"
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "completed"
+    t.integer  "user_id"
+    t.integer  "percent_complete"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
+  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -240,4 +257,6 @@ ActiveRecord::Schema.define(version: 20170404155522) do
   add_foreign_key "jig_work_orders", "customers"
   add_foreign_key "projects", "users"
   add_foreign_key "signatures", "jig_work_orders"
+  add_foreign_key "tasks", "projects"
+  add_foreign_key "tasks", "users"
 end
