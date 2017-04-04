@@ -7,23 +7,23 @@ class JigPolicy < ApplicationPolicy
   end
   
   def new?
-    user.is_admin? or user.has_role? :shop_supervisor
+    user.is_admin? or user.has_role? :shop_supervisor or user.has_role? :bookkeeper
   end
 
   def create?
-    user.is_admin? or user.has_role? :shop_supervisor
+    user.is_admin? or user.has_role? :shop_supervisor or user.has_role? :bookkeeper
   end
   
   def update?
-    user.is_admin? or user.has_role? :shop_supervisor
+    user.is_admin? or user.has_role? :shop_supervisor or user.has_role? :bookkeeper
   end
 
   def edit?
-    user.is_admin? or user.has_role? :shop_supervisor
+    user.is_admin? or user.has_role? :shop_supervisor or user.has_role? :bookkeeper
   end
 
   def destroy?
-    user.is_admin? or user.has_role? :shop_supervisor
+    user.is_admin? or user.has_role? :shop_supervisor or user.has_role? :bookkeeper
   end
 
   def show?

@@ -28,7 +28,7 @@
                                           <li><%= link_to 'Create New Jig Summary Report', new_report_path, class: "nav-link" %></li>
                                         <% end %>
 					<div class="dropdown-divider"></div>
-					<li><%= link_to 'Work Order Management', jig_work_orders_path, class: "nav-link" %></li>
+					<li><%= link_to 'Work Order Management', work_orders_management_path, class: "nav-link" %></li>
 					<li><%= link_to 'Jig Work Order List', jig_work_orders_path, class: "nav-link" %></li>
 					<li><%= link_to 'Jig List', jigs_path, class: "nav-link" %></li>
                                         <% if admin_signed_in? or current_user.has_role? :bookkeeper %>

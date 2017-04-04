@@ -21,7 +21,7 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu" role="menu">
-                                        <% if admin_signed_in? or current_user.has_role? :shop_supervisor %>
+                                        <% if admin_signed_in? or current_user.has_role? :shop_supervisor or current_user.has_role? :bookkeeper %>
                                           <li><%= link_to 'Create New Jig', new_jig_path, class: "nav-link" %></li>
                                         <% end %>
                                         <% if admin_signed_in? or current_user.has_role? :bookkeeper %>

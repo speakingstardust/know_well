@@ -1,10 +1,8 @@
 <%= simple_form_for @jig, html: { class: "form-horizontal" }, multipart: true do |f| %>
   <%= f.input :name %>
   <%= f.association :customer %>
-  <% if admin_signed_in? or current_user.has_role? :bookkeeper %>
-    <%= f.input :cleaning_charge %>
-    <%= f.input :repair_charge %>
-  <% end %>
+  <%= f.input :cleaning_charge %>
+  <%= f.input :repair_charge %>
   <%= f.label :jig_photo, "Jig Photo" %>
   <%= f.file_field :jig_photo %>
   <%= f.button :submit %>
