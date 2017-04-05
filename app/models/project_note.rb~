@@ -1,0 +1,16 @@
+class ProjectNote < ActiveRecord::Base
+  belongs_to :project
+  
+  before_create :set_created_by
+  before_update :set_updated_by
+
+  validates :note, presence: true
+  
+  def set_created_by
+    self.created_by = "#{pundit_user.first_name} #{pundit_user.last_name}"
+  end
+
+  def set_updated_by
+    self.updated_by = "#{pundit_user.first_name} #{pundit_user.last_name}"
+  end
+end

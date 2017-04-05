@@ -4,5 +4,3 @@
     <h1 class="text-center">Projects List</h1>
   </div>
 </div>
-
-<%= render 'table' %>

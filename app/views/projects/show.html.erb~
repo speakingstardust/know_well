@@ -59,7 +59,7 @@
           <tr>
             <th scope="row"><%= l note.created_at %></th>
             <td><%= note.created_by %><td>
-            <td><%= note.note %><td>
+            <td><%= task.completed %><td>
           </tr>
         <% end %>
       </tbody>
