@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   devise_for :admins
   resources :signatures, only: [:new, :destroy, :create]
+  resources :projects
   resources :customers
   resources :jigs
   resources :jig_orders

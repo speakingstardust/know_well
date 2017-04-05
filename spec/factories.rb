@@ -1,4 +1,10 @@
 FactoryGirl.define do
+  factory :project_note do
+    project nil
+    note "MyText"
+    created_by "MyString"
+    updated_by "MyString"
+  end
   factory :task do
     project nil
     start_date "2017-04-04"
