@@ -1,9 +1,8 @@
 FactoryGirl.define do
-  factory :project_note do
+  factory :progress_note do
     project nil
     note "MyText"
     created_by "MyString"
-    updated_by "MyString"
   end
   factory :task do
     project nil
