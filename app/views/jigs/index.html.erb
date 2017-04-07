@@ -18,6 +18,7 @@
             <%= link_to "Clear Search", request.path, class: "cancel-button btn btn-info btn-block" %>
     <% end %>
 </div>
+<%= paginate @jigs %>
 <table class="table">
   <thead>
     <tr>
