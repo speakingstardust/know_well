@@ -130,6 +130,6 @@ class JigWorkOrdersController < ApplicationController
   end
 
   def jig_work_order_params
-    params.require(:jig_work_order).permit(:pickup_date, :pickup_time, :customer_id, :notes, :purchase_order, :returned, :verified_by, :verified, :verified_at, jig_work_order_line_items_attributes: [:id, :jig_id, :expected, :repaired, :actual, :_destroy], signatures_attributes: [:id, :name, :signature, :type] )
+    params.require(:jig_work_order).permit(:pickup_date, :pickup_time, :customer_id, :notes, :purchase_order, :returned, :return_time, :verified_by, :verified, :verified_at, jig_work_order_line_items_attributes: [:id, :jig_id, :expected, :repaired, :actual, :_destroy], signatures_attributes: [:id, :name, :signature, :type] )
   end
 end
