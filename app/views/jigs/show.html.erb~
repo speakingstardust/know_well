@@ -17,7 +17,7 @@
 
   <p>
     <strong>Repair charge:</strong>
-    <%= @number_to_currency @jig.repair_charge %>
+    <%= number_to_currency @jig.repair_charge %>
   </p>
 <% end %>
 <p>

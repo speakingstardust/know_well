@@ -1,15 +1,15 @@
-<% provide(:title, "Jig Summary Report for #{@report.customer.name}") %>
-<%= image_tag 'autochem_industrial.png', alt: "company logo", height: 80, width: 150, class: "img img-responsive pull-left company-logo" %>
+<% provide(:title, "Jig Summary Report") %>
 <div class="page-header">
-  <h3 class="text-center">Jig Summary Report for <%= @report.customer.name %></h3>
+  <h1 class="text-center">Jig Summary Report for <%= @report.customer.name %></h1>
 </div>
 
-<p class="text-center">
+<%= link_to "Print Report", print_report_path(@report), class: "btn btn-primary btn-large col-xs-offset-9 col-md-offset-11", target: "_blank" %>
+
+<p>
   <strong>Report ID:</strong>
   <%= @report.id %>
 </p>
-
-<p class="text-center">
+<p>
   <strong>Report Date Range:</strong>
   <%= l(@report.date_from) + " to " +   l(@report.date_to) %>
 </p>
@@ -20,10 +20,10 @@
   <thead>
     <th>Jig Name</th>
     <th>Jig Photo</th>
-    <th>Jigs Repaired </th>
+    <th># Repaired </th>
     <th>Repair Charge</th>
     <th>Repair Subtotal</th>
-    <th>Jigs Cleaned</th>
+    <th># Cleaned</th>
     <th>Cleaning Charge</th>
     <th>Cleaning Subtotal</th>
     <th>Jig Subtotal</th>
@@ -33,11 +33,7 @@
     <% @report.report_line_items.each do |line_item| %>
       <tr>
         <th scope="row"><%= line_item.jig.name %></th>
-        <% if line_item.jig.jig_photo.exists? %>
-          <td><%= image_tag line_item.jig.jig_photo(:thumb) %></td>
-        <% else %>
-          <td>No Image Available</td>
-        <% end %>
+        <td><%= image_tag line_item.jig.jig_photo(:thumb) %></td>
         <td><%= line_item.subtotal_repaired %></td>
         <td><%= number_to_currency(line_item.jig.repair_charge) %></td>
         <td><%= number_to_currency(line_item.repair_charge_subtotal) %></td>
@@ -49,7 +45,6 @@
     <% end %>
   </tbody>
 </table>
-
 <div class="cleaned_charges col-xs-3">
   <p>
     <strong>Total Jigs Cleaned:</strong>
@@ -79,11 +74,9 @@
     <strong>Delivery Charges:</strong>
     <%= number_to_currency(@report.delivery_charge) %>
   </p>
-</div>
-<div class="grand_total col-xs-3">
   <p>
     <strong>Total Charges:</strong>
     <%= number_to_currency(@report.grand_total) %>
   </p>
 </div>
-
+<%= link_to "Back to Report Index", reports_path, class: "btn btn-primary btn-large" %>

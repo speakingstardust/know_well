@@ -1,5 +1,5 @@
 <% provide(:title, "Jig Summary Report for #{@report.customer.name}") %>
-<%= image_tag 'autochem_industrial.png', alt: "company logo", height: 80, width: 150, class: "img img-responsive pull-left" %>
+<%= image_tag 'autochem_industrial.png', alt: "company logo", height: 80, width: 150, class: "img img-responsive pull-left company-logo" %>
 <div class="page-header">
   <h3 class="text-center">Jig Summary Report for <%= @report.customer.name %></h3>
 </div>
@@ -33,7 +33,11 @@
     <% @report.report_line_items.each do |line_item| %>
       <tr>
         <th scope="row"><%= line_item.jig.name %></th>
-        <td><%= image_tag line_item.jig.jig_photo(:thumb) %></td>
+        <% if line_item.jig.jig_photo.exists? %>
+          <td><%= image_tag line_item.jig.jig_photo(:thumb) %></td>
+        <% else %>
+          <td>No Image Available</td>
+        <% end %>
         <td><%= line_item.subtotal_repaired %></td>
         <td><%= number_to_currency(line_item.jig.repair_charge) %></td>
         <td><%= number_to_currency(line_item.repair_charge_subtotal) %></td>
