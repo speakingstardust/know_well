@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get 'projects/index'
-
-  get 'projects/new'
-
-  get 'projects/edit'
-
-  get 'projects/show'
-
   resources :jig_work_orders do
     put :receive
     put :complete
@@ -17,6 +9,7 @@ Rails.application.routes.draw do
   end
   devise_for :admins
   resources :signatures, only: [:new, :destroy, :create]
+  resources :projects
   resources :customers
   resources :jigs
   resources :jig_orders

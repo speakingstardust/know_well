@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
   belongs_to :user
   has_many :tasks
+  has_many :project_notes
 
   validates :name, presence: true
 
