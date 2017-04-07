@@ -1,5 +1,5 @@
 <% provide(:title, "Jig Summary Report for #{@report.customer.name}") %>
-<%= image_tag 'autochem_industrial.png', alt: "company logo", height: 80, width: 150, class: "img img-responsive pull-left company-logo" %>
+<%= image_tag 'autochem_industrial.png', alt: "company logo", height: 80, width: 150, class: "img img-responsive pull-left" %>
 <div class="page-header">
   <h3 class="text-center">Jig Summary Report for <%= @report.customer.name %></h3>
 </div>
