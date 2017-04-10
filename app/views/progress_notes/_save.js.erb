@@ -1,0 +1,9 @@
+$("ul.errors").html("");
+<% if @progress_note.errors.any? %>
+    <% @progress_note.errors.full_messages.each do |message| %>
+      $("ul.errors").append($("<li />").html("<%= message.html_safe %>"));
+    <% end %>
+<% else %>
+    $("#progress-note-modal").modal("hide");
+    $(".progress-note-index").html("<%= j render 'index' %>");
+<% end %>
