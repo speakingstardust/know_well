@@ -35,16 +35,12 @@
         <th>Task</th>
         <th>Completed?</th>
       </thead>
-      <tbody>
-        <% @project.tasks.each do |task| %>
-          <tr>
-            <th scope="row"><%= task.order %></th>
-            <td><%= task.name %><td>
-            <td><%= task.completed %><td>
-          </tr>
-        <% end %>
+      <tbody class="task-index">
+        <%= render 'tasks/index' %>
       </tbody>
     </table>
+    <div id="task-modal" class="modal fade"></div>
+    <%= link_to "Create New Task", new_project_task_path(@project), remote: true, class: "btn btn-block btn-primary" %>
   </div>
   <div class="col-md-6">
     <h4>Progress Notes</h4>
@@ -56,6 +52,7 @@
         <th colspan="2"></th>
       </thead>
       <tbody class="progress-note-index">
+        <%= render "progress_notes/index" %>
       </tbody>
     </table>
     <div id="progress-note-modal" class="modal fade"></div>

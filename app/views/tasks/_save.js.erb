@@ -1,0 +1,9 @@
+$("ul.errors").html("");
+<% if @task.errors.any? %>
+    <% @task.errors.full_messages.each do |message| %>
+      $("ul.errors").append($("<li />").html("<%= message.html_safe %>"));
+    <% end %>
+<% else %>
+    $("#task-modal").modal("hide");
+    $(".task-index").html("<%= j render 'index' %>");
+<% end %>

@@ -1,2 +1,2 @@
 $("#progress-note-modal").html("<%= j render "delete" %>");
-$("#progress-note-modal").modal("show");
+$("#progress-note-modal").modal("show")

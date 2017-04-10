@@ -14,6 +14,8 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
+    @task.user_id = pundit_user.id
+
     @task.save
 
     @project = @task.project

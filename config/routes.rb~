@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :signatures, only: [:new, :destroy, :create]
   resources :projects do
     resources :tasks
-    resources :progress_notes
+    resources :progress_notes do
+      get "delete"
+    end
   end
   resources :customers
   resources :jigs

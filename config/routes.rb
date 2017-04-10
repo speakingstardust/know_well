@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   devise_for :admins
   resources :signatures, only: [:new, :destroy, :create]
   resources :projects do
-    resources :tasks
+    resources :tasks do
+      get "delete"
+    end
     resources :progress_notes do
       get "delete"
     end
