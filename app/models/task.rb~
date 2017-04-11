@@ -8,7 +8,6 @@ class Task < ActiveRecord::Base
   validates :start_date, presence: true
   validates :duration, presence: true
   validates :name, presence: true
-  validates :completed, presence: true
 
   def set_end_date
     self.end_date = self.start_date + self.duration
@@ -26,4 +25,12 @@ class Task < ActiveRecord::Base
   def uncomplete
     self.completed = false
   end
+
+  def self.resort_order(project)
+    project.tasks.order(:order).each do |t,i|
+      t.order = i + 1
+      t.save
+    end
+  end
+
 end

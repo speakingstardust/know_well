@@ -18,7 +18,7 @@ class TasksController < ApplicationController
 
     @project = @task.project
 
-    @tasks = @project.tasks
+    @tasks = @project.tasks.order(:order)
   end
 
   def edit
@@ -29,7 +29,7 @@ class TasksController < ApplicationController
     @task.update_attributes(task_params)
 
     @project = @task.project
-    @tasks = @project.tasks
+    @tasks = @project.tasks.order(:order)
   end
 
   def delete
@@ -43,16 +43,18 @@ class TasksController < ApplicationController
 
   def destroy
     @project = @task.project
-    @tasks = @project.tasks
 
     @task.destroy
+
+    resort_order(@project)
+    @tasks = @project.tasks.order(:order)
   end
 
   def complete
     @task = Task.find(params[:task_id])
     @task.complete 
     @task.save
-    @tasks = @task.project.tasks
+    @tasks = @task.project.tasks.order(:order)
 
     respond_to do |format|
       format.js
@@ -63,7 +65,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:task_id])
     @task.uncomplete
     @task.save
-    @tasks = @task.project.tasks
+    @tasks = @task.project.tasks.order(:order)
 
     respond_to do |format|
       format.js
@@ -72,10 +74,19 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params.require(:task).permit(:project_id, :start_date, :duration, :name, :description, :completed?, :percent_complete)
+      params.require(:task).permit(:project_id, :start_date, :duration, :name, :description, :completed, :percent_complete)
     end
 
     def set_task
       @task = Task.find(params[:id])
+    end
+
+    def resort_order(project)
+      i = 1
+      project.tasks.each do |t|
+        t.order = i
+        t.save
+        i += 1
+      end
     end
 end

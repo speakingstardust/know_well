@@ -25,4 +25,6 @@ class Task < ActiveRecord::Base
   def uncomplete
     self.completed = false
   end
+
+
 end
