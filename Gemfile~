@@ -56,7 +56,6 @@ gem 'pry-rails'
 
 gem 'sendgrid-ruby'
 
-
 # Roles and Authorization
 gem 'rolify'
 gem 'pundit'

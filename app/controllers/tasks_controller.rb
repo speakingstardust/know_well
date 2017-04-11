@@ -18,7 +18,7 @@ class TasksController < ApplicationController
 
     @project = @task.project
 
-    @tasks = @project.tasks.order(:order)
+    @tasks = @project.tasks
   end
 
   def edit
@@ -29,7 +29,7 @@ class TasksController < ApplicationController
     @task.update_attributes(task_params)
 
     @project = @task.project
-    @tasks = @project.tasks.order(:order)
+    @tasks = @project.tasks
   end
 
   def delete
@@ -46,16 +46,14 @@ class TasksController < ApplicationController
 
     @task.destroy
 
-    resort_order(@project)
-    @tasks = @project.tasks.order(:order)
+    @tasks = @project.tasks
   end
 
   def complete
     @task = Task.find(params[:task_id])
     @task.complete 
     @task.save
-    @tasks = @task.project.tasks.order(:order)
-
+    @tasks = @task.project.tasks
     respond_to do |format|
       format.js
     end
@@ -65,8 +63,8 @@ class TasksController < ApplicationController
     @task = Task.find(params[:task_id])
     @task.uncomplete
     @task.save
-    @tasks = @task.project.tasks.order(:order)
-
+    @tasks = @task.project.tasks
+    
     respond_to do |format|
       format.js
     end
@@ -79,14 +77,5 @@ class TasksController < ApplicationController
 
     def set_task
       @task = Task.find(params[:id])
-    end
-
-    def resort_order(project)
-      i = 1
-      project.tasks.each do |t|
-        t.order = i  
-        t.save
-        i += 1
-      end
     end
 end

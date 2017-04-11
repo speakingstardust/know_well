@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
   belongs_to :user
-  has_many :tasks
-  has_many :progress_notes, dependent: :destroy
+  has_many :tasks, -> { order(position: :asc) }
+  has_many :progress_notes
 
   validates :name, presence: true
 
