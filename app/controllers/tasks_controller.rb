@@ -69,6 +69,50 @@ class TasksController < ApplicationController
       format.js
     end
   end
+  
+  def up
+    @task = Task.find(params[:task_id])
+    @task.up
+    
+    @tasks = @task.project.tasks
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def down
+    @task = Task.find(params[:task_id])
+    @task.down
+    
+    @tasks = @task.project.tasks
+
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def top
+    @task = Task.find(params[:task_id])
+    @task.top
+    
+    @tasks = @task.project.tasks
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def bottom
+    @task = Task.find(params[:task_id])
+    @task.bottom
+    
+    @tasks = @task.project.tasks
+
+    respond_to do |format|
+      format.js
+    end
+  end 
 
   private
     def task_params

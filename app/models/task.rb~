@@ -2,6 +2,8 @@ require "pry"
 class Task < ActiveRecord::Base
   belongs_to :project
 
+  acts_as_list scope: :project
+
   before_save :set_end_date
 
   validates :start_date, presence: true

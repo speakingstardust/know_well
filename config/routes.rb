@@ -14,6 +14,10 @@ Rails.application.routes.draw do
       get "delete"
       put :complete
       put :uncomplete
+      put :up
+      put :down
+      put :top
+      put :bottom
     end
     resources :progress_notes do
       get "delete"

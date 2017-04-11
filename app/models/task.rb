@@ -21,4 +21,20 @@ class Task < ActiveRecord::Base
   def uncomplete
     self.completed = false
   end
+
+  def up
+    self.move_higher
+  end
+
+  def down
+    self.move_lower
+  end
+
+  def top
+    self.move_to_top
+  end
+
+  def bottom 
+    self.move_to_bottom
+  end
 end

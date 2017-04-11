@@ -1,6 +1,27 @@
 <% @tasks.each do |task| %>
   <tr>
-    <td></td>
+    <td>
+      <%= link_to project_task_top_path(task.project.id, task.id), method: :put, remote: true do %>
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-chevron-up"></span>
+        </button>
+      <% end %>
+      <%= link_to project_task_up_path(task.project.id, task.id), method: :put, remote: true do %>
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+      <% end %>
+      <%= link_to project_task_down_path(task.project.id, task.id), method: :put, remote: true do %>
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-minus"></span>
+        </button>
+      <% end %>
+      <%= link_to project_task_bottom_path(task.project.id, task.id), method: :put, remote: true do %>
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        </button>
+      <% end %>
+    </td>
     <td><%= task.position %></td>
     <td><%= task.name %></td>
     <td><%= task.description %></td>
