@@ -48,6 +48,18 @@ class TasksController < ApplicationController
     @task.destroy
   end
 
+  def complete
+    @task = Task.find(params[:task_id])
+    @task.complete 
+    redirect_to @task.project
+  end
+
+  def uncomplete
+    @task = Task.find(params[:task_id])
+    @task.uncomplete
+    redirect_to @task.project
+  end
+
   private
     def task_params
       params.require(:task).permit(:project_id, :start_date, :duration, :name, :description, :completed?, :percent_complete)

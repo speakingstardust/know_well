@@ -27,12 +27,18 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <h4>Tasks</h4>
     <table class="table">
       <thead>
-        <th>#</th>
+        <th>Change Order</th>
+        <th>Order</th>
         <th>Task</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>Duration</th>
+        <th>End Date</th>
+        <th>Percentage Completed</th>
         <th>Completed?</th>
       </thead>
       <tbody class="task-index">
@@ -42,7 +48,9 @@
     <div id="task-modal" class="modal fade"></div>
     <%= link_to "Create New Task", new_project_task_path(@project), remote: true, class: "btn btn-block btn-primary" %>
   </div>
-  <div class="col-md-6">
+</div>
+<div class="row">
+  <div class="col-md-12">
     <h4>Progress Notes</h4>
     <table class="table">
       <thead>
@@ -56,5 +64,5 @@
       </tbody>
     </table>
     <div id="progress-note-modal" class="modal fade"></div>
-    <%= link_to "Create new Progress Note", new_project_progress_note_path(@project), remote: true %>
+    <%= link_to "Create New Progress Note", new_project_progress_note_path(@project), remote: true, class: "btn btn-block btn-primary" %>
 </div>

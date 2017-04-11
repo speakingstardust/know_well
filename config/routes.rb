@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :projects do
     resources :tasks do
       get "delete"
+      put :complete
+      put :uncomplete
     end
     resources :progress_notes do
       get "delete"
