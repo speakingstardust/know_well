@@ -13,17 +13,16 @@ class ProgressNotesController < ApplicationController
 
   def create 
     @progress_note = ProgressNote.new(progress_note_params)
-
     @progress_note.created_by = "#{pundit_user.first_name} #{pundit_user.last_name}"
-    
-    @progress_note.save
-    
     @project = @progress_note.project 
-
     @progress_notes = @project.progress_notes
 
     respond_to do |format|
-      format.js
+      if @progress_note.save
+        format.js
+      else
+        render 'new'
+      end
     end
   end
 
