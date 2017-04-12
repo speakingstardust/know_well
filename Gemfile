@@ -66,6 +66,9 @@ gem 'aasm'
 # Acts as List 
 gem 'acts_as_list'
 
+# Remotipart gem for jQuery AJAX File Uploads
+gem 'remotipart', '~> 1.2'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

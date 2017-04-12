@@ -63,6 +63,9 @@ gem 'pundit'
 # State Machine Gem 
 gem 'aasm'
 
+# Acts as List 
+gem 'acts_as_list'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
