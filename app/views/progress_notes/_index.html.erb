@@ -3,6 +3,7 @@
     <td><%= l note.created_at %></td>
     <td><%= note.created_by %></td>
     <td><%= note.note %></td>
+    <td><%= link_to note.attachment.url(:medium) %></td>
     <td><%= link_to "Edit", edit_project_progress_note_path(note.project.id, note.id), remote: true, class: "btn btn-default" %></td>
     <td><%= link_to "Delete", project_progress_note_delete_path(note.project.id, note.id), remote: true, class: "btn btn-danger" %></td>
   </tr>

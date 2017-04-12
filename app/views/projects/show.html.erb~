@@ -38,7 +38,7 @@
         <th>Start Date</th>
         <th>Duration</th>
         <th>End Date</th>
-        <th>Percentage Completed</th>
+        <th>Percent Complete</th>
         <th>Completed?</th>
       </thead>
       <tbody class="task-index">

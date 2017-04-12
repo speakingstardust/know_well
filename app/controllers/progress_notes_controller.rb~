@@ -21,6 +21,10 @@ class ProgressNotesController < ApplicationController
     @project = @progress_note.project 
 
     @progress_notes = @project.progress_notes
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def edit 
@@ -46,6 +50,7 @@ class ProgressNotesController < ApplicationController
   def destroy
     @project = @progress_note.project 
     @progress_notes = @project.progress_notes
+
     @progress_note.destroy
   end
 

@@ -1,12 +1,15 @@
 <div class="modal-dialog">
   <div class="modal-content">
-      <%= simple_form_for @progress_note, url: project_progress_notes_path, remote: true, html: { style: "display:inline;" } do |f| %>
+      <%= simple_form_for @progress_note, url: project_progress_notes_path, remote: true, html: { multipart: true, style: "display:inline;" } do |f| %>
       <div class="modal-body">
         <ul class="errors"></ul>
 
         <%= f.hidden_field :project_id, value: @project.id %>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
         <%= f.input :note %>
+
+        <%= f.file_field :attachment, hint: "Only PDF, PAGES, KEYNOTE, NUMBERS, EXCEL, WORD, TEXT, JPEG, JPG, or PNG files are allowed." %>
 
       </div>
       <div class="modal-footer">
