@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
 
   def show
     @progress_notes = @project.progress_notes
+    @tasks = @project.tasks
   end
 
   private

@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy]
+  before_action :authenticate_any!
 
   def new
     @project = Project.find(params[:project_id])

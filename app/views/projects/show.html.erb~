@@ -57,6 +57,7 @@
         <th>Date</th>
         <th>Created By</th>
         <th>Note</th>
+        <th>Attachment Link</th>
         <th colspan="2"></th>
       </thead>
       <tbody class="progress-note-index">

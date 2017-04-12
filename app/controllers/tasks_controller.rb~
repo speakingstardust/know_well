@@ -73,7 +73,6 @@ class TasksController < ApplicationController
   def up
     @task = Task.find(params[:task_id])
     @task.up
-    @task.save
     
     @tasks = @task.project.tasks
 
@@ -85,7 +84,6 @@ class TasksController < ApplicationController
   def down
     @task = Task.find(params[:task_id])
     @task.down
-    @task.save
     
     @tasks = @task.project.tasks
 
@@ -97,7 +95,6 @@ class TasksController < ApplicationController
   def top
     @task = Task.find(params[:task_id])
     @task.top
-    @task.save
     
     @tasks = @task.project.tasks
 
@@ -109,7 +106,6 @@ class TasksController < ApplicationController
   def bottom
     @task = Task.find(params[:task_id])
     @task.bottom
-    @task.save
     
     @tasks = @task.project.tasks
 

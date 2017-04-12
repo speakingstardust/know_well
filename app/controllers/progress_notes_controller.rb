@@ -1,5 +1,6 @@
 class ProgressNotesController < ApplicationController
   before_action :set_progress_note, only: [:edit, :update, :destroy]
+  before_action :authenticate_any!
 
   def new 
     @project = Project.find(params[:project_id])
@@ -24,6 +25,10 @@ class ProgressNotesController < ApplicationController
         render 'new'
       end
     end
+  end
+
+  def show 
+    @progress_note = ProgressNote.find(params[:id])
   end
 
   def edit 

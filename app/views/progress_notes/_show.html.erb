@@ -1,0 +1,33 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">Progress Note Detail</h3>
+      <button type="button" class="close" data-dismiss="modal">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-info"><strong>Note</strong></li>
+        <li class="list-group-item"><%= @progress_note.note %></li>
+        <% if @progress_note.attachment.exists? %>
+          <li class="list-group-item list-group-item-info"><strong>Attachment</strong></li>
+          <% if ProgressNote::DOCUMENT_TYPES.include? @progress_note.attachment_content_type %> 
+            <li class="list-group-item"><%= link_to "Download #{@progress_note.attachment_file_name}", @progress_note.attachment.url %></li>
+          <% elsif @progress_note.attachment_content_type == "application/pdf" %>
+            <li class="list-group-item"><iframe src="<%= @progress_note.attachment.url %>" class="center-block"></iframe></li>
+          <% elsif ProgressNote::IMAGE_TYPES.include? @progress_note.attachment_content_type %>
+            <li class="list-group-item"><%= image_tag @progress_note.attachment.url(:medium), class: "img img-responsive center-block" %></li> 
+          <% end %>
+        <% end %>
+        <li class="list-group-item list-group-item-info"><strong>Created By</strong></li>
+        <li class="list-group-item"><%= @progress_note.created_by %></li>
+        <li class="list-group-item list-group-item-info"><strong>Date and Time Created</strong></li>
+        <li class="list-group-item"><%= @progress_note.created_at %></li>
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
