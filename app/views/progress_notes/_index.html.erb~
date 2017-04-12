@@ -9,7 +9,7 @@
       <% elsif note.attachment_content_type == "application/pdf" %>
         <td><iframe src="<%= note.attachment.url %>"></iframe></td>
       <% elsif ProgressNote::IMAGE_TYPES.include? note.attachment_content_type %>
-        <td><%= image_tag note.attachment.url(:thumb), class: "img img-responsive center-block" %></td> 
+        <td><%= image_tag note.attachment.url(:thumb), class: "img img-responsive" %></td> 
       <% end %>
     <% else %>
       <td></td>

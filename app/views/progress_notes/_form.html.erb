@@ -7,7 +7,7 @@
         <%= f.hidden_field :project_id, value: @project.id %>
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
-        <%= f.input :note %>
+        <%= f.input :note, input_html: { size: "40x10" } %>
 
         <%= f.file_field :attachment, hint: "Only PDF, PAGES, KEYNOTE, NUMBERS, EXCEL, WORD, TEXT, JPEG, JPG, or PNG files are allowed." %>
 
