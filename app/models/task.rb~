@@ -1,6 +1,8 @@
 require "pry"
 class Task < ActiveRecord::Base
   belongs_to :project
+  has_many :dependencies, class_name: "Task", foreign_key: "dependency_id"
+  belongs_to :dependent, class_name: "Task"
 
   acts_as_list scope: :project
 
@@ -20,5 +22,21 @@ class Task < ActiveRecord::Base
 
   def uncomplete
     self.completed = false
+  end
+
+  def up
+    self.move_higher
+  end
+
+  def down
+    self.move_lower
+  end
+
+  def top
+    self.move_to_top
+  end
+
+  def bottom 
+    self.move_to_bottom
   end
 end
