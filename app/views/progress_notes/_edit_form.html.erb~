@@ -10,9 +10,10 @@
         <%= f.input :note %>
 
         <%= f.file_field :attachment, hint: "Only PDF, PAGES, KEYNOTE, NUMBERS, EXCEL, WORD, TEXT, JPEG, JPG, or PNG files are allowed." %>
-        <p>
+        <div class="well">
+        <strong>File Upload Info:</strong>
           If you are uploading a file there will be a slight delay while file is uploaded in the background. 
-        </p>
+        </div>
 
       </div>
       <div class="modal-footer">
