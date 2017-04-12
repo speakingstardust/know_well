@@ -10,7 +10,7 @@
         <%= f.input :start_date %>
         <%= f.input :duration, hint: "Please give duration in whole number of days" %>
         <%= f.input :percent_complete %>
-        <%= f.input :completed?, as: :check_boxes %>
+        <%= f.input :completed?, as: :boolean %>
 
       </div>
       <div class="modal-footer">

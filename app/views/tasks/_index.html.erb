@@ -46,6 +46,7 @@
         <% end %>
       </td>
     <% end %>
+    <td><%= link_to "Show", project_task_path(task.project.id, task.id), remote: true, class: "btn btn-primary" %></td>
     <td><%= link_to "Edit", edit_project_task_path(task.project.id, task.id), remote: true, class: "btn btn-default" %></td>
     <td><%= link_to "Delete", project_task_delete_path(task.project.id, task.id), remote: true, class: "btn btn-danger" %></td>
   </tr>
