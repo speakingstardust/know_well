@@ -26,6 +26,14 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-xs-12 col-sm-6 col-md-4">
+		<div class="thumbnail">
+			<%= image_tag "project_logo.png", alt: "Project Management Icon" %>
+			<div class="caption center">
+				<%= link_to "Project Management", projects_path, class: "btn btn-block btn-primary" %>
+			</div>
+		</div>
+	</div>
         <% if admin_signed_in? %>
             <div class="col-xs-12 col-sm-6 col-md-4">
                   <div class="thumbnail">
