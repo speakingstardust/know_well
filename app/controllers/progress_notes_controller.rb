@@ -55,7 +55,7 @@ class ProgressNotesController < ApplicationController
 
   private
     def progress_note_params
-      params.require(:progress_note).permit(:note, :project_id)
+      params.require(:progress_note).permit(:note, :project_id, :attachment)
     end
 
     def set_progress_note

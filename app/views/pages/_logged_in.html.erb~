@@ -1,7 +1,7 @@
 <div class="page-header">
 	<h1 class="text-center">Navigation Page</h1>
 </div>
-<div class="col-md-12">
+<div class="row">
 	<div class="col-xs-12 col-sm-6 col-md-4">
 		<div class="thumbnail">
 			<%= image_tag "clean_jigs.jpg", alt: "Picture of Nest Jig" %>

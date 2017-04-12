@@ -3,6 +3,13 @@
     <td><%= l note.created_at %></td>
     <td><%= note.created_by %></td>
     <td><%= note.note %></td>
+    <% if ProgressNote::DOCUMENT_TYPES.include? note.attachment_content_type %> 
+      <td><%= link_to "Download #{note.attachement_file_name}", note.attachment.url %></td>
+    <% elsif note.attachment_content_type == "application/pdf" %>
+      <td><iframe src="<%= note.attachment.url %>"></iframe></td>
+    <% elsif ProgressNote::IMAGE_TYPES.include? note.attachment_content_type %>
+      <td><%= image_tag note.attachment.url(:medium) %></td> 
+    <% end %>
     <td><%= link_to "Edit", edit_project_progress_note_path(note.project.id, note.id), remote: true, class: "btn btn-default" %></td>
     <td><%= link_to "Delete", project_progress_note_delete_path(note.project.id, note.id), remote: true, class: "btn btn-danger" %></td>
   </tr>

@@ -11,6 +11,10 @@
 
         <%= f.file_field :attachment, hint: "Only PDF, PAGES, KEYNOTE, NUMBERS, EXCEL, WORD, TEXT, JPEG, JPG, or PNG files are allowed." %>
 
+        <div class="well">
+        <strong>File Upload Info:</strong>
+          If you are uploading a file there will be a slight delay while file is uploaded in the background. 
+        </div>
       </div>
       <div class="modal-footer">
         <%= f.submit class: "btn btn-primary" %>
