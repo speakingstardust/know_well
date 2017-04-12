@@ -12,5 +12,10 @@
 !/log/.keep
 /tmp
 
+# Ignore vim swaps
+*~
+*.swp
+*.swo
+
 # Ignore application configuration
 /config/application.yml
