@@ -15,15 +15,13 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-
-    dependencies = task_params[:dependencies]
-
+    dependencies = params[:task][:dependency_ids]
+    dependencies = dependencies.map {|d| Task.find(d) unless d == "" }
+    dependencies.pop
     @task.dependencies << dependencies
-
     @task.save
 
     @project = @task.project
-
     @tasks = @project.tasks
   end
 
@@ -33,6 +31,7 @@ class TasksController < ApplicationController
 
   def edit
     @project = Project.find(params[:project_id])
+    @dependencies = @task.dependencies
   end
 
   def update 
@@ -42,7 +41,6 @@ class TasksController < ApplicationController
     dependencies = dependencies.map {|d| Task.find(d) unless d == "" }
     dependencies.pop
     @task.dependencies << dependencies
-    binding.pry
 
     @project = @task.project
     @tasks = @project.tasks
@@ -132,7 +130,7 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params.require(:task).permit(:project_id, :start_date, :duration, :name, :description, :completed, :percent_complete, dependencies: [:dependent_id])
+      params.require(:task).permit(:project_id, :start_date, :duration, :name, :description, :completed, :percent_complete, dependency_ids: [:dependent_id])
     end
 
     def set_task

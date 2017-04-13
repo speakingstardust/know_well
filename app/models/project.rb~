@@ -30,9 +30,9 @@ class Project < ActiveRecord::Base
       row << task.description
       row << task.start_date
       row << task.end_date
-      row << task.duration
+      row << days_to_milli(task.duration)
       row << task.percent_complete
-      row << task.percent_complete
+      row << task.
     end
   end
 

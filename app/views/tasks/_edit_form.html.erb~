@@ -9,7 +9,7 @@
         <%= f.input :description %>
         <%= f.input :start_date %>
         <%= f.input :duration, hint: "Please give duration in whole number of days" %>
-        <%= f.input :dependencies, collection: @project.tasks, label_method: :id, value_method: :name, as: :check_boxes %>
+        <%= f.association :dependencies %>
         <%= f.input :percent_complete %>
         <%= f.input :completed?, as: :boolean %>
 
