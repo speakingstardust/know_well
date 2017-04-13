@@ -26,6 +26,12 @@
   </div>
 </div>
 <div class="row">
+  <div id="chart"></div>
+  <% if @tasks.any? %>
+    <%= render_chart @chart, 'chart' %>
+  <% end %>
+</div>
+<div class="row">
   <div class="col-md-12">
     <h4>Tasks</h4>
     <table class="table">
@@ -39,6 +45,7 @@
         <th>End Date</th>
         <th>Percent Complete</th>
         <th>Completed?</th>
+        <th colspan="3"></th>
       </thead>
       <tbody class="task-index">
         <%= render 'tasks/index' %>
