@@ -1,3 +1,4 @@
+require "pry"
 class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy]
   before_action :authenticate_any!
@@ -15,11 +16,19 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
+    dependencies = task_params[:dependencies]
+
+    @task.dependencies << dependencies
+
     @task.save
 
     @project = @task.project
 
     @tasks = @project.tasks
+  end
+
+  def show
+    @task = Task.find(params[:id])
   end
 
   def edit
@@ -28,6 +37,10 @@ class TasksController < ApplicationController
 
   def update 
     @task.update_attributes(task_params)
+
+    dependencies = params[:dependencies]
+    binding.pry
+    @task.dependencies << dependencies
 
     @project = @task.project
     @tasks = @project.tasks
@@ -117,7 +130,7 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params.require(:task).permit(:project_id, :start_date, :duration, :name, :description, :completed, :percent_complete)
+      params.require(:task).permit(:project_id, :start_date, :duration, :name, :description, :completed, :percent_complete, dependencies: [:dependent_id])
     end
 
     def set_task

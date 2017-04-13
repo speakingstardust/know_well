@@ -2,7 +2,7 @@ require "pry"
 class Task < ActiveRecord::Base
   belongs_to :project
   has_many :dependencies, class_name: "Task", foreign_key: "dependent_id"
-  belongs_to :dependent, class_name: "Task"
+  belongs_to :dependent, class_name: "Task", foreign_key: "dependent_id"
 
   acts_as_list scope: :project
 
