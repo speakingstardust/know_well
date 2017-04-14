@@ -69,9 +69,6 @@ gem 'acts_as_list'
 # Remotipart gem for jQuery AJAX File Uploads
 gem 'remotipart', '~> 1.2'
 
-# Google_Visular gem wrapper for Google Charts API
-gem "google_visualr", ">=2.5"
-
 gem 'gon'
 
 # Use Capistrano for deployment

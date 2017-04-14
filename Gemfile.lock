@@ -127,7 +127,6 @@ GEM
       json
       multi_json
       request_store (>= 1.0)
-    google_visualr (2.5.1)
     hirb (0.7.3)
     i18n (0.8.1)
     jbuilder (2.6.3)
@@ -322,7 +321,6 @@ DEPENDENCIES
   faker
   figaro
   gon
-  google_visualr (>= 2.5)
   hirb
   jbuilder (~> 2.0)
   jquery-rails
