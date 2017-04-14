@@ -1,2 +1,8 @@
-<h1>Projects#new</h1>
-<p>Find me in app/views/projects/new.html.erb</p>
+<% provide(:title, "New Project") %>
+<div class="page-header">
+  <h1 class="text-center">New Project</h1>
+</div>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', projects_path, class: "btn btn-primary" %>

@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :user
+  belongs_to :admin
   has_many :tasks, -> { order(position: :asc) }
   has_many :progress_notes
 

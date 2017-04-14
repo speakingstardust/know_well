@@ -12,7 +12,11 @@ class ProjectsController < ApplicationController
 
   def create 
     @project = Project.new(project_params)
-    @project.user = pundit_user
+    if pundit_user.is_admin? 
+      @project.admin = pundit_user
+    else
+      @project.user = pundit_user
+    end
 
     if @project.save
       redirect_to @project
