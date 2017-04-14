@@ -28,11 +28,8 @@ class ProjectsController < ApplicationController
     @progress_notes = @project.progress_notes
     @tasks = @project.tasks
     if @tasks.any? 
-      data_table = @project.generate_gantt_chart_data_table
-      height = @tasks.count * 46
-      opts = { version: "1.1", height: height }
-
-      @chart = GoogleVisualr::Interactive::GanttChart.new(data_table, opts)
+      gon.rows = @project.generate_gantt_chart_rows
+      @height = @tasks.count * 50 
     end
   end
 

@@ -25,13 +25,12 @@
     <p><%= @project.status.titleize %></p>
   </div>
 </div>
-<div class="row">
-  <h4 class="text-center">Gantt Chart</h4>
-  <div id="chart"></div>
-  <% if @tasks.any? %>
-    <%= render_chart @chart, 'chart' %>
-  <% end %>
-</div>
+<% if @tasks.any? %>
+  <div class="row">
+    <h4 class="text-center">Gantt Chart</h4>
+    <%= render 'chart' %>
+  </div>
+<% end %>
 <div class="row">
   <div class="col-md-12">
     <h4>Tasks</h4>

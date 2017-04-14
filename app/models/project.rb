@@ -23,29 +23,30 @@ class Project < ActiveRecord::Base
     data_table.new_column('number', 'Percent Complete')
     data_table.new_column('string', 'Dependencies')
 
-    rows = []
+    self.generate_gantt_chart_rows
+
+    data_table.add_rows(@rows)
+    return data_table
+  end
+
+  def generate_gantt_chart_rows
+    @rows = []
     self.tasks.each do |task|
       row = []
       row << task.id.to_s
       row << task.name
-      row << task.start_date
-      row << task.end_date
+      row << task.start_date.to_datetime.to_f * 1000
+      row << task.end_date.to_datetime.to_f * 1000
       row << days_to_milli(task.duration)
-      if task.percent_complete.nil?
-        row << 0
-      else
-        row << task.percent_complete
-      end
+      task.percent_complete.nil? ? row << 0 : row << task.percent_complete
       dependencies = []
       task.dependencies.each do |d|
         dependencies << d.id
       end
       row << dependencies.join(', ')
-      rows << row
+      @rows << row
     end
-
-    data_table.add_rows(rows)
-    return data_table
+    return @rows
   end
 
 end
