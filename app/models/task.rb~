@@ -1,8 +1,7 @@
 require "pry"
 class Task < ActiveRecord::Base
   belongs_to :project
-  has_many :dependencies, class_name: "Task", foreign_key: "dependent_id"
-  belongs_to :dependent, class_name: "Task", foreign_key: "dependent_id"
+  has_and_belongs_to_many :dependencies, class_name: "Task", foreign_key: "dependent_id"
 
   acts_as_list scope: :project
 
@@ -23,6 +22,7 @@ class Task < ActiveRecord::Base
 
   def uncomplete
     self.completed = false
+    self.percent_complete = 0
   end
 
   def up

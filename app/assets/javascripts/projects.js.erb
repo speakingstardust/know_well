@@ -3,16 +3,16 @@ ready = function () {
   google.charts.load('current', { packages: ['gantt']});
   google.charts.setOnLoadCallback(drawChart);
 
-  // function daysToMiliseconds(days) {
+  //function daysToMiliseconds(days) {
   //  return days * 24 * 60 * 60 * 1000;
   // }
 
   function parse_rows(rows) {
     rows.forEach(function(row) {
-      row[2] = new Date(row[2]);
       row[3] = new Date(row[3]);
-      if (row[6] === "") {
-        row[6] = null;
+      row[4] = new Date(row[4]);
+      if (row[7] === "") {
+        row[7] = null;
       }
     });
     return rows;
@@ -23,6 +23,7 @@ ready = function () {
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Task ID');
   data.addColumn('string', 'Task Name');
+  data.addColumn('string', 'Resource');
   data.addColumn('date', 'Start Date');
   data.addColumn('date', 'End Date');
   data.addColumn('number', 'Duration');

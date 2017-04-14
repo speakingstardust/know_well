@@ -47,9 +47,13 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy 
-    redirect_to projects_url, notice: "#{@project.name} Successullt destroyed."
+    redirect_to projects_url, notice: "#{@project.name} Successully destroyed."
   end 
 
+  def master_gantt
+    gon.rows = Project.generate_master_rows  
+    gon.height = Task.count * 50
+  end
   private
     def set_project
       @project = Project.find(params[:id])

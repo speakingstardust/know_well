@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
     @tasks = @project.tasks
     if @tasks.any? 
       gon.rows = @project.generate_gantt_chart_rows
-      gon.height = @tasks.count * 50 
+      gon.height = @tasks.count * 70 
     end
   end
 
@@ -50,6 +50,10 @@ class ProjectsController < ApplicationController
     redirect_to projects_url, notice: "#{@project.name} Successully destroyed."
   end 
 
+  def master_gantt
+    gon.rows = Project.generate_master_rows  
+    gon.height = Task.count * 50
+  end
   private
     def set_project
       @project = Project.find(params[:id])

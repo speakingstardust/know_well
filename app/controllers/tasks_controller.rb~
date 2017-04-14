@@ -37,7 +37,7 @@ class TasksController < ApplicationController
   def update 
     @task.update_attributes(task_params)
 
-    dependencies = params[:task][:dependencies]
+    dependencies = params[:task][:dependency_ids]
     dependencies = dependencies.map {|d| Task.find(d) unless d == "" }
     dependencies.pop
     @task.dependencies << dependencies

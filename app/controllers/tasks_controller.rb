@@ -41,6 +41,7 @@ class TasksController < ApplicationController
     dependencies = dependencies.map {|d| Task.find(d) unless d == "" }
     dependencies.pop
     @task.dependencies << dependencies
+    @task.save
 
     @project = @task.project
     @tasks = @project.tasks

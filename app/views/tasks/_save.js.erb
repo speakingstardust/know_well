@@ -6,4 +6,5 @@ $("ul.errors").html("");
 <% else %>
     $("#task-modal").modal("hide");
     $(".task-index").html("<%= j render 'index' %>");
+    $("#chart").hide.html("<%= j render 'projects/chart' %>").fadeIn('fast');
 <% end %>
