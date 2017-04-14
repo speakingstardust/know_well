@@ -1,6 +1,8 @@
 <% provide(:title, "Project Home") %>
 <div class="page-header">
-  <h1 class="text-center"><%= "#{@project.name}" %> Home </h1>
+  <%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-primary pull-right" %>
+  <%= link_to "Project List", projects_path, class: "btn btn-primary pull-left" %>
+  <h1 class="text-center" style="margin-left: 80px;"><%= "#{@project.name}" %> Home </h1>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -16,13 +18,13 @@
     <h4 class="panel-title">Department</h4>
   </div>
   <div class="panel-body">
-    <p><%= @project.department %></p>
+    <p><%= @project.department.try(:humanize) %></p>
   </div>
   <div class="panel-heading">
     <h4 class="panel-title">Status</h4>
   </div>
   <div class="panel-body">
-    <p><%= @project.status.titleize %></p>
+    <p><%= @project.status.try(:titleize) %></p>
   </div>
 </div>
 <% if @tasks.any? %>

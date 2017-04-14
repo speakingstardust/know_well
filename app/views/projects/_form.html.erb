@@ -2,5 +2,6 @@
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :department, as: :select, collection: Project.departments.map {|key, value| [key.humanize, key] } %>
+  <%= f.input :status, as: :select, collection: Project.statuses.map {|key, value| [key.humanize, key] } %>
   <%= f.submit %>
 <% end %>

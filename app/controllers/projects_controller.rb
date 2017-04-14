@@ -19,13 +19,21 @@ class ProjectsController < ApplicationController
     end
 
     if @project.save
-      redirect_to @project
+      redirect_to @project, notice: "Project successfully created."
     else
       render :new
     end
   end
 
   def edit
+  end
+
+  def update
+    if @project.update_attributes(project_params)
+      redirect_to @project, notice: 'Project Successfully updated.' 
+    else 
+      render "edit"
+    end
   end
 
   def show
@@ -36,6 +44,11 @@ class ProjectsController < ApplicationController
       gon.height = @tasks.count * 50 
     end
   end
+
+  def destroy
+    @project.destroy 
+    redirect_to projects_url, notice: "#{@project.name} Successully destroyed."
+  end 
 
   private
     def set_project
