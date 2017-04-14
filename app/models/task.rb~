@@ -18,6 +18,7 @@ class Task < ActiveRecord::Base
 
   def complete
     self.completed = true
+    self.percent_complete = 100
   end
 
   def uncomplete

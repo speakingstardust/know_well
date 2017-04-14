@@ -38,11 +38,7 @@ class Project < ActiveRecord::Base
       row << task.start_date.to_datetime.to_f * 1000
       row << task.end_date.to_datetime.to_f * 1000
       row << days_to_milli(task.duration)
-      if task.percent_complete.nil?
-        row << 0
-      else
-        row << task.percent_complete
-      end
+      task.percent_complete.nil? ? row << 0 : row << task.percent_complete
       dependencies = []
       task.dependencies.each do |d|
         dependencies << d.id
