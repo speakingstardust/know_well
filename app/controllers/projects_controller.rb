@@ -18,10 +18,6 @@ class ProjectsController < ApplicationController
       @project.user = pundit_user
     end
 
-    unless pundit_user.is_admin? 
-      pundit_user.add_role :owner, @project
-    end
-
     if @project.save
       redirect_to @project, notice: "Project successfully created."
     else
@@ -30,9 +26,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    authorize @project
   end
 
   def update
+    authorize @project
     if @project.update_attributes(project_params)
       redirect_to @project, notice: 'Project Successfully updated.' 
     else 
@@ -41,6 +39,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    authorize @project
     @progress_notes = @project.progress_notes
     @tasks = @project.tasks
     if @tasks.any? 
@@ -50,14 +49,13 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    if @project.user == pundit_user
-      pundit_user.remove_role :owner, @project
-    end
+    authorize @project
     @project.destroy 
     redirect_to projects_url, notice: "#{@project.name} Successully destroyed."
   end 
 
   def master_gantt
+    authorize Project
     gon.rows = Project.generate_master_rows  
     gon.height = Task.count * 50
   end
