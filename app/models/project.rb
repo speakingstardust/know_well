@@ -4,10 +4,20 @@ class Project < ActiveRecord::Base
   has_many :tasks, -> { order(position: :asc) }
   has_many :progress_notes, -> { order(created_at: :asc) }
 
+  resourcify
+
   validates :name, presence: true
 
   enum status: [:active, :urgent, :low, :suspended, :canceled, :completed]
   enum department: [:lab, :sales, :it, :production]
+
+  def self.owned_by(user)
+    if user.is_admin? 
+      where(admin: user)
+    else
+      where(user: user)
+    end
+  end
 
   def days_to_miliseconds(days)
     days * 24 * 60 * 60 * 1000

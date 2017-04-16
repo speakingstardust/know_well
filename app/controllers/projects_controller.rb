@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :authenticate_any!
 
   def index
-    @projects = Project.all
+    @projects = policy_scope Project
   end
 
   def new
@@ -16,6 +16,10 @@ class ProjectsController < ApplicationController
       @project.admin = pundit_user
     else
       @project.user = pundit_user
+    end
+
+    unless pundit_user.is_admin? 
+      pundit_user.add_role :owner, @project
     end
 
     if @project.save
@@ -46,6 +50,9 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    if @project.user == pundit_user
+      pundit_user.remove_role :owner, @project
+    end
     @project.destroy 
     redirect_to projects_url, notice: "#{@project.name} Successully destroyed."
   end 
