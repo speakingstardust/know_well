@@ -35,7 +35,11 @@ ready = function () {
   data.addRows(rows);
 
   var options = {
-    height: gon.height
+    height: gon.height, 
+    gantt: {
+      criticalPathEnabled: gon.criticalPath
+
+    }
   };
 
   var chart = new google.visualization.Gantt(document.getElementById('chart'));

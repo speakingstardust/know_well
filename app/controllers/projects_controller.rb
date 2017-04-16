@@ -44,7 +44,8 @@ class ProjectsController < ApplicationController
     @tasks = @project.tasks
     if @tasks.any? 
       gon.rows = @project.generate_gantt_chart_rows
-      gon.height = @tasks.count * 70 
+      gon.height = @tasks.count * 50 
+      gon.criticalPath = true
     end
   end
 
@@ -58,6 +59,7 @@ class ProjectsController < ApplicationController
     authorize Project
     gon.rows = Project.generate_master_rows  
     gon.height = Task.count * 50
+    gon.criticalPath = false
   end
   private
     def set_project
