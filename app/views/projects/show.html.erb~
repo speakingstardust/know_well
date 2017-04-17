@@ -1,6 +1,6 @@
 <% provide(:title, "Project Home") %>
 <div class="page-header">
-  <%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-primary pull-right" %>
+  <%= link_to "Edit Project Details", edit_project_path(@project), class: "btn btn-primary pull-right" %>
   <%= link_to "Project List", projects_path, class: "btn btn-primary pull-left" %>
   <h1 class="text-center" style="margin-left: 80px;"><%= "#{@project.name}" %> Home </h1>
 </div>
