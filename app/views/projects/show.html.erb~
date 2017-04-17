@@ -60,7 +60,7 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <h4>Progress Notes</h4>
+    <h4 class="text-center">Progress Notes</h4>
     <table class="table">
       <thead>
         <th>Date</th>
