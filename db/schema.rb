@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327152825) do
+ActiveRecord::Schema.define(version: 20170414170603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 20170327152825) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  create_table "dependencies", id: false, force: :cascade do |t|
+    t.integer "task_id"
+    t.integer "dependent_task_id"
+  end
+
+  add_index "dependencies", ["dependent_task_id", "task_id"], name: "index_dependencies_on_dependent_task_id_and_task_id", unique: true, using: :btree
+  add_index "dependencies", ["task_id", "dependent_task_id"], name: "index_dependencies_on_task_id_and_dependent_task_id", unique: true, using: :btree
 
   create_table "jig_order_line_items", force: :cascade do |t|
     t.integer  "repaired"
@@ -130,6 +138,34 @@ ActiveRecord::Schema.define(version: 20170327152825) do
   add_index "jigs", ["customer_id"], name: "index_jigs_on_customer_id", using: :btree
   add_index "jigs", ["jig_order_line_item_id"], name: "index_jigs_on_jig_order_line_item_id", using: :btree
 
+  create_table "progress_notes", force: :cascade do |t|
+    t.integer  "project_id"
+    t.text     "note"
+    t.string   "created_by"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+  end
+
+  add_index "progress_notes", ["project_id"], name: "index_progress_notes_on_project_id", using: :btree
+
+  create_table "projects", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "status"
+    t.integer  "department"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "admin_id"
+  end
+
+  add_index "projects", ["admin_id"], name: "index_projects_on_admin_id", using: :btree
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
   create_table "report_line_items", force: :cascade do |t|
     t.integer  "subtotal_cleaned"
     t.integer  "subtotal_repaired"
@@ -188,6 +224,24 @@ ActiveRecord::Schema.define(version: 20170327152825) do
 
   add_index "signatures", ["jig_work_order_id"], name: "index_signatures_on_jig_work_order_id", using: :btree
 
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "project_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "duration"
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "completed"
+    t.integer  "user_id"
+    t.integer  "percent_complete"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "position"
+  end
+
+  add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
+  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -226,5 +280,9 @@ ActiveRecord::Schema.define(version: 20170327152825) do
   add_foreign_key "jig_work_order_line_items", "jig_work_orders"
   add_foreign_key "jig_work_order_line_items", "jigs"
   add_foreign_key "jig_work_orders", "customers"
+  add_foreign_key "progress_notes", "projects"
+  add_foreign_key "projects", "users"
   add_foreign_key "signatures", "jig_work_orders"
+  add_foreign_key "tasks", "projects"
+  add_foreign_key "tasks", "users"
 end

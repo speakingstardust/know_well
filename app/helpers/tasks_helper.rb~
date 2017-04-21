@@ -1,0 +1,8 @@
+module TasksHelper
+  def resort_order(project)
+    project.tasks.order(:order).each_with_index do |t,i|
+      t.order = 1
+      t.save
+    end
+  end
+end

@@ -63,6 +63,14 @@ gem 'pundit'
 # State Machine Gem 
 gem 'aasm'
 
+# Acts as List 
+gem 'acts_as_list'
+
+# Remotipart gem for jQuery AJAX File Uploads
+gem 'remotipart', '~> 1.2'
+
+gem 'gon'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

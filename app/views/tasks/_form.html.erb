@@ -1,0 +1,24 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= simple_form_for @task, url: project_tasks_path, remote: true, html: { style: "display:inline;" } do |f| %>
+      <div class="modal-body">
+        <ul class="errors"></ul>
+        <%= f.hidden_field :project_id, value: @project.id %>
+
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :start_date %>
+        <%= f.input :duration, hint: "Please give duration in whole number of days" %>
+        <%= f.association :dependencies, as: :check_boxes, collection: @project.tasks %>
+        <%= f.input :percent_complete %>
+        <%= f.input :completed?, as: :boolean %>
+
+      </div>
+      <div class="modal-footer">
+        <%= f.submit class: "btn btn-primary" %>
+        <%= link_to "Cancel", "#", class: "btn", data: { dismiss: "modal" } %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

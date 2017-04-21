@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require jquery-readyselector
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker

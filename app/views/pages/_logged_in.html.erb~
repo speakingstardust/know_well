@@ -1,7 +1,7 @@
 <div class="page-header">
-	<h1 class="text-center">Home Navigation Page</h1>
+	<h1 class="text-center">Navigation Page</h1>
 </div>
-<div class="col-md-12">
+<div class="row">
 	<div class="col-xs-12 col-sm-6 col-md-4">
 		<div class="thumbnail">
 			<%= image_tag "clean_jigs.jpg", alt: "Picture of Nest Jig" %>
@@ -23,6 +23,14 @@
 			<%= image_tag "work_orders_management.jpg", alt: "Work Orders Management Icon" %>
 			<div class="caption center">
 				<%= link_to "Work Orders Management", work_orders_management_path, class: "btn btn-block btn-primary" %>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-4">
+		<div class="thumbnail">
+			<%= image_tag "project_logo.png", alt: "Project Management Icon" %>
+			<div class="caption center">
+				<%= link_to "Project Management", projects_path, class: "btn btn-block btn-primary" %>
 			</div>
 		</div>
 	</div>

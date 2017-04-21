@@ -9,6 +9,20 @@ Rails.application.routes.draw do
   end
   devise_for :admins
   resources :signatures, only: [:new, :destroy, :create]
+  resources :projects do
+    resources :tasks do
+      get "delete"
+      put :complete
+      put :uncomplete
+      put :up
+      put :down
+      put :top
+      put :bottom
+    end
+    resources :progress_notes do
+      get "delete"
+    end
+  end
   resources :customers
   resources :jigs
   resources :jig_orders
@@ -18,6 +32,7 @@ Rails.application.routes.draw do
   scope "/admin" do 
     resources :users
   end
+  get :master_gantt, to: 'projects#master_gantt', as: 'master_gantt'
   get 'jig_work_orders/packing_slip/:id', to: 'jig_work_orders#packing_slip', as: 'packing_slip'
   get 'work_orders_management' => "pages#work_orders", as: 'work_orders_management'
   get 'jig_work_orders/print/:id', to: 'jig_work_orders#print', as: 'print_jig_work_order'

@@ -1,0 +1,25 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= simple_form_for @progress_note, url: project_progress_note_path(@project.id, @progress_note.id), remote: true, html: { multipart: true, style: "display:inline;" } do |f| %>
+      <div class="modal-body">
+        <ul class="errors"></ul>
+
+        <%= f.hidden_field :project_id, value: @project.id %>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+        <%= f.input :note, input_html: { size: "40x10" } %>
+
+        <%= f.file_field :attachment, hint: "Only PDF, PAGES, KEYNOTE, NUMBERS, EXCEL, WORD, TEXT, JPEG, JPG, or PNG files are allowed." %>
+        <div class="well">
+        <strong>File Upload Info:</strong>
+          If you are uploading a file there will be a slight delay while file is uploaded in the background. 
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <%= f.submit class: "btn btn-primary" %>
+        <%= link_to "Cancel", "#", class: "btn", data: { dismiss: "modal" } %>
+      </div>
+    <% end %>
+  </div>
+</div>

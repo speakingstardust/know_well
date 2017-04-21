@@ -1,4 +1,27 @@
 FactoryGirl.define do
+  factory :progress_note do
+    project nil
+    note "MyText"
+    created_by "MyString"
+  end
+  factory :task do
+    project nil
+    start_date "2017-04-04"
+    end_date "2017-04-04"
+    duration 1
+    name "MyString"
+    description "MyText"
+    completed false
+    user_id 1
+    percent_complete 1
+  end
+  factory :project do
+    user nil
+    name "MyString"
+    description "MyText"
+    status 1
+    department 1
+  end
   factory :signature do
     name "MyString"
     signature "MyText"
