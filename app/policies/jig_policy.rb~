@@ -18,7 +18,7 @@ class JigPolicy < ApplicationPolicy
     user.is_admin? or user.has_role? :shop_supervisor
   end
 
-  def edt?
+  def edit?
     user.is_admin? or user.has_role? :shop_supervisor
   end
 

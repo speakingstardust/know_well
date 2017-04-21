@@ -1,7 +1,7 @@
 <% provide(:title, "Jig List") %>
 <p id="notice"><%= notice %></p>
 <div class="page-header">
-  <h1>Jig Listing</h1>
+  <h1 class="text-center">Jig Listing</h1>
   <%= link_to "Create Jig", new_jig_path, class: "btn btn-primary pull-right" %>
 </div>
 
@@ -18,6 +18,7 @@
             <%= link_to "Clear Search", request.path, class: "cancel-button btn btn-info btn-block" %>
     <% end %>
 </div>
+<%= paginate @jigs %>
 <table class="table">
   <thead>
     <tr>

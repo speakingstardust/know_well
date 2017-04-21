@@ -22,9 +22,13 @@
 <% end %>
 <p>
 	<strong>Jig Photo:</strong>
-  <div class="img img-responsive">
-    <%= image_tag @jig.jig_photo.url(:medium) %>
-  </div>
+  <% if @jig.jig_photo.exists? %>
+    <div class="img img-responsive">
+      <%= image_tag @jig.jig_photo.url(:medium) %>
+    </div>
+  <% else %>
+    <p>No Image Available</p>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_jig_path(@jig) %> |
