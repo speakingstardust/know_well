@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Website</th>
+      <th>Phone Number</th>
+      <th colspan="3"></th>
+    </tr> 
+  </thead>
+  <tbody>
+    <% @manufacturers.each do |manufacturer| %>
+      <tr>
+        <th scope="row"><%= manufacturer.name %></th>
+        <td><%= link_to "#{manufacturer.name}'s Website", manufacturer.website %></td>
+        <td><%= manufacturer.phone %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
