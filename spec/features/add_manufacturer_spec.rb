@@ -1,8 +1,12 @@
 require "rails_helper"
 
-describe "add manufacturer", type: :controller do 
+describe "add manufacturer", type: :feature do 
 
-  login_user
+  fixtures :all
+  include Warden::Test::Helpers
+  before(:example) do
+    login_as users(:user)
+  end
 
   it "allows a user to create a manufacturer" do 
     visit new_manufacturer_path
