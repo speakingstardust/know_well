@@ -13,6 +13,9 @@
         <th scope="row"><%= manufacturer.name %></th>
         <td><%= link_to "#{manufacturer.name}'s Website", manufacturer.website %></td>
         <td><%= manufacturer.phone %></td>
+        <td><%= link_to 'Show', manufacturer %></td>
+        <td><%= link_to 'Edit', edit_manufacturer_path(manufacturer) %></td>
+        <td><%= link_to 'Destroy', manufacturer, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
