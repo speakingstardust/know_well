@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'manufacturers/index'
+
+  get 'manufacturers/new'
+
+  get 'manufacturers/edit'
+
+  get 'manufacturers/show'
+
   resources :jig_work_orders do
     put :receive
     put :complete
