@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Manufacturer, type: :model do
-  describe "attributes" do 
+  describe "validations" do 
     let(:manufacturer) { Manufacturer.new }
 
-    it "can have a name set" do 
+    it "is valid with valid attributes" do 
+      second_manufacturer = Manufacturer.create(name: "Second Manufacturer")
       manufacturer.name = "Test Manufacturer Name" 
 
       expect(manufacturer).to be_valid
