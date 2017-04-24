@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :manufacturer do
+    name "MyString"
+    website "MyString"
+    phone "MyString"
+  end
   factory :progress_note do
     project nil
     note "MyText"
