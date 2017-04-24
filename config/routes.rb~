@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'manufacturers/index'
+
+  get 'manufacturers/new'
+
+  get 'manufacturers/edit'
+
+  get 'manufacturers/show'
+
   resources :jig_work_orders do
     put :receive
     put :complete
@@ -32,7 +40,7 @@ Rails.application.routes.draw do
   scope "/admin" do 
     resources :users
   end
-  get 'projects/master_gantt', to: 'projects#master_gantt', as: 'master_gantt'
+  get :master_gantt, to: 'projects#master_gantt', as: 'master_gantt'
   get 'jig_work_orders/packing_slip/:id', to: 'jig_work_orders#packing_slip', as: 'packing_slip'
   get 'work_orders_management' => "pages#work_orders", as: 'work_orders_management'
   get 'jig_work_orders/print/:id', to: 'jig_work_orders#print', as: 'print_jig_work_order'
