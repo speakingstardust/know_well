@@ -1,0 +1,6 @@
+<%= simple_form_for @manufacturer, html: { class: "form-horizontal" } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :website, hint: 'Be sure to copy and paste the entire homepage url from the browswer window, this will help to ensure the link created from this field will work properly.' %>
+  <%= f.input :phone %>
+  <%= f.submit %>
+<% end %>

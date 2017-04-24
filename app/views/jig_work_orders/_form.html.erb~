@@ -9,6 +9,7 @@
     <%= f.input :pickup_date %> 
     <%= f.input :pickup_time %>
     <%= f.input :returned, include_blank: true %>
+    <%= f.input :return_time %>
     <%= f.input :notes %>
     <h4 class="text-center">Jigs</h4>
     <div id="jig_work_order_line_items">

@@ -1,5 +1,5 @@
 <div class="container">
-  <%= simple_form_for @jig_work_order, html: { class: "form-horzontal" } do |f| %>
+  <%= simple_form_for @jig_work_order, html: { class: "form-horizontal" } do |f| %>
     <% if action_name == "new" %>
       <%= f.association :customer, hint: "WARNING: Do not change Customer here! If the customer is not correct, please go back to the Work Order Management page and create a new Jig Work Order from there."  %> 
     <% else %>
