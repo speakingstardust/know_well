@@ -46,7 +46,7 @@ RSpec.describe "Manufacturer Management", type: :feature do
   end
 
   describe "Destroy" do
-    it "allows a user to destroy an existing manufacturer" do
+    it "allows a user to destroy an existing manufacturer", js: true do
       @manufacturer = FactoryGirl.create(:manufacturer)
 
       visit manufacturers_path
