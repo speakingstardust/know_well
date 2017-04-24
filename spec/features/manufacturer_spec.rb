@@ -25,4 +25,23 @@ RSpec.describe "Manufacturer Management", type: :feature do
       expect(page).to have_content("555-555-5555")
     end
   end
+
+  describe "Edit" do 
+    it "allows a user to edit an existing manufacturer" do 
+      @manufacturer = FactoryGirl.create(:manufacturer)
+
+      visit edit_manufacturer_path(@manufacturer)
+      fill_in "Name", with: "New Manufacturer Name"
+      fill_in "Website", with: "new.manufacturer.com"
+      fill_in "Phone", with: "888-888-8888"
+      click_on "Update Manufacturer" 
+
+      expect(page).to have_current_path(manufacturer_path(@manufacturer))
+
+      visit manufacturers_path
+      expect(page).to have_content("New Manufacturer Name")
+      expect(page).to have_css("a", text: "New Manufacturer Name's Website")
+      expect(page).to have_content("888-888-8888")
+    end
+  end
 end

@@ -80,7 +80,7 @@ FactoryGirl.define do
   end
 
   factory :user do
-    email "test@example.com"
+    email "foo@bar.com"
     first_name "John"
     last_name "Doe"
     password "password"
