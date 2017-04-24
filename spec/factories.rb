@@ -80,7 +80,9 @@ FactoryGirl.define do
   end
 
   factory :user do
-    email { Faker::Internet.email }
+    email "foo@bar.com"
+    first_name "John"
+    last_name "Doe"
     password "password"
     password_confirmation "password"
   end
