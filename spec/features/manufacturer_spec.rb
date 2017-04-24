@@ -44,4 +44,18 @@ RSpec.describe "Manufacturer Management", type: :feature do
       expect(page).to have_content("888-888-8888")
     end
   end
+
+  describe "Destroy" do
+    it "allows a user to destroy an existing manufacturer" do
+      @manufacturer = FactoryGirl.create(:manufacturer)
+
+      visit manufacturers_path
+      click_link "Destroy"
+      page.accept_alert "Are you sure?" do 
+        click_button 'Ok'
+      end
+
+      expect(page).to_not have_content(@manufacturer.name)
+    end
+  end
 end
