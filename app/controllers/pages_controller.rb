@@ -6,6 +6,9 @@ class PagesController < ApplicationController
   def jig_reporting
   end
 
+  def inventory_home
+  end
+
   def work_orders
     @customers = Customer.all
   end

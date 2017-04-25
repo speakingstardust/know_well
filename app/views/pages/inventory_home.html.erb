@@ -1,0 +1,13 @@
+<% provide(:title, "Inventory Control Home") %>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center">Inventory Control Home</h1>
+  </div>
+</div>
+<div class="row">
+  <h2 class="text-center">Manufacturers</h2>
+  <hr> 
+  <%= link_to "Create New Manufacturer", new_manufacturer_path, class: "btn btn-primary btn-block" %>
+  <hr>
+  <%= link_to "List of Manufacturers", manufacturers_path, class: "btn btn-primary btn-block" %>
+</div>

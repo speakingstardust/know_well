@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get 'manufacturers/index'
-
-  get 'manufacturers/new'
-
-  get 'manufacturers/edit'
-
-  get 'manufacturers/show'
-
   resources :jig_work_orders do
     put :receive
     put :complete
@@ -36,6 +28,7 @@ Rails.application.routes.draw do
   resources :jig_orders
   resources :jig_order_line_items
   resources :reports
+  resources :manufacturers
   devise_for :users
   scope "/admin" do 
     resources :users

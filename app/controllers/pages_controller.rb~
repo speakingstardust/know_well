@@ -14,7 +14,7 @@ class PagesController < ApplicationController
     work_order_type = params[:commit]
     @customer = Customer.find(params[:customer][:customer_id])
     if work_order_type == "Jig Work Order"
-      redirect_to controller: 'jig_work_order', action: 'new', customer: { customer_id: @customer.id }
+      redirect_to controller: 'jig_work_orders', action: 'new', customer: { customer_id: @customer.id }
     end
   end
 end
