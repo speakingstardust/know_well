@@ -22,4 +22,15 @@ RSpec.describe Manufacturer, type: :model do
       expect(manufacturer).to_not be_valid
     end
   end 
+
+  describe "Logic" do 
+    let(:manufacturer) { FactoryGirl.create(:manufacturer) }
+
+    it "should properly format phone numbers to be displayed by number_to_phone" do 
+      manufacturer.phone = "555-555-5555"
+      manufacturer.save 
+
+      expect(manufacturer.phone).to eq("5555555555")
+    end
+  end
 end
