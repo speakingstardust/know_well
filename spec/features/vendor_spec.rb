@@ -73,5 +73,23 @@ RSpec.describe "Vendor Management", type: :feature do
       expect(page).to have_content("888-888-8888")
     end
   end
+
+  describe "Destroy" do 
+    it "allows a user to destroy a vendor" do 
+      @vendor = FactoryGirl.create(:vendor)
+
+      visit vendors_path
+      expect(page).to have_content(@vendor.name)
+
+      within_table("vendors-table") do 
+        expect { 
+          click_on "Destroy" 
+        }.to change(Vendor, :count).by(1)
+      end
+
+      expect(page).to_not have_content(@vendor.name)
+
+    end
+  end
   
 end
