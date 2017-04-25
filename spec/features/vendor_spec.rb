@@ -44,7 +44,7 @@ RSpec.describe "Vendor Management", type: :feature do
 
     expect(page).to have_current_path(vendor_path(@vendor))
     expect(page).to have_content(@vendor.name)
-    expect(page).to have_css("a", text: "#{vendor.name}'s Website")
+    expect(page).to have_css("a", text: "#{@vendor.name}'s Website")
     expect(page).to have_content(@vendor.phone)
   end
  end
