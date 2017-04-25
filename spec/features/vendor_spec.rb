@@ -30,5 +30,23 @@ RSpec.describe "Vendor Management", type: :feature do
     expect(page).to have_content("555-555-5555")
   end
  end 
+
+ describe "Show" do 
+  it "allows a user to show the details of a vendor" do
+    @vendor = FactoryGirl.create(:vendor)
+
+    visit vendors_path
+    expect(page).to have_content(@vendor.name)
+
+    within_table("vendors-table") do
+      click_on "Show"
+    end
+
+    expect(page).to have_current_path(vendor_path(@vendor))
+    expect(page).to have_content(@vendor.name)
+    expect(page).to have_css("a", text: "#{vendor.name}'s Website")
+    expect(page).to have_content(@vendor.phone)
+  end
+ end
   
 end
