@@ -84,7 +84,7 @@ RSpec.describe "Vendor Management", type: :feature do
       within_table("vendors-table") do 
         expect { 
           click_on "Destroy" 
-        }.to change(Vendor, :count).by(1)
+        }.to change(Vendor, :count).by(-1)
       end
 
       expect(page).to_not have_content(@vendor.name)
