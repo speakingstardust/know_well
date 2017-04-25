@@ -1,2 +1,27 @@
-<h1>Manufacturers#show</h1>
-<p>Find me in app/views/manufacturers/show.html.erb</p>
+<% provide(:title, "Manufacturer Details") %>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center"><%= "#{@manufacturer.name}" %> Details</h1>
+  </div>
+</div>
+<div class="row">
+  <p>
+    <strong>Name: </strong>
+    <%= @manufacturer.name %>
+  </p> 
+</div>
+<div class="row">
+  <p>
+    <strong>Website: </strong>
+    <%= link_to "#{@manufacturer.name}'s Website", @manufacturer.website %>
+  </p> 
+</div>
+<div class="row">
+  <p>
+    <strong>Phone Number: </strong>
+    <%= @manufacturer.phone %>
+  </p> 
+</div>
+
+<%= link_to "Back", manufacturers_path %>
+

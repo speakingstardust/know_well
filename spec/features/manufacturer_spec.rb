@@ -45,6 +45,23 @@ RSpec.describe "Manufacturer Management", type: :feature do
     end
   end
 
+  describe "Show" do 
+    it "allows a user to show details of a manufacturer" do 
+      @manufacturer = FactoryGirl.create(:manufacturer)
+
+      visit manufacturers_path
+      expect(page).to have_content(@manufacturer.name)
+
+      within_table("manufacturers-table") do 
+        click_on "Show"
+      end
+      expect(page).to have_current_path(manufacturer_path(@manufacturer))
+      expect(page).to have_content(@manufacturer.name) 
+      expect(page).to have_css("a", text: "#{@manufacturer.name}'s Website")
+      expect(page).to have_content(@manufacturer.phone)
+    end
+  end
+
   describe "Destroy" do
     it "allows a user to destroy an existing manufacturer", js: true do
       @manufacturer = FactoryGirl.create(:manufacturer)
