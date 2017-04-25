@@ -2,43 +2,35 @@ require 'rails_helper'
 
 RSpec.describe Vendor, type: :model do
   describe "validations" do 
-    let (:vendor) { Vendor.new }
+    subject { described_class.new(name: "Test Vendor", website: "www.google.com", phone: "555-555-5555") }
 
     it "is valid with valid attributes" do 
-      second_vendor = Vendor.create(name: "Unique Vendor")
-      vendor.name = "Test Vendor" 
-      vendor.phone = "555-555-5555"
-      vendor.website = "www.google.com"
-
-      expect(vendor).to be_valid
+      expect(subject).to be_valid
     end
 
     it "is not valid without a name" do 
-      vendor.phone = "555-555-5555"
-      vendor.website = "www.google.com"
+      subject.name = nil
 
-      expect(vendor).to_not be_valid
+      expect(subject).to_not be_valid
     end
 
     it "is not valid without a unique name" do 
-      second_vendor = Vendor.create(name: "Test Vendor")
-      vendor.name = "Test Vendor" 
+      second_vendor = Vendor.create(name: "Test Vendor", website: "www.google.com", phone: "555-555-5555")
+      subject.name = "Test Vendor"
 
-      expect(vendor).to_not be_valid
+      expect(subject).to_not be_valid
     end
 
     it "is not valid without a phone number" do 
-      vendor.name = "Test Vendor"
-      vendor.website = "www.google.com"
+      subject.phone = nil
 
-      expect(vendor).to_not be_valid
+      expect(subject).to_not be_valid
     end
 
     it "is not valid without a website" do 
-      vendor.name = "Test Vendor" 
-      vendor.phone = "555-555-5555"
+      subject.website = nil
 
-      expect(vendor).to_not be_valid
+      expect(subject).to_not be_valid
     end
   end
 end
