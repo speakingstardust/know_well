@@ -19,7 +19,7 @@
 <div class="row">
   <p>
     <strong>Phone Number: </strong>
-    <%= @vendor.phone %>
+    <%= number_to_phone(@vendor.phone, area_code: true) %>
   </p> 
 </div>
 

@@ -27,13 +27,14 @@ RSpec.describe "Vendor Management", type: :feature do
     
       expect(page).to have_content("Test Vendor")
       expect(page).to have_css("a", text: "Test Vendor's Website")
-      expect(page).to have_content("555-555-5555")
+      expect(page).to have_content("(555) 555-5555")
     end
   end 
 
   describe "Show" do 
     it "allows a user to show the details of a vendor" do
       @vendor = FactoryGirl.create(:vendor)
+      @vendor.format_phone
 
       visit vendors_path
       expect(page).to have_content(@vendor.name)
@@ -45,7 +46,7 @@ RSpec.describe "Vendor Management", type: :feature do
       expect(page).to have_current_path(vendor_path(@vendor))
       expect(page).to have_content(@vendor.name)
       expect(page).to have_css("a", text: "#{@vendor.name}'s Website")
-      expect(page).to have_content(@vendor.phone)
+      expect(page).to have_content("(555) 555-5555")
     end
   end
 
@@ -64,13 +65,13 @@ RSpec.describe "Vendor Management", type: :feature do
 
       fill_in "Name", with: "New Vendor Name" 
       fill_in "Website", with: "new.vendor.com"
-      fill_in "Phone", with: "888-888-8888"
+      fill_in "Phone", with: "8888888888"
       click_on "Update Vendor"
 
       expect(page).to have_current_path(vendor_path(@vendor))
       expect(page).to have_content("New Vendor Name")
       expect(page).to have_css("a", text: "New Vendor Name's Website")
-      expect(page).to have_content("888-888-8888")
+      expect(page).to have_content("(888) 888-8888")
     end
   end
 

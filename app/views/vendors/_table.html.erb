@@ -12,7 +12,7 @@
       <tr>
         <th scope="row"><%= vendor.name %></th>
         <td><%= link_to "#{vendor.name}'s Website", vendor.website %></td>
-        <td><%= vendor.phone %></td>
+        <td><%= number_to_phone(vendor.phone, area_code: true) %></td>
         <td class="show"><%= link_to 'Show', vendor %></td>
         <td class="edit"><%= link_to 'Edit', edit_vendor_path(vendor) %></td>
         <td class="destroy"><%= link_to 'Destroy', vendor, method: :delete, data: { confirm: "Are you sure?" } %></td>
