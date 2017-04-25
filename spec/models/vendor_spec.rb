@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Vendor, type: :model do
   describe "validations" do 
-    subject { described_class.new(name: "Test Vendor", website: "www.google.com", phone: "555-555-5555") }
+    subject { described_class.new(name: "Test Vendor", website: "www.google.com", phone: "5555555555") }
 
     it "is valid with valid attributes" do 
       expect(subject).to be_valid
@@ -15,7 +15,7 @@ RSpec.describe Vendor, type: :model do
     end
 
     it "is not valid without a unique name" do 
-      second_vendor = Vendor.create(name: "Test Vendor", website: "www.google.com", phone: "555-555-5555")
+      second_vendor = Vendor.create(name: "Test Vendor", website: "www.google.com", phone: "5555555555")
       subject.name = "Test Vendor"
 
       expect(subject).to_not be_valid
@@ -36,4 +36,11 @@ RSpec.describe Vendor, type: :model do
 
   describe "Associations" do
   end
+
+  describe "Logic" do 
+    it "formats a phone number properly before saving" do
+      subject.save
+      expect(subject.phone).to eq("(555) 555-5555")
+    end
+  end 
 end
