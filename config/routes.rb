@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :jig_order_line_items
   resources :reports
   resources :manufacturers
+  resources :vendors
   devise_for :users
   scope "/admin" do 
     resources :users
