@@ -1,7 +1,12 @@
 FactoryGirl.define do
+  factory :vendor do
+    name "MyString"
+    website "MyString"
+    phone "MyString"
+  end
   factory :manufacturer do
     name "Test Manufacturer Name"
-    website "manuacturer.test.com"
+    website "manufacturer.test.com"
     phone "555-555-5555"
   end
   factory :progress_note do

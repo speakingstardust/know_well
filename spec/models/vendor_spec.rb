@@ -33,4 +33,7 @@ RSpec.describe Vendor, type: :model do
       expect(subject).to_not be_valid
     end
   end
+
+  describe "Associations" do
+  end
 end
