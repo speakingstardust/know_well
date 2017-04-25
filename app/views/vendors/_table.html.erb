@@ -1,0 +1,22 @@
+<table class="table" id="vendors-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Website</th>
+      <th>Phone Number</th>
+      <th colspan="3"></th>
+    </tr> 
+  </thead>
+  <tbody>
+    <% @vendors.each do |vendor| %>
+      <tr>
+        <th scope="row"><%= vendor.name %></th>
+        <td><%= link_to "#{vendor.name}'s Website", vendor.website %></td>
+        <td><%= vendor.phone %></td>
+        <td class="show"><%= link_to 'Show', vendor %></td>
+        <td class="edit"><%= link_to 'Edit', edit_vendor_path(vendor) %></td>
+        <td class="destroy"><%= link_to 'Destroy', vendor, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

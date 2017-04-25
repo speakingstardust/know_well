@@ -1,2 +1,9 @@
-<h1>Vendors#index</h1>
-<p>Find me in app/views/vendors/index.html.erb</p>
+<% provide(:title, "Vendors List") %>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center">Vendor List</h1>
+  </div>
+</div>
+<div class="row">
+  <%= render 'table' %>
+</div>
