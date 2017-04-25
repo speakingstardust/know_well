@@ -33,6 +33,12 @@ ActiveRecord::Migration.maintain_test_schema!
 
 Capybara.javascript_driver = :webkit
 
+Capybara::Webkit.configure do |config|
+  config.block_unknown_urls
+  config.ignore_ssl_errors
+  config.skip_image_loading
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -40,7 +46,43 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
+
+  config.before(:suite) do 
+    if config.use_transactional_fixtures? 
+      raise(<<-MSG)
+        Delete the line `config.use_transactional_fixtures = true` from rails_helper.rb
+        (or set it to false) to prevent uncommited transactions being used in 
+        Javascript-dependent specs.
+
+        During testin, the app-under-test that the browser driver connects to 
+        uses a different database connection to the database connection used by
+        the spec. The app's database connection would not be able to access
+        uncommitted transaction data setup over the spec's database connection. 
+      MSG
+    end
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do 
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, type: :feature) do 
+    driver_shares_db_connection_with_specs = Capybara.current_driver == :rack_test
+
+    if !driver_shares_db_connection_with_specs
+      DatabaseCleaner.strategy = :truncation
+    end
+  end
+
+  config.before(:each) do 
+    DatabaseCleaner.start
+  end
+
+  config.append_after(:each) do 
+    DatabaseCleaner.clean
+  end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

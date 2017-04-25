@@ -50,7 +50,11 @@ RSpec.describe "Manufacturer Management", type: :feature do
       @manufacturer = FactoryGirl.create(:manufacturer)
 
       visit manufacturers_path
-      click_link "Destroy"
+      puts current_url
+      binding.pry
+      within_table("manufacturers-table") do
+        click_on "Destroy"
+      end
       page.accept_alert "Are you sure?" do 
         click_button 'Ok'
       end
