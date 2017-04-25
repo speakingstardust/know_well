@@ -38,9 +38,10 @@ RSpec.describe Vendor, type: :model do
   end
 
   describe "Logic" do 
-    it "formats a phone number properly before saving" do
-      subject.save
-      expect(subject.phone).to eq("(555) 555-5555")
+    it "formats a phone number properly for displaying in view" do
+      vendor = FactoryGirl.create(:vendor)
+      vendor.phone = "555-555-5555"
+      expect(subject.phone).to eq("5555555555")
     end
   end 
 end
