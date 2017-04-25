@@ -22,7 +22,7 @@ RSpec.describe "Manufacturer Management", type: :feature do
       visit manufacturers_path
       expect(page).to have_content("Test Manufacturer")
       expect(page).to have_css("a", text: "Test Manufacturer's Website")
-      expect(page).to have_content("555-555-5555")
+      expect(page).to have_content("(555) 555-5555")
     end
   end
 
@@ -41,7 +41,7 @@ RSpec.describe "Manufacturer Management", type: :feature do
       visit manufacturers_path
       expect(page).to have_content("New Manufacturer Name")
       expect(page).to have_css("a", text: "New Manufacturer Name's Website")
-      expect(page).to have_content("888-888-8888")
+      expect(page).to have_content("(888) 888-8888")
     end
   end
 
@@ -58,7 +58,7 @@ RSpec.describe "Manufacturer Management", type: :feature do
       expect(page).to have_current_path(manufacturer_path(@manufacturer))
       expect(page).to have_content(@manufacturer.name) 
       expect(page).to have_css("a", text: "#{@manufacturer.name}'s Website")
-      expect(page).to have_content(@manufacturer.phone)
+      expect(page).to have_content("(555) 555-5555")
     end
   end
 
