@@ -50,13 +50,9 @@ RSpec.describe "Manufacturer Management", type: :feature do
       @manufacturer = FactoryGirl.create(:manufacturer)
 
       visit manufacturers_path
-      puts current_url
-      binding.pry
+      expect(page).to have_content(@manufacturer.name)
       within_table("manufacturers-table") do
         click_on "Destroy"
-      end
-      page.accept_alert "Are you sure?" do 
-        click_button 'Ok'
       end
 
       expect(page).to_not have_content(@manufacturer.name)
