@@ -4,7 +4,9 @@ class Manufacturer < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   def format_phone
-    self.phone.gsub!(/\D/, '')
+    unless self.phone == nil
+      self.phone.gsub!(/\D/, '')
+    end
   end
 
 end

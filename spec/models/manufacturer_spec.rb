@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Manufacturer, type: :model do
   describe "validations" do 
-    let(:manufacturer) { Manufacturer.new }
+    let(:manufacturer) { Manufacturer.new(name: "Test Manufacturer Name", phone: "5555555555", website: "www.manufacturer.test") }
 
     it "is valid with valid attributes" do 
       second_manufacturer = Manufacturer.create(name: "Second Manufacturer")
@@ -12,6 +12,7 @@ RSpec.describe Manufacturer, type: :model do
     end
 
     it "is not valid without a name" do 
+      manufacturer.name = nil
       expect(manufacturer).to_not be_valid
     end 
 
