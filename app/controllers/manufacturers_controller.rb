@@ -36,7 +36,7 @@ class ManufacturersController < ApplicationController
 
   def destroy
     @manufacturer.destroy
-    redirect_to manufacturers_url, notice: "Manfacturer was succefully destroyed."
+    redirect_to manufacturers_url, notice: "Manufacturer was successfully destroyed."
   end
 
   private 
