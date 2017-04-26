@@ -1,0 +1,46 @@
+<table class="table" id="products-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Part Number</th>
+      <th>Manufacturer</th>
+      <th>Vendor</th>
+      <th>Category</th>
+      <th>Container</th>
+      <th>Unit</th>
+      <th>Units/Container</th>
+      <th>Price Per Container</th>
+      <th>Price Per Unit</th>
+      <th>Max On Hand</th>
+      <th>Min On Hand</th>
+      <th>Lead Time</th>
+      <th>Current On Hand</th>
+      <th>Amount Ordered</th>
+      <th colspan="3"></th>
+    </tr> 
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <th scope="row"><%= product.name %></th>
+        <td><%= product.part_number %></td>
+        <td><%= link_to "#{product.manufacturer.name}", manufacturer_path(product.manufacturer) %></td>
+        <td><%= link_to "#{product.vendor.name}", vendor_path(product.vendor) %></td>
+        <td><%= product.category.humanize %></td>
+        <td><%= product.container %></td>
+        <td><%= product.unit %></td>
+        <td><%= product.units_per_container %></td>
+        <td><%= number_to_currency(product.price_per_container) %></td>
+        <td><%= number_to_currency(product.price_per_unit) %></td>
+        <td><%= product.maximum_on_hand %></td>
+        <td><%= product.minimum_on_hand %></td>
+        <td><%= pluralize(product.lead_time, 'day') unless product.lead_time.nil? %></td>
+        <td><%= product.current_on_hand %></td>
+        <td><%= product.order_amount unless product.order_amount.nil? %></td>
+        <td class="show"><%= link_to 'Show', product %></td>
+        <td class="edit"><%= link_to 'Edit', edit_product_path(product) %></td>
+        <td class="destroy"><%= link_to 'Destroy', product, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
