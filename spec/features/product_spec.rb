@@ -71,4 +71,29 @@ RSpec.describe "Product Mangement", type: :feature do
       expect(page).to have_content(product.units_per_container)
     end
   end
+
+  describe "Edit" do 
+    let(:product) { FactoryGirl.create(:product) }
+    
+    it "allows a user to edit the details of a product" do
+      product 
+
+      visit products_path 
+      expect(page).to have_content(product.name)
+
+      within_table("products-table") do 
+        click_on "Edit"
+      end
+
+      expect(page).to have_current_path(edit_product_path(product))
+
+      fill_in "Name", with: "New Name" 
+      fill_in "Lead Time", with: 7 
+      click_on "Update Product"
+
+      expect(page).to have_current_path(product_path(product))
+      expect(page).to have_content("New Name")
+      expect(page).to have_content(7)
+    end
+  end
 end
