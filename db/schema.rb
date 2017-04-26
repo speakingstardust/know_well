@@ -168,6 +168,8 @@ ActiveRecord::Schema.define(version: 20170426135348) do
   end
 
   add_index "products", ["manufacturer_id"], name: "index_products_on_manufacturer_id", using: :btree
+  add_index "products", ["name"], name: "index_products_on_name", unique: true, using: :btree
+  add_index "products", ["part_number"], name: "index_products_on_part_number", using: :btree
   add_index "products", ["vendor_id"], name: "index_products_on_vendor_id", using: :btree
 
   create_table "progress_notes", force: :cascade do |t|
