@@ -2,8 +2,22 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   describe "Validations" do 
-    it "is valid with valid attributes"
-    it "is not valid without a name" 
+    subject { described_class.new(name: "Test Product", part_number: "12345", 
+                                  description: "Test Product Description", 
+                                  container: "Test Container", unit: "Test Unit", 
+                                  units_per_container: 24, price_per_container: 4.50, 
+                                  price_per_unit: 0.18, maximum_on_hand: 4.0, 
+                                  minimum_on_hand: 1.5, lead_time: 14,
+                                  current_on_hand: 2.0, order_amount: 0.0, category: 1) 
+    }
+                                  
+    it "is valid with valid attributes" do
+      expect(subject).to be_valid
+    end
+    it "is not valid without a name" do
+      subject.name = nil 
+      expect(subject).to_not be_valid
+    end
     it "is not valid without a unique name" 
     it "is not valid without a unit" 
     it "is not valid without a container"
