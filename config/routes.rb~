@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'products/index'
+
+  get 'products/show'
+
+  get 'products/new'
+
+  get 'products/edit'
+
   resources :jig_work_orders do
     put :receive
     put :complete
@@ -28,6 +36,7 @@ Rails.application.routes.draw do
   resources :jig_orders
   resources :jig_order_line_items
   resources :reports
+  resources :products
   resources :manufacturers
   resources :vendors
   devise_for :users
