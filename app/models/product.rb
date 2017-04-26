@@ -9,4 +9,5 @@ class Product < ActiveRecord::Base
   validates :price_per_container, presence: true, if: "price_per_unit.nil?"
   validates :price_per_unit, presence: true, if: "price_per_container.nil?"
   validates :maximum_on_hand, presence: true
+  validates :minimum_on_hand, presence: true
 end
