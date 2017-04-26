@@ -3,7 +3,10 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = Product.all
+    @vendors = Vendor.all
+    @manufacturers = Manufacturer.all
+    @q = Product.ransack(params[:q])
+    @products = @q.result.page(params[:page])
   end
 
   def show
