@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425161914) do
+ActiveRecord::Schema.define(version: 20170426135348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,30 @@ ActiveRecord::Schema.define(version: 20170425161914) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "manufacturer_id"
+    t.string   "part_number"
+    t.integer  "vendor_id"
+    t.text     "description"
+    t.string   "container"
+    t.string   "unit"
+    t.integer  "units_per_container"
+    t.float    "price_per_container"
+    t.float    "price_per_unit"
+    t.float    "maximum_on_hand"
+    t.float    "minimum_on_hand"
+    t.integer  "lead_time"
+    t.float    "current_on_hand"
+    t.float    "order_amount"
+    t.integer  "category"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "products", ["manufacturer_id"], name: "index_products_on_manufacturer_id", using: :btree
+  add_index "products", ["vendor_id"], name: "index_products_on_vendor_id", using: :btree
 
   create_table "progress_notes", force: :cascade do |t|
     t.integer  "project_id"
@@ -296,6 +320,8 @@ ActiveRecord::Schema.define(version: 20170425161914) do
   add_foreign_key "jig_work_order_line_items", "jig_work_orders"
   add_foreign_key "jig_work_order_line_items", "jigs"
   add_foreign_key "jig_work_orders", "customers"
+  add_foreign_key "products", "manufacturers"
+  add_foreign_key "products", "vendors"
   add_foreign_key "progress_notes", "projects"
   add_foreign_key "projects", "users"
   add_foreign_key "signatures", "jig_work_orders"

@@ -1,4 +1,22 @@
 FactoryGirl.define do
+  factory :product do
+    name "MyString"
+    manufacturer nil
+    part_number "MyString"
+    vendor nil
+    description "MyText"
+    container "MyString"
+    unit "MyString"
+    units_per_container 1
+    price_per_container 1.5
+    price_per_unit 1.5
+    maximum_on_hand 1.5
+    minimum_on_hand 1.5
+    lead_time 1
+    current_on_hand 1.5
+    order_amount 1.5
+    category 1
+  end
   factory :vendor do
     name "Test Vendor"
     website "vendor.test.com"
