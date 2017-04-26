@@ -48,8 +48,8 @@ RSpec.describe "Product Mangement", type: :feature do
 
   describe "Show" do 
     let(:product) { FactoryGirl.create(:product) }
-    let(:manufacturer) { FactoryGirl.create(:manufacturer) }
-    let(:vendor) { FactoryGirl.create(:vendor) }
+    let(:vendor) { product.vendor }
+    let(:manufacturer) { product.manufacturer }
 
     it "allows a user to show the details of a product" do 
       product
