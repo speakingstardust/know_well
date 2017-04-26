@@ -1,2 +1,108 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<% provide(:title, "Product Details") %>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center"><%= @product.name %> Details</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Description</h3>
+    </div>
+    <div class="panel-body">
+      <p><%= @product.description %></p>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Part Number</h3>
+    </div>
+    <div class="panel-body">
+      <p><%= @product.part_number %></p>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Category</h3>
+    </div>
+    <div class="panel-body">
+      <p><%= @product.category.try(:humanize) %></p>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Manufacturer</h3>
+    </div>
+    <div class="panel-body">
+      <% unless @product.manufacturer.nil? %>
+        <p><%= link_to @product.manufacturer.name, manufacturer_path(@product.manufacturer) %></p>
+      <% end %>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Vendor</h3>
+    </div>
+    <div class="panel-body">
+      <% unless @product.vendor.nil? %>
+        <p><%= link_to @product.vendor.name, vendor_path(@product.vendor) %></p>
+      <% end %>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Container</h3>
+    </div>
+    <div class="panel-body">
+      <p><%= @product.container %></p>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Unit</h3>
+    </div>
+    <div class="panel-body">
+      <p><%= @product.unit %></p>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Units Per Container</h3>
+    </div>
+    <div class="panel-body">
+      <p><%= @product.units_per_container %></p>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Price Per Container</h3>
+    </div>
+    <div class="panel-body">
+      <p><%= number_to_currency(@product.price_per_container) %></p>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Price Per Unit</h3>
+    </div>
+    <div class="panel-body">
+      <p><%= number_to_currency(@product.price_per_unit) %></p>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Maximum On Hand</h3>
+    </div>
+    <div class="panel-body">
+      <p><%= @product.maximum_on_hand %></p>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Minimum On Hand</h3>
+    </div>
+    <div class="panel-body">
+      <p><%= @product.minimum_on_hand %></p>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Lead Time</h3>
+    </div>
+    <div class="panel-body">
+      <p><%= pluralize(@product.lead_time, "day") %></p>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Current Amount On Hand</h3>
+    </div>
+    <div class="panel-body">
+      <p><%= @product.current_on_hand %></p>
+    </div>
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Amount On Order</h3>
+    </div>
+    <div class="panel-body">
+      <p><%= @product.ordered_amount %></p>
+    </div>
+  </div><!-- Panel End -->
+</div><!-- Row End --> 
+<div class="row">
+  <%= link_to "Back", products_url, class: "btn btn-primary btn-lg pull-left" %>
+  <%= link_to "Edit", edit_product_path(@product), class: "btn btn-success btn-lg pull-right" %>
+</div>
