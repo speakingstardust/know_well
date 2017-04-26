@@ -93,7 +93,7 @@ RSpec.describe Product, type: :model do
 
       product.save 
 
-      expect(product.price_per_unit).to eq(0.18)
+      expect(product.price_per_unit).to eq(0.19)
     end
     it "can calculate the price per container given the units per container and the price per unit" 
   end

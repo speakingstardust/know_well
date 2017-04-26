@@ -4,6 +4,8 @@ class Product < ActiveRecord::Base
 
   enum category: [ :raw_materials, :lab_supplies, :consumables, :shop_supplies ]
 
+  before_save :calculate_price_per_unit, if: "price_per_unit.nil?"
+
   validates :name, presence: true, uniqueness: true
   validates :unit, presence: true
   validates :container, presence: true
@@ -13,4 +15,9 @@ class Product < ActiveRecord::Base
   validates :maximum_on_hand, presence: true
   validates :minimum_on_hand, presence: true
   validates :category, presence: true
+
+
+  def calculate_price_per_unit
+    self.price_per_unit = (self.price_per_container / self.units_per_container).round(2)
+  end
 end
