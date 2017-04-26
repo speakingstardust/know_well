@@ -46,7 +46,21 @@ RSpec.describe Product, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without either a price per unit or a price per container"
+    it "is not valid without either a price per unit or a price per container" do
+      subject.price_per_unit = nil 
+      
+      expect(subject).to be_valid
+
+      subject.price_per_unit = 0.18
+      subject.price_per_container = nil 
+
+      expect(subject).to be_valid
+
+      subject.price_per_unit = nil 
+
+      expect(subject).to_not be_valid
+    end
+
     it "is not valid without a maximum on hand" 
     it "is not valid without a minimum on hand"
     it "is not valid without a category"

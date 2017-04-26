@@ -6,4 +6,6 @@ class Product < ActiveRecord::Base
   validates :unit, presence: true
   validates :container, presence: true
   validates :units_per_container, presence: true
+  validates :price_per_container, presence: true, if: "price_per_unit.nil?"
+  validates :price_per_unit, presence: true, if: "price_per_container.nil?"
 end
