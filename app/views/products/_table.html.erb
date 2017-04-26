@@ -3,8 +3,6 @@
     <tr>
       <th>Name</th>
       <th>Part Number</th>
-      <th>Manufacturer</th>
-      <th>Vendor</th>
       <th>Category</th>
       <th>Price Per Container</th>
       <th>Price Per Unit</th>
@@ -21,8 +19,6 @@
       <tr>
         <th scope="row"><%= product.name %></th>
         <td><%= product.part_number %></td>
-        <td><%= link_to "#{product.manufacturer.name}", manufacturer_path(product.manufacturer) %></td>
-        <td><%= link_to "#{product.vendor.name}", vendor_path(product.vendor) %></td>
         <td><%= product.category.humanize %></td>
         <td><%= number_to_currency(product.price_per_container) %></td>
         <td><%= number_to_currency(product.price_per_unit) %></td>
