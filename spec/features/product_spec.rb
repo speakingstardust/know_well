@@ -52,6 +52,8 @@ RSpec.describe "Product Mangement", type: :feature do
     let(:vendor) { FactoryGirl.create(:vendor) }
 
     it "allows a user to show the details of a product" do 
+      product
+
       visit products_path 
       expect(page).to have_content(product.name)
 
