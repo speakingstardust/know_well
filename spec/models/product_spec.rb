@@ -18,7 +18,13 @@ RSpec.describe Product, type: :model do
       subject.name = nil 
       expect(subject).to_not be_valid
     end
-    it "is not valid without a unique name" 
+    it "is not valid without a unique name" do
+      second_product = FactoryGirl.create(:product)
+      second_product.name = "Test Product"
+      second_product.save
+
+      expect(subject).to_not be_valid
+    end
     it "is not valid without a unit" 
     it "is not valid without a container"
     it "is not valid without units per container"
