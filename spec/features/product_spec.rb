@@ -14,7 +14,7 @@ RSpec.describe "Product Mangement", type: :feature do
 
       visit new_product_path
       fill_in "Name", with: "Test Product"
-      fill_in "Product #", with: "12345" 
+      fill_in "Part Number", with: "12345" 
       select "Consumables", from: "Category"
       select @vendor.name, from: "Vendor"
       select @manufacturer.name, from: "Manufacturer" 
