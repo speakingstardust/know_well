@@ -96,4 +96,23 @@ RSpec.describe "Product Mangement", type: :feature do
       expect(page).to have_content(7)
     end
   end
+
+  describe "Destroy" do 
+    let(:product) { FactoryGirl.create(:product) }
+
+    it "allows a user to destroy a product" do 
+      product
+
+      visit products_path
+      expect(page).to have_content(product.name)
+
+      within_table("products-table") do
+        expect {
+          click_on "Destroy"
+        }.to change(Product, :count).by(-1)
+      end
+
+      expect(page).to_not have_content(product.name)
+    end
+  end
 end
