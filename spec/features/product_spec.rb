@@ -19,14 +19,14 @@ RSpec.describe "Product Mangement", type: :feature do
       select @vendor.name, from: "Vendor"
       select @manufacturer.name, from: "Manufacturer" 
       fill_in "Description", with: "Test product description" 
-      fill_in "Container", with: "case"
-      fill_in "Unit", with: "pair"
+      fill_in "product[container]", with: "case"
+      fill_in "product[unit]", with: "pair"
       fill_in "Units Per Container", with: 24
       fill_in "Price Per Container", with: 4.50 
       fill_in "Maximum On Hand", with: 6.0
       fill_in "Minimum On Hand", with: 1.5 
       fill_in "Lead Time", with: 14 
-      fill_in "Current Amount", with: 3.5
+      fill_in "Current Amount On Hand", with: 3.5
       expect {
         click_on "Create Product"
       }.to change(Product, :count).by(1)
