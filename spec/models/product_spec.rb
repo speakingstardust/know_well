@@ -84,4 +84,17 @@ RSpec.describe Product, type: :model do
     it { should belong_to(:manufacturer) }
     it { should belong_to(:vendor) } 
   end
+
+  describe "Logic" do 
+    let(:product) { FactoryGirl.create(:product) } 
+
+    it "can calculate the price per unit given the units per container and price per container" do
+      product.price_per_unit = nil 
+
+      product.save 
+
+      expect(product.price_per_unit).to eq(0.18)
+    end
+    it "can calculate the price per container given the units per container and the price per unit" 
+  end
 end
