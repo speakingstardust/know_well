@@ -79,4 +79,9 @@ RSpec.describe Product, type: :model do
       expect(subject).to_not be_valid
     end
   end
+
+  describe "Associations" do
+    it { should belong_to(:manufacturer) }
+    it { should belong_to(:vendor) } 
+  end
 end
