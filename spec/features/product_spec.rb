@@ -38,8 +38,8 @@ RSpec.describe "Product Mangement", type: :feature do
       visit products_path
 
       expect(page).to have_content("Test Product")
-      expect(page).to have_css("a", @vendor.name) 
-      expect(page).to have_css("a", @manufacturer.name)
+      expect(page).to have_link(@vendor.name, href: vendor_path(@vendor)) 
+      expect(page).to have_link(@manufacturer.name, href: manufacturer_path(@manufacturer))
       expect(page).to have_content("12345")
       expect(page).to have_content("case")
       expect(page).to have_content("pair")
