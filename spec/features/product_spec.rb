@@ -45,4 +45,28 @@ RSpec.describe "Product Mangement", type: :feature do
       expect(page).to have_content("pair")
     end
   end
+
+  describe "Show" do 
+    let(:product) { FactoryGirl.create(:product) }
+    let(:manufacturer) { FactoryGirl.create(:manufacturer) }
+    let(:vendor) { FactoryGirl.create(:vendor) }
+
+    it "allows a user to show the details of a product" do 
+      visit products_path 
+      expect(page).to have_content(product.name)
+
+      within_table("products-table") do
+        click_on "Show"
+      end
+
+      expect(page).to have_current_path(product_path(product))
+      expect(page).to have_content(product.name)
+      expect(page).to have_link(vendor.name, href: vendor_path(vendor))
+      expect(page).to have_link(manufacturer.name, href: manufacturer_path(manufacturer))
+      expect(page).to have_content(product.description)
+      expect(page).to have_content(product.container)
+      expect(page).to have_content(product.unit)
+      expect(page).to have_content(product.units_per_container)
+    end
+  end
 end
