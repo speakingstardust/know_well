@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :jig_orders
   resources :jig_order_line_items
   resources :reports
+  resources :products
   resources :manufacturers
   resources :vendors
   devise_for :users

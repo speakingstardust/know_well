@@ -43,7 +43,6 @@ RSpec.describe "Product Mangement", type: :feature do
       expect(page).to have_content("12345")
       expect(page).to have_content("case")
       expect(page).to have_content("pair")
-
     end
   end
 end

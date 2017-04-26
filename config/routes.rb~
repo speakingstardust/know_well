@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get 'vendors/index'
-
-  get 'vendors/show'
-
-  get 'vendors/new'
-
-  get 'vendors/edit'
-
   resources :jig_work_orders do
     put :receive
     put :complete
