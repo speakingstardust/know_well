@@ -61,7 +61,12 @@ RSpec.describe Product, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without a maximum on hand" 
+    it "is not valid without a maximum on hand" do
+      subject.maximum_on_hand = nil
+
+      expect(subject).to_not be_valid
+    end
+
     it "is not valid without a minimum on hand"
     it "is not valid without a category"
   end
