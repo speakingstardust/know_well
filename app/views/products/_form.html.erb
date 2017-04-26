@@ -1,6 +1,6 @@
 <%= simple_form_for @product, html: { class: "form-horizontal" } do |f| %>
   <%= f.input :name %>
-  <%= f.input :part_number, hint: "Please make sure we are using the vendor's or manufacturer's exact product number" %>
+  <%= f.input :part_number, label: "Part Number", hint: "Please make sure you are using the vendor's or manufacturer's exact part number" %>
   <%= f.input :category, collection: Product.categories.map {|key, value| [key.humanize, key] } %>
   <%= f.association :manufacturer %>
   <%= f.association :vendor %>
@@ -19,11 +19,12 @@
   </div>
   <%= f.input :container, hint: "What kind of container do we order this item by?" %>
   <%= f.input :unit, hint: "What kind of unit do we use to count this item by?" %>
-  <%= f.input :units_per_container %>
-  <%= f.input :price_per_container %>
-  <%= f.input :price_per_unit %>
-  <%= f.input :maximum_on_hand %>
-  <%= f.input :minimum_on_hand %>
-  <%= f.input :lead_time %>
-  <%= f.input :current_on_hand %>
+  <%= f.input :units_per_container, label: "Units Per Container" %>
+  <%= f.input :price_per_container, label: "Price Per Container", hint: "If provided, please leave Price Per Unit blank." %>
+  <%= f.input :price_per_unit, label: "Price Per Unit", hint: "If provided, please leave Price Per Container blank."  %>
+  <%= f.input :maximum_on_hand, label: "Maximum On Hand" %>
+  <%= f.input :minimum_on_hand, label: "Minimum On Hand" %>
+  <%= f.input :lead_time, label: "Lead Time", hint: "In whole number of days" %>
+  <%= f.input :current_on_hand, label: "Current On Hand" %>
+  <%= f.submit %>
 <% end %>
