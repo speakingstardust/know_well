@@ -43,7 +43,8 @@ class ProductsController < ApplicationController
   end
 
   def count
-
+    @q = Product.ransack(params[:q])
+    @products = @q.result
   end
 
   private 

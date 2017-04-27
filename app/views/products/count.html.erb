@@ -1,0 +1,47 @@
+<% provide(:title, "Product Counts") %>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center">Product Counts</h1>
+  </div>
+</div>
+<div class="row">
+  <%= search_form_for @q do |f| %>
+    <%= f.label :category_eq, "Category", class: 'control-label' %>
+    <%= f.select :category_eq, Product.categories.map { |key, value| [key.humanize, key] } %>
+
+    <%= f.submit "Filter", class: "btn btn-primary" %> 
+  <% end %>
+</div>
+<div class="row">
+  <%= form_for @product, url: update_all_products_path, html: { method: :put } do %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Part Number</th>
+        <th>Max On Hand</th>
+        <th>Min On Hand</th>
+        <th>Lead Time</th>
+        <th>Current Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <%= fields_for "product[]", product do |product_fields| %>
+          <tr>
+            <th scope="row"><%= product.name %></th>
+            <td><%= product.part_number %></td>
+            <td><%= product.maximum_on_hand %></td>
+            <td><%= product.minimum_on_hand %></td>
+            <td><%= pluralize(product.lead_time, 'day') unless product.lead_time.nil? %></td>
+            <td id="<%= product.id %>"><%= product_fields.number_field :current_on_hand %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>
+</div>
