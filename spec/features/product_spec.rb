@@ -113,4 +113,44 @@ RSpec.describe "Product Mangement", type: :feature do
       expect(page).to_not have_content(product.name)
     end
   end
+
+  describe "Count" do 
+    let(:first_product) { FactoryGirl.build(:product, name: "First Product") }
+    let(:second_product) { FactoryGirl.build(:product, name: "Second Product") }
+    let(:third_product) { FactoryGirl.build(:product, name: "Third Product") }
+
+    it "allows a user to make counts of products based on category" do
+      first_product
+      second_product 
+      third_product
+
+      visit inventory_count_path
+      select "Lab Supplies", from: "Category"
+      click_on "Search"
+
+      expect(page).to have_content(first_product.name)
+      expect(page).to have_content(second_product.name)
+      expect(page).to have_content(third_product.name)
+
+      within("td##{first_product.id}") do
+        fill_in "Count", with: 6 
+      end
+
+      within("td##{second_product.id}") do
+        fill_in "Count", with: 6 
+      end
+      
+      within("td##{third_product.id}") do
+        fill_in "Count", with: 6 
+      end
+
+      click_on "Submit"
+
+      expect(page).to have_current_path(products_path)
+      expect(page).to have_content(first_product.name)
+      expect(page).to have_content(second_product.name)
+      expect(page).to have_content(third_product.name)
+      expect(page).to have_content(6)
+    end
+  end
 end
