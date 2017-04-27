@@ -28,7 +28,10 @@ Rails.application.routes.draw do
   resources :jig_orders
   resources :jig_order_line_items
   resources :reports
-  resources :products
+  resources :products do
+    get 'count'
+    post 'update_count'
+  end
   resources :manufacturers
   resources :vendors
   devise_for :users

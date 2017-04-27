@@ -120,7 +120,7 @@ RSpec.describe "Product Mangement", type: :feature do
     let(:third_product) { FactoryGirl.build(:product, name: "Third Product") }
 
     it "allows a user to make counts of products based on category" do
-      visit inventory_count_path
+      visit product_count_path
       select "Lab Supplies", from: "Category"
       click_on "Search"
 
