@@ -58,6 +58,8 @@
                             <li><%= link_to "Product List", products_path, class: "nav-link" %></li>
                             <li><%= link_to "Manufacturer List", manufacturers_path, class: "nav-link" %></li>
                             <li><%= link_to "Vendor List", vendors_path, class: "nav-link" %></li>
+                            <div class="dropdown-divider"></div>
+                            <li><%= link_to "Product Counts", product_count_path, class: "nav-link" %></li>
                           </ul>
                         </li>
 			<li class="nav-item <%= active_class(customers_path) %>">
