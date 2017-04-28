@@ -115,32 +115,41 @@ RSpec.describe "Product Mangement", type: :feature do
   end
 
   describe "Count" do 
-    let(:first_product) { FactoryGirl.build(:product, name: "First Product") }
-    let(:second_product) { FactoryGirl.build(:product, name: "Second Product") }
-    let(:third_product) { FactoryGirl.build(:product, name: "Third Product") }
+    let(:first_product) { FactoryGirl.create(:product, name: "First Product") }
+    let(:second_product) { FactoryGirl.create(:product, name: "Second Product", vendor: first_product.vendor, manufacturer: first_product.manufacturer) }
+    let(:third_product) { FactoryGirl.create(:product, name: "Third Product", vendor: first_product.vendor, manufacturer: first_product.manufacturer) }
+
 
     it "allows a user to make counts of products based on category" do
+      first_product
+      second_product
+      third_product
+
       visit product_count_path
-      select "Lab Supplies", from: "Category"
-      click_on "Search"
+      select "Lab supplies", from: "Category"
+      click_on "Filter"
 
       expect(page).to have_content(first_product.name)
       expect(page).to have_content(second_product.name)
       expect(page).to have_content(third_product.name)
+    
+      within_table("product-table") do
 
-      within("td##{first_product.id}") do
-        fill_in "Count", with: 6 
+        within("td##{first_product.id}") do
+          fill_in "products[#{first_product.id}][current_on_hand]", with: 6 
+        end
+
+        within("td##{second_product.id}") do
+          fill_in "products[#{second_product.id}][current_on_hand]", with: 6 
+        end
+        
+        within("td##{third_product.id}") do
+          fill_in "products[#{third_product.id}][current_on_hand]", with: 6 
+        end
+
       end
 
-      within("td##{second_product.id}") do
-        fill_in "Count", with: 6 
-      end
-      
-      within("td##{third_product.id}") do
-        fill_in "Count", with: 6 
-      end
-
-      click_on "Submit"
+      click_on "Save changes"
 
       expect(page).to have_current_path(products_path)
       expect(page).to have_content(first_product.name)
