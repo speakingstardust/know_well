@@ -1,3 +1,4 @@
+require "pry"
 class ProductsController < ApplicationController
   before_action :authenticate_any!
   before_action :set_product, only: [:show, :edit, :update, :destroy]
@@ -37,6 +38,14 @@ class ProductsController < ApplicationController
     end
   end
 
+  def update_all_counts
+    params['products'].keys.each do |id|
+      @product = Product.find(id.to_i)
+      @product.update_attributes(params[:products][id].permit(:current_on_hand))
+    end
+    redirect_to products_url
+  end
+
   def destroy
     @product.destroy 
     redirect_to products_url, notice: "Product was successfully destroyed."
@@ -52,8 +61,12 @@ class ProductsController < ApplicationController
       @product = Product.find(params[:id])
     end
 
+    def products_params
+      params.require(:products).permit(products: [:id, :current_on_hand])
+    end
+
     def product_params
-      params.require(:product).permit(:name, :manufacturer_id, :vendor_id, :part_number, :description, 
+      params.require(:product).permit(:id, :name, :manufacturer_id, :vendor_id, :part_number, :description, 
                                       :container, :unit, :units_per_container, :price_per_container, 
                                       :price_per_unit, :maximum_on_hand, :minimum_on_hand, :lead_time, 
                                       :current_on_hand, :order_amount, :category)

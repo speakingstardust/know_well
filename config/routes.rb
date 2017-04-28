@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :jig_orders
   resources :jig_order_line_items
   resources :reports
+  put 'products/all', to: 'products#update_all_counts', as: 'update_all_counts'
   resources :products
   resources :manufacturers
   resources :vendors
@@ -37,7 +38,6 @@ Rails.application.routes.draw do
   end
   get :master_gantt, to: 'projects#master_gantt', as: 'master_gantt'
   get 'product_count', to: 'products#count', as: 'product_count'
-  put 'products/all', to: 'products#update_all', as: 'update_all_products'
   get 'inventory_home', to: 'pages#inventory_home', as: 'inventory_home'
   get 'jig_work_orders/packing_slip/:id', to: 'jig_work_orders#packing_slip', as: 'packing_slip'
   get 'work_orders_management' => "pages#work_orders", as: 'work_orders_management'

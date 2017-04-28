@@ -5,15 +5,16 @@
   </div>
 </div>
 <div class="row">
-  <%= search_form_for @q do |f| %>
+  <%= search_form_for @q, url: product_count_url do |f| %>
     <%= f.label :category_eq, "Category", class: 'control-label' %>
-    <%= f.select :category_eq, Product.categories.map { |key, value| [key.humanize, key] } %>
+    <%= f.select :category_eq, Product.categories.map { |key, value| [key.humanize, value] }, include_blank: true%>
 
     <%= f.submit "Filter", class: "btn btn-primary" %> 
+    <%= link_to "Clear Search", request.path, class: "cancel-button btn btn-info btn-block" %>
   <% end %>
 </div>
 <div class="row">
-  <%= form_for @product, url: update_all_products_path, html: { method: :put } do %>
+  <%= form_for :products, url: update_all_counts_path, html: { method: :put } do %>
   <table class="table">
     <thead>
       <tr>
@@ -27,7 +28,7 @@
     </thead>
     <tbody>
       <% @products.each do |product| %>
-        <%= fields_for "product[]", product do |product_fields| %>
+        <%= fields_for "products[]", product do |product_fields| %>
           <tr>
             <th scope="row"><%= product.name %></th>
             <td><%= product.part_number %></td>
