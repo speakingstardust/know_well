@@ -9,14 +9,20 @@ RSpec.describe Order, type: :model do
       order 
       expect(order).to be_valid
     end
-    it "is not valid without a date created" do
-      order.date_created = nil
-      expect(order).to_not be_valid
-    end
   end
 
   describe "Associations" do 
     it { should have_many(:order_line_items) } 
     it { should have_many(:products) }
+  end
+
+  describe "Logic" do 
+    it "should automatically input date created at time of saving" do
+      order = Order.new
+
+      order.save 
+
+      expect(order.date_created).to eq(Date.today)
+    end
   end
 end
