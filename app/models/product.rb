@@ -1,6 +1,8 @@
 class Product < ActiveRecord::Base
   belongs_to :manufacturer
   belongs_to :vendor
+  has_many :order_line_items
+  has_many :orders, through: :order_line_items
 
   enum category: [ :raw_materials, :lab_supplies, :consumables, :shop_supplies ]
 
