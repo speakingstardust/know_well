@@ -24,5 +24,14 @@ RSpec.describe Order, type: :model do
 
       expect(order.date_created).to eq(Date.today)
     end
+
+    it "should set completed at when all order line items have been received" do
+      order = FactoryGirl.create(:order)
+      order.order_line_items.each do |line_item|
+        line_item.received = true
+      end
+
+      expect(order.completed?).to be true
+    end
   end
 end

@@ -4,11 +4,11 @@ FactoryGirl.define do
     order nil
     amount_required 6
     ordered_at { Time.now - 3.days }
-    received_at { Time.now }
+    received_at nil
   end
   factory :order do
     date_created { Date.today }
-    completed_at { Time.now }
+    completed_at nil
 
     transient do
       line_items_count 3
