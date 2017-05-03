@@ -26,10 +26,12 @@ RSpec.describe Order, type: :model do
     end
 
     it "should set completed at when all order line items have been received" do
-      order = FactoryGirl.create(:order)
+      order = FactoryGirl.create(:order_with_line_items, line_items_count: 5)
       order.order_line_items.each do |line_item|
         line_item.received = true
       end
+
+      binding.pry
 
       expect(order.completed?).to be true
     end

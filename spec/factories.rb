@@ -10,12 +10,15 @@ FactoryGirl.define do
     date_created { Date.today }
     completed_at nil
 
-    transient do
-      line_items_count 3
-    end
+    factory :order_with_line_items do
+      transient do
+        line_items_count 3
+      end
 
-    after(:create) do |order, evaluator| 
-      create_list(:order_line_item, evaluator.line_items_count, order: order)
+      after(:create) do |order, evaluator| 
+        order_line_items = create_list(:order_line_item, evaluator.line_items_count, order: order)
+        order.order_line_items << order_line_items[1..(evaluator.line_items_count-1)]
+      end
     end
   end
   factory :product do
