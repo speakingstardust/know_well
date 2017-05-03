@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :order do
+    date_created "2017-05-03"
+    completed_at "2017-05-03 10:18:27"
+  end
   factory :product do
     name "Gloves"
     manufacturer 
