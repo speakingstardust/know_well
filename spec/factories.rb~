@@ -1,6 +1,27 @@
 FactoryGirl.define do
+  factory :order_line_item do
+    product 
+    order nil
+    amount_required 6
+    ordered_at { Time.now - 3.days }
+    received_at { Time.now }
+  end
+  factory :order do
+    date_created { Date.today }
+    completed_at { Time.now }
+
+    factory :order_with_line_items do 
+      transient do
+        line_items_count 3
+      end
+
+      after(:create) do |order, evaluator| 
+        create_list(:order_line_item, evaluator.line_items_count, order: order)
+      end
+    end 
+  end
   factory :product do
-    name "Gloves"
+    sequence(:name) { |n| "Test Product #{n}" }
     manufacturer 
     part_number "12345"
     vendor 

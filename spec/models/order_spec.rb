@@ -1,5 +1,12 @@
 require 'rails_helper'
+require 'pry'
 
 RSpec.describe Order, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "Validations" do 
+    let(:order) { FactoryGirl.create(:order) } 
+
+    it "is valid with valid attributes"
+    it "is not valid without any order line items" 
+    it "is not valid without a date created" 
+  end
 end
