@@ -1,4 +1,11 @@
 FactoryGirl.define do
+  factory :order_line_item do
+    product nil
+    order nil
+    amount_required 1
+    ordered_at "2017-05-03 10:26:40"
+    received_at "2017-05-03 10:26:40"
+  end
   factory :order do
     date_created "2017-05-03"
     completed_at "2017-05-03 10:18:27"
