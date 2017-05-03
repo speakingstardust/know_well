@@ -5,8 +5,13 @@ RSpec.describe Order, type: :model do
   describe "Validations" do 
     let(:order) { FactoryGirl.create(:order) } 
 
-    it "is valid with valid attributes"
-    it "is not valid without any order line items" 
-    it "is not valid without a date created" 
+    it "is valid with valid attributes" do
+      order 
+      expect(order).to be_valid
+    end
+    it "is not valid without a date created" do
+      order.date_created = nil
+      expect(order).to_not be_valid
+    end
   end
 end

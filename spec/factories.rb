@@ -10,15 +10,13 @@ FactoryGirl.define do
     date_created { Date.today }
     completed_at { Time.now }
 
-    factory :order_with_line_items do 
-      transient do
-        line_items_count 3
-      end
+    transient do
+      line_items_count 3
+    end
 
-      after(:create) do |order, evaluator| 
-        create_list(:order_line_item, evaluator.line_items_count, order: order)
-      end
-    end 
+    after(:create) do |order, evaluator| 
+      create_list(:order_line_item, evaluator.line_items_count, order: order)
+    end
   end
   factory :product do
     sequence(:name) { |n| "Test Product #{n}" }
@@ -39,12 +37,12 @@ FactoryGirl.define do
     category 1
   end
   factory :vendor do
-    name "Test Vendor"
+    sequence(:name) { |n| "Test Vendor #{n}" }
     website "vendor.test.com"
     phone "5555555555"
   end
   factory :manufacturer do
-    name "Test Manufacturer Name"
+    sequence(:name) { |n| "Test Manufacturer #{n}" }
     website "manufacturer.test.com"
     phone "5555555555"
   end

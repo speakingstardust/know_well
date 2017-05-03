@@ -3,4 +3,7 @@ class Order < ActiveRecord::Base
   has_many :products, through: :order_line_items
 
   time_for_a_boolean :completed
+
+  validates :date_created, presence: true
+
 end
