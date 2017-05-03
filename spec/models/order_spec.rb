@@ -14,4 +14,9 @@ RSpec.describe Order, type: :model do
       expect(order).to_not be_valid
     end
   end
+
+  describe "Associations" do 
+    it { should have_many(:order_line_items) } 
+    it { should have_many(:products) }
+  end
 end
