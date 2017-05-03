@@ -69,7 +69,11 @@ gem 'acts_as_list'
 # Remotipart gem for jQuery AJAX File Uploads
 gem 'remotipart', '~> 1.2'
 
+# Gon passes data to javascript layer for processing by scripts.
 gem 'gon'
+
+# Time for a boolean backs booleans with timestamps
+gem 'time_for_a_boolean'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
