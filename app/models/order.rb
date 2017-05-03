@@ -1,3 +1,4 @@
+require 'pry'
 class Order < ActiveRecord::Base
   has_many :order_line_items, dependent: :destroy
   has_many :products, through: :order_line_items
@@ -15,11 +16,15 @@ class Order < ActiveRecord::Base
   def check_and_set_completed_at
     result = []
     self.order_line_items.each do |li|
-      unless li.received? == false
+      if li.received? == false or li.received? == nil
+        result << false
+      elsif li.received? == true
         result << true
       end
     end
-    unless result.uniq.include?(false)
+    if result.uniq.include?(false)
+      self.completed = false
+    else
       self.completed = true
     end
   end 
