@@ -1,0 +1,7 @@
+<div class="nested-fields">
+  <div class="form-inline center" id="#OrderLineItem">
+    <%= f.collection_select :product_id, @products, :id, :name, { include_blank: 'Select Product' }, class: "form-control" %>
+    <%= f.input :amount_required, placeholder: "# Required", label: false %>
+    <%= link_to_remove_association "Remove Product", f %>
+  </div>
+</div>

@@ -87,6 +87,34 @@ RSpec.describe Product, type: :model do
     it { should have_many(:order_line_items) }
   end
 
+  describe "Scope" do 
+    let(:more_than_minimum) { FactoryGirl.create(:product, current_on_hand: 3) }
+    let(:same_as_minimum) { FactoryGirl.create(:product, current_on_hand: 1.5) }
+    let(:less_than_minimum) { FactoryGirl.create(:product, current_on_hand: 1) }
+
+    it "should find products who's current amount is less than minimum" do
+      more_than_minimum
+      less_than_minimum
+
+      expect(Product.needed).to include(less_than_minimum) 
+    end
+
+    it "should find products who's current amount is the same as the minimum"  do
+      more_than_minimum
+      same_as_minimum
+
+      expect(Product.needed).to include(same_as_minimum)
+    end
+
+    it "should not find products who'd current amount is more than minimum" do
+      more_than_minimum
+      same_as_minimum
+      less_than_minimum
+
+      expect(Product.needed).to_not include(more_than_minimum)
+    end
+  end
+
   describe "Logic" do 
     let(:product) { FactoryGirl.create(:product) } 
 

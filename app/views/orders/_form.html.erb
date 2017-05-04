@@ -1,0 +1,36 @@
+<%= simple_form_for @order, html: { class: "form-horizontal" } do |f| %>
+  <div class="well">
+    <h4 class="text-center">Products Needed</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Maximum</th>
+          <th>Minimum</th>
+          <th>Lead Time</th>
+          <th>Current</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <th scope="row"><%= product.name %></th>
+            <td><%= product.maximum_on_hand %></td>
+            <td><%= product.minimum_on_hand %></td>
+            <td><%= pluralize(product.lead_time, 'day') unless product.lead_time.nil? %></td>
+            <td><%= product.current_on_hand %></td>
+          </tr>
+        <% end %>
+    </table>
+  </div>
+  <h4 class="text-center">Product Orders</h4>
+  <div id="order_line_items">
+    <%= simple_fields_for :order_line_items, html: { render_options: { wrapper: 'horizontal-form' }, class: 'form-inline' } do |line_item| %>
+      <%= render 'order_line_item_fields', f: line_item %>
+      <div class="links">
+        <%= link_to_add_association 'Add Product', f, :order_line_items, class: "btn btn-success btn-block" %>
+      </div>
+    <% end %>
+  </div>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %> 
