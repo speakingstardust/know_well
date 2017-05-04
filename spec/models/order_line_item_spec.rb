@@ -14,6 +14,11 @@ RSpec.describe OrderLineItem, type: :model do
       subject.product = nil
       expect(subject).to_not be_valid
     end
-    it "is not valid without an amount required" 
+
+    it "is not valid without an amount required" do
+      subject.amount_required = nil
+      expect(subject).to_not be_valid
+    end
+
   end
 end
