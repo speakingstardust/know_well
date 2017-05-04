@@ -19,6 +19,10 @@ RSpec.describe OrderLineItem, type: :model do
       subject.amount_required = nil
       expect(subject).to_not be_valid
     end
+  end
 
+  describe "Associations" do 
+    it { should belong_to(:product) }
+    it { should belong_to(:order) }
   end
 end

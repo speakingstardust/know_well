@@ -83,6 +83,8 @@ RSpec.describe Product, type: :model do
   describe "Associations" do
     it { should belong_to(:manufacturer) }
     it { should belong_to(:vendor) } 
+    it { should have_many(:orders) }
+    it { should have_many(:order_line_items) }
   end
 
   describe "Logic" do 
