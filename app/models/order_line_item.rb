@@ -5,4 +5,6 @@ class OrderLineItem < ActiveRecord::Base
   time_for_a_boolean :ordered
   time_for_a_boolean :received
 
+  validates :product, presence: true
+
 end
