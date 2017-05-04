@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :reports
   put 'products/all', to: 'products#update_all_counts', as: 'update_all_counts'
   resources :products
+  resources :orders
   resources :manufacturers
   resources :vendors
   devise_for :users
