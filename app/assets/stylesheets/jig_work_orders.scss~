@@ -12,7 +12,7 @@
 }
 
 .print table {
-  font-size: 18pt;
+  font-size: 16pt;
 }
 
 .print  p {
@@ -22,3 +22,8 @@
 .print .signature hr {
   border-top: 2px dashed #8c8b8b;
 }
+
+#JigWorkOrderLineItem > .jig_select { 
+  margin: 0px 25px 0px 15px;
+}
+

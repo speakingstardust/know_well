@@ -25,7 +25,7 @@
   </div>
   <h4 class="text-center">Product Orders</h4>
   <div id="order_line_items">
-    <%= simple_fields_for :order_line_items, html: { render_options: { wrapper: 'horizontal-form' }, class: 'form-inline' } do |line_item| %>
+    <%= f.simple_fields_for :order_line_items, html: { render_options: { wrapper: 'horizontal-form' }, class: 'form-inline' } do |line_item| %>
       <%= render 'order_line_item_fields', f: line_item %>
       <div class="links">
         <%= link_to_add_association 'Add Product', f, :order_line_items, class: "btn btn-success btn-block" %>

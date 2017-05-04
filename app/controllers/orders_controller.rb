@@ -11,6 +11,8 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @products = Product.needed 
+    @order.order_line_items.build
   end
 
   def create

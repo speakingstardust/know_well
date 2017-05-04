@@ -3,6 +3,8 @@ class Order < ActiveRecord::Base
   has_many :order_line_items, dependent: :destroy
   has_many :products, through: :order_line_items
 
+  accepts_nested_attributes_for :order_line_items, :reject_if => lambda { |a| a[:product_id].blank? }, :allow_destroy => true
+
   before_save :set_date_created
   after_touch :check_and_set_completed_at
 

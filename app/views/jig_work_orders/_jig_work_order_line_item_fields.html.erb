@@ -1,6 +1,6 @@
 <div class="nested-fields">
-  <div class="form-inline center" id="#JigWorkOrderLineItem">
-    <%= f.collection_select :jig_id, @jigs, :id, :name, { include_blank: 'Select Jig' }, class: "form-control"  %>
+  <div class="form-inline center" id="JigWorkOrderLineItem">
+    <%= f.collection_select :jig_id, @jigs, :id, :name, { include_blank: 'Select Jig' }, class: "form-control jig_select"  %>
     <% if current_user.try(:has_role?, :bookkeeper) or current_admin %>
       <%= f.input :expected, placeholder: "# Expected", label: false %>
     <% else %>
