@@ -17,6 +17,22 @@ RSpec.describe Order, type: :model do
   end
 
   describe "Logic" do 
+    it "should create Order Line Items given a selection of products" do 
+      at_min = FactoryGirl.create(:product, current_on_hand: 24)
+      above_min = FactoryGirl.create(:product, current_on_hand: 96)
+      below_min = FactoryGirl.create(:product, current_on_hand: 1)
+      products = [at_min, above_min, below_min]
+      order = Order.new
+      order.create_line_items(products)
+
+      expect(order.products).to include(at_min, below_min)
+      expect(order.products).to_not include(above_min)
+      
+      order_line_item = OrderLineItem.where(product: below_min).first
+
+      expect(order_line_item.amount_required).to eq(3)
+    end
+
     it "should automatically input date created at time of saving" do
       order = Order.new
 

@@ -88,8 +88,8 @@ RSpec.describe Product, type: :model do
   end
 
   describe "Scope" do 
-    let(:more_than_minimum) { FactoryGirl.create(:product, current_on_hand: 3) }
-    let(:same_as_minimum) { FactoryGirl.create(:product, current_on_hand: 1.5) }
+    let(:more_than_minimum) { FactoryGirl.create(:product, current_on_hand: 96) }
+    let(:same_as_minimum) { FactoryGirl.create(:product, current_on_hand: 24) }
     let(:less_than_minimum) { FactoryGirl.create(:product, current_on_hand: 1) }
 
     it "should find products who's current amount is less than minimum" do

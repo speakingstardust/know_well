@@ -33,6 +33,9 @@ class Order < ActiveRecord::Base
 
   def create_line_items(products)
     products.each do |product|
+      if product.current_on_hand > product.minimum_on_hand
+        next
+      end
       current_amount = product.current_on_hand
       maximum_amount = product.maximum_on_hand
       units_per_container = product.units_per_container

@@ -2,8 +2,8 @@ require "rails_helper"
 require "pry"
 
 RSpec.describe CreatesOrder do 
-  let(:at_min_product) { FactoryGirl.create(:product, current_on_hand: 1.5) } 
-  let(:above_min_product) { FactoryGirl.create(:product, current_on_hand: 3) }
+  let(:at_min_product) { FactoryGirl.create(:product, current_on_hand: 24) } 
+  let(:above_min_product) { FactoryGirl.create(:product, current_on_hand: 96) }
   let(:below_min_product) { FactoryGirl.create(:product, current_on_hand: 1) }
 
   before(:each) do 
