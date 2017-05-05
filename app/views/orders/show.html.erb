@@ -1,2 +1,41 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<% provide(:title, "Order Details") %>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center">Order Detail</h1>
+  </div>
+</div>
+<div class="row">
+  <p>
+    <strong>Date Created:</strong>
+    <%= l @order.date_created %>
+  </p>
+</div>
+<div class="row">
+  <table class="table">
+    <thead>
+      <th>Product Name</th>
+      <th>Product #</th>
+      <th>Manufacturer</th>
+      <th>Vendor</th>
+      <th>Amount Required</th>
+      <th>Ordered?</th>
+      <th>Received?</th>
+    </thead>
+    <tbody>
+      <% @order.order_line_items.each do |line_item| %>
+        <tr>
+          <th scope="row"><%= line_item.product.name %></th>
+          <td><%= line_item.product.part_number %></td>
+          <td><%= line_item.product.manufacturer.name %></td>
+          <td><%= line_item.product.vendor.name %></td>
+          <td><%= pluralize(line_item.amount_required, line_item.product.container) %></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <%= link_to "Back", orders_path, class: "btn btn-primary" %>
+</div>
