@@ -16,11 +16,15 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    if @order.save
-      redirect_to @order, notice: "Order successfully created."
+    parse_params
+    @action = CreatesOrder.new(@products)
+    success = @action.create
+    if success
+      redirect_to order_path(@action.order)
     else
-      render :new
+      @action.order.destroy
+      redirect_to new_order_url
+      flash[:error] = "Order not generated, a problem has occured. Please ensure all products have all required information before trying again."
     end
   end
 
@@ -46,6 +50,10 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:id, :date_created, order_line_items_attributes: [:id, :product_id, :amount_required, :ordered, :received, :_destroy]) 
+      params.require(:order).permit(:id, :date_created, :product_ids, order_line_items_attributes: [:id, :product_id, :amount_required, :ordered, :received, :_destroy]) 
+    end
+
+    def parse_params
+      @products = Product.where(id: params[:order][:product_ids])
     end
 end
