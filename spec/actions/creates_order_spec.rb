@@ -21,4 +21,12 @@ RSpec.describe CreatesOrder do
 
     expect(@creator.order.products).to include(@at_min, @below_min)
   end
+
+  it "should not include products that are above their minimum" do 
+    @creator = CreatesOrder.new(@products)
+
+    @creator.build
+
+    expect(@creator.order.products).to_not include(@above_min)
+  end
 end
