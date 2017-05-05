@@ -2,7 +2,7 @@ require "rails_helper"
 require "pry"
 
 RSpec.describe "Order Management", type: :feature do 
-  before(:each) do 
+  before(:each) do
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
   end
@@ -12,7 +12,7 @@ RSpec.describe "Order Management", type: :feature do
     let(:above_min_product) { FactoryGirl.create(:product, current_on_hand: 3) }
     let(:below_min_product) { FactoryGirl.create(:product, current_on_hand: 1) }
     
-    it "allows a user to create an order" do 
+    xit "allows a user to create an order" do 
       @at_min_product = at_min_product
       @above_min_product = above_min_product
       @below_min_product = below_min_product 
