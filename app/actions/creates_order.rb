@@ -9,4 +9,9 @@ class CreatesOrder
     self.order = Order.new
     order.create_line_items(@products)
   end
+
+  def create
+    build
+    order.save
+  end
 end

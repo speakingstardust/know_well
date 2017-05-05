@@ -29,4 +29,12 @@ RSpec.describe CreatesOrder do
 
     expect(@creator.order.products).to_not include(@above_min)
   end
+
+  it "saves the order to the database" do 
+    @creator = CreatesOrder.new(@products)
+
+    @creator.create
+
+    expect(@creator.order).to exist_in_database
+  end
 end
