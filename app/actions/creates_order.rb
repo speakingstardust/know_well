@@ -1,5 +1,5 @@
 class CreatesOrder
-  attr_accessor :products
+  attr_accessor :products, :order
 
   def initialize(products)
     @products = products
@@ -7,5 +7,6 @@ class CreatesOrder
 
   def build
     self.order = Order.new
+    order.create_line_items(@products)
   end
 end

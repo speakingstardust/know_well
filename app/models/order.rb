@@ -30,4 +30,15 @@ class Order < ActiveRecord::Base
       self.completed = true
     end
   end 
+
+  def create_line_items(products)
+    products.each do |product|
+      current_amount = product.current_on_hand
+      maximum_amount = product.maximum_on_hand
+      units_per_container = product.units_per_container
+      line_item = OrderLineItem.new(order: self, product: product)
+      line_item.amount_required = ((maximum_amount - current_amount) / units_per_container).ceil
+      line_item.save
+    end
+  end 
 end
