@@ -41,7 +41,7 @@ RSpec.describe "Order Management", type: :feature do
 
   describe "Index" do 
     let!(:first_order) { FactoryGirl.create(:order_with_line_items) } 
-    let!(:second_order) { FactoryGirlcreate(:order_with_line_items) }
+    let!(:second_order) { FactoryGirl.create(:order_with_line_items) }
 
     it "allows a user to navigate to the orders list" do 
       visit orders_path
