@@ -31,9 +31,7 @@ RSpec.describe "Order Management", type: :feature do
 
       expect(page).to have_current_path(order_path(@order))
 
-      visit orders_path
-
-      expect(page).to have_content(@order.date_created)
+      expect(page).to have_content(@order.id)
       expect(page).to have_content(at_min_product.name)
       expect(page).to have_content(2)
       expect(page).to have_content(below_min_product.name)
