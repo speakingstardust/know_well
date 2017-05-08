@@ -4,7 +4,6 @@
       <th>Order ID</th>
       <th>Date Created</th>
       <th>Number of Items</th>
-      <th>Completed</th>
     </tr>
   </thead>
   <tbody>
@@ -13,11 +12,6 @@
         <th scope="row"><%= order.id %></th>
         <td><%= l order.date_created %></td>
         <td><%= order.order_line_items.count %></td>
-        <% if order.completed? == false %>
-          <td><span class="glyphicon glyphicon-unchecked"></span>
-        <% elsif order.completed? == true %>
-          <td><span class="glyphicon glyphicon-check"></span>
-        <% end %>
       </tr>
     <% end %>
   </tbody>
