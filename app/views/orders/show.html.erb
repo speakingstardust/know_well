@@ -24,8 +24,6 @@
       <th>Manufacturer</th>
       <th>Vendor</th>
       <th>Amount Required</th>
-      <th>Ordered?</th>
-      <th>Received?</th>
     </thead>
     <tbody>
       <% @order.order_line_items.each do |line_item| %>
@@ -35,8 +33,6 @@
           <td><%= line_item.product.manufacturer.name %></td>
           <td><%= line_item.product.vendor.name %></td>
           <td><%= pluralize(line_item.amount_required, line_item.product.container) %></td>
-          <td></td>
-          <td></td>
         </tr>
       <% end %>
     </tbody>
