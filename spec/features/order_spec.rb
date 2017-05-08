@@ -12,7 +12,7 @@ RSpec.describe "Order Management", type: :feature do
     let!(:above_min_product) { FactoryGirl.create(:product, current_on_hand: 36.0) }
     let!(:below_min_product) { FactoryGirl.create(:product, current_on_hand: 12.0) }
     
-    it "allows a user to create an order" do 
+    it "allows a user to create an order and to see details of order after" do 
       visit new_order_path
 
       expect(page).to have_content(at_min_product.name) 
@@ -36,6 +36,18 @@ RSpec.describe "Order Management", type: :feature do
       expect(page).to have_content(2)
       expect(page).to have_content(below_min_product.name)
       expect(page).to have_content(3)
+    end
+  end
+
+  describe "Index" do 
+    let!(:first_order) { FactoryGirl.create(:order_with_line_items) } 
+    let!(:second_order) { FactoryGirld.create(:order_with_line_items) }
+
+    it "allows a user to navigate to the orders list" do 
+      visit orders_path
+
+      expect(page).to have_content(first_order.id)
+      expect(page).to have_content(second_order.id)
     end
   end
 end
