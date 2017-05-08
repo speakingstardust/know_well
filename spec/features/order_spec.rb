@@ -24,7 +24,7 @@ RSpec.describe "Order Management", type: :feature do
       check below_min_product.name
 
       expect {
-        click "Create Order"
+        click_on "Create Order"
       }.to change(Order, :count).by(1)
 
       @order = Order.first
