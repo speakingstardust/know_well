@@ -41,13 +41,14 @@ RSpec.describe "Order Management", type: :feature do
 
   describe "Index" do 
     let!(:first_order) { FactoryGirl.create(:order_with_line_items) } 
-    let!(:second_order) { FactoryGirld.create(:order_with_line_items) }
+    let!(:second_order) { FactoryGirlcreate(:order_with_line_items) }
 
     it "allows a user to navigate to the orders list" do 
       visit orders_path
 
       expect(page).to have_content(first_order.id)
       expect(page).to have_content(second_order.id)
+      expect(page).to have_content(3)
     end
   end
 end
