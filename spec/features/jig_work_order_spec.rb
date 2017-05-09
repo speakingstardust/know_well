@@ -91,8 +91,10 @@ RSpec.describe "Jig Work Order Management", type: :feature do
   end
 
   describe "Manage State" do 
+    before(:each) do 
+      setup_jig_work_order
+    end
     it "allows a shop supervisor to receive a jig work order after it is created" do 
-      setup_jig_work_order 
       @jig_work_order.open!
       
       login_shop_supervisor
@@ -103,6 +105,30 @@ RSpec.describe "Jig Work Order Management", type: :feature do
 
       @jig_work_order.reload
       expect(@jig_work_order).to have_state(:received)
+    end
+
+    it "allows a shop supervisor to ship a jig work order after it has been completed" do 
+      @jig_work_order.open! 
+      @jig_work_order.receive!
+
+      login_shop_supervisor
+      visit jig_work_order_path(@jig_work_order)
+
+      expect(page).to have_css('a', text: "Ship")
+      click_on "Edit Jig Work Order" 
+
+      select Date.today.year, from: "jig_work_order_returned_1i"
+      select Date.today.strftime("%B"), from: "jig_work_order_returned_2i"
+      select Date.today.day, from: "jig_work_order_returned_3i"
+      fill_in "Return time", with: "PM"
+      fill_in "jig_work_order_jig_work_order_line_items_attributes_0_repaired", with: 3
+      fill_in "jig_work_order_jig_work_order_line_items_attributes_0_actual", with: 10
+      click_on "Update Jig work order" 
+
+      click_on "Ship"
+      @jig_work_order.reload
+
+      expect(@jig_work_order).to have_state(:shipped)
     end
   end
 end
