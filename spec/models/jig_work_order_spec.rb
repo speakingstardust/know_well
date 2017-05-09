@@ -25,7 +25,7 @@ RSpec.describe JigWorkOrder, type: :model do
   describe "Associations" do 
     it { should have_many :jig_work_order_line_items }
     it { should have_many :jigs }
-    it { should have_and_belons_to_many :reports }
+    it { should have_and_belong_to_many :reports }
     it { should have_many :signatures }
     it { should belong_to :customer }
   end
