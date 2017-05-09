@@ -114,6 +114,9 @@ FactoryGirl.define do
 
   factory :jig do
     sequence(:name) {|n| "Test Jig #{n}" }
+    cleaning_charge 9.50
+    repair_charge 6.50 
+    customer 
   end
 
   factory :jig_order do

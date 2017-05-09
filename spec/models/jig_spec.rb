@@ -30,4 +30,15 @@ RSpec.describe Jig, type: :model do
     it { should have_many :jig_work_orders }
     it { should have_many :report_line_items }
   end
+
+  describe "Logic" do 
+    it "sets charges to 0.0 if not set at creation" do 
+      jig = Jig.new(name: "Test Jig") 
+
+      jig.save 
+
+      expect(jig.cleaning_charge).to eq(0.0)
+      expect(jig.repair_charge).to eq(0.0)
+    end
+  end
 end
