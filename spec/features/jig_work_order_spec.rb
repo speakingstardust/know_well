@@ -139,6 +139,7 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       line_item.actual = 10 
       line_item.save 
       @jig_work_order.save 
+      @jig_work_order.ship!
 
       login_shop_supervisor
       visit jig_work_order_path(@jig_work_order)
