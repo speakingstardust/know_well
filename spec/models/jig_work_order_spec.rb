@@ -91,4 +91,31 @@ RSpec.describe JigWorkOrder, type: :model do
       expect(jig_work_order.purchase_order).to eq(Time.now.strftime("%m%d%y-%H%M"))
     end
   end
+
+  describe "Class Methods" do 
+    let!(:old_work_order) { create(:jig_work_order) } 
+    let!(:new_work_order) { create(:jig_work_order)}
+    let!(:pundit_user) { double("Joe Blow", first_name: "Joe", last_name: "Blow") }
+
+    before(:each) do 
+      old_work_order.open
+      old_work_order.receive
+      old_work_order.verify_completed(:verified, pundit_user)
+      old_work_order.complete(:completed, pundit_user)
+      old_work_order.completed_at = DateTime.now - 60
+
+      new_work_order.open
+      new_work_order.receive
+      new_work_order.verify_completed(:verified, pundit_user)
+      new_work_order.complete(:completed, pundit_user)
+    end
+
+
+    it "can find and archive old completed orders" do 
+      JigWorkOrder.archive_old_orders
+
+      expect(old_work_order).to have_state(:archived)
+      expect(new_work_order).to have_state(:completed)
+    end
+  end
 end

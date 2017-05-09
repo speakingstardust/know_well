@@ -91,8 +91,10 @@ FactoryGirl.define do
     notes "Test notes"
     pickup_date { Date.today - 3 }
     returned { Date.today }
-    verified_by "Joe Blow"
-    verified_at { Time.now }
+    verified_by nil
+    verified_at nil
+    completed_by nil
+    completed_at nil
 
     factory :jig_work_order_with_line_items do 
       transient do 

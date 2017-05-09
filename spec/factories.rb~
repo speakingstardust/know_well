@@ -111,7 +111,7 @@ FactoryGirl.define do
     
   end
   factory :customer do
-    sequence(:name) { "Test Customer" }
+    sequence(:name) {|n| "Test Customer #{n}" }
 
     factory :customer_with_jig_orders do
       after(:create) do |profile, evaluator|
