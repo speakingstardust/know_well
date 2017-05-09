@@ -1,13 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe Jig, type: :model do
-  describe "validations" do
-    let(:jig) { Jig.new }
+  describe "Validations" do
+    let(:customer) { FactoryGirl.create(:customer) }
+    subject { described_class.new(name: "Test Jig", cleaning_charge: 9.50, repair_charge: 6.50, customer: customer) }
 
-    it "requires a name" do
-      jig.cleaning_charge = 6.50
-      jig.save
-      expect(Jig.all.count).to eq(0)
+    it "is valid with valid attributes" do 
+      expect(subject).to be_valid
+    end
+  
+    it "is invalid without a name" do 
+      subject.name = nil
+
+      expect(subject).to_not be_valid
+    end
+
+    it "is invalid without a customer" do
+      subject.customer = nil
+
+      expect(subject).to_not be_valid
     end
   end
 end
