@@ -150,5 +150,9 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       @jig_work_order.reload
       expect(@jig_work_order).to have_state(:verified)
     end
+
+    it "allows a bookkeeper to complete a jig work order after it has been verified" do 
+
+    end
   end
 end
