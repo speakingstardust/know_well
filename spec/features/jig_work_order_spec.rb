@@ -29,9 +29,9 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       expect(page).to have_current_path(new_jig_work_order_path, only_path: true)
 
       select Date.today.year, from: "jig_work_order_pickup_date_1i"
-      select Date.today.month, from: "jig_work_order_pickup_date_2i"
+      select Date.today.strftime("%B"), from: "jig_work_order_pickup_date_2i"
       select Date.today.day, from: "jig_work_order_pickup_date_3i"
-      fill_in "Pickup Time", with: "AM"
+      fill_in "Pickup time", with: "AM"
       fill_in "Notes", with: "Test Jig Work Order notes"
       select @jig.name, from: "jig_work_order_jig_work_order_line_items_attributes_0_jig_id"
       fill_in "jig_work_order_jig_work_order_line_items_attributes_0_expected", with: 5
@@ -47,7 +47,7 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       expect(page).to have_content(5)
       expect(page).to have_content(@customer.name)
       expect(page).to have_content(@jig_work_order.id)
-      expect(page).to have_content(Date.today)
+      expect(page).to have_content(Date.today.strftime("%m/%d/%Y"))
     end
   end
 end
