@@ -23,7 +23,7 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       login_bookkeeper
 
       visit work_orders_management_path
-      select @customer, from: "Customer" 
+      select @customer.name, from: "customer_customer_id" 
       click_on "Jig Work Order"
 
       expect(page).to have_current_path(new_jig_work_order_path)
@@ -33,7 +33,7 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       select Date.today.day, from: "jig_work_order_pickup_date_3i"
       fill_in "Pickup Time", with: "AM"
       fill_in "Notes", with: "Test Jig Work Order notes"
-      select @jig, from: "jig_work_order_jig_work_order_line_items_attributes_0_jig_id"
+      select @jig.name, from: "jig_work_order_jig_work_order_line_items_attributes_0_jig_id"
       fill_in "jig_work_order_jig_work_order_line_items_attributes_0_expected", with: 5
       
       expect {
