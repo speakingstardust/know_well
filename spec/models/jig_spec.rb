@@ -32,8 +32,9 @@ RSpec.describe Jig, type: :model do
   end
 
   describe "Logic" do 
+    let(:customer) { create(:customer) }
     it "sets charges to 0.0 if not set at creation" do 
-      jig = Jig.new(name: "Test Jig") 
+      jig = Jig.new(name: "Test Jig", customer: customer) 
 
       jig.save 
 
