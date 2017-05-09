@@ -21,4 +21,13 @@ RSpec.describe Jig, type: :model do
       expect(subject).to_not be_valid
     end
   end
+
+  describe "Associations" do 
+    it { should belong_to(:customer) } 
+    it { should have_many(:jig_order_line_items) }
+    it { should have_many :jig_orders }
+    it { should have_many :jig_work_order_line_items }
+    it { should have_many :jig_work_orders }
+    it { should have_many :report_line_items }
+  end
 end
