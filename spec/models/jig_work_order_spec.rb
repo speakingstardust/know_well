@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe JigWorkOrder, type: :model do
   describe "Validations" do 
     let(:jig) { create(:jig) } 
-    let(:jig_work_order_line_item) { JigWorkOrderLineItem.new(jig: jig, expected: 5, repaired: 0, cleaned: 5) }
+    let(:jig_work_order_line_item) { JigWorkOrderLineItem.new(jig: jig, expected: 5, repaired: 0, actual: 5) }
     let(:return_date) { Date.today }
     let(:pickup_date) { Date.today - 3 }
     subject { described_class.new(jig_work_order_line_items: [jig_work_order_line_item], 
