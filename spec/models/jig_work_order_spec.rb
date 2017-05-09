@@ -31,6 +31,18 @@ RSpec.describe JigWorkOrder, type: :model do
   end
 
   describe "State Machine" do 
+    let(:jig_work_order) { create(:jig_work_order_with_line_items) }
 
+    it "should move through the steps of the state machine properly" do 
+      jig_work_order 
+
+      expect(jig_work_order).to have_state(:created)
+      expect(jig_work_order).to allow_event :open
+      expect(jig_work_order).to transition_from(:created).to(:opened).on_event(:open)
+      
+      jig_work_order.open
+
+      expect(jig_work_order).to have_state(:opened)
+    end
   end
 end

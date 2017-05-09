@@ -87,14 +87,14 @@ FactoryGirl.define do
     actual 1
   end
   factory :jig_work_order do
-    customer nil
-    purchase_order "MyString"
-    notes "MyText"
-    pickup "2017-03-06 10:16:03"
-    returned "2017-03-06"
+    customer 
+    purchase_order "12345"
+    notes "Test notes"
+    pickup { Date.today - 3 }
+    returned { Date.today }
     verified false
-    verified_by "MyString"
-    verified_at "2017-03-06 10:16:03"
+    verified_by "Joe Blow"
+    verified_at { Time.now }
   end
   factory :admin do
     
@@ -114,6 +114,9 @@ FactoryGirl.define do
 
   factory :jig do
     sequence(:name) {|n| "Test Jig #{n}" }
+    cleaning_charge 9.50
+    repair_charge 6.50 
+    customer 
   end
 
   factory :jig_order do

@@ -80,21 +80,30 @@ FactoryGirl.define do
     type ""
   end
   factory :jig_work_order_line_item do
-    jig nil
-    jig_work_order nil
+    jig 
     expected 1
     repaired 1
     actual 1
   end
   factory :jig_work_order do
-    customer nil
-    purchase_order "MyString"
-    notes "MyText"
-    pickup "2017-03-06 10:16:03"
-    returned "2017-03-06"
+    customer 
+    purchase_order "12345"
+    notes "Test notes"
+    pickup { Date.today - 3 }
+    returned { Date.today }
     verified false
-    verified_by "MyString"
-    verified_at "2017-03-06 10:16:03"
+    verified_by "Joe Blow"
+    verified_at { Time.now }
+
+    factory :jig_work_order_with_line_items do 
+      transient do 
+        line_items_count 3
+      end
+
+      after(:create) do |profile, evaluator|
+        create_list(:jig_work_order_line_items, evaluator.line_items_count, jig_work_order: jig_work_order)
+      end
+    end
   end
   factory :admin do
     
