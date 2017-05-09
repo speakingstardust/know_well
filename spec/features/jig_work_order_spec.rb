@@ -26,10 +26,10 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       select @customer.name, from: "customer_customer_id" 
       click_on "Jig Work Order"
 
-      expect(page).to have_current_path(new_jig_work_order_path)
+      expect(page).to have_current_path(new_jig_work_order_path, only_path: true)
 
       select Date.today.year, from: "jig_work_order_pickup_date_1i"
-      select Date.today.month, from: "jig_work_order_pickup_date_21"
+      select Date.today.month, from: "jig_work_order_pickup_date_2i"
       select Date.today.day, from: "jig_work_order_pickup_date_3i"
       fill_in "Pickup Time", with: "AM"
       fill_in "Notes", with: "Test Jig Work Order notes"
