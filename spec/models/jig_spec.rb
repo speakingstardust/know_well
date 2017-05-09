@@ -41,5 +41,13 @@ RSpec.describe Jig, type: :model do
       expect(jig.cleaning_charge).to eq(0.0)
       expect(jig.repair_charge).to eq(0.0)
     end
+    
+    it "calls notify admin callback after creation" do 
+      jig = Jig.new(name: "Test Jig", customer: customer) 
+
+      expect(jig).to receive(:notify_admins)
+
+      jig.save
+    end
   end
 end
