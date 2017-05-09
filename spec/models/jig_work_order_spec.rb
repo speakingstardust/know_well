@@ -97,7 +97,7 @@ RSpec.describe JigWorkOrder, type: :model do
     let!(:new_work_order) { create(:jig_work_order)}
     let!(:pundit_user) { double("Joe Blow", first_name: "Joe", last_name: "Blow") }
 
-    before(:each) do 
+    before(:example) do 
       old_work_order.open
       old_work_order.receive
       old_work_order.ship
@@ -110,12 +110,16 @@ RSpec.describe JigWorkOrder, type: :model do
       new_work_order.ship
       new_work_order.verify_completed(:verified, pundit_user)
       new_work_order.complete(:completed, pundit_user)
+      old_work_order.save
+      new_work_order.save
     end
 
 
     it "can find and archive old completed orders" do 
       JigWorkOrder.archive_old_orders
 
+      old_work_order.reload
+      new_work_order.reload
       expect(old_work_order).to have_state(:archived)
       expect(new_work_order).to have_state(:completed)
     end
