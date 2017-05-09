@@ -43,6 +43,31 @@ RSpec.describe JigWorkOrder, type: :model do
       jig_work_order.open
 
       expect(jig_work_order).to have_state(:opened)
+      expect(jig_work_order).to transition_from(:opened).to(:received).on_event(:receive)
+      
+      jig_work_order.receive
+
+      expect(jig_work_order).to have_state(:received)
+      expect(jig_work_order).to transition_from(:received).to(:shipped).on_event(:ship)
+
+      jig_work_order.ship
+
+      expect(jig_work_order).to have_state(:shipped)
+      expect(jig_work_order).to transition_from(:shipped).to(:verified).on_event(:verify_completed)
+
+      jig_work_order.verify_completed
+
+      expect(jig_work_order).to have_state(:verified)
+      expect(jig_work_order).to transition_from(:verified).to(:completed).on_event(:complete)
+
+      jig_work_order.complete
+
+      expect(jig_work_order).to have_state(:completed)
+      expect(jig_work_order).to transition_from(:completed).to(:archived).on_event(:archive)
+
+      jig_work_order.archive
+
+      expect(jig_work_order).to have_state(:archived)
     end
   end
 end
