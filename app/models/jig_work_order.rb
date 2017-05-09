@@ -92,7 +92,7 @@ class JigWorkOrder < ActiveRecord::Base
 
   def set_purchase_order
     time = Time.now.strftime("%m%d%y-%H%M")
-    if self.purchase_order == ''
+    if self.purchase_order == '' or self.purchase_order == nil
       self.purchase_order = time
     end
   end
