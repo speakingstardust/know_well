@@ -89,9 +89,8 @@ FactoryGirl.define do
     customer 
     purchase_order "12345"
     notes "Test notes"
-    pickup { Date.today - 3 }
+    pickup_date { Date.today - 3 }
     returned { Date.today }
-    verified false
     verified_by "Joe Blow"
     verified_at { Time.now }
 
@@ -100,8 +99,8 @@ FactoryGirl.define do
         line_items_count 3
       end
 
-      after(:create) do |profile, evaluator|
-        create_list(:jig_work_order_line_items, evaluator.line_items_count, jig_work_order: jig_work_order)
+      after(:create) do |jig_work_order, evaluator|
+        create_list(:jig_work_order_line_item, evaluator.line_items_count, jig_work_order: jig_work_order)
       end
     end
   end
@@ -112,7 +111,7 @@ FactoryGirl.define do
     
   end
   factory :customer do
-    add_attribute(:name) { "Test Customer" }
+    sequence(:name) {|n| "Test Customer #{n}" }
 
     factory :customer_with_jig_orders do
       after(:create) do |profile, evaluator|

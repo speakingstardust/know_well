@@ -14,7 +14,7 @@ RSpec.describe Customer, type: :model do
     end
 
     it "maintains unique names" do
-      customer_org = create(:customer)
+      customer_org = create(:customer, name: "Test Customer")
       customer_dup = Customer.new(name: "Test Customer")
 
       customer_dup.save
