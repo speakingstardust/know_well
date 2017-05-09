@@ -9,6 +9,7 @@ class Jig < ActiveRecord::Base
   after_create :notify_admins
 
   validates :name, presence: true
+  validates :customer, presence: true
 
   has_attached_file :jig_photo,
     styles: {

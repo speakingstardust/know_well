@@ -23,4 +23,11 @@ class Jig < ActiveRecord::Base
     self.cleaning_charge ||= 0.0
     self.repair_charge ||= 0.0
   end
+
+  def notify_admins
+    admins = Admin.all
+    admins.each do |admin|
+      JigMailer.new_jig_created(admin, self).deliver_now
+    end
+  end
 end
