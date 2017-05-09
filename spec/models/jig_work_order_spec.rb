@@ -29,4 +29,8 @@ RSpec.describe JigWorkOrder, type: :model do
     it { should have_many :signatures }
     it { should belong_to :customer }
   end
+
+  describe "State Machine" do 
+
+  end
 end
