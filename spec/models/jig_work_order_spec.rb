@@ -72,4 +72,16 @@ RSpec.describe JigWorkOrder, type: :model do
       expect(jig_work_order).to have_state(:archived)
     end
   end
+
+  describe "Logic" do 
+    let(:jig_work_order) { create(:jig_work_order_with_line_items) }
+
+    it "should set purchase order automatically if one is not given at time of creation" do 
+      jig_work_order.purchase_order = nil 
+
+      jig_work_order.save 
+
+      expect(jig_work_order.purchase_order).to eq(Time.now.strftime("%m%d%y-%H%M"))
+    end
+  end
 end
