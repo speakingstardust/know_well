@@ -15,6 +15,13 @@ RSpec.describe "Jig Work Order Management", type: :feature do
     login_as(bookkeeper, :scope => :user)
   end
 
+  def setup_jig_work_order
+    @jig_work_order = JigWorkOrder.new(pickup_date: Date.today - 5, customer: @customer)
+    jig_work_order_line_item = JigWorkOrderLineItem.create(jig: @jig, expected: 5, jig_work_order: @jig_work_order)
+    @jig_work_order.jig_work_order_line_items << jig_work_order_line_item 
+    @jig_work_order.save
+  end
+
   before(:each) do 
     @customer = FactoryGirl.create(:customer) 
     @jig = FactoryGirl.create(:jig, customer: @customer) 
@@ -58,10 +65,7 @@ RSpec.describe "Jig Work Order Management", type: :feature do
 
   describe "Edit" do 
     it "allows a shop supervisor to edit a jig work order" do 
-      @jig_work_order = JigWorkOrder.new(pickup_date: Date.today - 5, customer: @customer)
-      jig_work_order_line_item = JigWorkOrderLineItem.create(jig: @jig, expected: 5, jig_work_order: @jig_work_order)
-      @jig_work_order.jig_work_order_line_items << jig_work_order_line_item 
-      @jig_work_order.save
+      setup_jig_work_order
 
       @second_jig = FactoryGirl.create(:jig, customer: @customer)
 
@@ -83,6 +87,22 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       expect(page).to have_content(3)
       expect(page).to have_content(10)
       expect(page).to have_content(Date.today.strftime("%m/%d/%Y"))
+    end
+  end
+
+  describe "Manage State" do 
+    it "allows a shop supervisor to receive a jig work order after it is created" do 
+      setup_jig_work_order 
+      @jig_work_order.open!
+      
+      login_shop_supervisor
+      visit jig_work_order_path(@jig_work_order)
+
+      expect(page).to have_css('a', text: "Receive")
+      click_on "Receive"
+
+      @jig_work_order.reload
+      expect(@jig_work_order).to have_state(:received)
     end
   end
 end
