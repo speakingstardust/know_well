@@ -103,7 +103,7 @@ RSpec.describe JigWorkOrder, type: :model do
       old_work_order.ship
       old_work_order.verify_completed(:verified, pundit_user)
       old_work_order.complete(:completed, pundit_user)
-      old_work_order.completed_at = DateTime.now - 60
+      old_work_order.completed_at = DateTime.now - 61
 
       new_work_order.open
       new_work_order.receive
