@@ -60,7 +60,7 @@ RSpec.describe JigWorkOrder, type: :model do
       jig_work_order.verify_completed(:verified, pundit_user)
 
       expect(jig_work_order).to have_state(:verified)
-      expect(jig_work_order).to transition_from(:verified).to(:completed).on_event(:complete)
+      expect(jig_work_order).to transition_from(:verified).to(:completed).on_event(:complete, pundit_user)
 
       jig_work_order.complete(:completed, pundit_user)
 
