@@ -65,6 +65,8 @@ RSpec.describe "Jig Work Order Management", type: :feature do
 
       @second_jig = FactoryGirl.create(:jig, customer: @customer)
 
+      login_shop_supervisor
+
       visit edit_jig_work_order_path(@jig_work_order)
 
       select Date.today.year, from: "jig_work_order_returned_1i"
