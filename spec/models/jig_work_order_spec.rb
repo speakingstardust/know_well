@@ -100,12 +100,14 @@ RSpec.describe JigWorkOrder, type: :model do
     before(:each) do 
       old_work_order.open
       old_work_order.receive
+      old_work_order.ship
       old_work_order.verify_completed(:verified, pundit_user)
       old_work_order.complete(:completed, pundit_user)
       old_work_order.completed_at = DateTime.now - 60
 
       new_work_order.open
       new_work_order.receive
+      new_work_order.ship
       new_work_order.verify_completed(:verified, pundit_user)
       new_work_order.complete(:completed, pundit_user)
     end
