@@ -130,5 +130,24 @@ RSpec.describe "Jig Work Order Management", type: :feature do
 
       expect(@jig_work_order).to have_state(:shipped)
     end
+
+    it "allows a shop supervisor to verify a jig work order after it has been shipped" do 
+      @jig_work_order.open!
+      @jig_work_order.receive!
+      @jig_work_order.return_date = Date.today 
+      line_item = @jig_work_order.jig_work_order_line_items.first
+      line_item.actual = 10 
+      line_item.save 
+      @jig_work_order.save 
+
+      login_shop_supervisor
+      visit jig_work_order_path(@jig_work_order)
+      
+      expect(page).to have_css('a', text: "Verify")
+      click_on "Verify"
+
+      @jig_work_order.reload
+      expect(@jig_work_order).to have_state(:verified)
+    end
   end
 end
