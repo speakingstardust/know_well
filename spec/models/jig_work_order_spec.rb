@@ -36,6 +36,8 @@ RSpec.describe JigWorkOrder, type: :model do
     it "should move through the steps of the state machine properly" do 
       jig_work_order 
 
+      pundit_user = double("Joe Blow", first_name: "Joe", last_name: "Blow")
+
       expect(jig_work_order).to have_state(:created)
       expect(jig_work_order).to allow_event :open
       expect(jig_work_order).to transition_from(:created).to(:opened).on_event(:open)
@@ -53,14 +55,14 @@ RSpec.describe JigWorkOrder, type: :model do
       jig_work_order.ship
 
       expect(jig_work_order).to have_state(:shipped)
-      expect(jig_work_order).to transition_from(:shipped).to(:verified).on_event(:verify_completed)
+      expect(jig_work_order).to transition_from(:shipped).to(:verified).on_event(:verify_completed, pundit_user)
 
-      jig_work_order.verify_completed
+      jig_work_order.verify_completed(:verified, pundit_user)
 
       expect(jig_work_order).to have_state(:verified)
       expect(jig_work_order).to transition_from(:verified).to(:completed).on_event(:complete)
 
-      jig_work_order.complete
+      jig_work_order.complete(:completed, pundit_user)
 
       expect(jig_work_order).to have_state(:completed)
       expect(jig_work_order).to transition_from(:completed).to(:archived).on_event(:archive)
