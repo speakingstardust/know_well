@@ -6,5 +6,22 @@
   </div>
 </div>
 <div class="row">
+  <%= search_form_for @q do |f| %>
+    <%= f.label :id_eq, "Order ID", class: 'control-label' %>
+    <%= f.text_field :id_eq, class: 'form-control' %>
+
+    <%= f.label :date_created_gteq, "Date Created", class: 'control-label' %>
+
+    <div class="input-group input-daterange">
+      <%= f.text_field :date_created_gteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
+      <span class="input-group-addon">to</span>
+      <%= f.text_field :date_created_lteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
+    </div>
+
+    <%= f.submit "Search", class: 'btn btn-primary' %>
+    <%= link_to "Clear Search", request.path, class: "cancel-button btn btn-info btn-block" %>
+  <% end %>
+</div>
+<div class="row">
   <%= render 'table' %>
 </div>
