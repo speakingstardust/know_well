@@ -15,6 +15,11 @@ RSpec.describe "Jig Work Order Management", type: :feature do
     login_as(bookkeeper, :scope => :user)
   end
 
+  before(:each) do 
+    @customer = FactoryGirl.create(:customer) 
+    @jig = FactoryGirl.create(:jig, customer: @customer) 
+  end
+
   describe "Create" do 
     it "allows a bookkeeper to create a Jig Work Order" do 
       @customer = FactoryGirl.create(:customer) 
@@ -47,6 +52,34 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       expect(page).to have_content(5)
       expect(page).to have_content(@customer.name)
       expect(page).to have_content(@jig_work_order.id)
+      expect(page).to have_content(Date.today.strftime("%m/%d/%Y"))
+    end
+  end
+
+  describe "Edit" do 
+    it "allows a shop supervisor to edit a jig work order" do 
+      @jig_work_order = JigWorkOrder.new(pickup_date: Date.today - 5, customer: @customer)
+      jig_work_order_line_item = JigWorkOrderLineItem.create(jig: @jig, expected: 5, jig_work_order: @jig_work_order)
+      @jig_work_order.jig_work_order_line_items << jig_work_order_line_item 
+      @jig_work_order.save
+
+      @second_jig = FactoryGirl.create(:jig, customer: @customer)
+
+      visit edit_jig_work_order_path(@jig_work_order)
+
+      select Date.today.year, from: "jig_work_order_returned_1i"
+      select Date.today.strftime("%B"), from: "jig_work_order_returned_2i"
+      select Date.today.day, from: "jig_work_order_returned_3i"
+      fill_in "Return time", with: "PM"
+      select @second_jig.name, from: "jig_work_order_jig_work_order_line_items_attributes_0_jig_id"
+      fill_in "jig_work_order_jig_work_order_line_items_attributes_0_repaired", with: 3
+      fill_in "jig_work_order_jig_work_order_line_items_attributes_0_actual", with: 10
+      click_on "Update Jig work order" 
+
+      expect(page).to have_current_path(jig_work_order_path(@jig_work_order))
+      expect(page).to have_content(@second_jig.name)
+      expect(page).to have_content(3)
+      expect(page).to have_content(10)
       expect(page).to have_content(Date.today.strftime("%m/%d/%Y"))
     end
   end
