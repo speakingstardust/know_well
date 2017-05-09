@@ -134,7 +134,7 @@ RSpec.describe "Jig Work Order Management", type: :feature do
     it "allows a shop supervisor to verify a jig work order after it has been shipped" do 
       @jig_work_order.open!
       @jig_work_order.receive!
-      @jig_work_order.return_date = Date.today 
+      @jig_work_order.returned = Date.today 
       line_item = @jig_work_order.jig_work_order_line_items.first
       line_item.actual = 10 
       line_item.save 
