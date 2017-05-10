@@ -70,6 +70,8 @@ RSpec.describe "Jig Management", type: :feature do
       fill_in "Name", with: "Edited Test Jig Name" 
       click_on "Update Jig" 
 
+      @jig.reload
+
       expect(page).to have_current_path(jig_path(@jig))
       expect(page).to have_content(@jig.name)
       expect(page).to_not have_content(@jig.cleaning_charge)
