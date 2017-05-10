@@ -59,4 +59,21 @@ RSpec.describe "Jig Management", type: :feature do
       expect(page).to have_content(@jig.repair_charge)
     end 
   end 
+
+  describe "Edit" do 
+    it "allows a shop supervisor to edit a jig" do 
+      @jig = create(:jig, customer: @customer) 
+      login_shop_supervisor
+
+      visit edit_jig_path(@jig)
+
+      fill_in "Name", with: "Edited Test Jig Name" 
+      click_on "Update Jig" 
+
+      expect(page).to have_current_path(jig_path(@jig))
+      expect(page).to have_content(@jig.name)
+      expect(page).to_not have_content(@jig.cleaning_charge)
+      expect(page).to_not have_content(@jig.repair_charge)
+    end
+  end
 end
