@@ -28,7 +28,7 @@
     <tbody>
       <% @order.order_line_items.each do |line_item| %>
         <tr>
-          <th scope="row"><%= line_item.product.name %></th>
+          <th scope="row"><%= link_to line_item.product.name, product_path(line_item.product) %></th>
           <td><%= line_item.product.part_number %></td>
           <td><%= line_item.product.manufacturer.name %></td>
           <td><%= line_item.product.vendor.name %></td>
