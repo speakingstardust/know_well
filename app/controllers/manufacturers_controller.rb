@@ -8,11 +8,13 @@ class ManufacturersController < ApplicationController
 
   def new
     @manufacturer = Manufacturer.new
+    authorize @manufacturer
   end
 
   def create
     @manufacturer = Manufacturer.new(manufacturer_params)
 
+    authorize @manufacturer
     if @manufacturer.save
       redirect_to @manufacturer, notice: "Manufacturer was successfully created."
     else 
@@ -21,9 +23,11 @@ class ManufacturersController < ApplicationController
   end
 
   def edit
+    authorize @manufacturer
   end
 
   def update
+    authorize @manufacturer
     if @manufacturer.update(manufacturer_params)
       redirect_to @manufacturer, notice: "Manufacturer was successfully updated."
     else
@@ -35,6 +39,7 @@ class ManufacturersController < ApplicationController
   end
 
   def destroy
+    authorize @manufacturer
     @manufacturer.destroy
     redirect_to manufacturers_url, notice: "Manufacturer was successfully destroyed."
   end

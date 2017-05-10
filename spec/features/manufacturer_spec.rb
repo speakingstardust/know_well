@@ -5,6 +5,7 @@ RSpec.describe "Manufacturer Management", type: :feature do
 
   before(:each) do 
     user = FactoryGirl.create(:user)
+    user.add_role :inventory_control
     login_as(user, :scope => :user)
   end
   
