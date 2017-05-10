@@ -27,7 +27,7 @@ RSpec.describe "Jig Management", type: :feature do
       fill_in "Name", with: "Test Jig" 
       select @customer.name, from: "Customer" 
       expect {
-        click_on "Create jig"
+        click_on "Create Jig"
       }.to change(Jig, :count).by(1)
 
       @jig = Jig.find_by_name("Test Jig")
