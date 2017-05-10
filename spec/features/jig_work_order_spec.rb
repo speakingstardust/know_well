@@ -10,7 +10,7 @@ RSpec.describe "Jig Work Order Management", type: :feature do
   end
 
   def login_bookkeeper
-    bookkeeper = FactoryGirl.create(:user) 
+    bookkeeper = FactoryGirl.create(:user, email: "bookkeeper@test.com") 
     bookkeeper.add_role(:bookkeeper)
     login_as(bookkeeper, :scope => :user)
   end
@@ -161,10 +161,13 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       @jig_work_order.save 
       @jig_work_order.ship!
       @jig_work_order
-      login_bookkeeper
+      login_shop_supervisor 
       visit jig_work_order_path(@jig_work_order)
       click_on "Verify"
 
+      login_bookkeeper
+      visit jig_work_order_path(@jig_work_order)
+      save_and_open_page
       expect(page).to have_css('a', text: "Complete")
       click_on "Complete" 
 
