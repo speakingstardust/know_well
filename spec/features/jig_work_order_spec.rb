@@ -161,7 +161,7 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       @jig_work_order.save 
       @jig_work_order.ship!
       @jig_work_order
-      login_shop_supervisor
+      login_bookkeeper
       visit jig_work_order_path(@jig_work_order)
       click_on "Verify"
 
