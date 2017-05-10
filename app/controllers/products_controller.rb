@@ -15,11 +15,13 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    authorize @product
   end
 
   def create 
     @product = Product.new(product_params)
 
+    authorize @product
     if @product.save
       redirect_to @product, notice: "Product successfully created."
     else 
@@ -28,9 +30,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    authorize @product
   end
 
   def update 
+    authorize @product
     if @product.update(product_params)
       redirect_to @product, notice: "Product was successfully updated."
     else 
@@ -41,12 +45,14 @@ class ProductsController < ApplicationController
   def update_all_counts
     params['products'].keys.each do |id|
       @product = Product.find(id.to_i)
+      authorize @product
       @product.update_attributes(params[:products][id].permit(:current_on_hand))
     end
     redirect_to products_url
   end
 
   def destroy
+    authorize @product
     @product.destroy 
     redirect_to products_url, notice: "Product was successfully destroyed."
   end

@@ -22,6 +22,10 @@ class ProductPolicy < ApplicationPolicy
     new?
   end
 
+  def update_all_counts?
+    new?
+  end
+
   def destroy?
     new?
   end
