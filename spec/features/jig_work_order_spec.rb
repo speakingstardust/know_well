@@ -152,7 +152,24 @@ RSpec.describe "Jig Work Order Management", type: :feature do
     end
 
     it "allows a bookkeeper to complete a jig work order after it has been verified" do 
+      @jig_work_order.open!
+      @jig_work_order.receive!
+      @jig_work_order.returned = Date.today 
+      line_item = @jig_work_order.jig_work_order_line_items.first
+      line_item.actual = 10 
+      line_item.save 
+      @jig_work_order.save 
+      @jig_work_order.ship!
+      @jig_work_order
+      login_shop_supervisor
+      visit jig_work_order_path(@jig_work_order)
+      click_on "Verify"
 
+      expect(page).to have_css('a', text: "Complete")
+      click_on "Complete" 
+
+      @jig_work_order.reload
+      expect(@jig_work_order).to have_state(:completed)
     end
   end
 end
