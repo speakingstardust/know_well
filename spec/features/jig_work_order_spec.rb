@@ -167,7 +167,6 @@ RSpec.describe "Jig Work Order Management", type: :feature do
 
       login_bookkeeper
       visit jig_work_order_path(@jig_work_order)
-      save_and_open_page
       expect(page).to have_css('a', text: "Complete")
       click_on "Complete" 
 
