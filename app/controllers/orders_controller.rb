@@ -14,12 +14,14 @@ class OrdersController < ApplicationController
     @order = Order.new
     @products = Product.needed 
     @order.order_line_items.build
+    authorize @order
   end
 
   def create
     parse_params
     @action = CreatesOrder.new(@products)
     success = @action.create
+    authorize @action.order
     if success
       redirect_to order_path(@action.order)
     else
@@ -29,10 +31,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
+    authorize @order
     if @order.update_attributes(order_params)
       redirect_to @order, notice: "Order successfully updated."
     else 
@@ -41,6 +41,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+    authorize @order
     @order.destroy
     redirect_to orders_url, notice: "Order successfully destroyed."
   end
