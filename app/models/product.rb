@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   has_many :order_line_items
   has_many :orders, through: :order_line_items
 
-  enum category: [ :raw_materials, :lab_supplies, :consumables, :shop_supplies ]
+  enum category: [ :raw_materials, :lab_supplies, :consumables, :shop_supplies, :maintenance_supplies ]
 
   before_save :calculate_price_per_unit, if: "price_per_unit.nil?"
   before_save :calculate_price_per_container, if: "price_per_container.nil?"
@@ -20,7 +20,6 @@ class Product < ActiveRecord::Base
   validates :category, presence: true
 
   scope :needed, -> { where("current_on_hand <= minimum_on_hand") } 
-
 
   def calculate_price_per_unit
     self.price_per_unit = (self.price_per_container / self.units_per_container).round(2)

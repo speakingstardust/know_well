@@ -31,7 +31,28 @@
   <div class="row">
     <h4 class="text-center">Select Products For Order</h4>
     <div class="col-md-4">
-      <%= f.association :products, collection: @products, as: :check_boxes, group_method: :category %>
+      <% unless @raw_materials.empty? %>
+        <h4>Raw Materials</h4>
+        <%= f.input :product_ids, collection: @raw_materials, as: :check_boxes, label: false %>
+      <% end %>
+      <% unless @lab_supplies.empty? %>
+        <h4>Lab Supplies</h4>
+        <%= f.input :product_ids, collection: @lab_supplies, as: :check_boxes, label: false %>
+      <% end %>
+      <% unless @consumables.empty? %>
+        <h4>Consumables</h4>
+        <%= f.input :product_ids, collection: @consumables, as: :check_boxes, label: false %>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <% unless @shop_supplies.empty? %>
+        <h4>Shop Supplies</h4>
+        <%= f.input :product_ids, collection: @shop_supplies, as: :check_boxes, label: false %>
+      <% end %>
+      <% unless @maintenance_supplies.empty? %>
+        <h4>Maintenance Supplies</h4>
+        <%= f.input :product_ids, collection: @maintenance_supplies, as: :check_boxes, label: false %>
+      <% end %>
     </div>
   </div>
   <%= f.button :submit, class: "btn btn-primary" %>

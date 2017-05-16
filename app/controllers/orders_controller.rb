@@ -12,8 +12,12 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @products = Product.needed 
-    @order.order_line_items.build
+    @products = Product.needed
+    @raw_materials = Product.raw_materials.needed
+    @lab_supplies = Product.lab_supplies.needed
+    @consumables = Product.consumables.needed
+    @shop_supplies = Product.shop_supplies.needed
+    @maintenance_supplies = Product.maintenance_supplies.needed
     authorize @order
   end
 
