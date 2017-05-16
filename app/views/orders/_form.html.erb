@@ -7,6 +7,7 @@
         <thead>
           <tr>
             <th>Product Name</th>
+            <th>Category</th>
             <th>Maximum</th>
             <th>Minimum</th>
             <th>Lead Time</th>
@@ -17,6 +18,7 @@
           <% @products.each do |product| %>
             <tr>
               <th scope="row"><%= product.name %></th>
+              <td><%= product.category.humanize %></td>
               <td><%= product.maximum_on_hand %></td>
               <td><%= product.minimum_on_hand %></td>
               <td><%= pluralize(product.lead_time, 'day') unless product.lead_time.nil? %></td>
@@ -29,7 +31,7 @@
   <div class="row">
     <h4 class="text-center">Select Products For Order</h4>
     <div class="col-md-4">
-      <%= f.association :products, collection: @products, as: :check_boxes %>
+      <%= f.association :products, collection: @products, as: :check_boxes, group_method: :category %>
     </div>
   </div>
   <%= f.button :submit, class: "btn btn-primary" %>
