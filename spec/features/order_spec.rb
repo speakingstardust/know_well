@@ -18,10 +18,10 @@ RSpec.describe "Order Management", type: :feature do
 
       expect(page).to have_content(at_min_product.name) 
       expect(page).to have_content(below_min_product.name)
-      expect(page).to have_content(below_min_product.category)
+      expect(page).to have_content(below_min_product.category.humanize)
       expect(page).to have_content(at_min_product.current_on_hand)
       expect(page).to have_content(at_min_product.lead_time)      
-      expect(page).to have_content(at_min_product.category)
+      expect(page).to have_content(at_min_product.category.humanize)
 
       check at_min_product.name
       check below_min_product.name
