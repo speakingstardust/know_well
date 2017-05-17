@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :product_report do
+    date_created "2017-05-17"
+    note "MyText"
+  end
   factory :order_line_item do
     product 
     order nil
