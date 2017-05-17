@@ -12,14 +12,14 @@ RSpec.describe CreatesProductReport do
     @lab_supply = lab_supply 
     @consumable = consumable 
     @shop_supply = shop_supply
-    @included_products = [@raw_material, @lab_supply, @consumable]
   end
 
-  xit "creates a product report given a set of categories" do 
-    @creator = CreatesProductReport.new(categories: [:raw_materials, :lab_supplies, :consumables])
+  it "creates a product report given a set of categories" do 
+    @creator = CreatesProductReport.new([:raw_materials, :lab_supplies, :consumables])
 
     @creator.build 
 
-    expect(@creator.product_report.products).to include(@included_products)
+    expect(@creator.product_report.products).to include(@raw_material, @lab_supply, @consumable)
+    expect(@creator.product_report.product_report_line_items.length).to eq(@creator.product_report.products.length)
   end
 end
