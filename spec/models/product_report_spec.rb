@@ -13,4 +13,9 @@ RSpec.describe ProductReport, type: :model do
       expect(subject).to_not be_valid
     end
   end
+
+  describe "Associations" do 
+    it { should have_many(:product_report_line_items) }
+    it { should have_many(:products) }
+  end
 end
