@@ -31,6 +31,5 @@ RSpec.describe ProductReportLineItem, type: :model do
   describe "Associations" do 
     it { should belong_to(:product) }
     it { should belong_to(:product_report) }
-
   end
 end
