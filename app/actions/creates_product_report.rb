@@ -1,14 +1,15 @@
 require 'pry'
 
 class CreatesProductReport
-  attr_accessor :categories, :product_report
+  attr_accessor :categories, :product_report, :notes
 
-  def initialize(categories)
+  def initialize(categories, notes)
     @categories = categories
+    @notes = notes
   end
 
   def build
-    self.product_report = ProductReport.new
+    self.product_report = ProductReport.new(notes: @notes)
     product_report.find_products(@categories)
     product_report.save_line_items
   end
