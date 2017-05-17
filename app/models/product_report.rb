@@ -7,6 +7,6 @@ class ProductReport < ActiveRecord::Base
   validates :date_created, presence: true
 
   def set_date_created
-    self.date_created = Date.today
+    self.date_created ||= Date.today
   end
 end
