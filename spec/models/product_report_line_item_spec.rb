@@ -21,11 +21,6 @@ RSpec.describe ProductReportLineItem, type: :model do
       subject.product = nil
       expect(subject).to_not be_valid
     end
-
-    it "should not be valid without a current amount" do 
-      subject.current_amount = nil 
-      expect(subject).to_not be_valid
-    end
   end
 
   describe "Associations" do 
