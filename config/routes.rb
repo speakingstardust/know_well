@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'product_reports/index'
+
+  get 'product_reports/show'
+
+  get 'product_reports/new'
+
   resources :jig_work_orders do
     put :receive
     put :complete
