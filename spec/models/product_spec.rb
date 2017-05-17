@@ -85,6 +85,8 @@ RSpec.describe Product, type: :model do
     it { should belong_to(:vendor) } 
     it { should have_many(:orders) }
     it { should have_many(:order_line_items) }
+    it { should have_many(:product_report_line_items) }
+    it { should have_many(:product_reports) }
   end
 
   describe "Scope" do 

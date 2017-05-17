@@ -27,4 +27,10 @@ RSpec.describe ProductReportLineItem, type: :model do
       expect(subject).to_not be_valid
     end
   end
+
+  describe "Associations" do 
+    it { should belong_to(:product) }
+    it { should belong_to(:product_report) }
+
+  end
 end
