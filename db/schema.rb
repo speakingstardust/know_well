@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517141835) do
+ActiveRecord::Schema.define(version: 20170517142129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,17 @@ ActiveRecord::Schema.define(version: 20170517141835) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  create_table "product_report_line_items", force: :cascade do |t|
+    t.integer  "product_report_id"
+    t.integer  "product_id"
+    t.float    "current_amount"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "product_report_line_items", ["product_id"], name: "index_product_report_line_items_on_product_id", using: :btree
+  add_index "product_report_line_items", ["product_report_id"], name: "index_product_report_line_items_on_product_report_id", using: :btree
 
   create_table "product_reports", force: :cascade do |t|
     t.date     "date_created"
@@ -351,6 +362,8 @@ ActiveRecord::Schema.define(version: 20170517141835) do
   add_foreign_key "jig_work_orders", "customers"
   add_foreign_key "order_line_items", "orders"
   add_foreign_key "order_line_items", "products"
+  add_foreign_key "product_report_line_items", "product_reports"
+  add_foreign_key "product_report_line_items", "products"
   add_foreign_key "products", "manufacturers"
   add_foreign_key "products", "vendors"
   add_foreign_key "progress_notes", "projects"
