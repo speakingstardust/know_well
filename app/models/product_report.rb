@@ -3,7 +3,7 @@ class ProductReport < ActiveRecord::Base
   has_many :product_report_line_items, dependent: :destroy
   has_many :products, through: :product_report_line_items
 
-  before_save :set_date_created
+  before_validation :set_date_created
 
   validates :date_created, presence: true
 
@@ -18,5 +18,11 @@ class ProductReport < ActiveRecord::Base
     end
     products.flatten
     self.products << products
+  end
+
+  def save_line_items
+    self.product_report_line_items.each do |line_item|
+      line_item.save
+    end
   end
 end

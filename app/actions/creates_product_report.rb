@@ -10,5 +10,11 @@ class CreatesProductReport
   def build
     self.product_report = ProductReport.new
     product_report.find_products(@categories)
+    product_report.save_line_items
+  end
+
+  def create
+    build
+    product_report.save
   end
 end

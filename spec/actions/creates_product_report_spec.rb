@@ -22,4 +22,12 @@ RSpec.describe CreatesProductReport do
     expect(@creator.product_report.products).to include(@raw_material, @lab_supply, @consumable)
     expect(@creator.product_report.product_report_line_items.length).to eq(@creator.product_report.products.length)
   end
+
+  it "saves a product report to the database after creating it" do 
+    @creator = CreatesProductReport.new([:raw_materials, :lab_supplies])
+
+    @creator.create
+
+    expect(@creator.product_report).to exist_in_database
+  end
 end
