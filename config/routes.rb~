@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  get 'orders/index'
+  get 'product_reports/index'
 
-  get 'orders/show'
+  get 'product_reports/show'
 
-  get 'orders/new'
-
-  get 'orders/edit'
+  get 'product_reports/new'
 
   resources :jig_work_orders do
     put :receive
