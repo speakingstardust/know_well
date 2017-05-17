@@ -1,12 +1,24 @@
 FactoryGirl.define do
   factory :product_report_line_item do
     product_report nil
-    product nil
-    current_amount 1.5
+    product 
+    current_amount nil
   end
   factory :product_report do
-    date_created "2017-05-17"
-    note "MyText"
+    date_created { Date.today }
+    note "Product Report Test Note"
+
+    factory :product_report_with_line_items do 
+      transient do 
+        line_items_count 3
+      end
+
+      after(:create) do |product_report, evaluator|
+        product_report_line_items = create_list(:product_report_line_item, evaluator.line_items_count, 
+                                                product_report: product_report)
+        product_report.product_report_line_items << product_report_line_items[1..(evaluator.line_items_count - 1)]
+      end
+    end
   end
   factory :order_line_item do
     product 
