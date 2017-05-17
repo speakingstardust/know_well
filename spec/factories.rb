@@ -6,7 +6,7 @@ FactoryGirl.define do
   end
   factory :product_report do
     date_created { Date.today }
-    note "Product Report Test Note"
+    notes "Product Report Test Note"
 
     factory :product_report_with_line_items do 
       transient do 
