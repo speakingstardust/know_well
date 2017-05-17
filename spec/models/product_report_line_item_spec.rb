@@ -5,7 +5,7 @@ RSpec.describe ProductReportLineItem, type: :model do
     let(:product) { FactoryGirl.create(:product) } 
     let(:product_report) { FactoryGirl.create(:product_report) } 
     subject { described_class.new(product: product, 
-                                  current_amount: product.curren_on_hand, 
+                                  current_amount: product.current_on_hand, 
                                   product_report: product_report) }
 
     it "should be valid with valid attributes" do 
