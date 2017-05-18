@@ -62,6 +62,7 @@ FactoryGirl.define do
     lead_time 14 
     current_on_hand 2.0
     order_amount 0.0
+    category
   end
   factory :vendor do
     sequence(:name) { |n| "Test Vendor #{n}" }

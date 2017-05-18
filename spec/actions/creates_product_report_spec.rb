@@ -2,10 +2,14 @@ require "rails_helper"
 require "pry"
 
 RSpec.describe CreatesProductReport do 
-  let(:raw_material) { FactoryGirl.create(:product, current_on_hand: 20, category: 0) } 
-  let(:lab_supply) { FactoryGirl.create(:product, current_on_hand: 50, category: 1) } 
-  let(:consumable) { FactoryGirl.create(:product, current_on_hand: 100, category: 2) }
-  let(:shop_supply) { FactoryGirl.create(:product, current_on_hand: 75, category: 3) }
+  let(:raw_materials) { FactoryGirl.create(:category) }
+  let(:lab_supplies) { FactoryGirl.create(:category, name: "Lab Supplies") }
+  let(:consumables) { FactoryGirl.create(:category, name: "Consumables") }
+  let(:shop_supplies) { FactoryGirl.create(:category, name: "Shop Supplies") }
+  let(:raw_material_product) { FactoryGirl.create(:product, current_on_hand: 20, category: raw_materials) } 
+  let(:lab_supply_product) { FactoryGirl.create(:product, current_on_hand: 50, category: lab_supplies) } 
+  let(:consumable_product) { FactoryGirl.create(:product, current_on_hand: 100, category: consumables) }
+  let(:shop_supply_product) { FactoryGirl.create(:product, current_on_hand: 75, category: shop_supplies) }
 
   before(:each) do 
     @raw_material = raw_material
@@ -15,7 +19,7 @@ RSpec.describe CreatesProductReport do
   end
 
   it "creates a product report given a set of categories" do 
-    @creator = CreatesProductReport.new([:raw_materials, :lab_supplies, :consumables], "Test Product Report Notes")
+    @creator = CreatesProductReport.new([raw_materials, lab_supplies, consumables], "Test Product Report Notes")
 
     @creator.build 
 
@@ -25,7 +29,7 @@ RSpec.describe CreatesProductReport do
   end
 
   it "saves a product report to the database after creating it" do 
-    @creator = CreatesProductReport.new([:raw_materials, :lab_supplies], "Test Product Report Notes")
+    @creator = CreatesProductReport.new([raw_materials, lab_supplies], "Test Product Report Notes")
 
     @creator.create
 

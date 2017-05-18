@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :category do
-    name "Raw Material"
+    name "Raw Materials"
     product_report nil
   end
   factory :product_report_line_item do
