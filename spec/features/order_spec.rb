@@ -9,9 +9,10 @@ RSpec.describe "Order Management", type: :feature do
   end
 
   describe "Create" do 
-    let!(:at_min_product) { FactoryGirl.create(:product, current_on_hand: 24.0) } 
-    let!(:above_min_product) { FactoryGirl.create(:product, current_on_hand: 36.0) }
-    let!(:below_min_product) { FactoryGirl.create(:product, current_on_hand: 12.0) }
+    let(:category) { FactoryGirl.create(:category) }
+    let!(:at_min_product) { FactoryGirl.create(:product, current_on_hand: 24.0, category: category) } 
+    let!(:above_min_product) { FactoryGirl.create(:product, current_on_hand: 36.0, category: category) }
+    let!(:below_min_product) { FactoryGirl.create(:product, current_on_hand: 12.0, category: category) }
     
     it "allows a user to create an order and to see details of order after" do 
       visit new_order_path
@@ -22,6 +23,8 @@ RSpec.describe "Order Management", type: :feature do
       expect(page).to have_content(at_min_product.current_on_hand)
       expect(page).to have_content(at_min_product.lead_time)      
       expect(page).to have_content(at_min_product.category.name)
+
+      save_and_open_page
 
       check at_min_product.name
       check below_min_product.name

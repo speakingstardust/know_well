@@ -1,3 +1,4 @@
+require "pry"
 class OrdersController < ApplicationController
   before_action :authenticate_any!
   before_action :set_order, only: [:show, :edit, :update, :destroy]

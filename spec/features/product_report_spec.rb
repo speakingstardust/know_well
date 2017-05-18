@@ -9,10 +9,18 @@ RSpec.describe "Product Report Management", type: :feature do
   end
 
   describe "Create" do 
-    let!(:raw_material) { FactoryGirl.create(:product, category: :raw_materials, name: "Raw Material") }
-    let!(:lab_supply) { FactoryGirl.create(:product, category: :lab_supplies, name: "Lab Supply") }
-    let!(:consumable) { FactoryGirl.create(:product, category: :consumables, name: "Consumable") }
-    let!(:shop_supplies) { FactoryGirl.create(:product, category: :shop_supplies, name: "Shop Supply") }
+    let!(:raw_material) { FactoryGirl.create(:product, category: create(:category, 
+                                                                        name: "Raw Materials"), 
+                                                                        name: "Raw Material") }
+    let!(:lab_supply) { FactoryGirl.create(:product, category: create(:category, 
+                                                                      name: "Lab Supplies"), 
+                                                                      name: "Lab Supply") }
+    let!(:consumable) { FactoryGirl.create(:product, category: create(:category, 
+                                                                      name: "Consumables"), 
+                                                                      name: "Consumable") }
+    let!(:shop_supplies) { FactoryGirl.create(:product, category: create(:category, 
+                                                                         name: "Shop Supplies"), 
+                                                                         name: "Shop Supply") }
 
     it "allows a user to create a product report and see it after" do 
       visit new_product_report_path
