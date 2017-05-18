@@ -10,7 +10,7 @@ class ProductReportsController < ApplicationController
 
   def new
     @product_report = ProductReport.new
-    @categories = Product.categories
+    @categories = Category.all
   end
   
   def create

@@ -12,6 +12,7 @@ RSpec.describe "Product Mangement", type: :feature do
     it "allows a user to create a product" do 
       @vendor = FactoryGirl.create(:vendor)
       @manufacturer = FactoryGirl.create(:manufacturer)
+      @consumable = FactoryGirl.create(:category, name: "Consumables")
 
       visit new_product_path
       fill_in "Name", with: "Test Product"

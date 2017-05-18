@@ -24,8 +24,6 @@ RSpec.describe "Order Management", type: :feature do
       expect(page).to have_content(at_min_product.lead_time)      
       expect(page).to have_content(at_min_product.category.name)
 
-      save_and_open_page
-
       check at_min_product.name
       check below_min_product.name
 
