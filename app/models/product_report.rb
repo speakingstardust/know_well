@@ -12,10 +12,10 @@ class ProductReport < ActiveRecord::Base
     self.date_created ||= Date.today
   end
 
-  def find_products(categories)
+  def find_products
     products = []
-    categories.each do |category|
-      products << Product.try(category)
+    self.categories.each do |category|
+      products << category.products
     end
     products.flatten
     self.products << products

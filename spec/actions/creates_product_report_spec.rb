@@ -12,10 +12,10 @@ RSpec.describe CreatesProductReport do
   let(:shop_supply_product) { FactoryGirl.create(:product, current_on_hand: 75, category: shop_supplies) }
 
   before(:each) do 
-    @raw_material = raw_material
-    @lab_supply = lab_supply 
-    @consumable = consumable 
-    @shop_supply = shop_supply
+    @raw_material_product = raw_material_product
+    @lab_supply_product = lab_supply_product
+    @consumable_product = consumable_product
+    @shop_supply_product = shop_supply_product
   end
 
   it "creates a product report given a set of categories" do 

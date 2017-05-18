@@ -1,7 +1,7 @@
 <%= simple_form_for @product, html: { class: "form-horizontal" } do |f| %>
   <%= f.input :name %>
   <%= f.input :part_number, label: "Part Number", hint: "Please make sure you are using the vendor's or manufacturer's exact part number" %>
-  <%= f.input :category, collection: Product.categories.map {|key, value| [key.humanize, key] } %>
+  <%= f.association :category, collection: Category.all %>
   <%= f.association :manufacturer %>
   <%= f.association :vendor %>
   <%= f.input :description, hint: "Please copy and paste the entire description from the Vendor's or Manufacturer's Website in order to make ordering more accurate in the future." %>
