@@ -1,2 +1,43 @@
-<h1>ProductReports#show</h1>
-<p>Find me in app/views/product_reports/show.html.erb</p>
+<% provide(:title, "Product Report Details") %>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center">Product Report <%= @product_report.id %> Details</h1>
+  </div>
+</div>
+<div class="row">
+  <p>
+    <strong>ID:</strong>
+    <%= @product_report.id %>
+  </p>
+  <p>
+    <strong>Notes:</strong>
+    <%= @product_report.notes %>
+  </p>
+  <p>
+    <strong>Categories Included:</strong>
+    <ul>
+      <% @product_report.categories.each do |category| %>
+        <li><%= category.name %></li>
+      <% end %>
+    </ul>
+</div>
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Current Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @product_report.product_report_line_items.each do |line_item| %>
+        <tr>
+          <th scope="row"><%= line_item.product.name %></th>
+          <td><%= line_item.product.category.name %></td>
+          <td><%= line_item.current_amount %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
