@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :category do
+    name "MyString"
+    product_report nil
+  end
   factory :product_report_line_item do
     product_report nil
     product 

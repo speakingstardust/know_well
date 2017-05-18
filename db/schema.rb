@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517143214) do
+ActiveRecord::Schema.define(version: 20170518140047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 20170517143214) do
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "product_report_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "categories", ["product_report_id"], name: "index_categories_on_product_report_id", using: :btree
 
   create_table "customers", force: :cascade do |t|
     t.string   "name"
@@ -203,8 +212,10 @@ ActiveRecord::Schema.define(version: 20170517143214) do
     t.integer  "category"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "category_id"
   end
 
+  add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
   add_index "products", ["manufacturer_id"], name: "index_products_on_manufacturer_id", using: :btree
   add_index "products", ["name"], name: "index_products_on_name", unique: true, using: :btree
   add_index "products", ["part_number"], name: "index_products_on_part_number", using: :btree
@@ -357,6 +368,7 @@ ActiveRecord::Schema.define(version: 20170517143214) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "categories", "product_reports"
   add_foreign_key "jig_work_order_line_items", "jig_work_orders"
   add_foreign_key "jig_work_order_line_items", "jigs"
   add_foreign_key "jig_work_orders", "customers"
@@ -364,6 +376,7 @@ ActiveRecord::Schema.define(version: 20170517143214) do
   add_foreign_key "order_line_items", "products"
   add_foreign_key "product_report_line_items", "product_reports"
   add_foreign_key "product_report_line_items", "products"
+  add_foreign_key "products", "categories"
   add_foreign_key "products", "manufacturers"
   add_foreign_key "products", "vendors"
   add_foreign_key "progress_notes", "projects"
