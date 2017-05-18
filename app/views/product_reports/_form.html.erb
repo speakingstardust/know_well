@@ -2,4 +2,5 @@
   <h4>Select categories you would like to include in this Inventory Product Report.</h4>
   <%= f.association :categories, collection: Category.all, as: :check_boxes %>
   <%= f.input :notes %>
+  <%= f.submit %>
 <% end %>

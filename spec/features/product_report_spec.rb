@@ -31,7 +31,7 @@ RSpec.describe "Product Report Management", type: :feature do
       fill_in "Notes", with: "Testing product report creation notes" 
 
       expect { 
-        click_on "Create Product Report" 
+        click_on "Create Product report" 
       }.to change(ProductReport, :count).by(1)
 
       @product_report = ProductReport.first
