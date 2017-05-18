@@ -8,7 +8,8 @@ RSpec.describe Product, type: :model do
                                   units_per_container: 24, price_per_container: 4.50, 
                                   price_per_unit: 0.18, maximum_on_hand: 4.0, 
                                   minimum_on_hand: 1.5, lead_time: 14,
-                                  current_on_hand: 2.0, order_amount: 0.0) 
+                                  current_on_hand: 2.0, order_amount: 0.0,
+                                  category: create(:category)) 
     }
                                   
     it "is valid with valid attributes" do

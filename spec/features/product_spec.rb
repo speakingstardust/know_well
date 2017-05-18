@@ -117,18 +117,17 @@ RSpec.describe "Product Mangement", type: :feature do
   end
 
   describe "Count" do 
-    let(:first_product) { FactoryGirl.create(:product, name: "First Product") }
-    let(:second_product) { FactoryGirl.create(:product, name: "Second Product", vendor: first_product.vendor, manufacturer: first_product.manufacturer) }
-    let(:third_product) { FactoryGirl.create(:product, name: "Third Product", vendor: first_product.vendor, manufacturer: first_product.manufacturer) }
+    let!(:category) { FactoryGirl.create(:category) }
+    let!(:first_product) { FactoryGirl.create(:product, name: "First Product", category: category) }
+    let!(:second_product) { FactoryGirl.create(:product, name: "Second Product", vendor: first_product.vendor, manufacturer: first_product.manufacturer, category: first_product.category) }
+    let!(:third_product) { FactoryGirl.create(:product, name: "Third Product", vendor: first_product.vendor, manufacturer: first_product.manufacturer, category: first_product.category) }
 
 
     it "allows a user to make counts of products based on category" do
-      first_product
-      second_product
-      third_product
 
       visit product_count_path
-      select "Lab supplies", from: "Category"
+
+      select "Raw Materials", from: "Category"
       click_on "Filter"
 
       expect(page).to have_content(first_product.name)
