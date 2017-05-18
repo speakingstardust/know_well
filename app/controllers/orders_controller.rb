@@ -13,11 +13,16 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @products = Product.needed
-    @raw_materials = Product.raw_materials.needed
-    @lab_supplies = Product.lab_supplies.needed
-    @consumables = Product.consumables.needed
-    @shop_supplies = Product.shop_supplies.needed
-    @maintenance_supplies = Product.maintenance_supplies.needed
+    @raw_materials_category = Category.find_by_name("Raw Materials")
+    @lab_supplies_category = Category.find_by_name("Lab Supplies")
+    @consumables_category = Category.find_by_name("Consumables")
+    @shop_supplies_category = Category.find_by_name("Shop Supplies")
+    @maintenance_supplies_category = Category.find_by_name("Maintenance Supplies")
+    @raw_materials = Product.where(category: @raw_materials_category).needed
+    @lab_supplies = Product.where(category: @lab_supplies_category).needed
+    @consumables = Product.where(category: @consumables_category).needed
+    @shop_supplies = Product.where(category: @shop_supplies_category).needed
+    @maintenance_supplies = Product.where(category: @maintenance_supplies).needed
     authorize @order
   end
 

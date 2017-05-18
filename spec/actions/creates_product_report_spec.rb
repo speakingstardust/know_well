@@ -23,7 +23,7 @@ RSpec.describe CreatesProductReport do
 
     @creator.build 
 
-    expect(@creator.product_report.products).to include(@raw_material, @lab_supply, @consumable)
+    expect(@creator.product_report.products).to include(@raw_material_product, @lab_supply_product, @consumable_product)
     expect(@creator.product_report.product_report_line_items.length).to eq(@creator.product_report.products.length)
     expect(@creator.product_report.notes).to eq("Test Product Report Notes")
   end
