@@ -2,6 +2,7 @@ require 'pry'
 class ProductReport < ActiveRecord::Base
   has_many :product_report_line_items, dependent: :destroy
   has_many :products, through: :product_report_line_items
+  has_many :categories
 
   before_validation :set_date_created
 

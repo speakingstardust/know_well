@@ -8,7 +8,7 @@ RSpec.describe Product, type: :model do
                                   units_per_container: 24, price_per_container: 4.50, 
                                   price_per_unit: 0.18, maximum_on_hand: 4.0, 
                                   minimum_on_hand: 1.5, lead_time: 14,
-                                  current_on_hand: 2.0, order_amount: 0.0, category: 1) 
+                                  current_on_hand: 2.0, order_amount: 0.0) 
     }
                                   
     it "is valid with valid attributes" do
@@ -87,6 +87,7 @@ RSpec.describe Product, type: :model do
     it { should have_many(:order_line_items) }
     it { should have_many(:product_report_line_items) }
     it { should have_many(:product_reports) }
+    it { should belong_to(:category) }
   end
 
   describe "Scope" do 

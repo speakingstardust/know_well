@@ -9,8 +9,8 @@ class CreatesProductReport
   end
 
   def build
-    self.product_report = ProductReport.new(notes: @notes)
-    product_report.find_products(@categories)
+    self.product_report = ProductReport.new(notes: @notes, categories: @categories)
+    product_report.find_products(self.categories)
     product_report.save_line_items
   end
 

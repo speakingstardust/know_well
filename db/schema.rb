@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518140047) do
+ActiveRecord::Schema.define(version: 20170518171409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -209,7 +209,6 @@ ActiveRecord::Schema.define(version: 20170518140047) do
     t.integer  "lead_time"
     t.float    "current_on_hand"
     t.float    "order_amount"
-    t.integer  "category"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "category_id"
