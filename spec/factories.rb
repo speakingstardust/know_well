@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :category do
-    name "MyString"
+    name "Raw Material"
     product_report nil
   end
   factory :product_report_line_item do
@@ -62,7 +62,7 @@ FactoryGirl.define do
     lead_time 14 
     current_on_hand 2.0
     order_amount 0.0
-    category 1
+    category
   end
   factory :vendor do
     sequence(:name) { |n| "Test Vendor #{n}" }
