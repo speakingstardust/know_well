@@ -1,5 +1,5 @@
 <%= simple_form_for @product_report, html: { class: "form-horizontal" } do |f| %>
   <h4>Select categories you would like to include in this Inventory Product Report.</h4>
-  <%= f.input :categories, collection: Product.categories.map {|key, value| [key.humanize, key] }, as: :check_boxes %>
+  <%= f.input :categories, collection: Category.all, as: :check_boxes %>
   <%= f.input :notes %>
 <% end %>
