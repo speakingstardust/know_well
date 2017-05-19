@@ -13,4 +13,9 @@ RSpec.describe Category, type: :model do
       expect(subject).to_not be_valid
     end
   end
+
+  describe "Associations" do 
+    it { should belong_to :product_report } 
+    it { should have_many :products } 
+  end
 end
