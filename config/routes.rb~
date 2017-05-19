@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'product_reports/index'
-
-  get 'product_reports/show'
-
-  get 'product_reports/new'
-
   resources :jig_work_orders do
     put :receive
     put :complete
@@ -36,6 +30,7 @@ Rails.application.routes.draw do
   resources :reports
   put 'products/all', to: 'products#update_all_counts', as: 'update_all_counts'
   resources :products
+  resources :product_reports
   resources :orders
   resources :manufacturers
   resources :vendors

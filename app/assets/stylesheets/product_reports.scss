@@ -1,3 +1,14 @@
 // Place all the styles related to the ProductReports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.index a.btn {
+  margin-left: -150px;
+}
+
+.show a.btn.back { 
+  margin-right: -75px;
+}
+
+.show a.btn.print { 
+  margin-left: -75px;
+}

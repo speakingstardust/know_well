@@ -46,24 +46,28 @@
                             <li><%= link_to "Project List", projects_path, class: "nav-link" %></li>
                           </ul>
                         </li>
-                        <li class="nav-item">
-                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Inventory Control System
-                            <span class="caret"></span>
-                          </a>
-                          <ul class="dropdown-menu" role="menu">
-                            <li><%= link_to "Create New Product", new_product_path, class: "nav-link" %></li>
-                            <li><%= link_to "Create New Manufacturer", new_manufacturer_path, class: "nav-link" %></li>
-                            <li><%= link_to "Create New Vendor", new_vendor_path, class: "nav-link" %></li>
-                            <li><%= link_to "Create New Order", new_order_path, class: "nav-link" %></li>
-                            <div class="downdown-divider"></div>
-                            <li><%= link_to "Product List", products_path, class: "nav-link" %></li>
-                            <li><%= link_to "Manufacturer List", manufacturers_path, class: "nav-link" %></li>
-                            <li><%= link_to "Vendor List", vendors_path, class: "nav-link" %></li>
-                            <li><%= link_to "Order List", orders_path, class: "nav-link" %></li>
-                            <div class="dropdown-divider"></div>
-                            <li><%= link_to "Product Counts", product_count_path, class: "nav-link" %></li>
-                          </ul>
-                        </li>
+                        <% if admin_signed_in? or current_user.has_role? :shop_supervisor or current_user.has_role? :inventory_control %>
+                          <li class="nav-item">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Inventory Control System
+                              <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><%= link_to "Create New Product", new_product_path, class: "nav-link" %></li>
+                              <li><%= link_to "Create New Manufacturer", new_manufacturer_path, class: "nav-link" %></li>
+                              <li><%= link_to "Create New Vendor", new_vendor_path, class: "nav-link" %></li>
+                              <li><%= link_to "Create New Order", new_order_path, class: "nav-link" %></li>
+                              <li><%= link_to "Create New Product Report", new_product_report_path, class: "nav-link" %></li>
+                              <div class="dropdown-divider"></div>
+                              <li><%= link_to "Product List", products_path, class: "nav-link" %></li>
+                              <li><%= link_to "Manufacturer List", manufacturers_path, class: "nav-link" %></li>
+                              <li><%= link_to "Vendor List", vendors_path, class: "nav-link" %></li>
+                              <li><%= link_to "Order List", orders_path, class: "nav-link" %></li>
+                              <li><%= link_to "Product Report List", product_reports_path, class: "nav-link" %></li>
+                              <div class="dropdown-divider"></div>
+                              <li><%= link_to "Product Counts", product_count_path, class: "nav-link" %></li>
+                            </ul>
+                          </li>
+                        <% end %>
 			<li class="nav-item <%= active_class(customers_path) %>">
 				<%= link_to "Customer Database", customers_path, class: "nav-link" %>
 			</li>

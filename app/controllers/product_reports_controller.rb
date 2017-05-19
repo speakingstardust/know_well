@@ -1,12 +1,17 @@
 class ProductReportsController < ApplicationController
   before_action :authenticate_any! 
-  before_action :set_product_report, only: [:show, :destroy]
+  before_action :set_product_report, only: [:show, :destroy, :print]
+
+  layout 'print', only: [:print]
 
   def index
     @product_reports = ProductReport.all
   end
 
   def show
+  end
+
+  def print
   end
 
   def new
