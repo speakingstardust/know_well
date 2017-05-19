@@ -1,2 +1,35 @@
-<h1>ProductReports#index</h1>
-<p>Find me in app/views/product_reports/index.html.erb</p>
+<% provide(:title, "Product Report List") %>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center">Product Report List</h1>
+  </div>
+</div>
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Report ID</th>
+        <th>Date Created</th>
+        <th>Categories Included</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @product_reports.each do |product_report| %>
+        <tr>
+          <th><%= product_report.id %></td>
+          <td><%= l product_report.date_created %></td>
+          <td>
+            <ul>
+              <% product_report.categories.each do |category| %>
+                <li><%= category.name %></li>
+              <% end %>
+            </ul>
+          </td>
+          <td><%= link_to 'Show', product_report %></td>
+          <td><%= link_to 'Destroy', product_report, method: :delete, data: { confirm: "Are you sure?" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,7 +1,7 @@
 <% provide(:title, "Product Report Details") %>
 <div class="row">
   <div class="page-header">
-    <h1 class="text-center">Product Report <%= @product_report.id %> Details</h1>
+    <h1 class="text-center">Product Report #<%= @product_report.id %> Details</h1>
   </div>
 </div>
 <div class="row">
@@ -41,3 +41,4 @@
     </tbody>
   </table>
 </div>
+<%= link_to "Back", product_reports_path, class: "btn btn-primary pull-left" %>

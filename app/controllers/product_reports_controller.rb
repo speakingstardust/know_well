@@ -1,11 +1,12 @@
 class ProductReportsController < ApplicationController
   before_action :authenticate_any! 
+  before_action :set_product_report, only: [:show, :destroy]
+
   def index
     @product_reports = ProductReport.all
   end
 
   def show
-    @product_report = ProductReport.find(params[:id])
   end
 
   def new
@@ -27,7 +28,16 @@ class ProductReportsController < ApplicationController
     end
   end
 
+  def destroy 
+    @product_report.destroy 
+    redirect_to product_reports_url, notice: "Product Report successfully destroyed."
+  end
+
   private 
+    def set_product_report
+      @product_report = ProductReport.find(params[:id])
+    end
+
     def parse_params
       @categories = Category.where(id: params[:product_report][:category_ids])
     end
