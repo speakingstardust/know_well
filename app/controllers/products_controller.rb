@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   def index
     @vendors = Vendor.all
     @manufacturers = Manufacturer.all
+    @categories = Category.all
     @q = Product.ransack(params[:q])
     @products = @q.result.page(params[:page])
   end

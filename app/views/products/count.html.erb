@@ -11,7 +11,7 @@
     <%= f.select :category_id_eq, Category.all.map {|key, value| [key.name, key.id] }, include_blank: true%>
 
     <%= f.submit "Filter", class: "btn btn-primary" %> 
-    <%= link_to "Clear Search", request.path, class: "cancel-button btn btn-info btn-block" %>
+    <%= link_to "Clear Filter", request.path, class: "cancel-button btn btn-info btn-block" %>
   <% end %>
 </div>
 <div class="row">

@@ -17,7 +17,7 @@
       <%= f.text_field :part_number_cont, class: 'form-control' %>
 
       <%= f.label :category_id_eq, class: 'control-label' %>
-      <%= f.select :category_id_eq, Category.all, include_blank: true%>
+      <%= f.collection_select :category_id_eq, @categories, :id, :name, include_blank: true, class: 'form-control' %>
 
       <%= f.label :vendor_id_eq, "Vendor", class: 'control-label' %>
       <%= f.collection_select :vendor_id_eq, @vendors, :id, :name, include_blank: true, class: 'form-control' %>
