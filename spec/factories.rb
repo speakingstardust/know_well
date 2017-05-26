@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :safety_data_sheet do
+    product_name "MyString"
+    manufacturer_name "MyString"
+    category 1
+  end
   factory :category do
     name "Raw Materials"
     product_report nil
