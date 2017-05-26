@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe SafetyDataSheet, type: :model do
   describe "Validations" do 
     subject { described_class.new(product_name: "Test Product", manufacturer_name: "Test Manufacturer", 
-                                  category: 0 } 
+                                  category: 0) } 
 
     it "is valid with valid attributes" do 
       expect(subject).to be_valid
