@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :safety_data_sheet do
-    product_name "MyString"
-    manufacturer_name "MyString"
+    product_name "Test Product"
+    manufacturer_name "Test Manufacturer"
     category 1
   end
   factory :category do
