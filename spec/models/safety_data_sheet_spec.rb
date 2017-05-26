@@ -20,7 +20,11 @@ RSpec.describe SafetyDataSheet, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without a manufacturer's name" 
+    it "is not valid without a manufacturer's name" do 
+      subject.manufacturer_name = nil 
+      expect(subject).to_not be_valid
+    end
+
     it "is not valid without a category"
   end
 end
