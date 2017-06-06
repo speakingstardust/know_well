@@ -15,3 +15,5 @@
   <strong>Safety Data Sheet:</strong>
   <iframe src="<%= @safety_data_sheet.pdf.url %>" class="center-block"></iframe>
 </p>
+<%= link_to "Back", safety_data_sheets_path, class: "btn btn-primary" %>
+<%= link_to "Edit", edit_safety_data_sheet_path(@safety_data_sheet), class: "btn btn-primary" %>
