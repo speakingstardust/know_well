@@ -53,6 +53,24 @@
         <h4>Maintenance Supplies</h4>
         <%= f.input :product_ids, collection: @maintenance_supplies, as: :check_boxes, label: false %>
       <% end %>
+      <% unless @offsite_consumables.empty? %>
+        <h4>Offsite: Consumables</h4>
+        <%= f.input :product_ids, collection: @offsite_consumables, as: :check_boxes, label: false %>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <% unless @offsite_ppe.empty? %>
+        <h4>Offsite: PPE</h4>
+        <%= f.input :product_ids, collection: @offsite_ppe, as: :check_boxes, label: false %>
+      <% end %>
+      <% unless @offsite_equipment.empty? %>
+        <h4>Offsite: PPE</h4>
+        <%= f.input :product_ids, collection: @offsite_equipment, as: :check_boxes, label: false %>
+      <% end %>
+      <% unless @offsite_misc.empty? %>
+        <h4>Offsite: PPE</h4>
+        <%= f.input :product_ids, collection: @offsite_misc, as: :check_boxes, label: false %>
+      <% end %>
     </div>
   </div>
   <%= f.button :submit, class: "btn btn-primary" %>

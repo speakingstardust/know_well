@@ -19,11 +19,20 @@ class OrdersController < ApplicationController
     @consumables_category = Category.find_by_name("Consumables")
     @shop_supplies_category = Category.find_by_name("Shop Supplies")
     @maintenance_supplies_category = Category.find_by_name("Maintenance Supplies")
+    @offsite_consumables_category = Category.find_by_name("Offsite: Consumables")
+    @offsite_ppe_category = Category.find_by_name("Offsite: PPE")
+    @offsite_equipment_category = Category.find_by_name("Offsite: Equipment")
+    @offsite_misc_category = Category.find_by_name("Offsite: Miscellaneous")
+
     @raw_materials = Product.where(category: @raw_materials_category).needed
     @lab_supplies = Product.where(category: @lab_supplies_category).needed
     @consumables = Product.where(category: @consumables_category).needed
     @shop_supplies = Product.where(category: @shop_supplies_category).needed
     @maintenance_supplies = Product.where(category: @maintenance_supplies).needed
+    @offsite_consumables = Product.where(category: @offsite_consumables_category).needed
+    @offsite_ppe = Product.where(category: @offsite_ppe_category).needed
+    @offsite_equipment = Product.where(category: @offsite_equipment_category).needed
+    @offsite_misc = Product.where(category: @offsite_misc_category).needed
     authorize @order
   end
 
