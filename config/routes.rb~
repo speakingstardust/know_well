@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'safet_data_sheets/index'
+
+  get 'safet_data_sheets/new'
+
+  get 'safet_data_sheets/edit'
+
+  get 'safet_data_sheets/show'
+
   resources :jig_work_orders do
     put :receive
     put :complete
@@ -34,6 +42,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :manufacturers
   resources :vendors
+  resources :safety_data_sheets
   devise_for :users
   scope "/admin" do 
     resources :users
