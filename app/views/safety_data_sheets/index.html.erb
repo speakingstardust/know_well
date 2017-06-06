@@ -1,2 +1,31 @@
-<h1>SafetyDataSheets#index</h1>
-<p>Find me in app/views/safety_data_sheets/index.html.erb</p>
+<% provide(:title, "Safety Data Sheet List") %>
+<div class="row">
+  <div class="page-header">
+    <%= link_to "Create New Safety Data Sheet", new_safety_data_sheet_path, class: "btn btn-primary pull-right" %>
+    <h1 class="text-center">Safety Data Sheet List</h1>
+  </div>
+</div>
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Manufacturer Name</th>
+        <th>Category</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @safety_data_sheets.each do |sds| %>
+        <tr>
+          <th scope="row"><%= sds.product_name %></th>
+          <td><%= sds.manufacturer_name %><td>
+          <td><%= sds.category.titleize %></td>
+          <td><%= link_to 'Show', sds %></td>
+          <td><%= link_to 'Edit', edit_safety_data_sheet_path(sds) %></td>
+          <td><%= link_to 'Destroy', sds, method: :delete, data: { confirm: "Are you sure?" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
