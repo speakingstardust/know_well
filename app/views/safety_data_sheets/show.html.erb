@@ -1,2 +1,17 @@
-<h1>SafetyDataSheets#show</h1>
-<p>Find me in app/views/safety_data_sheets/show.html.erb</p>
+<% provide(:title, "Safety Data Sheet Details") %>
+<p>
+  <strong>Product Name: </strong>
+  <%= @safety_data_sheet.product_name %>
+</p>
+<p>
+  <strong>Manufacturer Name:</strong>
+  <%= @safety_data_sheet.manufacturer_name %>
+</p>
+<p>
+  <strong>Category</strong>
+  <%= @safety_data_sheet.category.titleize %>
+</p>
+<p>
+  <strong>Safety Data Sheet:</strong>
+  <iframe src="<%= @safety_data_sheet.pdf.url %>" class="center-block"></iframe>
+</p>
