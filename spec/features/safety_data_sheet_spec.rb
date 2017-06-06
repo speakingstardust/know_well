@@ -13,8 +13,8 @@ RSpec.describe "SDS Management", type: :feature do
 
       fill_in "Product name", with: "Test Product"
       fill_in "Manufacturer name", with: "Test Manufacturer"
-      select "Used in House", from: "Category"
-      attach_file "SDS_Grate.pdf", "#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf"
+      select "Used In House", from: "Category"
+      attach_file "SDS Pdf", "#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf"
       expect { 
         click_on "Create Safety Data Sheet"
       }.to change(SafetyDataSheet, :count).by(1)
