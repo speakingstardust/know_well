@@ -5,7 +5,7 @@ class SafetyDataSheet < ActiveRecord::Base
   validates :manufacturer_name, presence: true
   validates :category, presence: true
 
-  has_attached_file :pdf, styles: { thumbnail: "60x60#" }
+  has_attached_file :pdf
   validates_attachment :pdf, content_type: { content_type: "application/pdf" }
 
 end
