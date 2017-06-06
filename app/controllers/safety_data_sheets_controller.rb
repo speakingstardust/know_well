@@ -1,3 +1,4 @@
+require 'pry'
 class SafetyDataSheetsController < ApplicationController
   before_action :set_safety_data_sheet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_any! 

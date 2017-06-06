@@ -1,0 +1,9 @@
+<%= simple_form_for @safety_data_sheet, html: { class: "form-horizontal" }, multipart: true do |f| %>
+  <%= f.input :product_name %>
+  <%= f.input :manufacturer_name %>
+  <%= f.label :category %>
+  <%= f.select :category, options_for_select(SafetyDataSheet.categories.map { |key, value| [key.titleize, value]}, @safety_data_sheet.category), include_blank: true %>
+  <%= f.label :pdf, "SDS Pdf" %>
+  <%= f.file_field :pdf %>
+  <%= f.button :submit %>
+<% end %> 
