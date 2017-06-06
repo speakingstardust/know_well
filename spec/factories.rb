@@ -3,6 +3,7 @@ FactoryGirl.define do
     product_name "Test Product"
     manufacturer_name "Test Manufacturer"
     category 1
+    pdf { File.new("#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf") }
   end
   factory :category do
     name "Raw Materials"

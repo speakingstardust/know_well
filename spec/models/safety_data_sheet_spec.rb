@@ -30,4 +30,12 @@ RSpec.describe SafetyDataSheet, type: :model do
       expect(subject).to_not be_valid
     end
   end
+  
+  describe "Attachments" do
+    it { should have_attached_file(:pdf) } 
+    it { should validate_attachment_presence(:pdf) }
+    it { should validate_attachment_content_type(:pdf).
+         allowing("application/pdf").
+         rejecting('image/png', 'image/jpg') }
+  end
 end
