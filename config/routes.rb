@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :manufacturers
   resources :vendors
+  resources :safety_data_sheets
   devise_for :users
   scope "/admin" do 
     resources :users
