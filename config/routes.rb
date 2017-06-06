@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'safety_data_sheets/index'
+
+  get 'safety_data_sheets/show'
+
+  get 'safety_data_sheets/new'
+
+  get 'safety_data_sheets/edit'
+
   resources :jig_work_orders do
     put :receive
     put :complete
