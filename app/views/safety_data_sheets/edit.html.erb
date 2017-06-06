@@ -1,2 +1,10 @@
-<h1>SafetyDataSheets#edit</h1>
-<p>Find me in app/views/safety_data_sheets/edit.html.erb</p>
+<% provide(:title, "Edit Safety Data Sheet") %>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center">Edit Safety Data Sheet</h1>
+  </div>
+</div>
+<div class="row">
+  <%= render 'form' %>
+</div>
+<%= link_to "Back", safety_data_sheets_path, class: "btn btn-primary" %>
