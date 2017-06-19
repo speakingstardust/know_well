@@ -1,8 +1,4 @@
-<%= simple_form_for @safety_data_sheet, html: { class: "form-horizontal" }, multipart: true do |f| %>
-  <%= f.input :product_name %>
-  <%= f.input :manufacturer_name %>
-  <%= f.label :category %>
-  <%= f.select :category, options_for_select(SafetyDataSheet.categories.map { |key, value| [key.titleize, key]}, @safety_data_sheet.category), include_blank: true %>
+<%= simple_form_for @safety_data_sheet, path: product_safety_data_sheets_path(@product), html: { class: "form-horizontal" }, multipart: true do |f| %>
   <%= f.label :pdf, "SDS Pdf" %>
   <%= f.file_field :pdf %>
   <%= f.button :submit %>
