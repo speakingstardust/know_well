@@ -41,6 +41,14 @@
       <% end %>
     </div>
     <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Safety Data Sheet</h3>
+    </div>
+    <div class="panel-body">
+      <% unless @product.safety_data_sheet.nil? %>
+        <iframe src="<%= @product.safety_data_sheet.pdf.url %>" class="center-block"></iframe>
+      <% end %>
+    </div>
+    <div class="panel-heading">
       <h3 class="panel-title-info text-center">Container</h3>
     </div>
     <div class="panel-body">
