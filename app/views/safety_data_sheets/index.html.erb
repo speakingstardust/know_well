@@ -23,7 +23,7 @@
           <td><%= sds.product.category.name %></td>
           <td><%= link_to 'Show', sds.product %></td>
           <td><%= link_to 'Edit', edit_product_safety_data_sheet_path(sds.product, sds) %></td>
-          <td><%= link_to 'Destroy', sds, method: :delete, data: { confirm: "Are you sure?" } %></td>
+          <td><%= link_to 'Destroy', product_safety_data_sheet_path(sds.product, sds), method: :delete, data: { confirm: "Are you sure?" } %></td>
         </tr>
       <% end %>
     </tbody>
