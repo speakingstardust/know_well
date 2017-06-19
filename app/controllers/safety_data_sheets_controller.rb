@@ -11,7 +11,9 @@ class SafetyDataSheetsController < ApplicationController
   end
 
   def new
-    @safety_data_sheet = SafetyDataSheet.new
+    @product = Product.find(params[:product_id])
+
+    @safety_data_sheet = SafetyDataSheet.new(product: @product)
   end
 
   def create 
@@ -46,6 +48,6 @@ class SafetyDataSheetsController < ApplicationController
     end
 
     def safety_data_sheet_params
-      params.require(:safety_data_sheet).permit(:product_name, :manufacturer_name, :category, :pdf)
+      params.require(:safety_data_sheet).permit(:product_id, :pdf)
     end
 end
