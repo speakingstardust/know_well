@@ -44,11 +44,11 @@ RSpec.describe "SDS Management", type: :feature do
     end
   end
   describe "Index" do 
-    let(:sds_1) { create(:safety_data_sheet, product: create(:product, name: "Product 1")) }
-    let(:sds_2) { create(:safety_data_sheet, product: create(:product, name: "Product 2")) }
+    let!(:sds_1) { create(:safety_data_sheet, product: create(:product, name: "Product 1")) }
+    let!(:sds_2) { create(:safety_data_sheet, product: create(:product, name: "Product 2")) }
 
     it "allows a user to navigate to a list of SDS's" do 
-      vist safety_data_sheets_path
+      visit safety_data_sheets_path
 
       expect(page).to have_current_path(safety_data_sheets_path)
 
