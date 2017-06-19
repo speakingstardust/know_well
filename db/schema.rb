@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526152614) do
+ActiveRecord::Schema.define(version: 20170619151045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -291,16 +291,16 @@ ActiveRecord::Schema.define(version: 20170526152614) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "safety_data_sheets", force: :cascade do |t|
-    t.string   "product_name"
-    t.string   "manufacturer_name"
-    t.integer  "category"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
+    t.integer  "product_id"
   end
+
+  add_index "safety_data_sheets", ["product_id"], name: "index_safety_data_sheets_on_product_id", using: :btree
 
   create_table "signatures", force: :cascade do |t|
     t.string   "name"
