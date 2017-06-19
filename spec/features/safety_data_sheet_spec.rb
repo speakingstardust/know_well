@@ -8,25 +8,23 @@ RSpec.describe "SDS Management", type: :feature do
   end
 
   describe "Create" do 
-    xit "allows a user to create an SDS" do 
-      visit new_safety_data_sheet_path
+    let(:product) { create(:product) }
+    it "allows a user to create an SDS" do 
+      visit new_product_safety_data_sheet_path(product)
 
-      fill_in "Product name", with: "Test Product"
-      fill_in "Manufacturer name", with: "Test Manufacturer"
-      select "Used In House", from: "Category"
       attach_file "SDS Pdf", "#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf"
       expect { 
         click_on "Create Safety data sheet"
       }.to change(SafetyDataSheet, :count).by(1)
 
-      @sds = SafetyDataSheet.where(product_name: "Test Product").first
+      @sds = SafetyDataSheet.where(product: product).first
 
-      expect(page).to have_current_path(safety_data_sheet_path(@sds))
+      expect(page).to have_current_path(product_safety_data_sheet_path(product, @sds))
 
       visit safety_data_sheets_path
 
-      expect(page).to have_content("Test Product")
-      expect(page).to have_content("Test Manufacturer")
+      expect(page).to have_content(product.name)
+      expect(page).to have_content(product.manufacturer.name)
     end
   end
   describe "Edit" do 
