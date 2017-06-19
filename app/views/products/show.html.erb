@@ -44,7 +44,9 @@
       <h3 class="panel-title-info text-center">Safety Data Sheet</h3>
     </div>
     <div class="panel-body">
-      <% unless @product.safety_data_sheet.nil? %>
+      <% if @product.safety_data_sheet.nil? %>
+        <%= link_to "New Safety Data Sheet", new_product_safety_data_sheet_path(@product), class: "btn btn-success btn-block" %>
+      <% elsif @product.safety_data_sheet %>
         <iframe src="<%= @product.safety_data_sheet.pdf.url %>" class="center-block"></iframe>
       <% end %>
     </div>
