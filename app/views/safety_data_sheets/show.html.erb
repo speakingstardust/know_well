@@ -1,19 +1,19 @@
 <% provide(:title, "Safety Data Sheet Details") %>
 <p>
   <strong>Product Name: </strong>
-  <%= @safety_data_sheet.product_name %>
+  <%= @safety_data_sheet.product.name %>
 </p>
 <p>
   <strong>Manufacturer Name:</strong>
-  <%= @safety_data_sheet.manufacturer_name %>
+  <%= @safety_data_sheet.product.manufacturer.name %>
 </p>
 <p>
   <strong>Category</strong>
-  <%= @safety_data_sheet.category.titleize %>
+  <%= @safety_data_sheet.product.category.name %>
 </p>
 <p>
   <strong>Safety Data Sheet:</strong>
   <iframe src="<%= @safety_data_sheet.pdf.url %>" class="center-block"></iframe>
 </p>
-<%= link_to "Back", safety_data_sheets_path, class: "btn btn-primary" %>
-<%= link_to "Edit", edit_safety_data_sheet_path(@safety_data_sheet), class: "btn btn-primary" %>
+<%= link_to "To SDS Index", safety_data_sheets_path, class: "btn btn-primary" %>
+<%= link_to "Edit", edit_product_safety_data_sheet_path(@safety_data_sheet.product, @safety_data_sheet), class: "btn btn-primary" %>
