@@ -28,7 +28,11 @@ RSpec.describe "SDS Management", type: :feature do
   describe "Edit" do 
     let(:sds) { create(:safety_data_sheet) }
     it "allows a user to edit an existing SDS" do 
-      visit edit_product_safety_data_sheet_path(sds.product, sds)
+      visit product_path(sds.product)
+
+      click_on "Edit SDS"
+
+      expect(page).to have_current_path(edit_product_safety_data_sheet(sds.product, sds))
 
       attach_file "SDS Pdf", "#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf"
       click_on "Update Safety data sheet"
