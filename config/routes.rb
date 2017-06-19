@@ -29,12 +29,13 @@ Rails.application.routes.draw do
   resources :jig_order_line_items
   resources :reports
   put 'products/all', to: 'products#update_all_counts', as: 'update_all_counts'
-  resources :products
+  resources :products do
+    resources :safety_data_sheets
+  end
   resources :product_reports
   resources :orders
   resources :manufacturers
   resources :vendors
-  resources :safety_data_sheets
   devise_for :users
   scope "/admin" do 
     resources :users
