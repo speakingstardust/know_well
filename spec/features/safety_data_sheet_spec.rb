@@ -40,7 +40,7 @@ RSpec.describe "SDS Management", type: :feature do
       expect(page).to have_current_path(product_path(sds.product))
       expect(page).to have_content(sds.product.name) 
       expect(page).to have_content(sds.product.manufacturer.name) 
-      expect(page).to have_content(sds.pdf)
+      expect(page).to have_selector('iframe')
     end
   end
 end
