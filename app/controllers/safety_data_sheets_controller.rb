@@ -32,7 +32,7 @@ class SafetyDataSheetsController < ApplicationController
 
   def update 
     if @safety_data_sheet.update(safety_data_sheet_params)
-      redirect_to @safety_data_sheet, notice: "Safety Data Sheet was successfully updated." 
+      redirect_to @safety_data_sheet.product, notice: "Safety Data Sheet was successfully updated." 
     else 
       render :edit
     end
