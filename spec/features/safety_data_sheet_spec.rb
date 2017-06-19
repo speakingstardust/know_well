@@ -27,18 +27,16 @@ RSpec.describe "SDS Management", type: :feature do
   end
   describe "Edit" do 
     let(:sds) { create(:safety_data_sheet) }
-    xit "allows a user to edit an existing SDS" do 
-      visit edit_safety_data_sheet_path(sds)
+    it "allows a user to edit an existing SDS" do 
+      visit edit_product_safety_data_sheet_path(sds.product, sds)
 
-      fill_in "Product name", with: "Different Product Name" 
-      fill_in "Manufacturer name", with: "Different Manufacturer Name" 
-      select "Meico Products", from: "Category"
+      attach_file "SDS Pdf", "#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf"
       click_on "Update Safety data sheet"
 
-      expect(page).to have_current_path(safety_data_sheet_path(sds))
-      expect(page).to have_content("Different Product Name") 
-      expect(page).to have_content("Different Manufacturer Name") 
-      expect(page).to have_content("Meico Products")
+      expect(page).to have_current_path(product_path(sds.product))
+      expect(page).to have_content(sds.product.name) 
+      expect(page).to have_content(sds.product.manufacturer.name) 
+      expect(page).to have_content(sds.pdf)
     end
   end
 end
