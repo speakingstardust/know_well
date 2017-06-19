@@ -32,7 +32,7 @@ RSpec.describe "SDS Management", type: :feature do
 
       click_on "Edit Safety Data Sheet"
 
-      expect(page).to have_current_path(edit_product_safety_data_sheet(sds.product, sds))
+      expect(page).to have_current_path(edit_product_safety_data_sheet_path(sds.product, sds))
 
       attach_file "SDS Pdf", "#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf"
       click_on "Update Safety data sheet"
