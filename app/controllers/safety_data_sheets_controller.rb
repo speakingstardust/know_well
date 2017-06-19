@@ -27,6 +27,7 @@ class SafetyDataSheetsController < ApplicationController
   end
 
   def edit
+    @product = @safety_data_sheet.product
   end
 
   def update 
