@@ -30,7 +30,7 @@ RSpec.describe "SDS Management", type: :feature do
     it "allows a user to edit an existing SDS" do 
       visit product_path(sds.product)
 
-      click_on "Edit SDS"
+      click_on "Edit Safety Data Sheet"
 
       expect(page).to have_current_path(edit_product_safety_data_sheet(sds.product, sds))
 
