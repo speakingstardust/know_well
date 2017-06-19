@@ -18,11 +18,11 @@
     <tbody>
       <% @safety_data_sheets.each do |sds| %>
         <tr>
-          <th scope="row"><%= sds.product_name %></th>
-          <td><%= sds.manufacturer_name %><td>
-          <td><%= sds.category.titleize %></td>
-          <td><%= link_to 'Show', sds %></td>
-          <td><%= link_to 'Edit', edit_safety_data_sheet_path(sds) %></td>
+          <th scope="row"><%= sds.product.name %></th>
+          <td><%= sds.product.manufacturer.name %><td>
+          <td><%= sds.product.category.name %></td>
+          <td><%= link_to 'Show', sds.product %></td>
+          <td><%= link_to 'Edit', edit_product_safety_data_sheet_path(sds.product, sds) %></td>
           <td><%= link_to 'Destroy', sds, method: :delete, data: { confirm: "Are you sure?" } %></td>
         </tr>
       <% end %>
