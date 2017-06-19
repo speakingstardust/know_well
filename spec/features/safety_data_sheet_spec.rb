@@ -19,7 +19,7 @@ RSpec.describe "SDS Management", type: :feature do
 
       expect(page).to have_current_path(product_path(product))
 
-      visit safety_data_sheets_path
+      visit product_safety_data_sheets_path
 
       expect(page).to have_content(product.name)
       expect(page).to have_content(product.manufacturer.name)
