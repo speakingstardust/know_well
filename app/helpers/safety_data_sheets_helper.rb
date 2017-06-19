@@ -1,0 +1,2 @@
+module SafetyDataSheetsHelper
+end

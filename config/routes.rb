@@ -29,7 +29,10 @@ Rails.application.routes.draw do
   resources :jig_order_line_items
   resources :reports
   put 'products/all', to: 'products#update_all_counts', as: 'update_all_counts'
-  resources :products
+  get 'safety_data_sheets', to: 'safety_data_sheets#index', as: 'safety_data_sheets'
+  resources :products do
+    resources :safety_data_sheets
+  end
   resources :product_reports
   resources :orders
   resources :manufacturers

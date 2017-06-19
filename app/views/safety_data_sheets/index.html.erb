@@ -1,0 +1,31 @@
+<% provide(:title, "Safety Data Sheet List") %>
+<div class="row">
+  <div class="page-header">
+    <%= link_to "Products List", products_path, class: "btn btn-primary pull-right" %>
+    <h1 class="text-center">Safety Data Sheet List</h1>
+  </div>
+</div>
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Manufacturer Name</th>
+        <th>Category</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @safety_data_sheets.each do |sds| %>
+        <tr>
+          <th scope="row"><%= sds.product.name %></th>
+          <td><%= sds.product.manufacturer.name %><td>
+          <td><%= sds.product.category.name %></td>
+          <td><%= link_to 'Show', product_safety_data_sheet_path(sds.product, sds) %></td>
+          <td><%= link_to 'Edit', edit_product_safety_data_sheet_path(sds.product, sds) %></td>
+          <td><%= link_to 'Destroy', product_safety_data_sheet_path(sds.product, sds), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

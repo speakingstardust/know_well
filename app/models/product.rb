@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
   has_many :orders, through: :order_line_items
   has_many :product_report_line_items
   has_many :product_reports, through: :product_report_line_items
+  has_one :safety_data_sheet
 
   before_save :calculate_price_per_unit, if: "price_per_unit.nil?"
   before_save :calculate_price_per_container, if: "price_per_container.nil?"

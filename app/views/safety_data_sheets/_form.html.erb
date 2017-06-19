@@ -1,0 +1,9 @@
+<%= simple_form_for @safety_data_sheet, url: product_safety_data_sheets_path, html: { class: "form-horizontal" }, multipart: true do |f| %>
+
+  <%= f.hidden_field :product_id, value: @product.id %>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= f.label :pdf, "SDS Pdf" %>
+  <%= f.file_field :pdf %>
+  <%= f.button :submit %>
+<% end %> 
+

@@ -11,6 +11,7 @@ require 'devise'
 require 'support/controller_macros'
 require 'database_cleaner'
 require 'aasm/rspec'
+require 'paperclip/matchers'
 # require 'support/pundit_matcher'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -93,6 +94,11 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  # Delete test attachment directory for Paperclip after each test suite run
+  config.after(:suite) do 
+    FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
+  end 
+
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
@@ -119,4 +125,5 @@ RSpec.configure do |config|
   end
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.extend ControllerMacros, type: :controller
+  config.include Paperclip::Shoulda::Matchers
 end

@@ -41,6 +41,17 @@
       <% end %>
     </div>
     <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Safety Data Sheet</h3>
+    </div>
+    <div class="panel-body">
+      <% if @product.safety_data_sheet.nil? %>
+        <%= link_to "New Safety Data Sheet", new_product_safety_data_sheet_path(@product), class: "btn btn-success btn-block" %>
+      <% elsif @product.safety_data_sheet %>
+        <iframe src="<%= @product.safety_data_sheet.pdf.url %>" class="center-block"></iframe>
+        <%= link_to "Edit Safety Data Sheet", edit_product_safety_data_sheet_path(@product, @product.safety_data_sheet), class: "btn btn-primary btn-block" %>
+      <% end %>
+    </div>
+    <div class="panel-heading">
       <h3 class="panel-title-info text-center">Container</h3>
     </div>
     <div class="panel-body">

@@ -46,6 +46,9 @@
                             <li><%= link_to "Project List", projects_path, class: "nav-link" %></li>
                           </ul>
                         </li>
+                        <li class="nav-item <%= active_class(safety_data_sheets_path) %>">
+                          <%= link_to "Safety Data Sheets List", safety_data_sheets_path) %>
+                        </li>
                         <% if admin_signed_in? or current_user.has_role? :shop_supervisor or current_user.has_role? :inventory_control %>
                           <li class="nav-item">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Inventory Control System
