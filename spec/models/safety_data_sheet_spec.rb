@@ -13,12 +13,6 @@ RSpec.describe SafetyDataSheet, type: :model do
       subject.product = nil 
       expect(subject).to_not be_valid
     end
-
-    it "is not valid without a unique product" do
-      second_sds = create(:safety_data_sheet)
-      subject
-      expect(subject).to_not be_valid
-    end
   end
   
   describe "Attachments" do

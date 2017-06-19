@@ -1,8 +1,6 @@
 FactoryGirl.define do
   factory :safety_data_sheet do
-    product_name "Test Product"
-    manufacturer_name "Test Manufacturer"
-    category 1
+    product
     pdf { File.new("#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf") }
   end
   factory :category do
