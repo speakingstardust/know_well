@@ -20,7 +20,7 @@ class SafetyDataSheetsController < ApplicationController
     @safety_data_sheet = SafetyDataSheet.new(safety_data_sheet_params)
 
     if @safety_data_sheet.save
-      redirect_to @safety_data_sheet, notice: "Safety Data Sheet was successfully created." 
+      redirect_to @safety_data_sheet.product, notice: "Safety Data Sheet was successfully created." 
     else
       render :new
     end

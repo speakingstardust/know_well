@@ -17,9 +17,7 @@ RSpec.describe "SDS Management", type: :feature do
         click_on "Create Safety data sheet"
       }.to change(SafetyDataSheet, :count).by(1)
 
-      @sds = SafetyDataSheet.where(product: product).first
-
-      expect(page).to have_current_path(product_safety_data_sheet_path(product, @sds))
+      expect(page).to have_current_path(product_path(product))
 
       visit safety_data_sheets_path
 
