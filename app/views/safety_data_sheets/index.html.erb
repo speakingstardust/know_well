@@ -6,6 +6,21 @@
   </div>
 </div>
 <div class="row">
+  <%= search_form_for @search do |f| %>
+    <%= f.label :product_name_cont, "Product Name", class: 'control-label' %>
+    <%= f.text_field :product_name_cont, class: 'form-control' %>
+
+    <%= f.label :product_category_id_eq, "Category", class: 'control-label' %>
+    <%= f.collection_select :product_category_id_eq, @categories, :id, :name, include_blank: true, class: 'form-control' %>
+
+    <%= f.label :product_manufacturer_id_eq, "Manufacturer", class: 'control-label' %>
+    <%= f.collection_select :product_manufacturer_id_eq, @manufacturers, :id, :name, include_blank: true, class: 'form-control' %>
+
+    <%= f.submit 'Search', class: 'btn btn-primary' %>
+    <%= link_to "Clear Search", request.path, class: 'cancel-button btn btn-info btn-block' %>
+  <% end %>
+</div>
+<div class="row">
   <table class="table">
     <thead>
       <tr>

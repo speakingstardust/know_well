@@ -4,7 +4,10 @@ class SafetyDataSheetsController < ApplicationController
   before_action :authenticate_any! 
 
   def index
-    @safety_data_sheets = SafetyDataSheet.all
+    @categories = Category.all
+    @manufacturers = Manufacturer.all
+    @search = SafetyDataSheet.ransack(params[:q])
+    @safety_data_sheets = @search.result.page(params[:page])
   end
 
   def show
