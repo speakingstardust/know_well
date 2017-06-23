@@ -19,7 +19,7 @@
       <% @safety_data_sheets.each do |sds| %>
         <tr>
           <th scope="row"><%= sds.product.name %></th>
-          <td><%= sds.product.manufacturer.name %><td>
+          <td><%= sds.product.manufacturer.name %></td>
           <td><%= sds.product.category.name %></td>
           <td><%= link_to 'Show', product_safety_data_sheet_path(sds.product, sds) %></td>
           <td><%= link_to 'Edit', edit_product_safety_data_sheet_path(sds.product, sds) %></td>
