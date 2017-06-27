@@ -4,12 +4,12 @@
     <tr>
       <th>Name</th>
       <th>Part Number</th>
+      <th>Serial Number</th>
       <th>Category</th>
       <th>Price Per Container</th>
       <th>Price Per Unit</th>
       <th>Max On Hand</th>
       <th>Min On Hand</th>
-      <th>Lead Time</th>
       <th>Current Amount</th>
       <th colspan="3"></th>
     </tr> 
@@ -19,12 +19,12 @@
       <tr>
         <th scope="row"><%= product.name %></th>
         <td><%= product.part_number %></td>
+        <td><%= product.serial_number %></td>
         <td><%= product.category.name %></td>
         <td><%= number_to_currency(product.price_per_container) %></td>
         <td><%= number_to_currency(product.price_per_unit) %></td>
         <td><%= product.maximum_on_hand %></td>
         <td><%= product.minimum_on_hand %></td>
-        <td><%= pluralize(product.lead_time, 'day') unless product.lead_time.nil? %></td>
         <td><%= product.current_on_hand %></td>
         <td class="show"><%= link_to 'Show', product %></td>
         <td class="edit"><%= link_to 'Edit', edit_product_path(product) %></td>

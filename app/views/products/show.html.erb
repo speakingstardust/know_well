@@ -19,6 +19,14 @@
       <p><%= @product.part_number %></p>
     </div>
     <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Serial Number</h3>
+    </div>
+    <div class="panel-body">
+      <% unless @product.serial_number.nil? %>
+        <p><%= @product.serial_number %></p>
+      <% end %>
+    </div>
+    <div class="panel-heading">
       <h3 class="panel-title-info text-center">Category</h3>
     </div>
     <div class="panel-body">
