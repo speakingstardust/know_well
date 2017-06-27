@@ -19,7 +19,11 @@
       <tr>
         <th scope="row"><%= product.name %></th>
         <td><%= product.part_number %></td>
-        <td><%= product.serial_number %></td>
+        <td>
+          <% unless product.serial_number.nil? %>
+            <%= product.serial_number %>
+          <% end %>
+        </td>
         <td><%= product.category.name %></td>
         <td><%= number_to_currency(product.price_per_container) %></td>
         <td><%= number_to_currency(product.price_per_unit) %></td>
