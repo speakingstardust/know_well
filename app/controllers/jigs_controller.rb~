@@ -7,7 +7,6 @@ class JigsController < ApplicationController
     @customers = Customer.all
     @search = Jig.ransack(params[:q])
     @jigs = @search.result.page(params[:page])
-    authorize @jigs
   end
 
   # GET /jigs/1
@@ -66,10 +65,11 @@ class JigsController < ApplicationController
   # DELETE /jigs/1.json
   def destroy
     authorize @jig
-    @jig.destroy
-    respond_to do |format|
-      format.html { redirect_to jigs_url, notice: 'Jig was successfully destroyed.' }
-      format.json { head :no_content }
+    if @jig.jig_work_order_line_items.any? 
+      redirect_to jigs_url, notice: "Jig is currently used in a Jig Work Order and cannot be deleted at this time. Please remove the jig from all relevant Jig Work Orders before trying again."
+    else
+      @jig.destroy
+      redirect_to jigs_url, notice: 'Jig was successfully destroyed.'
     end
   end
 

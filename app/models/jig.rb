@@ -1,6 +1,6 @@
 class Jig < ActiveRecord::Base
   belongs_to :customer
-  has_many :jig_work_order_line_items
+  has_many :jig_work_order_line_items 
   has_many :jig_work_orders, through: :jig_work_order_line_items
   has_many :jig_order_line_items
   has_many :jig_orders, through: :jig_order_line_items
