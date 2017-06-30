@@ -20,6 +20,8 @@ class Product < ActiveRecord::Base
   validates :maximum_on_hand, presence: true
   validates :minimum_on_hand, presence: true
   validates :category, presence: true
+  validates :manufacturer, presence: true
+  validates :vendor, presence: true
 
   scope :needed, -> { where("current_on_hand <= minimum_on_hand") } 
 
