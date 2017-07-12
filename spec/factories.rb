@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :comment do
-    creator_name "MyString"
-    subject "MyString"
-    comment "MyText"
+    creator_name "Test Creator"
+    subject "Test Comment Subject"
+    comment "This is a test comment for the project tracking system."
   end
   factory :safety_data_sheet do
     product
