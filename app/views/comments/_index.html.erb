@@ -1,0 +1,12 @@
+<% @comments.each do |comment| %>
+  <tr>
+    <td><%= l comment.created_at %></td>
+    <td><%= comment.creator_name %></td>
+    <td><%= comment.subject %></td>
+    <td><%= comment.comment.truncate_words(10) %></td>
+    <td><%= link_to "Show", project_comment_path(comment.project.id, comment.id), remote: true, class: "btn btn-primary" %></td>
+    <td><%= link_to "Edit", edit_project_comment_path(comment.project.id, comment.id), remote: true, class: "btn btn-default" %></td>
+    <td<%= link_to "Delete", project_comment_delete_path(comment.project.id, comment.id), remote: true, class: "btn btn-danger" %></td>
+  </tr>
+<% end %>
+
