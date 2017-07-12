@@ -1,9 +1,9 @@
 class Project < ActiveRecord::Base
   belongs_to :user
   belongs_to :admin
-  has_many :tasks, -> { order(position: :asc) }
-  has_many :progress_notes, -> { order(created_at: :asc) }
-  has_many :comments, -> { order(created_at: :asc) }
+  has_many :tasks, -> { order(position: :asc) }, dependent: :destroy
+  has_many :progress_notes, -> { order(created_at: :asc) }, dependent: :destroy
+  has_many :comments, -> { order(created_at: :asc) }, dependent: :destroy
 
   resourcify
 
