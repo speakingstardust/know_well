@@ -5,6 +5,7 @@
       <th>Project Lead</th>
       <th>Project Status</th>
       <th>Department</th>
+      <th>Last Updated</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <% end %>
         <td><%= project.status.try(:titleize) %></td>
         <td><%= project.department.try(:titleize) %></td>
+        <td><%= l project.updated_at %></td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
