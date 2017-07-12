@@ -1,6 +1,6 @@
 require "pry"
 class Task < ActiveRecord::Base
-  belongs_to :project
+  belongs_to :project, touch: true
   has_and_belongs_to_many :dependencies, class_name: "Task", join_table: :dependencies, foreign_key: "task_id", association_foreign_key: :dependent_task_id
 
   acts_as_list scope: :project

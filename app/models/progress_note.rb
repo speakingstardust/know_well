@@ -1,5 +1,5 @@
 class ProgressNote < ActiveRecord::Base
-  belongs_to :project
+  belongs_to :project, touch: true
 
   DOCUMENT_TYPES = ["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "text/plain", "application/zip", "application/x-iwork-keynote-sffkey", "application/x-iwork-pages-sffpages", "application/x-iwork-numbers-sffnumbers"]
 

@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :authenticate_any!
 
   def index
-    @projects = Project.all
+    @projects = Project.all.order(updated_at: :desc)
   end
 
   def new
