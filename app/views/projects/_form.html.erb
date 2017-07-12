@@ -3,5 +3,14 @@
   <%= f.input :description %>
   <%= f.input :department, as: :select, collection: Project.departments.map {|key, value| [key.humanize, key] } %>
   <%= f.input :status, as: :select, collection: Project.statuses.map {|key, value| [key.humanize, key] } %>
+  <%= f.input :why_question, label: "What is the why behind this project? What is the issue? Problem? Concern?" %>
+  <%= f.input :market_question, label: "What is the market potential of this project?" %>
+  <%= f.input :current_situation_question, label: "What is the current situation?" %>
+  <%= f.input :problems_question, label: "What are the problems you are trying to solve?" %>
+  <%= f.input :outcome_question, label: "What is the best possible outcome for this project?" %>
+  <%= f.input :customer_agreed_question, label: "What has the customer agreed to?" %>
+  <%= f.input :requirements_question, label: "What are the requirements or specifications given to us by the customer?" %>
+  <%= f.input :must_do_question, label: "What MUST this project be able to do and accomplish to be considered a success?" %>
+  <%= f.input :must_not_do_question, label: "What MUST this project NOT do in order to be considered a success?" %>
   <%= f.submit %>
 <% end %>

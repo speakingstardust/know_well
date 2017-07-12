@@ -26,6 +26,78 @@
   <div class="panel-body">
     <p><%= @project.status.try(:titleize) %></p>
   </div>
+  <div class="panel-heading">
+    <h4 class="panel-title">What is the why behind this project? What is the issue? Problem? Concern?</h4>
+  </div>
+  <div class="panel-body">
+    <% unless @project.why_question.nil? %>
+      <p><%= @project.why_question %></p>
+    <% end %>
+  </div>
+  <div class="panel-heading">
+    <h4 class="panel-title">What is the market potential of this project?</h4>
+  </div>
+  <div class="panel-body">
+    <% unless @project.market_question.nil? %>
+      <p><%= @project.market_question %></p>
+    <% end %>
+  </div>
+  <div class="panel-heading">
+    <h4 class="panel-title">What is the current situation?</h4>
+  </div>
+  <div class="panel-body">
+    <% unless @project.current_situation_question.nil? %>
+      <p><%= @project.current_situation_question %></p>
+    <% end %>
+  </div>
+  <div class="panel-heading">
+    <h4 class="panel-title">What are the problems you are trying to solve?</h4>
+  </div>
+  <div class="panel-body">
+    <% unless @project.problems_question.nil? %>
+      <p><%= @project.problems_question %></p>
+    <% end %>
+  </div>
+  <div class="panel-heading">
+    <h4 class="panel-title">What is the best possible outcome for this project?</h4>
+  </div>
+  <div class="panel-body">
+    <% unless @project.outcome_question.nil? %>
+      <p><%= @project.outcome_question %></p>
+    <% end %>
+  </div>
+  <div class="panel-heading">
+    <h4 class="panel-title">What has the customer agreed to?</h4>
+  </div>
+  <div class="panel-body">
+    <% unless @project.customer_agreed_question.nil? %>
+      <p><%= @project.customer_agreed_question %></p>
+    <% end %>
+  </div>
+  <div class="panel-heading">
+    <h4 class="panel-title">What are the requirements or specifications given to us by the customer?</h4>
+  </div>
+  <div class="panel-body">
+    <% unless @project.requirements_question.nil? %>
+      <p><%= @project.requirements_question %></p>
+    <% end %>
+  </div>
+  <div class="panel-heading">
+    <h4 class="panel-title">What MUST this project be able to do and accomplish to be considered a success?</h4>
+  </div>
+  <div class="panel-body">
+    <% unless @project.must_do_question.nil? %>
+      <p><%= @project.must_do_question %></p>
+    <% end %>
+  </div>
+  <div class="panel-heading">
+    <h4 class="panel-title">What MUST this project NOT do in order to be considered a success?</h4>
+  </div>
+  <div class="panel-body">
+    <% unless @project.must_not_do_question.nil? %>
+      <p><%= @project.must_not_do_question %></p>
+    <% end %>
+  </div>
 </div>
 <% if @project.user == current_user or admin_signed_in? %>
   <% if @tasks.any? %>
