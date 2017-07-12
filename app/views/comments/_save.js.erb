@@ -1,0 +1,9 @@
+$("ul.errors").html("");
+<% if @comment.errors.any? %>
+    <% @comment.errors.full_messages.each do |message| %>
+      $("ul.errors").append($("<li />").html("<%= message.html_safe %>"));
+    <% end %>
+<% else %>
+    $("#comment-modal").modal("hide");
+    $(".comment-index").html("<%= j render 'index' %>");
+<% end %>
