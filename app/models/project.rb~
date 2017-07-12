@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   belongs_to :admin
   has_many :tasks, -> { order(position: :asc) }
   has_many :progress_notes, -> { order(created_at: :asc) }
+  has_many :comments, -> { order(created_at: :asc) }
 
   resourcify
 
