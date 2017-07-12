@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :authenticate_any!
 
   def index
-    @projects = policy_scope Project
+    @projects = Project.all
   end
 
   def new
@@ -39,7 +39,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    authorize @project
     @progress_notes = @project.progress_notes
     @tasks = @project.tasks
     if @tasks.any? 

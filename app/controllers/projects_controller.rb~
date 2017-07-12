@@ -39,7 +39,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    authorize @project
     @progress_notes = @project.progress_notes
     @tasks = @project.tasks
     if @tasks.any? 
@@ -58,7 +57,7 @@ class ProjectsController < ApplicationController
   def master_gantt
     authorize Project
     gon.rows = Project.generate_master_rows  
-    gon.height = Task.count * 50
+    gon.height = Task.count * 55
     gon.criticalPath = false
   end
   private

@@ -6,10 +6,6 @@ class ProjectPolicy < ApplicationPolicy
     @project = project
   end
 
-  def show?
-    user.is_admin? or @project.user == user 
-  end
-
   def edit?
     user.is_admin? or @project.user == user
   end
@@ -24,15 +20,5 @@ class ProjectPolicy < ApplicationPolicy
 
   def master_gantt?
     user.is_admin?
-  end
-
-  class Scope < Scope
-    def resolve 
-      if user.is_admin? 
-        scope.all
-      else 
-        scope.where(user: user)
-     end
-    end
   end
 end
