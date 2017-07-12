@@ -1,6 +1,6 @@
 <div class="modal-dialog">
   <div class="modal-content">
-    <%= simple_form_for @comment, url: project_comment_path, remote: true, html: { multipart: true, style: "display:inline;" } do |f| %>
+    <%= simple_form_for @comment, url: project_comments_path, remote: true, html: { multipart: true, style: "display:inline;" } do |f| %>
       <div class="modal-body">
         <ul class="errors"></ul>
         <%= f.hidden_field :project_id, value: @project.id %>
