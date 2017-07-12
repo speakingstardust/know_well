@@ -27,52 +27,55 @@
     <p><%= @project.status.try(:titleize) %></p>
   </div>
 </div>
-<% if @tasks.any? %>
+<% if @project.user == current_user or admin_signed_in? %>
+  <% if @tasks.any? %>
+    <div class="row">
+      <h4 class="text-center">Gantt Chart</h4>
+      <%= render 'chart' %>
+    </div>
+  <% end %>
+  <hr />
   <div class="row">
-    <h4 class="text-center">Gantt Chart</h4>
-    <%= render 'chart' %>
+    <div class="col-md-12">
+      <h4 class="text-center">Tasks</h4>
+      <table class="table">
+        <thead>
+          <th>Change Order</th>
+          <th>Order</th>
+          <th>Task</th>
+          <th>Description</th>
+          <th>Start Date</th>
+          <th>Duration</th>
+          <th>End Date</th>
+          <th>Percent Complete</th>
+          <th>Completed?</th>
+          <th colspan="3"></th>
+        </thead>
+        <tbody class="task-index">
+          <%= render 'tasks/index' %>
+        </tbody>
+      </table>
+      <div id="task-modal" class="modal fade"></div>
+      <%= link_to "Create New Task", new_project_task_path(@project), remote: true, class: "btn btn-block btn-primary" %>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <h4 class="text-center">Progress Notes</h4>
+      <table class="table">
+        <thead>
+          <th>Date</th>
+          <th>Created By</th>
+          <th>Note</th>
+          <th>Attachment Link</th>
+          <th colspan="3"></th>
+        </thead>
+        <tbody class="progress-note-index">
+          <%= render "progress_notes/index" %>
+        </tbody>
+      </table>
+      <div id="progress-note-modal" class="modal fade"></div>
+      <%= link_to "Create New Progress Note", new_project_progress_note_path(@project), remote: true, class: "btn btn-block btn-primary" %>
   </div>
 <% end %>
-<div class="row">
-  <div class="col-md-12">
-    <h4 class="text-center">Tasks</h4>
-    <table class="table">
-      <thead>
-        <th>Change Order</th>
-        <th>Order</th>
-        <th>Task</th>
-        <th>Description</th>
-        <th>Start Date</th>
-        <th>Duration</th>
-        <th>End Date</th>
-        <th>Percent Complete</th>
-        <th>Completed?</th>
-        <th colspan="3"></th>
-      </thead>
-      <tbody class="task-index">
-        <%= render 'tasks/index' %>
-      </tbody>
-    </table>
-    <div id="task-modal" class="modal fade"></div>
-    <%= link_to "Create New Task", new_project_task_path(@project), remote: true, class: "btn btn-block btn-primary" %>
-  </div>
-</div>
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4 class="text-center">Progress Notes</h4>
-    <table class="table">
-      <thead>
-        <th>Date</th>
-        <th>Created By</th>
-        <th>Note</th>
-        <th>Attachment Link</th>
-        <th colspan="3"></th>
-      </thead>
-      <tbody class="progress-note-index">
-        <%= render "progress_notes/index" %>
-      </tbody>
-    </table>
-    <div id="progress-note-modal" class="modal fade"></div>
-    <%= link_to "Create New Progress Note", new_project_progress_note_path(@project), remote: true, class: "btn btn-block btn-primary" %>
-</div>
