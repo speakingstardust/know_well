@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :comment do
+    creator_name "MyString"
+    subject "MyString"
+    comment "MyText"
+  end
   factory :safety_data_sheet do
     product
     pdf { File.new("#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf") }
