@@ -41,6 +41,7 @@ class ProjectsController < ApplicationController
   def show
     @progress_notes = @project.progress_notes
     @tasks = @project.tasks
+    @comments = @project.comments
     if @tasks.any? 
       gon.rows = @project.generate_gantt_chart_rows
       gon.height = @tasks.count * 55 
