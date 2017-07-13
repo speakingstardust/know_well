@@ -3,10 +3,19 @@
   <div class="page-header">
   <%= link_to "Create New Project", new_project_path, class: "btn btn-primary pull-right" %>
   <% if pundit_user.is_admin? %>
-    <%= link_to "Mast Gantt Chart", master_gantt_path, class: "btn btn-info pull-left" %>
+    <%= link_to "Master Gantt Chart", master_gantt_path, class: "btn btn-info pull-left" %>
   <% end %>
     <h1 class="text-center">Projects List</h1>
   </div>
+</div>
+<div class="row">
+  <%= search_form_for @search do |f| %>
+    <%= f.label :project_name_cont, "Project Name", class: "control-label" %>
+    <%= f.text_field :project_name_cont, class: "form-control" %>
+
+    <%= f.label :department_eq, "Department", class: "control-label" %>
+    <%= f.select :department_eq, Project.statuses.map { |k, v| [k.humanize, v] }, include_blank: true, class: 'form-control' %>
+  <% end %>
 </div>
 
 <%= render 'table' %>

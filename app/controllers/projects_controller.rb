@@ -3,7 +3,8 @@ class ProjectsController < ApplicationController
   before_action :authenticate_any!
 
   def index
-    @projects = Project.all.order(updated_at: :desc)
+    @search = Project.ransack(params[:q])
+    @projects = @search.result.order(updated_at: :desc).page(params[:page])
   end
 
   def new
