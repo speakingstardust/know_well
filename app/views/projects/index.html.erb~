@@ -10,11 +10,17 @@
 </div>
 <div class="row">
   <%= search_form_for @search do |f| %>
-    <%= f.label :project_name_cont, "Project Name", class: "control-label" %>
-    <%= f.text_field :project_name_cont, class: "form-control" %>
+    <%= f.label :name_cont, "Project Name", class: "control-label" %>
+    <%= f.text_field :name_cont, class: "form-control" %>
+
+    <%= f.label :status_eq, "Department", class: "control-label" %>
+    <%= f.select :status_eq, Project.statuses.map { |k, v| [k.humanize, v] }, include_blank: true, class: 'form-control' %>
 
     <%= f.label :department_eq, "Department", class: "control-label" %>
-    <%= f.select :department_eq, Project.statuses.map { |k, v| [k.humanize, v] }, include_blank: true, class: 'form-control' %>
+    <%= f.select :department_eq, Project.departments.map { |k, v| [k.humanize, v] }, include_blank: true, class: 'form-control' %>
+
+    <%= f.submit "Search", class: "btn btn-primary" %>
+    <%= link_to "Clear Search", request.path, class: "cancel-button btn btn-info btn-block" %>
   <% end %>
 </div>
 
