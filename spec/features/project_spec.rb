@@ -3,8 +3,8 @@ require "pry"
 
 RSpec.describe "Project Management", type: :feature do 
   before(:each) do 
-    user = FactoryGirl.create(:user)
-    login_as(user, :scope => :user)
+    @user = FactoryGirl.create(:user)
+    login_as(@user, :scope => :user)
   end
 
   describe "Create" do 
@@ -30,9 +30,9 @@ RSpec.describe "Project Management", type: :feature do
   end
 
   describe "Edit" do
-    it "allows a user to edit an existing project" do 
-      project = FactoryGirl.create(:project, user: user)
+    let!(:project) { FactoryGirl.create(:project, user: @user) }
 
+    it "allows a user to edit an existing project" do 
       visit projects_path 
 
       expect(page).to have_content(project.name)
