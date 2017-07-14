@@ -101,8 +101,8 @@ FactoryGirl.define do
   end
   factory :project do
     user nil
-    name "MyString"
-    description "MyText"
+    name "Test Project"
+    description "Test description for test project."
     status 1
     department 1
   end
