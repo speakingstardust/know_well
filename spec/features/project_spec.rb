@@ -24,8 +24,8 @@ RSpec.describe "Project Management", type: :feature do
       expect(page).to have_current_path(project_path(@project))
       expect(page).to have_content(@project.name)
       expect(page).to have_content(@project.description)
-      expect(page).to have_content(@project.status)
-      expect(page).to have_content(@project.department)
+      expect(page).to have_content(@project.status.humanize)
+      expect(page).to have_content(@project.department.humanize)
     end
   end
 end
