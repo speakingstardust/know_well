@@ -30,9 +30,9 @@ RSpec.describe "Project Management", type: :feature do
   end
 
   describe "Edit" do
-    let!(:project) { FactoryGirl.create(:project, user: user) }
-
     it "allows a user to edit an existing project" do 
+      project = FactoryGirl.create(:project, user: user)
+
       visit projects_path 
 
       expect(page).to have_content(project.name)
