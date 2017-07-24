@@ -24,6 +24,7 @@ class Product < ActiveRecord::Base
   validates :vendor, presence: true
 
   scope :needed, -> { where("current_on_hand <= minimum_on_hand") } 
+  scope :not, ->(category) { where("category_id != ?", category.id) }
 
   def calculate_price_per_unit
     self.price_per_unit = (self.price_per_container / self.units_per_container).round(2)

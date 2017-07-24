@@ -13,7 +13,6 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @products = Product.needed
     @raw_materials_category = Category.find_by_name("Raw Materials")
     @lab_supplies_category = Category.find_by_name("Lab Supplies")
     @consumables_category = Category.find_by_name("Consumables")
@@ -23,6 +22,10 @@ class OrdersController < ApplicationController
     @offsite_ppe_category = Category.find_by_name("Offsite: PPE")
     @offsite_equipment_category = Category.find_by_name("Offsite: Equipment")
     @offsite_misc_category = Category.find_by_name("Offsite: Miscellaneous")
+    @tool_category = Category.find_by_name("Tool")
+    @equipment_category = Category.find_by_name("Equipment")
+
+    @products = Product.needed.not(@tool_category).not(@equipment_category)
 
     @raw_materials = Product.where(category: @raw_materials_category).needed
     @lab_supplies = Product.where(category: @lab_supplies_category).needed
