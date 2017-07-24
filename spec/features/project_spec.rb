@@ -64,23 +64,23 @@ RSpec.describe "Project Management", type: :feature do
       expect(page).to have_content(project_2.name)
 
       fill_in "Project Name", with: "2"
-      click "Search"
+      click_on "Search"
 
       expect(page).to_not have_content(project_1.name)
       expect(page).to have_content(project_2.name)
 
-      click "Clear Search" 
+      click_on "Clear Search" 
 
       select "Active", from: "Status"
-      click "Search"
+      click_on "Search"
 
       expect(page).to_not have_content(project_1.name)
       expect(page).to have_content(project_2.name)
 
-      click "Clear Search" 
+      click_on "Clear Search" 
 
       select "Lab", from: "Department"
-      click "Search"
+      click_on "Search"
 
       expect(page).to_not have_content(project_1.name)
       expect(page).to have_content(project_2.name)
