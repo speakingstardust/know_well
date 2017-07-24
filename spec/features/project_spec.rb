@@ -54,8 +54,8 @@ RSpec.describe "Project Management", type: :feature do
   end
 
   describe "Search" do 
-    let!(:project_1) { FactoryGirl.create(:project, name: "Test Project 1") }
-    let!(:project_2) { FactoryGirl.create(:project, name: "Test Project 2", status: 0, department: 0) }
+    let!(:project_1) { FactoryGirl.create(:project, name: "Test Project 1", user: @user) }
+    let!(:project_2) { FactoryGirl.create(:project, name: "Test Project 2", status: 0, department: 0, :user: @user) }
 
     it "allows a user to search for a project" do 
       visit projects_path
