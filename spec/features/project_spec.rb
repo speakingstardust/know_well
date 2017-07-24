@@ -52,4 +52,38 @@ RSpec.describe "Project Management", type: :feature do
       expect(page).to have_content("Testing if a project can be edited properly or not")
     end
   end
+
+  describe "Search" do 
+    let!(:project_1) { FactoryGirl.create(:project, name: "Test Project 1") }
+    let!(:project_2) { FactoryGirl.create(:project, name: "Test Project 2", status: 0, department: 0) }
+
+    it "allows a user to search for a project" do 
+      visit projects_path
+
+      expect(page).to have_content(project_1.name)
+      expect(page).to have_content(project_2.name)
+
+      fill_in "Project Name", with: "2"
+      click "Search"
+
+      expect(page).to_not have_content(project_1.name)
+      expect(page).to have_content(project_2.name)
+
+      click "Clear Search" 
+
+      select "Active", from: "Status"
+      click "Search"
+
+      expect(page).to_not have_content(project_1.name)
+      expect(page).to have_content(project_2.name)
+
+      click "Clear Search" 
+
+      select "Lab", from: "Department"
+      click "Search"
+
+      expect(page).to_not have_content(project_1.name)
+      expect(page).to have_content(project_2.name)
+    end
+  end
 end
