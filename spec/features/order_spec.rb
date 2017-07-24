@@ -10,6 +10,8 @@ RSpec.describe "Order Management", type: :feature do
 
   describe "Create" do 
     let(:category) { FactoryGirl.create(:category) }
+    let!(:tool_category) { FactoryGirl.create(:category, name: "Tool") }
+    let!(:equipment_category) { FactoryGirl.create(:category, name: "Equipment") }
     let!(:at_min_product) { FactoryGirl.create(:product, current_on_hand: 24.0, category: category) } 
     let!(:above_min_product) { FactoryGirl.create(:product, current_on_hand: 36.0, category: category) }
     let!(:below_min_product) { FactoryGirl.create(:product, current_on_hand: 12.0, category: category) }

@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
     @tool_category = Category.find_by_name("Tool")
     @equipment_category = Category.find_by_name("Equipment")
 
-    @products = Product.needed.not(@tool_category).not(@equipment_category)
+    @products = Product.needed.not(@tool_category.id).not(@equipment_category.id)
 
     @raw_materials = Product.where(category: @raw_materials_category).needed
     @lab_supplies = Product.where(category: @lab_supplies_category).needed
