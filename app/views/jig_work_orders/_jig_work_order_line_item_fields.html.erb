@@ -6,6 +6,7 @@
     <% else %>
       <%= f.input :expected, disabled: true, placeholder: "# Expected", label: false %>
     <% end %>
+    <%= f.input :received, placeholder: "# Received", label: false %>
     <%= f.input :repaired, placeholder: "# Repaired", label: false %>
     <%= f.input :actual, placeholder: "# Cleaned", label: false %>
     <%= link_to_remove_association "Remove Jig", f %>
