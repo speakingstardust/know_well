@@ -70,6 +70,12 @@ class JigWorkOrder < ActiveRecord::Base
     if self.returned.nil?
       return false
     end
+    if self.driver.nil?
+      return false
+    end
+    if self.truck_number.nil?
+      return false
+    end
     return true
   end
 
@@ -103,6 +109,5 @@ class JigWorkOrder < ActiveRecord::Base
     old_work_orders.each do |work_order|
       work_order.archive!
     end
-    binding.pry
   end
 end

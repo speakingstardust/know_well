@@ -70,6 +70,12 @@ class JigWorkOrder < ActiveRecord::Base
     if self.returned.nil?
       return false
     end
+    if self.driver.nil?
+      return false
+    end
+    if self.truck_number.nil?
+      return false
+    end
     return true
   end
 

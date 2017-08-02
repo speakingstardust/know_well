@@ -121,6 +121,8 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       select Date.today.strftime("%B"), from: "jig_work_order_returned_2i"
       select Date.today.day, from: "jig_work_order_returned_3i"
       fill_in "Return time", with: "PM"
+      fill_in "Driver", with: "Driver Name"
+      fill_in "Truck Number", with: "10" 
       fill_in "jig_work_order_jig_work_order_line_items_attributes_0_repaired", with: 3
       fill_in "jig_work_order_jig_work_order_line_items_attributes_0_actual", with: 10
       click_on "Update Jig work order" 
