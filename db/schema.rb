@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801173616) do
+ActiveRecord::Schema.define(version: 20170802144056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,8 @@ ActiveRecord::Schema.define(version: 20170801173616) do
     t.string   "return_time"
     t.datetime "completed_at"
     t.string   "completed_by"
+    t.string   "driver"
+    t.string   "truck_number"
   end
 
   add_index "jig_work_orders", ["customer_id"], name: "index_jig_work_orders_on_customer_id", using: :btree
