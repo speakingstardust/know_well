@@ -122,7 +122,7 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       select Date.today.day, from: "jig_work_order_returned_3i"
       fill_in "Return time", with: "PM"
       fill_in "Driver", with: "Driver Name"
-      fill_in "Truck Number", with: "10" 
+      fill_in "Truck number", with: "10" 
       fill_in "jig_work_order_jig_work_order_line_items_attributes_0_repaired", with: 3
       fill_in "jig_work_order_jig_work_order_line_items_attributes_0_actual", with: 10
       click_on "Update Jig work order" 
@@ -137,6 +137,8 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       @jig_work_order.open!
       @jig_work_order.receive!
       @jig_work_order.returned = Date.today 
+      @jig_work_order.driver = "Driver Name" 
+      @jig_work_order.truck_number = "10"
       line_item = @jig_work_order.jig_work_order_line_items.first
       line_item.actual = 10 
       line_item.save 
@@ -157,6 +159,8 @@ RSpec.describe "Jig Work Order Management", type: :feature do
       @jig_work_order.open!
       @jig_work_order.receive!
       @jig_work_order.returned = Date.today 
+      @jig_work_order.driver = "Driver Name" 
+      @jig_work_order.truck_number = "10"
       line_item = @jig_work_order.jig_work_order_line_items.first
       line_item.actual = 10 
       line_item.save 
