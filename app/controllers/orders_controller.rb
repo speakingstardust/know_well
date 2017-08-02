@@ -24,8 +24,9 @@ class OrdersController < ApplicationController
     @offsite_misc_category = Category.find_by_name("Offsite: Miscellaneous")
     @tool_category = Category.find_by_name("Tool")
     @equipment_category = Category.find_by_name("Equipment")
+    @vehicle_category = Category.find_by_name("Vehicle")
 
-    @products = Product.needed.not(@tool_category.id).not(@equipment_category.id)
+    @products = Product.needed.not(@tool_category.id).not(@equipment_category.id).not(@vehicle_category.id)
 
     @raw_materials = Product.where(category: @raw_materials_category).needed
     @lab_supplies = Product.where(category: @lab_supplies_category).needed
