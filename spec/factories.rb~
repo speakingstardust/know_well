@@ -125,6 +125,8 @@ FactoryGirl.define do
     notes "Test notes"
     pickup_date { Date.today - 3 }
     returned { Date.today }
+    driver "Test Driver Name"
+    truck_number "10"
     verified_by nil
     verified_at nil
     completed_by nil

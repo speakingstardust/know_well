@@ -18,6 +18,7 @@ RSpec.describe "Product Mangement", type: :feature do
       fill_in "Name", with: "Test Product"
       fill_in "Part Number", with: "12345" 
       select "Consumables", from: "Category"
+      fill_in "Location", with: "Test Location"
       select @vendor.name, from: "Vendor"
       select @manufacturer.name, from: "Manufacturer" 
       fill_in "Description", with: "Test product description" 

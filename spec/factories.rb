@@ -60,6 +60,7 @@ FactoryGirl.define do
     manufacturer 
     part_number "12345"
     vendor 
+    location "Test Location"
     description "Pair of Black Nitril Gloves"
     container "Case"
     unit "pair"
