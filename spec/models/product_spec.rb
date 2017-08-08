@@ -4,7 +4,8 @@ RSpec.describe Product, type: :model do
   describe "Validations" do 
     subject { described_class.new(name: "Test Product", part_number: "12345", 
                                   description: "Test Product Description", 
-                                  container: "Test Container", unit: "Test Unit", location: "Test Location" 
+                                  container: "Test Container", unit: "Test Unit", 
+                                  location: "Test Location", 
                                   units_per_container: 24, price_per_container: 4.50, 
                                   price_per_unit: 0.18, maximum_on_hand: 4.0, 
                                   minimum_on_hand: 1.5, lead_time: 14,
