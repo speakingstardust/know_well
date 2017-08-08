@@ -66,6 +66,7 @@ RSpec.describe "Product Mangement", type: :feature do
       expect(page).to have_content(product.name)
       expect(page).to have_link(vendor.name, href: vendor_path(vendor))
       expect(page).to have_link(manufacturer.name, href: manufacturer_path(manufacturer))
+      expect(page).to have_content(product.location)
       expect(page).to have_content(product.description)
       expect(page).to have_content(product.container)
       expect(page).to have_content(product.unit)
