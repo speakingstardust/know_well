@@ -1,4 +1,14 @@
 FactoryGirl.define do
+  factory :expense_report do
+    user nil
+    admin nil
+    date "2017-08-16"
+    amount 1.5
+    vendor "MyString"
+    category 1
+    note "MyText"
+    other "MyString"
+  end
   factory :comment do
     creator_name "Test Creator"
     subject "Test Comment Subject"
