@@ -9,7 +9,10 @@ RSpec.describe ExpenseReport, type: :model do
       expect(subject).to be_valid
     end
 
-    it "is not valid without either a user or an admin"
+    it "is not valid without either a user or an admin" do 
+      
+    end
+
     it "is not valid without a date" 
     it "is not valid without an amount" 
     it "is not valid without a vendor" 

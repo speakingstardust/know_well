@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808152838) do
+ActiveRecord::Schema.define(version: 20170816194945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,22 @@ ActiveRecord::Schema.define(version: 20170808152838) do
 
   add_index "dependencies", ["dependent_task_id", "task_id"], name: "index_dependencies_on_dependent_task_id_and_task_id", unique: true, using: :btree
   add_index "dependencies", ["task_id", "dependent_task_id"], name: "index_dependencies_on_task_id_and_dependent_task_id", unique: true, using: :btree
+
+  create_table "expense_reports", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "admin_id"
+    t.date     "date"
+    t.float    "amount"
+    t.string   "vendor"
+    t.integer  "category"
+    t.text     "note"
+    t.string   "other"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "expense_reports", ["admin_id"], name: "index_expense_reports_on_admin_id", using: :btree
+  add_index "expense_reports", ["user_id"], name: "index_expense_reports_on_user_id", using: :btree
 
   create_table "incident_types", force: :cascade do |t|
     t.string   "name"
@@ -413,6 +429,8 @@ ActiveRecord::Schema.define(version: 20170808152838) do
   end
 
   add_foreign_key "categories", "product_reports"
+  add_foreign_key "expense_reports", "admins"
+  add_foreign_key "expense_reports", "users"
   add_foreign_key "jig_work_order_line_items", "jig_work_orders"
   add_foreign_key "jig_work_order_line_items", "jigs"
   add_foreign_key "jig_work_orders", "customers"
