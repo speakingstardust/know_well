@@ -154,8 +154,13 @@ FactoryGirl.define do
     end
   end
   factory :admin do
-    
+    email "foo@bar.com"
+    first_name "Admin"
+    last_name "Doe"
+    password "password"
+    password_confirmation "password"
   end
+
   factory :role do
     
   end

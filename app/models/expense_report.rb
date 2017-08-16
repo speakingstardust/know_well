@@ -4,4 +4,7 @@ class ExpenseReport < ActiveRecord::Base
 
   enum category: [:fuel, :shop_supplies, :office_supplies, :other]
 
+  validates :user, presence: true, if: "admin_id.nil?"
+  validates :admin, presence: true, if: "user_id.nil?"
+
 end
