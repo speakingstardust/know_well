@@ -1,4 +1,14 @@
 FactoryGirl.define do
+  factory :expense_report do
+    user 
+    admin nil
+    date { Date.today }
+    amount 5.50
+    vendor "Test Expense Report Vendor"
+    category 1
+    note "Test Expense Report Note"
+    other "Other Expense Report Note"
+  end
   factory :comment do
     creator_name "Test Creator"
     subject "Test Comment Subject"
@@ -60,6 +70,7 @@ FactoryGirl.define do
     manufacturer 
     part_number "12345"
     vendor 
+    location "Test Location"
     description "Pair of Black Nitril Gloves"
     container "Case"
     unit "pair"
