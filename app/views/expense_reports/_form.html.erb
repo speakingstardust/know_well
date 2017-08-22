@@ -1,0 +1,9 @@
+<%= simple_form_for @expense_report, html: { class: "form-horizontal" } do |f| %>
+  <%= f.input :date %>
+  <%= f.input :vendor %>
+  <%= f.input :amount %>
+  <%= f.input :category, as: :select, collection: ExpenseReport.categories.map {|key, value| [key.humanize, key] } %>
+  <%= f.input :other_note, hint: 'Please explain if category is "Other"' %>
+  <%= f.input :note, hint: 'Provide any other pertinent information to this Expense Report' %>
+  <%= f.submit %>
+<% end %>
