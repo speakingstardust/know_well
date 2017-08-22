@@ -44,7 +44,11 @@ RSpec.describe ExpenseReport, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without a category"
+    it "is not valid without a category" do
+      subject.category = nil
+
+      expect(subject).to_not be_valid
+    end
     it "is not valid without an other when the category is set to other"
     # Other is 3 
   end

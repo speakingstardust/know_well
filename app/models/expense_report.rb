@@ -9,5 +9,6 @@ class ExpenseReport < ActiveRecord::Base
   validates :date, presence: true
   validates :amount, presence: true
   validates :vendor, presence: true
+  validates :category, presence: true
 
 end
