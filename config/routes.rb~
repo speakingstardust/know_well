@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     resources :progress_notes do
       get "delete"
     end
-    resources :comments
+    resources :comments do 
+      get "delete"
+    end
   end
   resources :customers
   resources :jigs

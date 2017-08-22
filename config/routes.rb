@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :jigs
   resources :jig_orders
   resources :jig_order_line_items
+  resources :expense_reports
   resources :reports
   put 'products/all', to: 'products#update_all_counts', as: 'update_all_counts'
   get 'safety_data_sheets', to: 'safety_data_sheets#index', as: 'safety_data_sheets'
