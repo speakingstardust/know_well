@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816194945) do
+ActiveRecord::Schema.define(version: 20170822163248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,9 +80,9 @@ ActiveRecord::Schema.define(version: 20170816194945) do
     t.string   "vendor"
     t.integer  "category"
     t.text     "note"
-    t.string   "other"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "other_note"
   end
 
   add_index "expense_reports", ["admin_id"], name: "index_expense_reports_on_admin_id", using: :btree
