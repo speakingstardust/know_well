@@ -8,5 +8,6 @@ class ExpenseReport < ActiveRecord::Base
   validates :admin, presence: true, if: "user_id.nil?"
   validates :date, presence: true
   validates :amount, presence: true
+  validates :vendor, presence: true
 
 end
