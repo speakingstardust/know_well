@@ -26,7 +26,12 @@ RSpec.describe ExpenseReport, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without a date" 
+    it "is not valid without a date" do
+      subject.date = nil
+
+      expect(subject).to_not be_valid
+    end
+
     it "is not valid without an amount" 
     it "is not valid without a vendor" 
     it "is not valid without a category"

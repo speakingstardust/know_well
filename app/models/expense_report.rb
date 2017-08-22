@@ -6,5 +6,6 @@ class ExpenseReport < ActiveRecord::Base
 
   validates :user, presence: true, if: "admin_id.nil?"
   validates :admin, presence: true, if: "user_id.nil?"
+  validates :date, presence: true
 
 end
