@@ -51,12 +51,11 @@ RSpec.describe ExpenseReport, type: :model do
     end
 
     it "is not valid without an other when the category is set to other" do
-      subject.fuel!
       subject.other_note = nil
 
       expect(subject).to be_valid
 
-      subject.other!
+      subject.category = "other"
 
       expect(subject).to_not be_valid
     end

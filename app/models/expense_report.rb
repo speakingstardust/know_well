@@ -10,5 +10,6 @@ class ExpenseReport < ActiveRecord::Base
   validates :amount, presence: true
   validates :vendor, presence: true
   validates :category, presence: true
+  validates :other_note, presence: true, if: "self.other?"
 
 end
