@@ -59,6 +59,5 @@ RSpec.describe ExpenseReport, type: :model do
 
       expect(subject).to_not be_valid
     end
-    # Other is 3 
   end
 end
