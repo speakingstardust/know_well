@@ -7,7 +7,7 @@ FactoryGirl.define do
     vendor "Test Expense Report Vendor"
     category 1
     note "Test Expense Report Note"
-    other "Other Expense Report Note"
+    other_note "Other Expense Report Note"
   end
   factory :comment do
     creator_name "Test Creator"
