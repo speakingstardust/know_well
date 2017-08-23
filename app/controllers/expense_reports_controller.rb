@@ -1,3 +1,4 @@
+require 'pry'
 class ExpenseReportsController < ApplicationController
   before_action :set_expense_report, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_any!

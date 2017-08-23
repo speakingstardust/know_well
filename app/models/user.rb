@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :roles, allow_destroy: true, reject_if: :all_blank
 
   has_many :projects
+  has_many :expense_reports
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
