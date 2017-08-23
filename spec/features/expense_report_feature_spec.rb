@@ -17,7 +17,7 @@ RSpec.describe "Expense Report Management", type: :feature do
       fill_in "Note", with: "Test Note"
       fill_in "Other note", with: "Test Other Note"
       select Date.today.year, from: "expense_report_date_1i"
-      select Date.today.month, from: "expense_report_date_2i"
+      select Date.today.strftime("%B"), from: "expense_report_date_2i"
       select Date.today.day, from: "expense_report_date_3i"
       expect {
         click_on "Create Expense report"
