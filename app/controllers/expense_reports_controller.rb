@@ -13,6 +13,11 @@ class ExpenseReportsController < ApplicationController
 
   def create
     @expense_report = ExpenseReport.new(expense_report_params)
+    if pundit_user.is_admin?
+      @expense_report.admin = pundit_user
+    else
+      @expense_report.user = pundit_user
+    end
 
     if @expense_report.save 
       redirect_to @expense_report, notice: "Expense Report was successfully created."
