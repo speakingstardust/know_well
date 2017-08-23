@@ -31,8 +31,7 @@ RSpec.describe "Expense Report Management", type: :feature do
       expect(page).to have_content(@expense_report.vendor)
       expect(page).to have_content(@expense_report.note)
       expect(page).to have_content(@expense_report.other_note)
-      expect(page).to have_content(@expense_report.date)
-      expect(page).to have_content(@expense_report.category)
+      expect(page).to have_content(@expense_report.category.humanize)
     end
   end
 end
