@@ -1,0 +1,14 @@
+<% provide(:title, "Expense Report Details") %>
+<p>
+  <strong>Submitted By:</strong> 
+  <% if @expense_report.admin.nil? %>
+    <%= @expense_report.user.full_name %>
+  <% elsif @expens_report.user.nil? %>
+    <%= @expense_report.admin.full_name %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Date: </strong>
+  <%= l @expense_report.date
+</p>
