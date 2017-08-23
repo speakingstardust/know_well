@@ -45,3 +45,7 @@
     <%= @expense_report.note %>
   </p>
 </div>
+<div class="row">
+  <%= link_to "Back", expense_reports_path, class: "btn btn-primary btn-lg pull-left" %>
+  <%= link_to "Edit", edit_expense_report_path(@expense_report), class: "btn btn-success btn-lg pull-right" %>
+</div>

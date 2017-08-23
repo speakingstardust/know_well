@@ -1,2 +1,10 @@
-<h1>ExpenseReports#index</h1>
-<p>Find me in app/views/expense_reports/index.html.erb</p>
+<% provide(:title, "Expense Reports List") %>
+<div class="row">
+  <div class="page-header">
+    <%= link_to "Create New Expense Report", new_expense_report_path, class: "btn btn-primary pull-right" %>
+    <h1 class="text-center">Expense Report List</h1>
+  </div>
+</div>
+<div class="row">
+  <%= render 'table' %>
+</div>

@@ -1,0 +1,38 @@
+<table class="table" id="expense-reports-table">
+  <thead>
+    <tr>
+      <th>Report ID #</th>
+      <th>Submitted By</th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Vendor</th>
+      <th>Category</th>
+      <th>Other Explanation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @expense_reports.each do |expense_report| %>
+      <tr>
+        <th scope="row"><%= expense_report.id %></th>
+        <% if expense_report.admin.nil? %>
+          <td><%= expense_report.user.full_name %></td>
+        <% elsif expense_report.user.nil? %>
+          <td><%= expense_report.admin.full_name %></td>
+        <% end %>
+        <td><%= l expense_report.date %></td>
+        <td><%= number_to_currency(expense_report.amount) %></td>
+        <td><%= expense_report.vendor %></td>
+        <td><%= expense_report.category.humanize %></td>
+        <td>
+          <% unless expense_report.other_note.nil? %>
+            <%= expense_report.other_note %>
+          <% end %>
+        </td>
+        <td class="show"><%= link_to "Show", expense_report %></td>
+        <td class="edit"><%= link_to "Edit", edit_expense_report_path(expense_report) %></td>
+        <td class="destroy"><%= link_to "Destroy", expense_report, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
