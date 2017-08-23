@@ -3,8 +3,8 @@ require "pry"
 
 RSpec.describe "Expense Report Management", type: :feature do 
   before(:each) do 
-    user = FactoryGirl.create(:user)
-    login_as(user, :scope => :user)
+    @user = FactoryGirl.create(:user)
+    login_as(@user, :scope => :user)
   end
 
   describe "Create" do
@@ -26,7 +26,7 @@ RSpec.describe "Expense Report Management", type: :feature do
       @expense_report = ExpenseReport.first
 
       expect(page).to have_current_path(expense_report_path(@expense_report))
-      expect(page).to have_content(user.full_name)
+      expect(page).to have_content(@user.full_name)
       expect(page).to have_content(@expense_report.amount)
       expect(page).to have_content(@expense_report.vendor)
       expect(page).to have_content(@expense_report.note)
