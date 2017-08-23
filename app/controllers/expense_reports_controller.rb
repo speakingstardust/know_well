@@ -4,7 +4,8 @@ class ExpenseReportsController < ApplicationController
   before_action :authenticate_any!
   
   def index
-    @expense_reports = ExpenseReport.all
+    @q = ExpenseReport.ransack(params[:q])
+    @expense_reports = @q.result.page(params[:page])
   end
 
   def new

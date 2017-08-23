@@ -5,6 +5,19 @@
   </div>
 </div>
 <div class="row">
+  <div class="well">
+    <strong>Please Note:</strong>
+    <p>
+      Please write the Report ID # on the receipt before filing it in the receipts inbox.
+    </p>
+  </div>
+</div>
+<div class="row">
+  <p>
+    <strong>Report ID #:</strong>
+    <%= @expense_report.id %>
+  </p>
+
   <p>
     <strong>Submitted By:</strong> 
     <% if @expense_report.admin.nil? %>

@@ -5,6 +5,24 @@
     <h1 class="text-center">Expense Report List</h1>
   </div>
 </div>
+<button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#searchFields">Search Fields</button>
+<div class="collapse" id="searchFields">
+  <div class="row">
+    <%= search_form_for @q do |f| %>
+      <%= f.label :id_cont, "Report ID #", class: 'control-label' %>
+      <%= f.text_field :id_cont, class: 'form-control' %>
+
+      <%= f.label :vendor_cont, "Vendor", class: 'control-label' %>
+      <%= f.text_field :vendor_cont, class: 'form-control' %>
+
+      <%= f.label :category_eq, "Category", class: "control-label" %>
+      <%= f.select :category_eq, ExpenseReport.categories.map { |k, v| [k.humanize, v] }, include_blank: true, class: 'form-control' %>
+
+      <%= f.submit "Search", class: "btn btn-primary" %>
+      <%= link_to "Clear Search", request.path, class: "cancel-button btn btn-info btn-block" %>
+    <% end %>
+  </div>
+</div> 
 <div class="row">
   <%= render 'table' %>
 </div>
