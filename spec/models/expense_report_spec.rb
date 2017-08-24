@@ -4,7 +4,8 @@ RSpec.describe ExpenseReport, type: :model do
   describe "Validations" do 
     subject { described_class.new(user: FactoryGirl.create(:user), admin: FactoryGirl.create(:admin),
                                   date: Date.today, amount: 5.50, vendor: "Test Vendor", 
-                                  category: 1, note: "Test notes", other_note: "") }
+                                  category: 1, note: "Test notes", other_note: "",
+                                  payment_method: 1) }
 
     it "is valid with valid attributes" do 
       expect(subject).to be_valid
@@ -46,6 +47,12 @@ RSpec.describe ExpenseReport, type: :model do
 
     it "is not valid without a category" do
       subject.category = nil
+
+      expect(subject).to_not be_valid
+    end
+
+    it "is not valid without a payment method" do 
+      subject.payment_method = nil 
 
       expect(subject).to_not be_valid
     end

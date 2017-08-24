@@ -8,6 +8,7 @@ FactoryGirl.define do
     category 1
     note "Test Expense Report Note"
     other_note "Other Expense Report Note"
+    payment_method 1
   end
   factory :comment do
     creator_name "Test Creator"
