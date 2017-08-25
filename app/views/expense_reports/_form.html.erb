@@ -3,6 +3,7 @@
   <%= f.input :vendor %>
   <%= f.input :amount %>
   <%= f.input :category, as: :select, collection: ExpenseReport.categories.map {|key, value| [key.humanize, key] } %>
+  <%= f.input :payment_method, as: :select, collection: ExpenseReport.payment_methods.map { |key, value| [key.humanize, key] } %>
   <%= f.input :other_note, hint: 'Please explain if category is "Other"' %>
   <%= f.input :note, hint: 'Provide any other pertinent information to this Expense Report' %>
   <%= f.submit %>
