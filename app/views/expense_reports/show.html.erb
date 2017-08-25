@@ -43,6 +43,11 @@
   </p>
 
   <p>
+    <strong>Payment Method:</strong>
+    <%= @expense_report.payment_method.humanize %>
+  </p>
+
+  <p>
     <strong>Category:</strong>
     <%= @expense_report.category.humanize %>
     <% if @expense_report.other? %>
