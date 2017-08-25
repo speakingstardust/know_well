@@ -14,6 +14,7 @@ RSpec.describe "Expense Report Management", type: :feature do
       fill_in "Amount", with: 5.50
       fill_in "Vendor", with: "Test Vendor" 
       select "Other", from: "Category"
+      select "Visa", from: "Payment method"
       fill_in "Note", with: "Test Note"
       fill_in "Other note", with: "Test Other Note"
       select Date.today.year, from: "expense_report_date_1i"
@@ -32,6 +33,7 @@ RSpec.describe "Expense Report Management", type: :feature do
       expect(page).to have_content(@expense_report.note)
       expect(page).to have_content(@expense_report.other_note)
       expect(page).to have_content(@expense_report.category.humanize)
+      expect(page).to have_content(@expense_report.payment_method.humanize)
     end
   end
 end
