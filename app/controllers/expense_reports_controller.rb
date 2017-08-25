@@ -53,6 +53,6 @@ class ExpenseReportsController < ApplicationController
 
     def expense_report_params
       params.require(:expense_report).permit(:user_id, :admin_id, :date, :amount, :vendor, :category,
-                                             :note, :other_note)
+                                             :note, :other_note, :payment_method)
     end
 end
