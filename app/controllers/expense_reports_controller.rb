@@ -14,10 +14,12 @@ class ExpenseReportsController < ApplicationController
     end
     @q = ExpenseReport.ransack(params[:q])
     @expense_reports = @q.result.page(params[:page])
+    authorize @expense_reports
   end
 
   def new
     @expense_report = ExpenseReport.new
+    authorize @expense_report
   end
 
   def create
@@ -27,7 +29,7 @@ class ExpenseReportsController < ApplicationController
     else
       @expense_report.user = pundit_user
     end
-
+    authorize @expense_report
     if @expense_report.save 
       redirect_to @expense_report, notice: "Expense Report was successfully created."
     else
@@ -36,12 +38,15 @@ class ExpenseReportsController < ApplicationController
   end
 
   def show
+    authorize @expense_report
   end
 
   def edit
+    authorize @expense_report
   end
 
   def update 
+    authorize @expense_report
     if @expense_report.update(expense_report_params)
       redirect_to @expense_report, notice: "Expense Report was successfully updated."
     else
@@ -50,6 +55,7 @@ class ExpenseReportsController < ApplicationController
   end
 
   def destroy
+    authorize @expense_report
     @expense_report.destroy
     redirect_to expense_reports_url, notice: "Expense Report was successfully destroyed."
   end
@@ -68,6 +74,7 @@ class ExpenseReportsController < ApplicationController
   def summary_report
     @q = ExpenseReport.ransack(params[:q])
     @expense_reports = @q.result.page(params[:page])
+    authorize @expense_reports
     @total = 0
     @expense_reports.each do |report|
       @total += report.amount
