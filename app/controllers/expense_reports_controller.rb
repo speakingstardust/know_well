@@ -46,6 +46,11 @@ class ExpenseReportsController < ApplicationController
     redirect_to expense_reports_url, notice: "Expense Report was successfully destroyed."
   end
 
+  def summary_report
+    @q = ExpenseReport.ransack(params[:q])
+    @expense_reports = @q.result.page(params[:page])
+  end
+
   private 
     def set_expense_report
       @expense_report = ExpenseReport.find(params[:id])
