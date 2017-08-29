@@ -18,6 +18,9 @@
       <%= f.label :category_eq, "Category", class: "control-label" %>
       <%= f.select :category_eq, ExpenseReport.categories.map { |k, v| [k.humanize, v] }, include_blank: true, class: 'form-control' %>
 
+      <%= f.label :payment_method_eq, "Payment Method", class: "control-label" %>
+      <%= f.select :payment_method_eq, ExpenseReport.payment_methods.map { |k, v| [k.humanize, v] }, include_blank: true, class: 'form-control' %>
+
       <%= f.submit "Search", class: "btn btn-primary" %>
       <%= link_to "Clear Search", request.path, class: "cancel-button btn btn-info btn-block" %>
     <% end %>
