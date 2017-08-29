@@ -68,6 +68,11 @@ class ExpenseReportsController < ApplicationController
   def summary_report
     @q = ExpenseReport.ransack(params[:q])
     @expense_reports = @q.result.page(params[:page])
+    @total = 0
+    @expense_reports.each do |report|
+      @total += report.amount
+    end
+      
   end
 
   private 
