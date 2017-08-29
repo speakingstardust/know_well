@@ -5,7 +5,7 @@
   </div>
 </div>
 <div class="row">
-  <%= search_form_for @q do |f| %>
+  <%= search_form_for @q, url: expense_summary_report_url do |f| %>
     <%= f.label :category_eq, "Category", class: 'control-label' %>
     <%= f.select :category_eq, ExpenseReport.categories.map { |k, v| [k.humanize, v] }, include_blank: true, class: 'form-control' %>
 

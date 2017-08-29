@@ -1,0 +1,39 @@
+<% provide(:title, "Expense Summary Report") %>
+<div class="page-header">
+  <h1 class="text-center">Expense Summary Report</h1>
+</div>
+<div class="row">
+  <%= paginate @expense_reports %>
+  <table class="table" id="expense-reports-table">
+    <thead>
+      <tr>
+        <th>Report ID #</th>
+        <th>Submitted By</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Vendor</th>
+        <th>Category</th>
+        <th>Payment Method</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @expense_reports.each do |expense_report| %>
+        <tr>
+          <th scope="row"><%= expense_report.id %></th>
+          <% if expense_report.admin.nil? %>
+            <td><%= expense_report.user.full_name %></td>
+          <% elsif expense_report.user.nil? %>
+            <td><%= expense_report.admin.full_name %></td>
+          <% end %>
+          <td><%= l expense_report.date %></td>
+          <td><%= number_to_currency(expense_report.amount) %></td>
+          <td><%= expense_report.vendor %></td>
+          <td><%= expense_report.category.humanize %></td>
+          <td>
+            <%= expense_report.payment_method.humanize %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

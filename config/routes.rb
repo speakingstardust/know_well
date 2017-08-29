@@ -31,7 +31,8 @@ Rails.application.routes.draw do
   resources :jig_orders
   resources :jig_order_line_items
   resources :expense_reports
-  get "summary_report", to: 'expense_reports#create_summary_report', as: 'expense_summary_report'
+  get "create_summary_report", to: 'expense_reports#create_summary_report', as: 'create_expense_summary_report'
+  get "summary_report", to: "expense_reports#summary_report", as: 'expense_summary_report'
   resources :reports
   put 'products/all', to: 'products#update_all_counts', as: 'update_all_counts'
   get 'safety_data_sheets', to: 'safety_data_sheets#index', as: 'safety_data_sheets'

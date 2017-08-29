@@ -2,7 +2,9 @@ require 'pry'
 class ExpenseReportsController < ApplicationController
   before_action :set_expense_report, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_any!
-  
+
+  layout "print", only: [:summary_report]
+
   def index
     if pundit_user.is_admin? or pundit_user.has_role? :bookkeeper
       @users = User.all
@@ -59,6 +61,11 @@ class ExpenseReportsController < ApplicationController
     else
       @users = pundit_user 
     end
+    @q = ExpenseReport.ransack(params[:q])
+    @expense_reports = @q.result.page(params[:page])
+  end
+
+  def summary_report
     @q = ExpenseReport.ransack(params[:q])
     @expense_reports = @q.result.page(params[:page])
   end
