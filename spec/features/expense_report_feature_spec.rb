@@ -4,6 +4,7 @@ require "pry"
 RSpec.describe "Expense Report Management", type: :feature do 
   before(:each) do 
     @user = FactoryGirl.create(:user)
+    @user.add_role :expense_report
     login_as(@user, :scope => :user)
   end
 
