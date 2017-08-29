@@ -1,0 +1,30 @@
+<% provide(:title, "Create Expense Summary Report") %>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center">Create Expense Summary Report</h1>
+  </div>
+</div>
+<div class="row">
+  <%= search_form_for @q do |f| %>
+    <%= f.label :category_eq, "Category", class: 'control-label' %>
+    <%= f.select :category_eq, ExpenseReport.categories.map { |k, v| [k.humanize, v] }, include_blank: true, class: 'form-control' %>
+
+    <%= f.label :payment_method_eq, "Payment Method", class: "control-label" %>
+    <%= f.select :payment_method_eq, ExpenseReport.payment_methods.map { |k, v| [k.humanize, v] }, include_blank: true, class: 'form-control' %>
+
+    <%= f.label :user_id_or_admin_id_eq, "Submitted By", class: 'control-label' %>
+    <%= f.select :user_id_or_admin_id_eq, @users.map { |k, v| [k.full_name, k.id] }, include_blank: true, class: 'form-control' %>
+
+    <%= f.label :date_gteq, "Date", class: 'control-label' %>
+    <div class="input-group input-daterange">
+      <%= f.text_field :date_gteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
+      <span class="input-group-addon">to</span>
+      <%= f.text_field :date_lteq, "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd", class: "form-control" %>
+    </div>
+
+    <%= f.submit "Create Report", class: "btn btn-primary" %>
+    <%= link_to "Clear Criteria", request.path, class: "cancel-button btn btn-info btn-block" %>
+
+  <% end %>
+
+</div>

@@ -4,6 +4,12 @@ class ExpenseReportsController < ApplicationController
   before_action :authenticate_any!
   
   def index
+    if pundit_user.is_admin? or pundit_user.has_role? :bookkeeper
+      @users = User.all
+      @users << Admin.all
+    else
+      @users = pundit_user 
+    end
     @q = ExpenseReport.ransack(params[:q])
     @expense_reports = @q.result.page(params[:page])
   end
@@ -46,7 +52,13 @@ class ExpenseReportsController < ApplicationController
     redirect_to expense_reports_url, notice: "Expense Report was successfully destroyed."
   end
 
-  def summary_report
+  def create_summary_report
+    if pundit_user.is_admin? or pundit_user.has_role? :bookkeeper
+      @users = User.all
+      @users << Admin.all
+    else
+      @users = pundit_user 
+    end
     @q = ExpenseReport.ransack(params[:q])
     @expense_reports = @q.result.page(params[:page])
   end
