@@ -6,10 +6,6 @@ class ExpenseReportPolicy < ApplicationPolicy
     @expense_report = expense_report
   end
 
-  def index? 
-    user.is_admin? or @expense_report.user == user
-  end
-
   def new? 
     user.is_admin? or user.has_role? :bookkeeper or user.has_role? :expense_report
   end

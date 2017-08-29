@@ -10,11 +10,10 @@ class ExpenseReportsController < ApplicationController
       @users = User.all
       @users << Admin.all
     else
-      @users = pundit_user 
+      @users = [pundit_user] 
     end
     @q = ExpenseReport.ransack(params[:q])
-    @expense_reports = @q.result.page(params[:page])
-    authorize @expense_reports
+    @expense_reports = policy_scope(@q.result.page(params[:page]))
   end
 
   def new
@@ -65,7 +64,7 @@ class ExpenseReportsController < ApplicationController
       @users = User.all
       @users << Admin.all
     else
-      @users = pundit_user 
+      @users = [pundit_user] 
     end
     @q = ExpenseReport.ransack(params[:q])
     @expense_reports = @q.result.page(params[:page])
@@ -73,8 +72,7 @@ class ExpenseReportsController < ApplicationController
 
   def summary_report
     @q = ExpenseReport.ransack(params[:q])
-    @expense_reports = @q.result.page(params[:page])
-    authorize @expense_reports
+    @expense_reports = policy_scope(@q.result.page(params[:page]))
     @total = 0
     @expense_reports.each do |report|
       @total += report.amount
