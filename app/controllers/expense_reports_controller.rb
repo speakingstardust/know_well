@@ -77,7 +77,14 @@ class ExpenseReportsController < ApplicationController
     @expense_reports.each do |report|
       @total += report.amount
     end
-      
+    @date_range = {}
+    dates = []
+    @expense_reports.each do |report|
+      dates << report.date
+      dates = dates.uniq
+      @date_range[:earliest] = dates.min
+      @date_range[:latest] = dates.max
+    end
   end
 
   private 

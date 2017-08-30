@@ -43,4 +43,8 @@
   <p>
     <%= number_to_currency @total %> 
   </p>
+  <strong>Dates Included:</strong>
+  <p>
+  <%= l @date_range[:earliest] %> to <%= l @date_range[:latest] %>
+  </p>
 </div>
