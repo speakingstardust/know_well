@@ -74,17 +74,25 @@ class ExpenseReportsController < ApplicationController
     @q = ExpenseReport.ransack(params[:q])
     @expense_reports = policy_scope(@q.result.page(params[:page]))
     @total = 0
-    @expense_reports.each do |report|
-      @total += report.amount
-    end
     @date_range = {}
     dates = []
+    @users_included = []
     @expense_reports.each do |report|
+      @total += report.amount
+      
       dates << report.date
       dates = dates.uniq
       @date_range[:earliest] = dates.min
       @date_range[:latest] = dates.max
+
+      if report.admin.nil?
+        @users_included << report.user
+      elsif report.user.nil?
+        @users_included << report.admin
+      end
+      @users_included = @users_included.uniq
     end
+    
   end
 
   private 

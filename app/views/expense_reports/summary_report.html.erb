@@ -47,4 +47,12 @@
   <p>
   <%= l @date_range[:earliest] %> to <%= l @date_range[:latest] %>
   </p>
+  <strong>Users Included:</strong>
+  <p>
+    <ul>
+      <% @users_included.each do |user| %>
+        <li><%= user.full_name %></li>
+      <% end %>
+    </ul>
+  </p>
 </div>
