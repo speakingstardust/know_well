@@ -1,4 +1,4 @@
-<%= simple_form_for @expense_report, html: { class: "form-horizontal" } do |f| %>
+<%= simple_form_for @expense_report, html: { class: "form-horizontal", multipart: true } do |f| %>
   <%= f.input :date %>
   <%= f.input :vendor %>
   <%= f.input :amount %>
@@ -6,5 +6,6 @@
   <%= f.input :payment_method, as: :select, collection: ExpenseReport.payment_methods.map { |key, value| [key.humanize, key] } %>
   <%= f.input :other_note, hint: 'Please explain if category is "Other"' %>
   <%= f.input :note, hint: 'Provide any other pertinent information to this Expense Report' %>
+  <%= f.file_field :receipt, hint: 'Please take a photo of the reciept and ensure that all pertinent information is visible before submitting. All physical copies should be kept for at least 30 days before being detstoyed. This is the responsibility of the employee submitting the expense report.' %>
   <%= f.submit %>
 <% end %>
