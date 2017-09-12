@@ -15,4 +15,7 @@ class ExpenseReport < ActiveRecord::Base
   validates :payment_method, presence: true
   validates :other_note, presence: true, if: "self.other?"
 
+  has_attached_file :receipt, styles: { large: "500x500>", medium: "300x300>", thumb: "100x100>" }
+  validates_attachment_content_type :receipt, content_type: /\Aimage\/.*\z/
+
 end
