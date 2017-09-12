@@ -14,6 +14,7 @@
         <th>Vendor</th>
         <th>Category</th>
         <th>Payment Method</th>
+        <th>Receipt</th>
       </tr>
     </thead>
     <tbody>
@@ -31,6 +32,9 @@
           <td><%= expense_report.category.humanize %></td>
           <td>
             <%= expense_report.payment_method.humanize %>
+          </td>
+          <td>
+            <%= image_tag expense_report.receipt.url(:thumb), class: "img img-responsive" %>
           </td>
         </tr>
       <% end %>

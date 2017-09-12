@@ -54,6 +54,11 @@
     <strong>Notes:</strong>
     <%= @expense_report.note %>
   </p>
+
+  <p>
+    <strong>Receipt:</strong>
+    <%= image_tag @expense_report.receipt.url(:large), class: "img img-responsive" %>
+  </p>
 </div>
 <div class="row">
   <%= link_to "Back", expense_reports_path, class: "btn btn-primary btn-lg pull-left" %>
