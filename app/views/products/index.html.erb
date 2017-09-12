@@ -19,6 +19,9 @@
       <%= f.label :serial_number_cont, "Serial Number", class: 'control-label' %>
       <%= f.text_field :serial_number_cont, class: 'form-control' %>
 
+      <%= f.label :location_cont, "Location", class: "control-label" %>
+      <%= f.text_field :location_cont, class: 'form-control' %>
+
       <%= f.label :category_id_eq, class: 'control-label' %>
       <%= f.collection_select :category_id_eq, @categories, :id, :name, include_blank: true, class: 'form-control' %>
 
