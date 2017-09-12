@@ -9,6 +9,7 @@ FactoryGirl.define do
     note "Test Expense Report Note"
     other_note "Other Expense Report Note"
     payment_method 1
+    receipt { File.new("#{Rails.root}/spec/support/fixtures/test_pic.jpg") }
   end
   factory :comment do
     creator_name "Test Creator"

@@ -5,7 +5,8 @@ RSpec.describe ExpenseReport, type: :model do
     subject { described_class.new(user: FactoryGirl.create(:user), admin: FactoryGirl.create(:admin),
                                   date: Date.today, amount: 5.50, vendor: "Test Vendor", 
                                   category: 1, note: "Test notes", other_note: "",
-                                  payment_method: 1) }
+                                  payment_method: 1, 
+                                  receipt: File.new("#{Rails.root}/spec/support/fixtures/test_pic.jpg")) }
 
     it "is valid with valid attributes" do 
       expect(subject).to be_valid
@@ -63,6 +64,12 @@ RSpec.describe ExpenseReport, type: :model do
       expect(subject).to be_valid
 
       subject.category = "other"
+
+      expect(subject).to_not be_valid
+    end
+
+    it "is not valid without a receipt photo" do 
+      subject.receipt = nil
 
       expect(subject).to_not be_valid
     end
