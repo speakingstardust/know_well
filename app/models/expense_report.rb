@@ -3,7 +3,7 @@ class ExpenseReport < ActiveRecord::Base
   belongs_to :user
   belongs_to :admin
 
-  enum category: [:shop_fuel, :shop_supplies, :vehicle_fuel, :office_supplies, :other]
+  enum category: [:shop_fuel, :shop_supplies, :vehicle_fuel, :office_supplies, :offsite_supplies, :other]
   enum payment_method: [:fuel_truck_10, :fuel_truck_11, :fuel_truck_12, :fuel_trailer_13, :visa, :mastercard, :lowes, :employee_reimbursement]
 
   validates :user, presence: true, if: "admin_id.nil?"
