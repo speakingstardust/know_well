@@ -21,6 +21,7 @@ RSpec.describe "Expense Report Management", type: :feature do
       select Date.today.year, from: "expense_report_date_1i"
       select Date.today.strftime("%B"), from: "expense_report_date_2i"
       select Date.today.day, from: "expense_report_date_3i"
+      attach_file "Reciept", "#{Rails.root}/spec/support/fixtures/test_pic.jpg"
       expect {
         click_on "Create Expense report"
       }.to change(ExpenseReport, :count).by(1)
