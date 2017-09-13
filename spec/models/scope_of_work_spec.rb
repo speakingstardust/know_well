@@ -40,6 +40,10 @@ RSpec.describe ScopeOfWork, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without a file"
+    it "is not valid without a file" do 
+      subject.file = nil 
+
+      expect(subject).to_not be_valid
+    end
   end
 end
