@@ -28,8 +28,18 @@ RSpec.describe ScopeOfWork, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without a created_by"
-    it "is not valid without a description" 
+    it "is not valid without a created_by" do
+      subject.created_by = nil 
+
+      expect(subject).to_not be_valid
+    end
+
+    it "is not valid without a description" do
+      subject.description = nil 
+
+      expect(subject).to_not be_valid
+    end
+
     it "is not valid without a file"
   end
 end
