@@ -5,8 +5,11 @@ class CreateScopeOfWorks < ActiveRecord::Migration
       t.date :date_created
       t.string :created_by
       t.text :description
+      t.references :customer
 
       t.timestamps null: false
     end
+
+    add_index :scope_of_works, :customer_id
   end
 end

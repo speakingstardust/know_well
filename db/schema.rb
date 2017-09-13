@@ -361,6 +361,7 @@ ActiveRecord::Schema.define(version: 20170913145512) do
     t.date     "date_created"
     t.string   "created_by"
     t.text     "description"
+    t.integer  "customer_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "file_file_name"
@@ -368,6 +369,8 @@ ActiveRecord::Schema.define(version: 20170913145512) do
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
   end
+
+  add_index "scope_of_works", ["customer_id"], name: "index_scope_of_works_on_customer_id", using: :btree
 
   create_table "signatures", force: :cascade do |t|
     t.string   "name"
