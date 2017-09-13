@@ -1,9 +1,10 @@
 FactoryGirl.define do
   factory :scope_of_work do
-    name "MyString"
-    date_created "2017-09-13"
-    created_by "MyString"
-    description "MyText"
+    name "Test Location Scope of Work"
+    date_created { Date.today }
+    created_by "Joe Blow"
+    description "Test Description for this scope of work."
+    file { File.new("#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf") }
   end
   factory :expense_report do
     user 
