@@ -15,7 +15,11 @@ RSpec.describe ScopeOfWork, type: :model do
 
       expect(subject).to_not be_valid
     end
-    it "is not valid without a customer"
+    it "is not valid without a customer" do 
+      subject.customer = nil 
+
+      expect(subject).to_not be_valid
+    end
     it "is not valid without a date_created"
     it "is not valid without a created_by"
     it "is not valid without a description" 
