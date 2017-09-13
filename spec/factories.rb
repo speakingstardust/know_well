@@ -1,4 +1,10 @@
 FactoryGirl.define do
+  factory :scope_of_work do
+    name "MyString"
+    date_created "2017-09-13"
+    created_by "MyString"
+    description "MyText"
+  end
   factory :expense_report do
     user 
     admin nil
