@@ -1,0 +1,9 @@
+<%= simple_form_for @scope_of_work, html: { class: "form-horizontal", multipart: true } do |f| %>
+  <%= f.association :customer %>
+  <%= f.input :name %>
+  <%= f.input :date_created %>
+  <%= f.input :created_by %>
+  <%= f.input :description %>
+  <%= f.input :file, as: :file, hint: 'All Scopes of Work must be in PDF format before uploading' %>
+  <%= f.submit %>
+<% end %>

@@ -1,2 +1,10 @@
-<h1>ScopeOfWorks#new</h1>
-<p>Find me in app/views/scope_of_works/new.html.erb</p>
+<% provide(:title, "New Scope of Work") %>
+<div class="row">
+  <div class="page-header">
+    <h1 class="text-center">New Scope of Work</h1>
+  </div>
+</div>
+<div class="row">
+  <%= render 'form' %>
+</div>
+<%= link_to "Back", scope_of_works_path, class: "btn btn-primary" %>
