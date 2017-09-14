@@ -46,6 +46,6 @@ class ScopeOfWorksController < ApplicationController
     end
 
     def scope_of_work_params
-      params.require(:scope_of_work).permit(:name, :date_created, :created_by, :description, :file)
+      params.require(:scope_of_work).permit(:name, :date_created, :created_by, :description, :file, :customer_id)
     end
 end
