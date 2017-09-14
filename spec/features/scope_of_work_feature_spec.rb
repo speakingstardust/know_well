@@ -19,7 +19,7 @@ RSpec.describe "Scope of Work Management", type: :feature do
       select Date.today.strftime("%B"), from: "scope_of_work_date_created_2i"
       select Date.today.day, from: "scope_of_work_date_created_3i"
       fill_in "Description", with: "Test description of this scope of work"
-      select customer, from: "Customer"
+      select customer.name, from: "Customer"
       attach_file "File", "#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf"
       expect {
         click_on "Create Scope of work"
