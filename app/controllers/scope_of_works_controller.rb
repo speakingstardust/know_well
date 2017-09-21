@@ -3,7 +3,9 @@ class ScopeOfWorksController < ApplicationController
   before_action :authenticate_any!
 
   def index
-    @scope_of_works = ScopeOfWork.all
+    @customers = Customer.all
+    @search = ScopeOfWork.ransack(params[:q])
+    @scope_of_works = @search.result.page(params[:page])
   end
 
   def new 
