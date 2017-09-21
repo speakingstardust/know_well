@@ -10,6 +10,7 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
+    @scope_of_works = ScopeOfWork.where(customer: @customer) 
   end
 
   # GET /customers/new
