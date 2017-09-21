@@ -1,2 +1,24 @@
-<h1>ScopeOfWorks#show</h1>
-<p>Find me in app/views/scope_of_works/show.html.erb</p>
+<% provide(:title, "Scope of Work Details") %>
+<p>
+  <strong>Customer Name: </strong>
+  <%= @scope_of_work.customer.name %>
+</p>
+<p>
+  <strong>Date Created: </strong>
+  <%= l @scope_of_work.date_created %>
+</p>
+<p>
+  <strong>Created By: </strong>
+  <%= @scope_of_work.created_by %>
+</p>
+<p>
+  <strong>Description: </strong>
+  <%= @scope_of_work.description %>
+</p>
+<p>
+  <strong>Scope of Work: </strong>
+  <iframe src="<%= @scope_of_work.file.url %>" class="center-block"></iframe>
+</p>
+<%= link_to "To Scope of Work Index", scope_of_works_path, class: "btn btn-primary" %>
+<%= link_to "Edit", edit_scope_of_work_path(@scope_of_work), class: "btn btn-primary" %>
+
