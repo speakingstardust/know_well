@@ -30,7 +30,6 @@ RSpec.describe "Scope of Work Management", type: :feature do
       expect(page).to have_current_path(scope_of_work_path(@scope_of_work))
       expect(page).to have_content(@scope_of_work.name)
       expect(page).to have_content(@scope_of_work.created_by)
-      expect(page).to have_content(@scope_of_work.date_created)
       expect(page).to have_content(@scope_of_work.description)
       expect(page).to have_content(@scope_of_work.customer.name)
       expect(page).to have_selector('iframe')
