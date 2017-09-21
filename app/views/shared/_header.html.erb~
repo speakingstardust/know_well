@@ -76,7 +76,9 @@
                             <span class="caret"></span>
                           </a>
                           <ul class="dropdown-menu" role="menu">
-                            <li><%= link_to "Customer Index", customers_path, class: "nav-link" %>
+                            <li><%= link_to "Customer Index", customers_path, class: "nav-link" %></li>
+                            <li><%= link_to "Scope of Work Index", scope_of_works_path, class: 'nav-link' %></li>
+                          </ul>
 			</li>
                         <li class="nav-item <%= active_class(expense_reports_path) %>">
                           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Expense Reports
