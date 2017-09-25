@@ -114,15 +114,9 @@ class JigWorkOrder < ActiveRecord::Base
   def self.create_jig_work_orders_for_gosei
     gosei = Customer.find_by_name("Toyoda Gosei")
     jig = Jig.first 
-    start_date = Date.today
-    date_range = []
-    7.times do |i|
-      date_range << start_date + i 
-    end
-    date_range.each do |date|
-      work_order = JigWorkOrder.create(customer: gosei, pickup_date: date)
-      work_order.jig_work_order_line_items.create(jig: jig, expected: 0)
-      work_order.save
-    end
+    date = Date.today
+    work_order = JigWorkOrder.create(customer: gosei, pickup_date: date) 
+    work_order.jig_work_order_line_items.create(jig: jig, expected: 0)
+    work_order.save
   end
 end
