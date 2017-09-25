@@ -5,3 +5,8 @@ task :archive_jig_work_orders => :environment do
     puts "done."
 end
 
+task :create_gosei_jig_work_orders => :environment do 
+  puts "Creating Gosei Jig Work Orders..."
+  JigWorkOrder.create_jig_work_orders_for_gosei
+  puts "done."
+end
