@@ -17,6 +17,11 @@ class ExpenseReport < ActiveRecord::Base
   validates :receipt, attachment_presence: true
 
   has_attached_file :receipt, styles: { large: "500x500>", medium: "300x300>", thumb: "100x100>" }
-  validates_attachment_content_type :receipt, content_type: ["application/pdf", "image/jpeg", "image/jpg", "image/png"]
+  before_post_process :is_image?
 
+  validates_attachment_content_type :receipt, content_type: ["application/pdf", "image/jpeg", "image/jpg", "image/png", "image/x-png", "image/gif"]
+
+  def is_image?
+    ["image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/gif"].include?(self.receipt_content_type)
+  end
 end

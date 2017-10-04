@@ -57,7 +57,11 @@
 
   <p>
     <strong>Receipt:</strong>
-    <%= image_tag @expense_report.receipt.url(:large), class: "img img-responsive" %>
+    <% if @expense_report.is_image? %>
+      <%= image_tag @expense_report.receipt.url(:large), class: "img img-responsive" %>
+    <% elsif @expense_report.receipt_content_type == "application/pdf" %>
+      <iframe src="<%= @expense_report.receipt.url %>" class="center-block"</iframe>
+    <% end %>
   </p>
 </div>
 <div class="row">
