@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   belongs_to :category
   has_many :order_line_items
   has_many :orders, through: :order_line_items
-  has_many :product_report_line_items
+  has_many :product_report_line_items, dependent: :destroy
   has_many :product_reports, through: :product_report_line_items
   has_one :safety_data_sheet
 
