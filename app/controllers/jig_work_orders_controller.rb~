@@ -74,7 +74,7 @@ class JigWorkOrdersController < ApplicationController
     if @jig_work_order.ship! 
       redirect_to @jig_work_order, notice: 'Jig Work Order Status Changed to Shipped'
     else
-      redirect_to @jig_work_order, alert: 'Jig Work Order Status Not Changed, Please check that actual cleaning numbers and returned date have been properly set before attempting again.'
+      redirect_to @jig_work_order, alert: 'Jig Work Order Status Not Changed, Please check that actual cleaning numbers, returned date, driver, and truck number have been properly set before attempting again.'
     end
   end
 

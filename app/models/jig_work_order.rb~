@@ -115,6 +115,8 @@ class JigWorkOrder < ActiveRecord::Base
     gosei = Customer.find_by_name("Toyoda Gosei")
     jig = Jig.first 
     date = Date.today
-    
+    work_order = JigWorkOrder.create(customer: gosei, pickup_date: date) 
+    work_order.jig_work_order_line_items.create(jig: jig, expected: 0)
+    work_order.save
   end
 end

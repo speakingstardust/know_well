@@ -118,5 +118,6 @@ class JigWorkOrder < ActiveRecord::Base
     work_order = JigWorkOrder.create(customer: gosei, pickup_date: date) 
     work_order.jig_work_order_line_items.create(jig: jig, expected: 0)
     work_order.save
+    work_order.open!
   end
 end
