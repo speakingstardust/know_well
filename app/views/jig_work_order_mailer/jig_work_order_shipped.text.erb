@@ -1,0 +1,13 @@
+Jig Work Order Shipped for <%= @jig_work_order.customer.name %>
+================================================================================
+  Jig Work Order #: <%= @jig_work_order.id %>
+
+  You are receiving this email as a notification that a new Jig Work Order has been submitted. 
+  
+  Please log in to <%= link_to "Know Well", root_url %> in order to view and manage this work order.
+  
+  If you have received this email in error please contact <%= mail_to "josh@autochemind.com", "Josh Pettyjohn", subject: "Jig Work Order Notification Issue" %>
+
+  All the Best, 
+
+  Know Well and AutoChem Industrial

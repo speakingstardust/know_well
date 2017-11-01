@@ -35,7 +35,7 @@ class JigWorkOrder < ActiveRecord::Base
       transitions :from => :opened, :to => :received
     end
 
-    event :ship do
+    event :ship, :after => :notify_shipped do
       transitions :from => :received, :to => :shipped do
         guard do
           ready_for_shipping?
@@ -79,6 +79,10 @@ class JigWorkOrder < ActiveRecord::Base
     return true
   end
 
+  def notify_shipped
+    
+  end
+
   def verification_info_and_notification(pundit_user)
     self.verified_at = Time.now
     self.verified_by = "#{pundit_user.first_name} #{pundit_user.last_name}"
@@ -118,5 +122,6 @@ class JigWorkOrder < ActiveRecord::Base
     work_order = JigWorkOrder.create(customer: gosei, pickup_date: date) 
     work_order.jig_work_order_line_items.create(jig: jig, expected: 0)
     work_order.save
+    work_order.open!
   end
 end

@@ -35,7 +35,7 @@ class JigWorkOrder < ActiveRecord::Base
       transitions :from => :opened, :to => :received
     end
 
-    event :ship do
+    event :ship, :after => :notify_shipped do
       transitions :from => :received, :to => :shipped do
         guard do
           ready_for_shipping?
@@ -77,6 +77,17 @@ class JigWorkOrder < ActiveRecord::Base
       return false
     end
     return true
+  end
+
+  def notify_shipped
+    admins = Admin.all
+    admins.each do |admin|
+      JigWorkOrderMailer.jig_work_order_shipped(admin, self).deliver_now
+    end
+    bookkeepers = User.with_role(:bookkeeper)
+    bookkeepers.each do |bookkeeper|
+      JigWorkOrderMailer.jig_work_order_shipped(bookkeeper, self).deliver_now
+    end
   end
 
   def verification_info_and_notification(pundit_user)
