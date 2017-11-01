@@ -67,12 +67,12 @@ class ExpenseReportsController < ApplicationController
       @users = [pundit_user] 
     end
     @q = ExpenseReport.ransack(params[:q])
-    @expense_reports = @q.result.page(params[:page])
+    @expense_reports = @q.result
   end
 
   def summary_report
     @q = ExpenseReport.ransack(params[:q])
-    @expense_reports = policy_scope(@q.result.page(params[:page]))
+    @expense_reports = policy_scope(@q.result)
     @total = 0
     @date_range = {}
     dates = []
