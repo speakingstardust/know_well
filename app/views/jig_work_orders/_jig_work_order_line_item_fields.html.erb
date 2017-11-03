@@ -7,13 +7,8 @@
       <%= f.input :expected, disabled: true, placeholder: "# Expected", label: false %>
     <% end %>
     <%= f.input :received, placeholder: "# Received", label: false %>
-    <% if current_user.try(:has_role?, :driver) %>
-      <%= f.input :repaired, placeholder: "# Repaired", label: false, disabled: true %>
-      <%= f.input :actual, placeholder: "# Cleaned", label: false, disabled: true %>
-    <% else %>
-      <%= f.input :repaired, placeholder: "# Repaired", label: false %>
-      <%= f.input :actual, placeholder: "# Cleaned", label: false %>
-    <% end %>
+    <%= f.input :repaired, placeholder: "# Repaired", label: false %>
+    <%= f.input :actual, placeholder: "# Cleaned", label: false %>
     <%= link_to_remove_association "Remove Jig", f %>
   </div>
 </div>
