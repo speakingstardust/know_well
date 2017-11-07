@@ -5,14 +5,6 @@
     <% else %>
       <%= f.association :customer, disabled: true %>
     <% end %>
-    <% if current_user.try(:has_role?, :driver) %>
-      <%= f.input :purchase_order, hint: 'If not available, leave blank and one will be generated.', disabled: true %>  
-      <%= f.input :pickup_date, disabled: true %> 
-      <%= f.input :pickup_time, disabled: true %>
-      <%= f.input :returned, include_blank: true, disabled: true %>
-      <%= f.input :return_time, disabled: true %>
-      <%= f.input :driver, disabled: true %>
-    <% else %>   
       <%= f.input :purchase_order, hint: 'If not available, leave blank and one will be generated.' %>  
       <%= f.input :pickup_date %> 
       <%= f.input :pickup_time %>
@@ -21,7 +13,6 @@
       <%= f.input :driver %>
       <%= f.input :truck_number %>
       <%= f.input :notes %>
-    <% end %>
     <h4 class="text-center">Jigs</h4>
     <div id="jig_work_order_line_items">
       <%= f.simple_fields_for :jig_work_order_line_items, html: { render_options: { wrapper: 'horizontal-form' }, class: 'form-inline' } do |line_item| %>
