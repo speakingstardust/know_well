@@ -43,11 +43,11 @@ class JigWorkOrderPolicy < ApplicationPolicy
   end
 
   def receive?
-    user.is_admin? or user.has_role? :shop_supervisor
+    user.is_admin? or user.has_role? :shop_supervisor or user.has_role? :driver
   end
 
   def ship?
-    user.is_admin? or user.has_role? :shop_supervisor
+    user.is_admin? or user.has_role? :shop_supervisor or user.has_role? :driver
   end
 
   def verify_completed?
