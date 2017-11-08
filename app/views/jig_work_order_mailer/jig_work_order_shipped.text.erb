@@ -2,6 +2,12 @@ Jig Work Order Shipped for <%= @jig_work_order.customer.name %>
 ================================================================================
   Jig Work Order #: <%= @jig_work_order.id %>
 
+  Parts Shipped: 
+
+  <% @jig_work_order.jig_work_order_line_items.each do |jwoli| %>
+    <%= jwoli.jig.name %> | <%= jwoli.actual %> Returned 
+  <% end %>
+
   You are receiving this email as a notification that a new Jig Work Order has been submitted. 
   
   Please log in to <%= link_to "Know Well", root_url %> in order to view and manage this work order.
