@@ -1,4 +1,5 @@
-<h1>New Jig Work Order Shipped for <%= @jig_work_order.customer.name %></h1>
+<%= image_tag 'autochem_industrial.png', alt: "Autochem Industrial Logo" %>
+<h1>Jig Work Order Shipped for <%= @jig_work_order.customer.name %></h1>
 <h3>
   Jig Work Order #: <%= @jig_work_order.id %>
 </h3>
@@ -27,7 +28,10 @@
 </table>
 <hr>
 <p>
-  You are receiving this email as a notification that a Jig Work Order has been shipped. Please log in to <%= link_to "Know Well", root_url %> in order to view and manage this work order.
+  You are receiving this email as a notification that a Jig Work Order has been shipped. 
+</p>
+<p>
+  If you have questions or concerns regarding your order please contact <%= mail_to "joel@autochemky.com", "Joel Vice", subject: "Jig Work Order Issue" %>
 </p>
 <p>
   If you have received this email in error please contact <%= mail_to "josh@autochemind.com", "Josh Pettyjohn", subject: "Jig Work Order Notification Issue" %>
