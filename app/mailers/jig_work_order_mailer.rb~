@@ -12,4 +12,10 @@ class JigWorkOrderMailer < ApplicationMailer
     @jig_work_order = jig_work_order
     mail to: @user.email, subject: "Jig Work Order for #{@jig_work_order.customer.name} Verified"
   end
+
+  def jig_work_order_shipped(user, jig_work_order)
+    @user = user
+    @jig_work_order = jig_work_order
+    mail to: @user.email, subject: "Jig Work Order for #{ @jig_work_order.customer.name } Shipped"
+  end
 end
