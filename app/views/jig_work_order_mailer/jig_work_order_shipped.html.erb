@@ -18,7 +18,7 @@
     <% @jig_work_order.jig_work_order_line_items.each do |line_item| %>
       <tr>
         <th scope="row"><%= line_item.jig.name %></th>
-        <td><%= image_tag line_item.jig.jig_photo.url(:thumb) %></td>
+        <td><img src="<%= line_item.jig.jig_photo.url(:thumb) %>"</td>
         <td><%= line_item.expected %></td>
         <td><%= line_item.repaired %></td>
         <td><%= line_item.actual %></td>
