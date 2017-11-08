@@ -1,0 +1,17 @@
+Jig Work Order Shipped for <%= @jig_work_order.customer.name %>
+================================================================================
+  Jig Work Order #: <%= @jig_work_order.id %>
+
+  Parts Shipped: 
+
+  <% @jig_work_order.jig_work_order_line_items.each do |jwoli| %>
+    <%= jwoli.jig.name %> | <%= jwoli.actual %> Returned 
+  <% end %>
+
+  You are receiving this email as a notification that a Jig Work Order has been shipped. 
+  
+  If you have received this email in error please contact <%= mail_to "josh@autochemind.com", "Josh Pettyjohn", subject: "Jig Work Order Notification Issue" %>
+
+  All the Best, 
+
+  AutoChem Industrial

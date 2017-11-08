@@ -88,6 +88,9 @@ class JigWorkOrder < ActiveRecord::Base
     bookkeepers.each do |bookkeeper|
       JigWorkOrderMailer.jig_work_order_shipped(bookkeeper, self).deliver_now
     end
+    if self.customer.name == "Toyoda Gosei"
+      JigWorkOrderMailer.jig_work_order_shipped_to_gosei("joel@autochemky.com", self).deliver_now
+    end
   end
 
   def verification_info_and_notification(pundit_user)

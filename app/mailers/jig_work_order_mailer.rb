@@ -19,4 +19,11 @@ class JigWorkOrderMailer < ApplicationMailer
     attachments.inline['autochem_industrial.png'] = File.read("#{Rails.root}/app/assets/images/autochem_industrial.png")
     mail to: @user.email, subject: "Jig Work Order for #{ @jig_work_order.customer.name } Shipped"
   end
+
+  def jig_work_order_shipped_to_gosei(email, jig_work_order)
+    @email = email 
+    @jig_work_order = jig_work_order
+    attachments.inline['autochem_industrial.png'] = File.read("#{Rails.root}/app/assets/images/autochem_industrial.png")
+    mail to: @email, subject: "Jig Work Order for #{ @jig_work_order.customer.name } Shipped" 
+  end
 end
