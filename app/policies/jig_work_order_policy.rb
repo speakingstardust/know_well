@@ -51,11 +51,11 @@ class JigWorkOrderPolicy < ApplicationPolicy
   end
 
   def verify_completed?
-    user.is_admin? or user.has_role? :shop_supervisor
+    user.is_admin? or user.has_role? :shop_supervisor or user.has_role? :bookkeeper
   end
 
   def complete?
-    user.is_admin? or user.has_role? :bookkeeper 
+    user.is_admin? or user.has_role? :bookkeeper or user.has_role? :bookkeeper
   end
 
   def archive?
