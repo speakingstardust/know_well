@@ -90,6 +90,8 @@ class JigWorkOrder < ActiveRecord::Base
     end
     if self.customer.name == "Toyoda Gosei"
       JigWorkOrderMailer.jig_work_order_shipped_to_gosei("joel@autochemky.com", self).deliver_now
+      JigWorkOrderMailer.jig_work_order_shipped_to_gosei("angela.brock@toyodagosei.com", self).deliver_now
+      JigWorkOrderMailer.jig_work_order_shipped_to_gosei("angela.brock@tgky.com", self).deliver_now
     end
   end
 
