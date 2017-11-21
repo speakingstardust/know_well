@@ -188,6 +188,7 @@ FactoryGirl.define do
     cleaning_charge 9.50
     repair_charge 6.50 
     customer 
+    aka "Something, Something Else, Something Something"
   end
 
   factory :jig_order do
