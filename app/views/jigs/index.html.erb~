@@ -42,7 +42,11 @@
           <td><%= number_to_currency jig.cleaning_charge %></td>
           <td><%= number_to_currency jig.repair_charge %></td>
         <% end %>
-        <td><%= image_tag jig.jig_photo.url(:thumb) %></td>
+        <% if jig.jig_photo.exists? %>
+          <td><%= image_tag jig.jig_photo.url(:thumb) %></td>
+        <% else %>
+          <td>No Image Available</td>
+        <% end %>
         <td><%= link_to 'Show', jig %></td>
         <td><%= link_to 'Edit', edit_jig_path(jig) %></td>
         <td><%= link_to 'Destroy', jig, method: :delete, data: { confirm: 'Are you sure?' } %></td>
