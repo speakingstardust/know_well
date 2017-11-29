@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Document, type: :model do
   describe "Validations" do 
-    subject { described_class.new(name: "Test SDS", type: 0, version: "1.0", 
+    subject { described_class.new(name: "Test SDS", category: 0, version: "1.0", 
                                   date_issued: Date.today, created_by: "Joe Blow", 
                                   date_modified: Date.today, updated_by: "Joe Schmo") }
 

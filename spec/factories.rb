@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :document do
     name "Test SDS"
-    type 0
+    category 0
     version "1.0"
     date_issued { Date.today - 1 }
     created_by "Joe Blow"
