@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :meico_product do
-    name "MyString"
+    name "Test Meico Product Name"
   end
   factory :scope_of_work do
     name "Test Location Scope of Work"
