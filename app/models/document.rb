@@ -3,6 +3,7 @@ class Document < ActiveRecord::Base
   validates :category, presence: true
   validates :date_issued, presence: true
   validates :version, presence: true
+  validates :file, presence: true
 
   has_attached_file :file, styles: { full: "2500x2500>", large: "500x500>", medium: "300x300>", thumb: "100x100>" }
   before_post_process :is_image?
