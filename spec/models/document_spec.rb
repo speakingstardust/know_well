@@ -16,8 +16,8 @@ RSpec.describe Document, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without a type" do 
-      subject.type = nil 
+    it "is not valid without a category" do 
+      subject.category = nil 
 
       expect(subject).to_not be_valid
     end
