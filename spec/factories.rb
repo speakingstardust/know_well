@@ -1,12 +1,12 @@
 FactoryGirl.define do
   factory :document do
-    name "MyString"
-    type 1
-    version "MyString"
-    date_issued "2017-11-29"
-    created_by "MyString"
-    date_modified "2017-11-29"
-    updated_by "MyString"
+    name "Test SDS"
+    type 0
+    version "1.0"
+    date_issued { Date.today - 1 }
+    created_by "Joe Blow"
+    date_modified { Date.today }
+    updated_by "Joe Schmo"
   end
   factory :meico_product do
     name "Test Meico Product Name"
