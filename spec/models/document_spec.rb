@@ -4,7 +4,8 @@ RSpec.describe Document, type: :model do
   describe "Validations" do 
     subject { described_class.new(name: "Test SDS", category: 0, version: "1.0", 
                                   date_issued: Date.today, created_by: "Joe Blow", 
-                                  date_modified: Date.today, updated_by: "Joe Schmo") }
+                                  date_modified: Date.today, updated_by: "Joe Schmo",
+                                  file: File.new("#{Rails.root}/spec/support/fixtures/test_pic.jpg")) }
 
     it "is valid with valid attributes" do 
       expect(subject).to be_valid
@@ -34,5 +35,10 @@ RSpec.describe Document, type: :model do
       expect(subject).to_not be_valid
     end
 
+    it "is not valid without a file" do 
+      subject.file = nil 
+
+      expect(subject).to_not be_valid
+    end
   end
 end
