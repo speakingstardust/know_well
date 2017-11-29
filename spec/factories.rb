@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :meico_product do
+    name "MyString"
+  end
   factory :scope_of_work do
     name "Test Location Scope of Work"
     date_created { Date.today }
