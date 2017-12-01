@@ -1,6 +1,8 @@
 class Document < ActiveRecord::Base
   belongs_to :meico_product
 
+  enum category: [:SDS, :TDS, :EDS, :Other]
+
   validates :name, presence: true 
   validates :category, presence: true
   validates :date_issued, presence: true
