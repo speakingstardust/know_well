@@ -57,7 +57,7 @@ RSpec.describe "MEICO Product Management", type: :feature do
 
       fill_in "Name", with: "Test MEICO Product SDS"
       fill_in "Version", with: "1.0"
-      select "SDS", from: "Category"
+      select "Sds", from: "Category"
       select Date.today.year, from: "document_date_issued_1i"
       select Date.today.strftime("%B"), from: "document_date_issued_2i"
       select Date.today.day, from: "document_date_issued_3i"
