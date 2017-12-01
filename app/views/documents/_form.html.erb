@@ -1,4 +1,4 @@
-<%= simple_form_form @document, html: { class: 'form-horizontal' }, multipart: true do |f| %>
+<%= simple_form_for @document, html: { class: 'form-horizontal' }, multipart: true do |f| %>
   <%= f.input :name %>
   <%= f.input :version %>
   <%= f.input :category, as: :select, collection: Document.categories.map {|key, value| [key.humanize, key] } %>
