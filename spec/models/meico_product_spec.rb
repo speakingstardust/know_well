@@ -14,4 +14,8 @@ RSpec.describe MeicoProduct, type: :model do
       expect(subject).to_not be_valid
     end
   end
+
+  describe "Associations" do 
+    it { should have_many(:documents) }
+  end
 end

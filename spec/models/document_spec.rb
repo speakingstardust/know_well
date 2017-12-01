@@ -41,4 +41,8 @@ RSpec.describe Document, type: :model do
       expect(subject).to_not be_valid
     end
   end
+
+  describe "Associations" do 
+    it { should belong_to(:meico_product) }
+  end 
 end
