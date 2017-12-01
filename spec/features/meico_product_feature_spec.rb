@@ -9,7 +9,7 @@ RSpec.describe "MEICO Product Management", type: :feature do
 
   describe "Create" do 
     it "allows a user to create a MEICO Product" do 
-      visit new_product_path
+      visit new_meico_product_path
       fill_in "Name", with: "Test MEICO Product"
       expect {
         click_on "Create Meico product"
