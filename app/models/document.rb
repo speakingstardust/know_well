@@ -1,4 +1,6 @@
 class Document < ActiveRecord::Base
+  belongs_to :meico_product
+
   validates :name, presence: true 
   validates :category, presence: true
   validates :date_issued, presence: true
