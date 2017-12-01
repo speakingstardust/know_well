@@ -72,6 +72,8 @@ RSpec.describe "MEICO Product Management", type: :feature do
       expect(page).to have_content(@document.name)
       expect(page).to have_content(@document.version)
       expect(page).to have_content(@document.category)
+      expect(page).to have_content(@document.created_by)
+      expect(page).to have_content(@document.meico_product.name)
       expect(page).to have_content(Date.today.strftime("%m/%d/%Y"))
     end
   end
