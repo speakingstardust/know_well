@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129182246) do
+ActiveRecord::Schema.define(version: 20171201130432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20171129182246) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+    t.integer  "meico_product_id"
   end
 
   create_table "expense_reports", force: :cascade do |t|
@@ -473,6 +474,7 @@ ActiveRecord::Schema.define(version: 20171129182246) do
   end
 
   add_foreign_key "categories", "product_reports"
+  add_foreign_key "documents", "meico_products"
   add_foreign_key "expense_reports", "admins"
   add_foreign_key "expense_reports", "users"
   add_foreign_key "jig_work_order_line_items", "jig_work_orders"
