@@ -21,6 +21,7 @@ class MeicoProductsController < ApplicationController
   end
 
   def show
+    @documents = Document.where(meico_product: @meico_product)
   end
 
   def edit
