@@ -22,4 +22,16 @@ RSpec.describe "MEICO Product Management", type: :feature do
     end
   end
 
+  describe "Edit" do 
+    let!(:meico_product) { FactoryGirl.create(:meico_product) }
+    it "allows a user to edit an existing MEICO Product" do 
+      visit edit_meico_product_path(meico_product)
+      fill_in "Name", with: "Blah Blah Blah"
+      click_on "Update Meico product"
+
+      expect(page).to have_current_path(meico_product_path(meico_product))
+      expect(page).to have_content("Blah Blah Blah")
+    end
+  end
+
 end
