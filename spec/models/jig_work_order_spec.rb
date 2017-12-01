@@ -72,24 +72,6 @@ RSpec.describe JigWorkOrder, type: :model do
     end
   end
 
-  describe "Logic" do 
-    it "triggers the set_purchase_order callback before save" do 
-      jig_work_order = build(:jig_work_order)
-
-      expect(jig_work_order).to receive(:set_purchase_order)
-
-      jig_work_order.save 
-    end
-
-    it "sets purchase order to current date and time if none is set" do 
-      jig_work_order = build(:jig_work_order, purchase_order: nil) 
-
-      jig_work_order.set_purchase_order 
-
-      expect(jig_work_order.purchase_order).to eq(Time.now.strftime("%m%d%y-%H%M"))
-    end
-  end
-
   describe "Class Methods" do 
     let!(:old_work_order) { create(:jig_work_order) } 
     let!(:new_work_order) { create(:jig_work_order)}
