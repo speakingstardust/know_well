@@ -34,4 +34,15 @@ RSpec.describe "MEICO Product Management", type: :feature do
     end
   end
 
+  describe "Index" do 
+    let!(:meico_product) { FactoryGirl.create(:meico_product) }
+    it "allows a user to navigate through an index of MEICO Products" do
+      visit meico_products_path
+
+      expect(page).to have_content(meico_product.name)
+      click_on "Show"
+
+      expect(page).to have_current_path(meico_product_path(meico_product))
+    end
+  end
 end
