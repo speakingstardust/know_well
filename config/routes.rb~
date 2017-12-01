@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get "delete"
     end
   end
+  resources :scope_of_works
   resources :customers
   resources :jigs
   resources :jig_orders
