@@ -26,6 +26,14 @@ class DocumentsController < ApplicationController
   def edit
   end
 
+  def update
+    if @document.update(document_params)
+      redirect_to meico_product_document_path(@document.meico_product.id, @document), notice: "Document successfully updated."
+    else
+      render :edit
+    end
+  end
+
   private 
     def set_document 
       @document = Document.find(params[:id])
