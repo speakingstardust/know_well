@@ -9,7 +9,7 @@ RSpec.describe "MEICO Product Document Management", type: :feature do
 
   describe "Edit" do 
     let!(:meico_product) { FactoryGirl.create(:meico_product) }
-    let!(:document) { FactoryGirl.create(:document) }
+    let!(:document) { FactoryGirl.create(:document, meico_product: meico_product) }
     it "allows a user to edit a document" do 
       visit edit_meico_product_document_path(meico_product.id, document.id)
 
