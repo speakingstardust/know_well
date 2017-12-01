@@ -26,6 +26,9 @@ Rails.application.routes.draw do
       get "delete"
     end
   end
+  resources :meico_products do 
+    resources :documents
+  end
   resources :scope_of_works
   resources :customers
   resources :jigs
