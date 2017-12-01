@@ -42,8 +42,8 @@
     <h4 class="panel-title">Updated By</h4>
   </div>
   <div class="panel-body">
-    <% unless @document.created_by.nil? %>
-      <p><%= @document.created_by %></p>
+    <% unless @document.updated_by.nil? %>
+      <p><%= @document.updated_by %></p>
     <% end %>
   </div>
   <div class="panel-heading">
