@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'meico_products/new'
+
+  get 'meico_products/show'
+
+  get 'meico_products/edit'
+
+  get 'meico_products/index'
+
   resources :jig_work_orders do
     put :receive
     put :complete
@@ -25,6 +33,9 @@ Rails.application.routes.draw do
     resources :comments do 
       get "delete"
     end
+  end
+  resources :meico_products do 
+    resources :documents
   end
   resources :scope_of_works
   resources :customers
