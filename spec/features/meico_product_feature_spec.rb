@@ -78,4 +78,21 @@ RSpec.describe "MEICO Product Management", type: :feature do
       expect(page).to have_content(Date.today.strftime("%m/%d/%Y"))
     end
   end
+
+  describe "Displays Documents" do 
+    let!(:meico_product) { FactoryGirl.create(:meico_product) }
+    let!(:document) { FactoryGirl.create(:document, meico_product: meico_product) }
+    let!(:document_2) { FactoryGirl.create(:document, meico_product: meico_product, name: "Test MEICO Product SDS 2") }
+
+    it "allows a viewer to see all documents associated with a particular meico product" do 
+      visit meico_product_path(meico_product)
+
+      expect(page).to have_content(document.name)
+      expect(page).to have_content(document.version) 
+      expect(page).to have_content(document.category)
+      expect(page).to have_content(document_2.name)
+      expect(page).to have_content(document_2.version) 
+      expect(page).to have_content(document_2.category)
+    end
+  end
 end
