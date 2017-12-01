@@ -68,6 +68,7 @@ RSpec.describe "MEICO Product Management", type: :feature do
 
       @document = Document.find_by_name("Test MEICO Product SDS")
 
+
       expect(page).to have_current_path(meico_product_document_path(meico_product.id, @document.id))
       expect(page).to have_content(@document.name)
       expect(page).to have_content(@document.version)
