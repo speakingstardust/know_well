@@ -1,0 +1,8 @@
+<% provide(:title, "Edit #{@document.meico_product.name} Document") %>
+<div class="page-header">
+  <h1 class="text-center">Edit <%= @document.meico_product.name %> Document </h1>
+</div>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', meico_product_document_path(@document.meico_product.id, @document.id), class: "btn btn-primary" %>
