@@ -18,4 +18,5 @@ class Document < ActiveRecord::Base
     ["image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/gif"].include?(self.file_content_type)
   end
 
+
 end

@@ -10,6 +10,7 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     @meico_product = MeicoProduct.find(params[:meico_product_id])
+    @document.created_by = "#{pundit_user.first_name} #{pundit_user.last_name}"    
     if @document.save
       redirect_to meico_product_document_path(@meico_product.id, @document), notice: "Document successfully created."
     else 
