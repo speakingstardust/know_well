@@ -12,7 +12,7 @@ class DocumentsController < ApplicationController
     @document = Document.new(document_params)
     @meico_product = MeicoProduct.find(params[:meico_product_id])
     @document.meico_product = @meico_product
-    @document.created_by = "#{pundit_user.first_name} #{pundit_user.last_name}"    
+    @document.created_by = "#{pundit_user.full_name}"    
     if @document.save
       redirect_to meico_product_document_path(@meico_product.id, @document), notice: "Document successfully created."
     else 
@@ -28,6 +28,8 @@ class DocumentsController < ApplicationController
 
   def update
     if @document.update(document_params)
+      @document.update_by = "#{pundit_user.full_name}"
+      @document.save
       redirect_to meico_product_document_path(@document.meico_product.id, @document), notice: "Document successfully updated."
     else
       render :edit
