@@ -28,7 +28,7 @@ class DocumentsController < ApplicationController
 
   def update
     if @document.update(document_params)
-      @document.update_by = "#{pundit_user.full_name}"
+      @document.updated_by = "#{pundit_user.full_name}"
       @document.save
       redirect_to meico_product_document_path(@document.meico_product.id, @document), notice: "Document successfully updated."
     else

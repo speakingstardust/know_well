@@ -16,9 +16,11 @@ RSpec.describe "MEICO Product Document Management", type: :feature do
       fill_in "Name", with: "Edited Test MEICO Product Name"
       click_on "Update Document"
 
+      document.reload
+
       expect(page).to have_current_path(meico_product_document_path(meico_product.id, document.id))
       expect(page).to have_content("Edited Test MEICO Product Name")
-      expect(document.updated_by).to eq("#{@user.first_name} #{@user.last_name}")
+      expect(document.updated_by).to eq("#{@user.full_name}")
     end
   end
 end
