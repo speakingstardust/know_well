@@ -53,7 +53,7 @@ RSpec.describe "MEICO Product Document Management", type: :feature do
 
       click_on "Share"
 
-      expect(page).to have_current_path(new_document_mail_log))
+      expect(page).to have_current_path(new_document_mail_log)
       
       fill_in "Email", with: "test@ing.com"
       fill_in "Purpose", with: "Test purpose"
