@@ -45,7 +45,7 @@ RSpec.describe "MEICO Product Document Management", type: :feature do
   describe "Email" do 
     let!(:document) { FactoryGirl.create(:document) }
 
-    it "allows a user to send an email" do 
+    xit "allows a user to send an email" do 
       visit meico_product_path(document.meico_product)
 
       expect(page).to have_content(document.name)
