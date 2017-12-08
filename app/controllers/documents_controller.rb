@@ -36,6 +36,12 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def destroy
+    @meico_product = @document.meico_product
+    @document.destroy
+    redirect_to meico_product_url(@meico_product), notice: "Document was successfully destroyed."
+  end
+
   private 
     def set_document 
       @document = Document.find(params[:id])
