@@ -28,7 +28,7 @@ RSpec.describe "MEICO Product Document Management", type: :feature do
     let!(:meico_product) { FactoryGirl.create(:meico_product) }
     let!(:document) { FactoryGirl.create(:document, meico_product: meico_product) }
     it "allows a user to destroy a document" do 
-      vist meico_product_path(meico_product)
+      visit meico_product_path(meico_product)
 
       expect(page).to have_content(document.name)
       expect(page).to have_content(document.version)
