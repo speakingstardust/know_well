@@ -21,4 +21,5 @@ class Document < ActiveRecord::Base
   def share_document(email)
     DocumentMailer.share_document(email, self).deliver_now
   end
+
 end

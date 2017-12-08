@@ -22,7 +22,7 @@ RSpec.describe DocumentMailer, type: :mailer do
     end
 
     it "has the attachment" do 
-      mail.attachments.should have(1).attachment
+      expect(mail.attachments.length).to eq(1)
     end
   end
 end

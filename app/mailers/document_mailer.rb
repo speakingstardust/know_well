@@ -4,10 +4,7 @@ class DocumentMailer < ApplicationMailer
   def share_document(email, document)
     @email = email 
     @document = document
-    attachments["#{@document.name} #{@document.category}.pdf"] = {
-      mime_type: 'application/pdf',
-      content: open(@document.file.url).read
-    }
+    attachments["#{@document.name} #{@document.category}.pdf"] = File.read(@document.file.path)
     mail to: @email, subject: "MEICO Document Request Response"
   end
 end
