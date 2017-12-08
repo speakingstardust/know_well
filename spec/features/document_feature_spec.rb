@@ -41,4 +41,23 @@ RSpec.describe "MEICO Product Document Management", type: :feature do
 
     end
   end
+
+  describe "Email" do 
+    let!(:document) { FactoryGirl.create(:document) }
+
+    it "allows a user to send an email" do 
+      visit meico_product_path(document.meico_product)
+
+      expect(page).to have_content(document.name)
+
+      click_on "Share"
+
+      expect(page).to have_current_path(meico_product_document_share_path(document.meico_product.id, document))
+      
+      fill_in "Email", with: "test@ing.com"
+      expect {
+
+      }.to change { ActionMailer::Base.deliveries.count }.by(1)
+    end
+  end
 end
