@@ -4,6 +4,7 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :trackable, :validatable, :timeoutable
   
   has_many :projects
+  has_many :expense_reports
 
   def is_admin?
     true
