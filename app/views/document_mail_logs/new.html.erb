@@ -3,5 +3,12 @@
   <h1 class="text-center">Share Document</h1>
 </div>
 <div class="row">
+  <%= simple_form_for @document_mail_log, html: { class: 'form-horizontal' } do |f| %>
+    <%= f.input :email %>
+    <%= f.input :purpose %>
+    <%= f.association :customer %>
+    <%= f.hidden_field :document_id, value: @document.id %>
+    <%= f.submit "Share Document" %>
+  <% end %>
 </div>
 <%= link_to "Back", @document.meico_product, class: "btn btn-primary" %>
