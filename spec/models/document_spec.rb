@@ -5,7 +5,7 @@ RSpec.describe Document, type: :model do
     subject { described_class.new(name: "Test SDS", category: 0, version: "1.0", 
                                   date_issued: Date.today, created_by: "Joe Blow", 
                                   updated_by: "Joe Schmo",
-                                  file: File.new("#{Rails.root}/spec/support/fixtures/test_pic.jpg")) }
+                                  file: File.new("#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf")) }
 
     it "is valid with valid attributes" do 
       expect(subject).to be_valid
