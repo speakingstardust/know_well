@@ -1,4 +1,12 @@
 FactoryGirl.define do
+  factory :document_mail_log do
+    user nil
+    admin nil
+    purpose "MyText"
+    sent_at "2017-12-08 10:25:31"
+    customer nil
+    email "MyString"
+  end
   factory :document do
     name "Test SDS"
     category 0
