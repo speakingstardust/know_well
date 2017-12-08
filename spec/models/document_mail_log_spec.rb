@@ -49,6 +49,7 @@ RSpec.describe DocumentMailLog, type: :model do
     it { should belong_to(:user) }
     it { should belong_to(:admin) }
     it { should belong_to(:customer) }
+    it { should belong_to(:document) }
   end
 
 end

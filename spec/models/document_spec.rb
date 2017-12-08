@@ -44,6 +44,7 @@ RSpec.describe Document, type: :model do
 
   describe "Associations" do 
     it { should belong_to(:meico_product) }
+    it {should have_many(:document_mail_logs) }
   end 
 
   describe "Logic" do 
