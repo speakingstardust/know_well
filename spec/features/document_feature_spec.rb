@@ -23,4 +23,22 @@ RSpec.describe "MEICO Product Document Management", type: :feature do
       expect(document.updated_by).to eq("#{@user.full_name}")
     end
   end
+
+  describe "Destroy" do 
+    let!(:meico_product) { FactoryGirl.create(:meico_product) }
+    let!(:document) { FactoryGirl.create(:document, meico_product: meico_product) }
+    it "allows a user to destroy a document" do 
+      vist meico_product_path(meico_product)
+
+      expect(page).to have_content(document.name)
+      expect(page).to have_content(document.version)
+      
+      expect {
+        click_on "Destroy"
+      }.to change(Document, :count).by(-1)
+
+      expect(page).to_not have_content(document.name)
+
+    end
+  end
 end
