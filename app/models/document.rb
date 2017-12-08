@@ -18,5 +18,7 @@ class Document < ActiveRecord::Base
     ["image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/gif"].include?(self.file_content_type)
   end
 
-
+  def share_document(email)
+    DocumentMailer.share_document(email, self).deliver_now
+  end
 end

@@ -51,7 +51,7 @@ RSpec.describe Document, type: :model do
 
     it "can send an email" do 
       expect { 
-        subject.share_document
+        subject.share_document("test@ing.com")
       }.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
   end
