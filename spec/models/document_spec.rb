@@ -45,4 +45,14 @@ RSpec.describe Document, type: :model do
   describe "Associations" do 
     it { should belong_to(:meico_product) }
   end 
+
+  describe "Logic" do 
+    subject { FactoryGirl.create(:document) }
+
+    it "can send an email" do 
+      expect { 
+        subject.share_document
+      }.to change { ActionMailer::Base.deliveries.count }.by(1)
+    end
+  end
 end

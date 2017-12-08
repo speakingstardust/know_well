@@ -1,0 +1,23 @@
+<h1>Request for <%= @document.meico_product.name %> Document</h1>
+<p>
+  You are receiving this email as a response to a document request from either yourself or your organization.
+</p>
+<p>
+  <strong>By opening the attached document you are agreeing to the following:</strong> 
+  <ul>
+    <li>
+      The information contained herein is considered confidential and will not be shared with anyone, inside or outside of your organization, that does not have a direct need for the information contained herein.
+    </li>
+    <li>
+      This material will not be reproduced with the intention of redistributing.
+    </li>
+  </ul>
+</p>
+<p>
+    If you have any questions or concerns regarding either the documentation requested, or the terms given above, please contact <%= mail_to "service@mooneyed.com", "Customer Service", subject: "Document Request Issue" %>
+</p>
+<h4>
+  Thank you for your business
+  <hr>
+  The MEICO Team
+</h4>

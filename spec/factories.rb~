@@ -5,7 +5,6 @@ FactoryGirl.define do
     version "1.0"
     date_issued { Date.today - 1 }
     created_by "Joe Blow"
-    date_modified { Date.today }
     updated_by "Joe Schmo"
     file { File.new("#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf") }
   end
