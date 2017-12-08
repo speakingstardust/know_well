@@ -20,8 +20,22 @@ RSpec.describe DocumentMailLog, type: :model do
       expect(subject).to be_valid
     end
 
-    it "is not valid without a purpose"
-    it "is not valid without a sent_at timestamp"
-    it "is not valid without an email"
+    it "is not valid without a purpose" do 
+      subject.purpose = nil
+
+      expect(subject).to_not be_valid
+    end
+
+    it "is not valid without a sent_at timestamp" do 
+      subject.sent_at = nil
+
+      expect(subject).to_not be_valid
+    end
+
+    it "is not valid without an email" do 
+      subject.email = nil
+
+      expect(subject).to_not be_valid
+    end
   end
 end
