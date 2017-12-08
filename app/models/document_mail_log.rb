@@ -9,4 +9,5 @@ class DocumentMailLog < ActiveRecord::Base
   validates :sent_at, presence: true
   validates :email, presence: true
   validates :purpose, presence: true
+  validates :document, presence: true
 end
