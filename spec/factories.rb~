@@ -1,4 +1,12 @@
 FactoryGirl.define do
+  factory :document_mail_log do
+    user 
+    admin nil
+    purpose "MyText"
+    sent_at "2017-12-08 10:25:31"
+    customer 
+    email "MyString"
+  end
   factory :document do
     name "Test SDS"
     category 0
@@ -7,6 +15,7 @@ FactoryGirl.define do
     created_by "Joe Blow"
     updated_by "Joe Schmo"
     file { File.new("#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf") }
+    meico_product
   end
   factory :meico_product do
     name "Test Meico Product Name"

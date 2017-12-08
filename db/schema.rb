@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171208152531) do
+ActiveRecord::Schema.define(version: 20171208154150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,10 +81,12 @@ ActiveRecord::Schema.define(version: 20171208152531) do
     t.string   "email"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "document_id"
   end
 
   add_index "document_mail_logs", ["admin_id"], name: "index_document_mail_logs_on_admin_id", using: :btree
   add_index "document_mail_logs", ["customer_id"], name: "index_document_mail_logs_on_customer_id", using: :btree
+  add_index "document_mail_logs", ["document_id"], name: "index_document_mail_logs_on_document_id", using: :btree
   add_index "document_mail_logs", ["user_id"], name: "index_document_mail_logs_on_user_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
@@ -490,6 +492,7 @@ ActiveRecord::Schema.define(version: 20171208152531) do
   add_foreign_key "categories", "product_reports"
   add_foreign_key "document_mail_logs", "admins"
   add_foreign_key "document_mail_logs", "customers"
+  add_foreign_key "document_mail_logs", "documents"
   add_foreign_key "document_mail_logs", "users"
   add_foreign_key "documents", "meico_products"
   add_foreign_key "expense_reports", "admins"
