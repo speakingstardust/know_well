@@ -4,7 +4,7 @@ RSpec.describe DocumentMailLog, type: :model do
   describe "Validations" do 
     subject { described_class.new(user: create(:user), purpose: "Testing email logs.", 
                                   sent_at: DateTime.now, customer: create(:customer), 
-                                  email: "test@ing.com") }
+                                  email: "test@ing.com", document: create(:document)) }
 
     it "is valid with valid attributes" do 
       expect(subject).to be_valid
@@ -18,6 +18,12 @@ RSpec.describe DocumentMailLog, type: :model do
 
       subject.admin = create(:admin)
       expect(subject).to be_valid
+    end
+
+    it "is not valid without a document" do 
+      subject.document = nil
+
+      expect(subject).to_not be_valid
     end
 
     it "is not valid without a purpose" do 
@@ -44,4 +50,5 @@ RSpec.describe DocumentMailLog, type: :model do
     it { should belong_to(:admin) }
     it { should belong_to(:customer) }
   end
+
 end

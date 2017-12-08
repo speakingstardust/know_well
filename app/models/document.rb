@@ -1,5 +1,6 @@
 class Document < ActiveRecord::Base
   belongs_to :meico_product
+  has_many :document_mail_logs
 
   enum category: [:SDS, :TDS, :EDS, :Other]
 
