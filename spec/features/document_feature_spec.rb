@@ -62,7 +62,7 @@ RSpec.describe "MEICO Product Document Management", type: :feature do
         click_on "Send mail"
       }.to change { ActionMailer::Base.deliveries.count }.by(1)
       
-      expect(page).to have_current_path(meico_product_document_path(document.meico_product, document)
+      expect(page).to have_current_path(meico_product_document_path(document.meico_product, document))
     end
   end
 end
