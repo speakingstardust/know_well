@@ -1,0 +1,2 @@
+class DocumentMailLogsController < ApplicationController
+end

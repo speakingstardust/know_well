@@ -12,7 +12,7 @@
         <th>Version</th>
         <th>Category</th>
         <th>Date Issued</th>
-        <th colspan="3"></th>
+        <th colspan="4"></th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +22,7 @@
           <td><%= document.version %></td>
           <td><%= document.category.humanize.upcase %></td>
           <td><%= l document.date_issued %></td>
+          <td><%= link_to "Share", new_document_mail_log_path(document) %></td>
           <td><%= link_to "Show", meico_product_document_path(@meico_product.id, document.id) %></td>
           <td><%= link_to "Edit", edit_meico_product_path(@meico_product.id, document.id) %></td>
           <td><%= link_to "Destroy", meico_product_document_path(@meico_product.id, document.id), method: :delete, data: { confirm: "Are you sure?" } %></td>

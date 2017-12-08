@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :meico_products do 
     resources :documents
   end
+  resources :document_mail_logs
   resources :scope_of_works
   resources :customers
   resources :jigs

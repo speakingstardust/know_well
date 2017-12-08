@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get 'meico_products/new'
-
-  get 'meico_products/show'
-
-  get 'meico_products/edit'
-
-  get 'meico_products/index'
-
   resources :jig_work_orders do
     put :receive
     put :complete
