@@ -6,6 +6,7 @@ FactoryGirl.define do
     sent_at "2017-12-08 10:25:31"
     customer 
     email "MyString"
+    document
   end
   factory :document do
     name "Test SDS"

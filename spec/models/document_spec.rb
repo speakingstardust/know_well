@@ -48,12 +48,38 @@ RSpec.describe Document, type: :model do
   end 
 
   describe "Logic" do 
-    subject { FactoryGirl.create(:document) }
+    subject { FactoryGirl.create(:document, current_version: true) }
+    let!(:second_document) { FactoryGirl.create(:document, name: "Second Document",
+                                                meico_product: subject.meico_product) }
+    let!(:third_document) { FactoryGirl.create(:document, name: "Third Document", 
+                                              meico_product: subject.meico_product) } 
 
     it "can send an email" do 
       expect { 
         subject.share_document("test@ing.com")
       }.to change { ActionMailer::Base.deliveries.count }.by(1)
+    end
+
+    it "can properly set the current version flag" do 
+      second_document.current_version = true
+      second_document.save
+
+      subject.reload
+      second_document.reload 
+      third_document.reload
+
+      expect(subject.current_version).to eq(false)
+      expect(second_document.current_version).to eq(true)
+      expect(third_document.current_version).to eq(false)
+    end
+
+    it "will not allow no current version to be set" do
+      subject.current_version = false 
+      subject.save
+
+      subject.reload 
+
+      expect(subject.current_version).to eq(true)
     end
   end
 end
