@@ -1,6 +1,6 @@
 require 'pry'
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :download]
   before_action :authenticate_any!
 
   def new 

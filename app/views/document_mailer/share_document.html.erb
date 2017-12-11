@@ -1,6 +1,6 @@
 <h1>Request for <%= @document.meico_product.name %> Document</h1>
 <p>
-  You are receiving this email as a response to a document request from either yourself or your organization.
+  You are receiving this email as a response to a document request from either yourself or your organization. Please be aware that the link to download this file will expire in 24 hours. If you need access to the file again, please contact a MEICO representative and we will be happy to assist you. 
 </p>
 <p>
   <strong>By opening the attached document you are agreeing to the following:</strong> 
@@ -13,6 +13,9 @@
     </li>
   </ul>
 </p>
+<p>
+  <strong>Download Link</strong>
+  <%= link_to "#{@document.name} Download Link", @document.file.expiring_url(24.hours).html_safe %>
 <p>
     If you have any questions or concerns regarding either the documentation requested, or the terms given above, please contact <%= mail_to "service@mooneyed.com", "Customer Service", subject: "Document Request Issue" %>
 </p>

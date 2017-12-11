@@ -10,7 +10,8 @@ class Document < ActiveRecord::Base
   validates :version, presence: true
   validates :file, presence: true
 
-  has_attached_file :file
+  has_attached_file :file, 
+    :s3_permissions => :private
 
   validates_attachment_content_type :file, content_type: ["application/pdf"]
 
