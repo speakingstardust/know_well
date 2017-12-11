@@ -57,9 +57,9 @@ RSpec.describe "MEICO Product Document Management", type: :feature do
       
       fill_in "Email", with: "test@ing.com"
       fill_in "Purpose", with: "Test purpose"
-      select customer, from: "Customer"
+      select customer.name, from: "Customer"
       expect {
-        click_on "Send mail"
+        click_on "Share Document"
       }.to change { ActionMailer::Base.deliveries.count }.by(1)
       
       expect(page).to have_current_path(meico_product_document_path(document.meico_product, document))
