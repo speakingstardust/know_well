@@ -38,8 +38,12 @@ class DocumentsController < ApplicationController
 
   def destroy
     @meico_product = @document.meico_product
-    @document.destroy
-    redirect_to meico_product_url(@meico_product), notice: "Document was successfully destroyed."
+    if @document.document_mail_logs.empty?
+      @document.destroy
+      redirect_to meico_product_url(@meico_product), notice: "Document was successfully destroyed."
+    else
+      redirect_to meico_product_url(@meico_product), notice: "Document cannot be deleted after it has been shared."
+    end
   end
 
   private 

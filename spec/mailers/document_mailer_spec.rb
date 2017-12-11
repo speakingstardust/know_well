@@ -20,9 +20,5 @@ RSpec.describe DocumentMailer, type: :mailer do
     it "renders the sender email" do 
       expect(mail.from).to eq(['noreply@autochemind.com'])
     end
-
-    it "has the attachment" do 
-      expect(mail.attachments.length).to eq(1)
-    end
   end
 end
