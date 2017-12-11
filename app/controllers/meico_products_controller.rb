@@ -8,11 +8,12 @@ class MeicoProductsController < ApplicationController
 
   def new
     @meico_product = MeicoProduct.new
+    authorize @meico_product
   end
   
   def create 
     @meico_product = MeicoProduct.new(meico_product_params)
-
+    authorize @meico_product
     if @meico_product.save
       redirect_to @meico_product, notice: "MEICO Product successfully created."
     else 
@@ -25,9 +26,11 @@ class MeicoProductsController < ApplicationController
   end
 
   def edit
+    authorize @meico_product
   end
 
   def update 
+    authorize @meico_product
     if @meico_product.update(meico_product_params)
       redirect_to @meico_product, notice: "MEICO Product was successfully updated."
     else
@@ -36,6 +39,7 @@ class MeicoProductsController < ApplicationController
   end
 
   def destroy
+    authorize @meico_product
     @meico_product.destroy
     redirect_to meico_products_url, notice: "MEICO Product was successfully destroyed."
   end
