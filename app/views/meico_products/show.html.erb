@@ -32,7 +32,7 @@
             <td></td>
           <% end %>
           <td><%= link_to "Show", meico_product_document_path(@meico_product.id, document.id) %></td>
-          <td><%= link_to "Edit", edit_meico_product_path(@meico_product.id, document.id) %></td>
+          <td><%= link_to "Edit", edit_meico_product_document_path(@meico_product.id, document.id) %></td>
           <td><%= link_to "Destroy", meico_product_document_path(@meico_product.id, document.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
         </tr>
       <% end %>

@@ -22,7 +22,8 @@ class MeicoProductsController < ApplicationController
   end
 
   def show
-    @documents = Document.where(meico_product: @meico_product)
+    authorize @meico_product
+    @documents = policy_scope(Document.where(meico_product: @meico_product))
   end
 
   def edit

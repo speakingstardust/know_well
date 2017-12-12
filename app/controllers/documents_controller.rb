@@ -27,7 +27,6 @@ class DocumentsController < ApplicationController
   end
 
   def update
-    binding.pry
     unless params[:document][:current_version] == "0"
       if @document.update(document_params)
         @document.updated_by = "#{pundit_user.full_name}"

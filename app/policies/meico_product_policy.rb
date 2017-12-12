@@ -10,6 +10,10 @@ class MeicoProductPolicy < ApplicationPolicy
     user.is_admin? or user.has_role? :lab_supervisor
   end
 
+  def show?
+    new?
+  end
+
   def create?
     new?
   end
