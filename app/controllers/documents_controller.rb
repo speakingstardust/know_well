@@ -41,7 +41,7 @@ class DocumentsController < ApplicationController
         render :edit
       end
     else
-      redirect_to edit_meico_product_document_path(@document.meico_product.id, @document), notice: "Cannot set unset Current Version manually. Please set the current version, which will unset this version."
+      redirect_to edit_meico_product_document_path(@document.meico_product.id, @document), notice: "Cannot unset Current Version manually. Please set the current version on another document, which will unset this version."
     end
   end
 

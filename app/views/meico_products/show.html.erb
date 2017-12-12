@@ -1,6 +1,7 @@
 <% provide(:title, "#{@meico_product.name} Home") %>
 <div class="page-header">
   <%= link_to "Create New Document", new_meico_product_document_path(@meico_product.id), class: "btn btn-primary pull-right" %>
+  <%= link_to "MEICO Products", meico_products_path, class: "btn btn-primary pull-left" %>
   <h1 class="text-center"><%= @meico_product.name %> Home</h1>
 </div>
 
