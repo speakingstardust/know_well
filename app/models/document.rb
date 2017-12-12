@@ -7,7 +7,8 @@ class Document < ActiveRecord::Base
   after_save :set_current_version_to_false, if: :current_version_true?
   
   scope :all_except, ->(document) { where.not(id: document) }
-  scope :current_version, ->(document) { where(category: document.category, current_version: true) }
+  scope :current_version_true, ->(document) { where(category: document.category, meico_product: document.meico_product, current_version: true) }
+  scope :current_version_false, ->(document) { where(category: document.category, meico_product: document.meico_product, current_version: false) }
 
   enum category: [:SDS, :TDS, :EDS, :Other]
 
@@ -36,14 +37,14 @@ class Document < ActiveRecord::Base
   end
 
   def set_current_version_to_false
-    self.class.current_version(self).all_except(self).update_all(current_version: false)
+    self.class.current_version_true(self).all_except(self).update_all(current_version: false)
   end
 
   def check_for_one_current_version
-    if self.current_version(self).all_except(self).empty?
-      return false
-    else
-      return true
+    if self.class.count > 1 
+      unless self.class.current_version_true(self).any? 
+        return false
+      end
     end
   end
 

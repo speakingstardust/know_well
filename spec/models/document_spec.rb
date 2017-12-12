@@ -50,9 +50,11 @@ RSpec.describe Document, type: :model do
   describe "Logic" do 
     subject { FactoryGirl.create(:document, current_version: true) }
     let!(:second_document) { FactoryGirl.create(:document, name: "Second Document",
-                                                meico_product: subject.meico_product) }
+                                                meico_product: subject.meico_product, 
+                                                current_version: false) }
     let!(:third_document) { FactoryGirl.create(:document, name: "Third Document", 
-                                              meico_product: subject.meico_product) } 
+                                               meico_product: subject.meico_product,
+                                               current_version: false) } 
 
     it "can send an email" do 
       expect { 
