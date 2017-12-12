@@ -9,8 +9,7 @@ class Document < ActiveRecord::Base
   default_scope { order(current_version: :desc, version: :desc) }
   
   scope :all_except, ->(document) { where.not(id: document) }
-  scope :current_version_true, ->(document) { where(category: document.category, meico_product: document.meico_product, current_version: true) }
-  scope :current_version_false, ->(document) { where(category: document.category, meico_product: document.meico_product, current_version: false) }
+  scope :current_version_true, ->(document) { where(category: Document.categories[document.category.to_sym], meico_product: document.meico_product, current_version: true) }
 
   enum category: [:SDS, :TDS, :EDS, :Other]
 
