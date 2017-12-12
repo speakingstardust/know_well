@@ -52,6 +52,6 @@ class DocumentsController < ApplicationController
     end
 
     def document_params
-      params.require(:document).permit(:meico_product_id, :name, :category, :version, :date_issued, :created_by, :updated_by, :file)
+      params.require(:document).permit(:meico_product_id, :name, :category, :version, :date_issued, :created_by, :updated_by, :file, :current_version)
     end
 end
