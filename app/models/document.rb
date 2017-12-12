@@ -3,7 +3,7 @@ class Document < ActiveRecord::Base
   belongs_to :meico_product
   has_many :document_mail_logs
 
-  before_save :check_for_one_current_version, if: :current_version_false?
+  before_update :check_for_one_current_version, if: :current_version_false?
   after_save :set_current_version_to_false, if: :current_version_true?
   
   scope :all_except, ->(document) { where.not(id: document) }
@@ -29,11 +29,11 @@ class Document < ActiveRecord::Base
   end
 
   def current_version_true?
-    self.current_version
+    self.current_version == true
   end
 
   def current_version_false?
-    self.current_version
+    self.current_version == false
   end
 
   def set_current_version_to_false
@@ -41,8 +41,9 @@ class Document < ActiveRecord::Base
   end
 
   def check_for_one_current_version
-    if self.class.count > 1 
-      unless self.class.current_version_true(self).any? 
+    binding.pry
+    if self.class.count > 0
+      unless self.class.current_version_true(self).all_except(self).any? 
         return false
       end
     end
