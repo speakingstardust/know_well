@@ -1,0 +1,43 @@
+<% provide(:title, "#{@meico_product.name} Home") %>
+<div class="page-header">
+  <%= link_to "Create New Document", new_meico_product_document_path(@meico_product.id), class: "btn btn-primary pull-right" %>
+  <%= link_to "MEICO Products", meico_products_path, class: "btn btn-primary pull-left" %>
+  <h1 class="text-center"><%= @meico_product.name %> Home</h1>
+</div>
+
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Version</th>
+        <th>Category</th>
+        <th>Date Issued</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @documents.each do |document| %>
+        <tr>
+          <th scope="row"><%= document.name %></th>
+          <% if document.current_version %>
+            <td><%= document.version %><span> (Current Version)</span></td>
+          <% else %>
+            <td><%= document.version %></td>
+          <% end %>
+          <td><%= document.category.humanize.upcase %></td>
+          <td><%= l document.date_issued %></td>
+          <% unless document.EDS? %>
+            <td><%= link_to "Share", new_document_mail_log_path(document_id: document.id) %></td>
+          <% else %>
+            <td></td>
+          <% end %>
+          <td><%= link_to "Show", meico_product_document_path(@meico_product.id, document.id) %></td>
+          <td><%= link_to "Edit", edit_meico_product_document_path(@meico_product.id, document.id) %></td>
+          <td><%= link_to "Destroy", meico_product_document_path(@meico_product.id, document.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

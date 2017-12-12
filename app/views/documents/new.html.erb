@@ -1,0 +1,8 @@
+<% provide(:title, "New Document for #{@meico_product.name}") %>
+<div class="page-header">
+  <h1 class="text-center">New Document for <%= @meico_product.name %></h1>
+</div>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', meico_product_path(@meico_product), class: 'btn btn-primary' %>

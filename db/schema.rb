@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121154420) do
+ActiveRecord::Schema.define(version: 20171211174338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,40 @@ ActiveRecord::Schema.define(version: 20171121154420) do
 
   add_index "dependencies", ["dependent_task_id", "task_id"], name: "index_dependencies_on_dependent_task_id_and_task_id", unique: true, using: :btree
   add_index "dependencies", ["task_id", "dependent_task_id"], name: "index_dependencies_on_task_id_and_dependent_task_id", unique: true, using: :btree
+
+  create_table "document_mail_logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "admin_id"
+    t.text     "purpose"
+    t.datetime "sent_at"
+    t.integer  "customer_id"
+    t.string   "email"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "document_id"
+  end
+
+  add_index "document_mail_logs", ["admin_id"], name: "index_document_mail_logs_on_admin_id", using: :btree
+  add_index "document_mail_logs", ["customer_id"], name: "index_document_mail_logs_on_customer_id", using: :btree
+  add_index "document_mail_logs", ["document_id"], name: "index_document_mail_logs_on_document_id", using: :btree
+  add_index "document_mail_logs", ["user_id"], name: "index_document_mail_logs_on_user_id", using: :btree
+
+  create_table "documents", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "category"
+    t.string   "version"
+    t.date     "date_issued"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.integer  "meico_product_id"
+    t.boolean  "current_version"
+  end
 
   create_table "expense_reports", force: :cascade do |t|
     t.integer  "user_id"
@@ -195,6 +229,12 @@ ActiveRecord::Schema.define(version: 20171121154420) do
     t.string   "name"
     t.string   "website"
     t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "meico_products", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -451,6 +491,11 @@ ActiveRecord::Schema.define(version: 20171121154420) do
   end
 
   add_foreign_key "categories", "product_reports"
+  add_foreign_key "document_mail_logs", "admins"
+  add_foreign_key "document_mail_logs", "customers"
+  add_foreign_key "document_mail_logs", "documents"
+  add_foreign_key "document_mail_logs", "users"
+  add_foreign_key "documents", "meico_products"
   add_foreign_key "expense_reports", "admins"
   add_foreign_key "expense_reports", "users"
   add_foreign_key "jig_work_order_line_items", "jig_work_orders"

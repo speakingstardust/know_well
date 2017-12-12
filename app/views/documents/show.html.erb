@@ -1,0 +1,100 @@
+<% provide(:title, "#{@document.name} Details") %>
+<div class="page-header">
+  <%= link_to "Edit Document", edit_meico_product_document_path(@document.meico_product.id, @document.id), class: "btn btn-primary pull-right" %>
+  <h1 class="text-center"><%= @document.name %> Details</h1>
+</div>
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title-info text-center">Document Details</h3>
+    </div>
+    <div class="panel-heading">
+      <h4 class="panel-title">MEICO Product</h4>
+    </div>
+    <div class="panel-body">
+      <p><%= @document.meico_product.name %></p>
+    </div>
+    <div class="panel-heading">
+      <h4 class="panel-title">Version</h4>
+    </div>
+    <div class="panel-body">
+      <p>
+        <%= @document.version %> 
+        <% if @document.current_version %>
+          <span>(Current Version)</span>
+        <% end %>
+      </p>
+    </div>
+    <div class="panel-heading">
+      <h4 class="panel-title">Category</h4>
+    </div>
+    <div class="panel-body">
+      <p><%= @document.category.capitalize %></p>
+    </div>
+    <div class="panel-heading">
+      <h4 class="panel-title">Date Issued</h4>
+    </div>
+    <div class="panel-body">
+      <p><%= l @document.date_issued %></p>
+    </div>
+    <div class="panel-heading">
+      <h4 class="panel-title">Created By</h4>
+    </div>
+    <div class="panel-body">
+      <p><%= @document.created_by %></p>
+    </div>
+    <div class="panel-heading">
+      <h4 class="panel-title">Updated By</h4>
+    </div>
+    <div class="panel-body">
+      <p><%= @document.updated_by %></p>
+    </div>
+    <div class="panel-heading">
+      <h4 class="panel-title">Created At</h4>
+    </div>
+    <div class="panel-body">
+      <p><%= l @document.created_at %></p>
+    </div>
+    <div class="panel-heading">
+      <h4 class="panel-title">Updated At</h4>
+    </div>
+    <div class="panel-body">
+      <p><%= l @document.updated_at %></p>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <h2 class="text-center">Mail Logs</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Customer</th>
+        <th>Email</th>
+        <th>Purpose</th>
+        <th>Shared By</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @document.document_mail_logs.each do |log| %>
+        <tr>
+          <th scope="row"><%= l log.sent_at %></th>
+          <% unless log.customer.nil? %>
+            <td><%= log.customer.name %></th>
+          <% end %>
+          <td><%= log.email %></td>
+          <td><%= log.purpose %></td>
+          <% if log.user.nil? %>
+            <td><%= log.admin.full_name %></td>
+          <% elsif log.admin.nil? %>
+            <td><%= log.user.full_name %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<hr>
+<%= link_to "Back", meico_product_path(@document.meico_product), class: "btn btn-primary" %>

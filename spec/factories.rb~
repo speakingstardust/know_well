@@ -1,4 +1,27 @@
 FactoryGirl.define do
+  factory :document_mail_log do
+    user 
+    admin nil
+    purpose "MyText"
+    sent_at "2017-12-08 10:25:31"
+    customer 
+    email "MyString"
+    document
+  end
+  factory :document do
+    name "Test SDS"
+    category 0
+    version "1.0"
+    date_issued { Date.today - 1 }
+    created_by "Joe Blow"
+    updated_by "Joe Schmo"
+    file { File.new("#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf") }
+    meico_product
+    current_version false
+  end
+  factory :meico_product do
+    name "Test Meico Product Name"
+  end
   factory :scope_of_work do
     name "Test Location Scope of Work"
     date_created { Date.today }
@@ -188,6 +211,7 @@ FactoryGirl.define do
     cleaning_charge 9.50
     repair_charge 6.50 
     customer 
+    aka "Something, Something Else, Something Something"
   end
 
   factory :jig_order do

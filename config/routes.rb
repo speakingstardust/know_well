@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get 'scope_of_works/index'
-
-  get 'scope_of_works/show'
-
-  get 'scope_of_works/new'
-
-  get 'scope_of_works/edit'
-
   resources :jig_work_orders do
     put :receive
     put :complete
@@ -34,6 +26,10 @@ Rails.application.routes.draw do
       get "delete"
     end
   end
+  resources :meico_products do 
+    resources :documents
+  end
+  resources :document_mail_logs
   resources :scope_of_works
   resources :customers
   resources :jigs

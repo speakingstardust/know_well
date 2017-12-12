@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   has_many :projects
   has_many :expense_reports
+  has_many :document_mail_logs
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
