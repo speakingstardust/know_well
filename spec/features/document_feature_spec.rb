@@ -4,6 +4,7 @@ require "pry"
 RSpec.describe "MEICO Product Document Management", type: :feature do 
   before(:each) do 
     @user = FactoryGirl.create(:user)
+    @user.add_role :lab_supervisor
     login_as(@user, :scope => :user)
   end
 

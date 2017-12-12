@@ -6,10 +6,12 @@ class DocumentsController < ApplicationController
   def new 
     @meico_product = MeicoProduct.find(params[:meico_product_id])
     @document = Document.new(meico_product: @meico_product)
+    authorize @document
   end
 
   def create
     @document = Document.new(document_params)
+    authorize @document
     @meico_product = MeicoProduct.find(params[:meico_product_id])
     @document.meico_product = @meico_product
     @document.created_by = "#{pundit_user.full_name}"    
@@ -21,12 +23,15 @@ class DocumentsController < ApplicationController
   end
 
   def show
+    authorize @document
   end
 
   def edit
+    authorize @document
   end
 
   def update
+    authorize @document
     unless params[:document][:current_version] == "0"
       if @document.update(document_params)
         @document.updated_by = "#{pundit_user.full_name}"
@@ -41,6 +46,7 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
+    authorize @document
     @meico_product = @document.meico_product
     if @document.document_mail_logs.empty?
       @document.destroy

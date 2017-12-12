@@ -13,6 +13,10 @@ class DocumentPolicy < ApplicationPolicy
   def create?
     new?
   end
+  
+  def show?
+    new?
+  end
 
   def edit?
     new?
