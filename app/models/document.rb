@@ -41,7 +41,6 @@ class Document < ActiveRecord::Base
   end
 
   def check_for_one_current_version
-    binding.pry
     if self.class.count > 0
       unless self.class.current_version_true(self).all_except(self).any? 
         return false
