@@ -18,7 +18,12 @@
       <h4 class="panel-title">Version</h4>
     </div>
     <div class="panel-body">
-      <p><%= @document.version %></p>
+      <p>
+        <%= @document.version %> 
+        <% if @document.current_version %>
+          <span>(Current Version)</span>
+        <% end %>
+      </p>
     </div>
     <div class="panel-heading">
       <h4 class="panel-title">Category</h4>
@@ -91,3 +96,5 @@
   </table>
 </div>
 
+<hr>
+<%= link_to "Back", meico_product_path(@document.meico_product), class: "btn btn-primary" %>

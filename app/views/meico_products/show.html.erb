@@ -19,10 +19,18 @@
       <% @documents.each do |document| %>
         <tr>
           <th scope="row"><%= document.name %></th>
-          <td><%= document.version %></td>
+          <% if document.current_version %>
+            <td><%= document.version %><span> (Current Version)</span></td>
+          <% else %>
+            <td><%= document.version %></td>
+          <% end %>
           <td><%= document.category.humanize.upcase %></td>
           <td><%= l document.date_issued %></td>
-          <td><%= link_to "Share", new_document_mail_log_path(document_id: document.id) %></td>
+          <% unless document.EDS? %>
+            <td><%= link_to "Share", new_document_mail_log_path(document_id: document.id) %></td>
+          <% else %>
+            <td></td>
+          <% end %>
           <td><%= link_to "Show", meico_product_document_path(@meico_product.id, document.id) %></td>
           <td><%= link_to "Edit", edit_meico_product_path(@meico_product.id, document.id) %></td>
           <td><%= link_to "Destroy", meico_product_document_path(@meico_product.id, document.id), method: :delete, data: { confirm: "Are you sure?" } %></td>

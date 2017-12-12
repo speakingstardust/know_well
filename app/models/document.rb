@@ -5,6 +5,8 @@ class Document < ActiveRecord::Base
 
   before_update :check_for_one_current_version, if: :current_version_false?
   after_save :set_current_version_to_false, if: :current_version_true?
+
+  default_scope { order(current_version: :desc, version: :desc) }
   
   scope :all_except, ->(document) { where.not(id: document) }
   scope :current_version_true, ->(document) { where(category: document.category, meico_product: document.meico_product, current_version: true) }

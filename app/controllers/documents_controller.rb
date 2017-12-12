@@ -27,12 +27,17 @@ class DocumentsController < ApplicationController
   end
 
   def update
-    if @document.update(document_params)
-      @document.updated_by = "#{pundit_user.full_name}"
-      @document.save
-      redirect_to meico_product_document_path(@document.meico_product.id, @document), notice: "Document successfully updated."
+    binding.pry
+    unless params[:document][:current_version] == "0"
+      if @document.update(document_params)
+        @document.updated_by = "#{pundit_user.full_name}"
+        @document.save
+        redirect_to meico_product_document_path(@document.meico_product.id, @document), notice: "Document successfully updated."
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to edit_meico_product_document_path(@document.meico_product.id, @document), notice: "Cannot set unset Current Version manually. Please set the current version, which will unset this version."
     end
   end
 
