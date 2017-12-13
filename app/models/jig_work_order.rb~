@@ -12,8 +12,6 @@ class JigWorkOrder < ActiveRecord::Base
 
   accepts_nested_attributes_for :jig_work_order_line_items, :reject_if => lambda { |a| a[:jig_id].blank? }, :allow_destroy => true
 
-  before_save :set_purchase_order
-
   validates :pickup_date, presence: true
 
   scope :completed_before, ->(datetime) { where("completed_at < ?", datetime) } 
@@ -113,13 +111,6 @@ class JigWorkOrder < ActiveRecord::Base
     self.completed_by = "#{pundit_user.first_name} #{pundit_user.last_name}"
   end
 
-  def set_purchase_order
-    time = Time.now.strftime("%m%d%y-%H%M")
-    if self.purchase_order == '' or self.purchase_order == nil
-      self.purchase_order = time
-    end
-  end
-
   def self.archive_old_orders
     old_work_orders = JigWorkOrder.completed_before(DateTime.now - 60)
     old_work_orders.each do |work_order|
@@ -127,11 +118,20 @@ class JigWorkOrder < ActiveRecord::Base
     end
   end
 
-  def self.create_jig_work_orders_for_gosei
+  def self.create_daily_jig_work_orders
     gosei = Customer.find_by_name("Toyoda Gosei")
-    jig = Jig.first 
+    jig = Jig.where( 
     date = Date.today
     work_order = JigWorkOrder.create(customer: gosei, pickup_date: date) 
+    work_order.jig_work_order_line_items.create(jig: jig, expected: 0)
+    work_order.save
+    work_order.open!
+  end
+
+  def create_jig_work_orders(customer)
+    jig = Jig.where(customer: customer).first
+    date = Date.today
+    work_order = JigWorkOrder.create(customer: customer, pickup_date: date)
     work_order.jig_work_order_line_items.create(jig: jig, expected: 0)
     work_order.save
     work_order.open!

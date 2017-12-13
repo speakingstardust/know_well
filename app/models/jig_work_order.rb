@@ -118,11 +118,18 @@ class JigWorkOrder < ActiveRecord::Base
     end
   end
 
-  def self.create_jig_work_orders_for_gosei
-    gosei = Customer.find_by_name("Toyoda Gosei")
-    jig = Jig.first 
+  def self.create_daily_jig_work_orders
+    customer_names = ["Toyoda Gosei", "Dr. Schneider Automotive Systems, Inc."]
+    customers = customer_names.map {|name| Customer.find_by_name(name) }
+    customers.each do |customer|
+      create_jig_work_order(customer)
+    end
+  end
+
+  def create_jig_work_order(customer)
+    jig = Jig.where(customer: customer).first
     date = Date.today
-    work_order = JigWorkOrder.create(customer: gosei, pickup_date: date) 
+    work_order = JigWorkOrder.create(customer: customer, pickup_date: date)
     work_order.jig_work_order_line_items.create(jig: jig, expected: 0)
     work_order.save
     work_order.open!
