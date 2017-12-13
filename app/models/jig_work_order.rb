@@ -126,7 +126,7 @@ class JigWorkOrder < ActiveRecord::Base
     end
   end
 
-  def create_jig_work_order(customer)
+  def self.create_jig_work_order(customer)
     jig = Jig.where(customer: customer).first
     date = Date.today
     work_order = JigWorkOrder.create(customer: customer, pickup_date: date)
