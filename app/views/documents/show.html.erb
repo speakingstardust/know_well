@@ -82,6 +82,8 @@
           <th scope="row"><%= l log.sent_at %></th>
           <% unless log.customer.nil? %>
             <td><%= log.customer.name %></th>
+          <% else %>
+            <td></td>
           <% end %>
           <td><%= log.email %></td>
           <td><%= log.purpose %></td>
