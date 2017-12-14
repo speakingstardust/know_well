@@ -212,6 +212,7 @@ FactoryGirl.define do
     repair_charge 6.50 
     customer 
     aka "Something, Something Else, Something Something"
+    note "Test jig notes and special considerations"
   end
 
   factory :jig_order do

@@ -1,5 +1,6 @@
 <%= simple_form_for @jig, html: { class: "form-horizontal" }, multipart: true do |f| %>
   <%= f.input :name %>
+  <%= f.input :aka %>
   <%= f.association :customer %>
   <% if admin_signed_in? or current_user.has_role? :bookkeeper %>
     <%= f.input :cleaning_charge %>

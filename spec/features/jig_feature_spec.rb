@@ -26,6 +26,7 @@ RSpec.describe "Jig Management", type: :feature do
 
       fill_in "Name", with: "Test Jig" 
       select @customer.name, from: "Customer" 
+      fill_in "Note", with: "Test jig notes"
       expect {
         click_on "Create Jig"
       }.to change(Jig, :count).by(1)
@@ -35,6 +36,7 @@ RSpec.describe "Jig Management", type: :feature do
       expect(page).to have_current_path(jig_path(@jig))
       expect(page).to have_content(@jig.name)
       expect(page).to have_content(@customer.name)
+      expect(page).to have_content(@jig.note)
     end
 
     it "allows a bookkeeper to create a jig with prices" do 

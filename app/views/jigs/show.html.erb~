@@ -3,6 +3,10 @@
   <strong>Name:</strong>
   <%= @jig.name %>
 </p>
+<p>
+  <strong>Also Known As:</strong>
+  <%= @jig.aka %>
+</p>
 
 <p>
 	<strong>Customer:</strong>

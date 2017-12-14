@@ -17,7 +17,7 @@ FactoryGirl.define do
     updated_by "Joe Schmo"
     file { File.new("#{Rails.root}/spec/support/fixtures/SDS_Grate.pdf") }
     meico_product
-    current_version false
+    current_version true
   end
   factory :meico_product do
     name "Test Meico Product Name"
