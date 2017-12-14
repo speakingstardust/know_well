@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171211174338) do
+ActiveRecord::Schema.define(version: 20171214133908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(version: 20171211174338) do
     t.integer  "jig_photo_file_size"
     t.datetime "jig_photo_updated_at"
     t.text     "aka"
+    t.text     "note"
   end
 
   add_index "jigs", ["customer_id"], name: "index_jigs_on_customer_id", using: :btree
