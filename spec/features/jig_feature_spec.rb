@@ -26,7 +26,7 @@ RSpec.describe "Jig Management", type: :feature do
 
       fill_in "Name", with: "Test Jig" 
       select @customer.name, from: "Customer" 
-      fill_in "Note", with: "Test jig notes"
+      fill_in "Special Considerations or Requirments", with: "Test jig notes"
       expect {
         click_on "Create Jig"
       }.to change(Jig, :count).by(1)
