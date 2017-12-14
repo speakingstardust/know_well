@@ -11,6 +11,8 @@ class Jig < ActiveRecord::Base
   validates :name, presence: true
   validates :customer, presence: true
 
+  default_scope { order(name: :asc) }
+
   has_attached_file :jig_photo,
     styles: {
       thumb: '100x100>',
