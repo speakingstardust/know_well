@@ -4,7 +4,7 @@
     <%= f.input :version %>
     <%= f.input :current_version %>
     <%= f.input :category, as: :select, collection: Document.categories.map {|key, value| [key.humanize, key] } %>
-    <%= f.input :date_issued %>
+    <%= f.input :date_issued, start_year: Date.today.year - 50, end_year: Date.today.year %>
     <%= f.input :file, as: :file %>
     <%= f.submit %>  
   <% end %>
