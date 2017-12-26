@@ -8,7 +8,9 @@ class ExpenseReportsController < ApplicationController
   def index
     if pundit_user.is_admin? or pundit_user.has_role? :bookkeeper
       @users = User.all
-      @users << Admin.all
+      Admin.all.each do |admin|
+        @users << admin
+      end
     else
       @users = [pundit_user] 
     end
