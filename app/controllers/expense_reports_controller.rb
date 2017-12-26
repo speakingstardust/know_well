@@ -64,7 +64,9 @@ class ExpenseReportsController < ApplicationController
   def create_summary_report
     if pundit_user.is_admin? or pundit_user.has_role? :bookkeeper
       @users = User.all
-      @users << Admin.all
+      Admin.all.each do |admin|
+        @users << admin
+      end
     else
       @users = [pundit_user] 
     end
