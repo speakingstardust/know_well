@@ -1,4 +1,14 @@
 FactoryGirl.define do
+  factory :contact do
+    customer nil
+    first_name "MyString"
+    last_name "MyString"
+    email "MyString"
+    phone "MyString"
+    fax "MyString"
+    kind 1
+    note "MyText"
+  end
   factory :address do
     street "123 Somewhere St"
     city "Anywhere"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180108194028) do
+ActiveRecord::Schema.define(version: 20180108200825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,21 @@ ActiveRecord::Schema.define(version: 20180108194028) do
   end
 
   add_index "comments", ["project_id"], name: "index_comments_on_project_id", using: :btree
+
+  create_table "contacts", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "fax"
+    t.integer  "kind"
+    t.text     "note"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "contacts", ["customer_id"], name: "index_contacts_on_customer_id", using: :btree
 
   create_table "customers", force: :cascade do |t|
     t.string   "name"
@@ -506,6 +521,7 @@ ActiveRecord::Schema.define(version: 20180108194028) do
   end
 
   add_foreign_key "categories", "product_reports"
+  add_foreign_key "contacts", "customers"
   add_foreign_key "document_mail_logs", "admins"
   add_foreign_key "document_mail_logs", "customers"
   add_foreign_key "document_mail_logs", "documents"
