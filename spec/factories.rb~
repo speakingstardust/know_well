@@ -1,13 +1,13 @@
 FactoryGirl.define do
   factory :contact do
-    customer nil
-    first_name "MyString"
-    last_name "MyString"
-    email "MyString"
-    phone "MyString"
-    fax "MyString"
+    customer
+    first_name "Steve"
+    last_name "Jobs"
+    email "steve@apple.com"
+    phone "5555555555"
+    fax "5555555555"
     kind 1
-    note "MyText"
+    note "Test customer contact notes."
   end
   factory :address do
     street "123 Somewhere St"

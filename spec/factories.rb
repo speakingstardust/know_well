@@ -215,6 +215,7 @@ FactoryGirl.define do
   end
   factory :customer do
     sequence(:name) {|n| "Test Customer #{n}" }
+    payment 1
 
     factory :customer_with_jig_orders do
       after(:create) do |profile, evaluator|
