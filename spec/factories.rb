@@ -1,4 +1,11 @@
 FactoryGirl.define do
+  factory :address do
+    street "MyString"
+    city "MyString"
+    state "MyString"
+    zip "MyString"
+    category "MyString"
+  end
   factory :document_mail_log do
     user 
     admin nil
