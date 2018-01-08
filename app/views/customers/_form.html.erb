@@ -3,6 +3,10 @@
     <%= f.input :name %>
     <%= f.input :phone %>
     <%= f.input :fax %>
+    <%= f.input :customer_service_email %>
+    <%= f.input :invoice_email %>
+    <%= f.input :website %>
+    <%= f.input :payment, as: :select, collection: Customer.payments.map { |key, value| [key.humanize, key] } %>
     <h4 class="text-center">Addresses</h4>
     <div id="addresses">
       <%= f.simple_fields_for :addresses, html: { class: 'form-inline' } do |address| %>
