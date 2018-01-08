@@ -10,4 +10,6 @@ class Customer < ActiveRecord::Base
 
 	validates :name, presence: true, uniqueness: true
 
+        enum payment: [:credit_card, :direct_deposit, :check_by_mail] 
+
 end
