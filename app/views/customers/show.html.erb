@@ -3,12 +3,33 @@
 </div>
 <p>
   <strong>Phone:</strong>
-  <%= @customer.phone %>
+  <%= number_to_phone(@customer.phone) %>
 </p>
 
 <p>
   <strong>Fax:</strong>
-  <%= @customer.fax %>
+  <%= number_to_phone(@customer.fax) %>
+</p>
+<p>
+  <strong>Customer Service Email:</strong>
+  <%= @customer.customer_service_email %>
+</p>
+<p>
+  <strong>Invoice Email:</strong>
+  <%= @customer.invoice_email %>
+  <% if @customer.mail_invoice %>
+    <p><strong>Customer would prefer their invoices to be mailed.</strong></p>
+  <% else %>
+    <p>Customer would prefer their invoices to be emailed.</p>
+  <% end %>
+</p>
+<p>
+  <strong>Website:</strong>
+  <%= @customer.website %>
+</p>
+<p>
+  <strong>Prefered Payment Method:</strong>
+  <%= @customer.payment.titleize %>
 </p>
 <div class="page-header">
   <h1 class="text-center">Addresses</h1>

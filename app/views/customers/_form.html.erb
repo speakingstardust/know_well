@@ -5,6 +5,7 @@
     <%= f.input :fax %>
     <%= f.input :customer_service_email %>
     <%= f.input :invoice_email %>
+    <%= f.input :mail_invoice, label: "Please check if customer would prefer to have invoices mailed." %>
     <%= f.input :website %>
     <%= f.input :payment, as: :select, collection: Customer.payments.map { |key, value| [key.humanize, key] } %>
     <h4 class="text-center">Addresses</h4>
