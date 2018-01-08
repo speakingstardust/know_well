@@ -1,4 +1,5 @@
 class Address < ActiveRecord::Base
+  belongs_to :customer
 
   validates :street, presence: true
   validates :city, presence: true
