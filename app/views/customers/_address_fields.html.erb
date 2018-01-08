@@ -1,10 +1,10 @@
 <div class="nested-fields">
-  <div class="form-inline center" id="#Address">
+  <div id="#Address">
     <%= f.input :category, placeholder: "Physical, Billing, Mailing..." %>
     <%= f.input :street %>
     <%= f.input :city %>
     <%= f.input :state, collection: us_states %> 
     <%= f.input :zip %>
-    <%= link_to_remove_association "Remove Address", f %>
+    <%= link_to_remove_association "remove address", f %>
   </div>
 </div>

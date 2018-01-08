@@ -1,11 +1,6 @@
 <div class="page-header">
-  <h1 class="text-center">Customer Info</h1>
+  <h1 class="text-center"><%= @customer.name %> Details</h1>
 </div>
-<p>
-  <strong>Name:</strong>
-  <%= @customer.name %>
-</p>
-
 <p>
   <strong>Phone:</strong>
   <%= @customer.phone %>
@@ -35,6 +30,35 @@
   <strong>Zip:</strong>
   <%= @customer.zip %>
 </p>
+
+<div class="page-header">
+  <h1 class="text-center">Addresses</h1>
+</div>
+
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customer.addresses.each do |address| %>
+        <tr>
+          <th scope="row"><%= address.category %></th>
+          <td><%= address.street %></td>
+          <td><%= address.city %></td>
+          <td><%= address.state %></td>
+          <td><%= address.zip %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <div class="page-header">
   <h1 class="text-center">Scope of Works</h1>
