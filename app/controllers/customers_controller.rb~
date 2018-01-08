@@ -22,6 +22,9 @@ class CustomersController < ApplicationController
 
   # GET /customers/1/edit
   def edit
+    if @customer.addresses.empty? 
+      @customer.addresses.build
+    end
     authorize @customer
   end
 
