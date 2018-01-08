@@ -3,6 +3,15 @@
     <%= f.input :name %>
     <%= f.input :phone %>
     <%= f.input :fax %>
+    <h4 class="text-center">Addresses</h4>
+    <div id="addresses">
+      <%= f.simple_fields_for :addresses, html: { render_options: { wrapper: 'horizontal_form' }, class: 'form-inline' } do |address| %>
+        <%= render 'address_fields', f: address %>
+        <div class="links">
+          <%= link_to_add_association 'Add Address', f, :addresses, class: 'btn btn-success btn-block' %>
+        </div>
+      <% end %>
+    </div>
     <%= f.input :street_address %>
     <%= f.input :city %>
     <%= f.input :state, collection: us_states %>
