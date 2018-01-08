@@ -1,4 +1,11 @@
 FactoryGirl.define do
+  factory :address do
+    street "MyString"
+    city "MyString"
+    state "MyString"
+    zip "MyString"
+    category "MyString"
+  end
   factory :document_mail_log do
     user 
     admin nil
@@ -212,6 +219,7 @@ FactoryGirl.define do
     repair_charge 6.50 
     customer 
     aka "Something, Something Else, Something Something"
+    note "Test jig notes and special considerations"
   end
 
   factory :jig_order do

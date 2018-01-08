@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :address do
-    street "MyString"
-    city "MyString"
-    state "MyString"
-    zip "MyString"
-    category "MyString"
+    street "123 Somewhere St"
+    city "Anywhere"
+    state "KY"
+    zip "40444"
+    category "Physical"
   end
   factory :document_mail_log do
     user 
