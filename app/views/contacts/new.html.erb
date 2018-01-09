@@ -1,2 +1,8 @@
-<h1>Contacts#new</h1>
-<p>Find me in app/views/contacts/new.html.erb</p>
+<% provide(:title, "New #{@customer.name} Contact") %>
+<div class="page-header">
+  <%= link_to 'Back', customer_path(@customer), class: 'btn btn-primary pull-left' %>
+  <h1 class="text-center">New <%= @customer.name %> Contact</h1>
+</div>
+<div class="row">
+  <%= render 'form' %>
+</div>
