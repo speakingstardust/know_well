@@ -36,7 +36,6 @@ Rails.application.routes.draw do
   resources :jig_orders
   resources :jig_order_line_items
   resources :expense_reports
-  get "document_download/:id", to: 'documents#download', as: 'document_download'
   get "create_summary_report", to: 'expense_reports#create_summary_report', as: 'create_expense_summary_report'
   get "summary_report", to: "expense_reports#summary_report", as: 'expense_summary_report'
   resources :reports

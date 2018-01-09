@@ -31,7 +31,9 @@ Rails.application.routes.draw do
   end
   resources :document_mail_logs
   resources :scope_of_works
-  resources :customers
+  resources :customers do
+    resources :contacts
+  end
   resources :jigs
   resources :jig_orders
   resources :jig_order_line_items
