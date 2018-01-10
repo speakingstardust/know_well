@@ -8,4 +8,8 @@ class Contact < ActiveRecord::Base
   validates :email, presence: true
 
   enum kind: [:primary_billing, :secondary_billing, :primary_purchasing, :secondary_purchasing, :primary_production, :secondary_production]
+
+  def full_name 
+    "#{self.first_name} #{self.last_name}"
+  end
 end

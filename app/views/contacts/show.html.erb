@@ -1,2 +1,30 @@
-<h1>Contacts#show</h1>
-<p>Find me in app/views/contacts/show.html.erb</p>
+<% provide(:title, "#{@contact.customer.name} Contact Details") %>
+<div class="page-header">
+  <%= link_to "Back", customer_path(@contact.customer), class: 'btn btn-primary pull-left' %>
+  <h1 class="text-center"><%= @contact.customer.name %> Contact Details</h1>
+  <%= link_to "Edit Contact", edit_customer_contact_path(@contact.customer, @contact), class: 'btn btn-primary pull-right' %>
+</div>
+<p>
+  <strong>Type:</strong>
+  <%= @contact.kind %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @contact.full_name %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @contact.email %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%= @contact.phone %>
+</p>
+<p>
+  <strong>Fax:</strong>
+  <%= @contact.fax %>
+</p>
+<p>
+  <strong>Note:</strong>
+  <%= @contact.note %>
+</p>
