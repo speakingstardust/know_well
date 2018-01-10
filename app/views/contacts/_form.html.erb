@@ -1,6 +1,6 @@
 <% if action_name == 'new' %>
   <%= simple_form_for @contact, url: customer_contacts_path, html: { class: 'form-horizontal' } do |f| %>
-    <%= f.input :kind, as: :select, collection: Contact.kind.map {|key, value| [key.titleize, key]} %>
+    <%= f.input :kind, as: :select, collection: Contact.kinds.map {|key, value| [key.titleize, key]} %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :email %>
@@ -11,7 +11,7 @@
   <% end %>
 <% elsif action_name == 'edit' %>
   <%= simple_form_for @contact, url: customer_contacts_path(@customer, @contact), html: { class: 'form-horizontal' } do |f| %>
-    <%= f.input :kind, as: :select, collection: Contact.kind.map {|key, value| [key.titleize, key]} %>
+    <%= f.input :kind, as: :select, collection: Contact.kinds.map {|key, value| [key.titleize, key]} %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :email %>
