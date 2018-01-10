@@ -18,7 +18,7 @@ RSpec.describe "Customer Contact Management", type: :feature do
 
       expect(page).to have_current_path(new_customer_contact_path(customer))
 
-      select "Primary Billing Contact", from: "Kind"
+      select "Primary Billing", from: "Kind"
       fill_in "First name", with: "Steve"
       fill_in "Last name", with: "Jobs"
       fill_in "Phone", with: "5555555555"

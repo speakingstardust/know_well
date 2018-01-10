@@ -29,7 +29,9 @@
 </p>
 <p>
   <strong>Prefered Payment Method:</strong>
-  <%= @customer.payment.titleize %>
+  <% unless @customer.payment.nil? %>
+    <%= @customer.payment.titleize %>
+  <% end %>
 </p>
 <div class="page-header">
   <h1 class="text-center">Addresses</h1>
