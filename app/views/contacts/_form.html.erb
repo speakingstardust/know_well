@@ -10,7 +10,7 @@
     <%= f.submit %> 
   <% end %>
 <% elsif action_name == 'edit' %>
-  <%= simple_form_for @contact, url: edit_customer_contact_path(@customer, @contact), html: { class: 'form-horizontal' } do |f| %>
+  <%= simple_form_for @contact, url: customer_contact_path(@contact.customer, @contact), html: { class: 'form-horizontal' } do |f| %>
     <%= f.input :kind, as: :select, collection: Contact.kinds.map {|key, value| [key.titleize, key]} %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
