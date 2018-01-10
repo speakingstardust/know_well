@@ -26,11 +26,11 @@
     <strong>Customer Name:</strong>
     <%= @customer.name %>
   </p>
-  <% unless @customer.street_address.empty? %>
+  <% unless @customer.addresses.empty? %>
     <p>
       <strong>Customer Address:</strong>
         <p>
-          <%= @customer.street_address %>
+          <%= @customer.address.first.street %>
         </p>
         <p>
         <%= @customer.city %>, <%= @customer.state %> <%= @customer.zip %>
