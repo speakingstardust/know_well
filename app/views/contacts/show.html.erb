@@ -1,12 +1,12 @@
 <% provide(:title, "#{@contact.customer.name} Contact Details") %>
 <div class="page-header">
   <%= link_to "Back", customer_path(@contact.customer), class: 'btn btn-primary pull-left' %>
-  <h1 class="text-center"><%= @contact.customer.name %> Contact Details</h1>
   <%= link_to "Edit Contact", edit_customer_contact_path(@contact.customer, @contact), class: 'btn btn-primary pull-right' %>
+  <h1 class="text-center"><%= @contact.customer.name %> Contact Details</h1>
 </div>
 <p>
   <strong>Type:</strong>
-  <%= @contact.kind %>
+  <%= @contact.kind.titleize %>
 </p>
 <p>
   <strong>Name:</strong>

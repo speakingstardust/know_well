@@ -1,2 +1,8 @@
-<h1>Contacts#edit</h1>
-<p>Find me in app/views/contacts/edit.html.erb</p>
+<% provide(:title, "Edit #{@contact.customer.name} Contact") %>
+<div class="page-header">
+  <%= link_to "Back", customer_contact_path(@contact.customer, @contact), class: 'btn btn-primary pull-left' %>
+  <h1 class="text-center">Edit <%= @contact.customer.name %> Contact </h1>
+</div>
+
+<%= render 'form' %>
+
