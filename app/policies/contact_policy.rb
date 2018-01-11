@@ -1,4 +1,4 @@
-class ContactPolicy < Application Policy
+class ContactPolicy < ApplicationPolicy
   attr_reader :user, :contact
 
   def initialize(user, contact)
