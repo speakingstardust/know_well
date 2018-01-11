@@ -4,10 +4,12 @@ class DocumentMailLogsController < ApplicationController
   def new
     @document = Document.find(params[:document_id])
     @document_mail_log = DocumentMailLog.new(document: @document)
+    authorize @document_mail_log
   end
 
   def create
     @document_mail_log = DocumentMailLog.new(document_mail_log_params)
+    authorize @document_mail_log
     @document = @document_mail_log.document
     @meico_product = @document.meico_product
     if pundit_user.is_admin?
