@@ -1,0 +1,19 @@
+<table border="1">
+  <tr>
+    <th>Order #</th>
+    <th>Pickup Date</th>
+    <th>Jig name</th>
+    <th># Cleaned</th>
+  </tr>
+  <% @jig_work_orders.each do |jwo| %>
+    <% jwo.jig_work_order_line_items.each do |jwoli| %>
+      <tr>
+        <td><%= jwoli.jig_work_order.id %></td>
+        <td><%= jwoli.jig_work_order.pickup_date %></td>
+        <td><%= jwoli.jig.name %></td>
+        <td><%= jwoli.actual %></td>
+      </tr>
+    <% end %>
+  <% end %>
+
+</table>

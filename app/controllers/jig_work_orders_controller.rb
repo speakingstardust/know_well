@@ -12,6 +12,12 @@ class JigWorkOrdersController < ApplicationController
     @search.aasm_state_not_eq = 'archived' unless params[:q]
     @jig_work_orders = @search.result.order(:pickup_date).page(params[:page])
     authorize @jig_work_orders
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @jig_work_orders.to_csv }
+      format.xls { send_data render_to_string(partial: "index"), filename: "jig_work_orders.xls" }
+    end
   end
 
   def show

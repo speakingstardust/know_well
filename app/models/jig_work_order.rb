@@ -134,4 +134,13 @@ class JigWorkOrder < ActiveRecord::Base
     work_order.save
     work_order.open!
   end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |jig_work_order|
+        csv << jig_work_order.attributes.values_at(*column_names)
+      end
+    end 
+  end
 end
