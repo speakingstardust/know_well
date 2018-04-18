@@ -123,6 +123,7 @@ class JigWorkOrder < ActiveRecord::Base
     customers = customer_names.map {|name| Customer.find_by_name(name) }
     customers.each do |customer|
       create_jig_work_order(customer)
+      create_jig_work_order(customer)
     end
   end
 
